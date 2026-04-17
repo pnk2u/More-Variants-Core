@@ -1,0 +1,9 @@
+{
+    "parent": "minecraft:block/cube_bottom_top",
+    "textures": {
+        "bottom": "more_barrel_variants:block/pale_oak_barrel_bottom",
+        "side": "more_barrel_variants:block/pale_oak_barrel_side",
+        "top": "more_barrel_variants:block/pale_oak_barrel_top_open",
+        "particle": "minecraft:block/pale_oak_planks"
+    }
+}

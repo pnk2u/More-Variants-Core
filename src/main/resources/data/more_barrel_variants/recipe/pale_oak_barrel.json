@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "barrel",
+  "pattern": [
+    "#-#",
+    "# #",
+    "#-#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:pale_oak_planks"
+    },
+    "-": {
+      "item": "minecraft:pale_oak_slab"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "more_barrel_variants:pale_oak_barrel"
+  }
+}
