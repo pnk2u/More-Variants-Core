@@ -27,7 +27,8 @@
     "${mod_id_short}.more_barrel_variants.mixins.json",
     "${mod_id_short}.more_beehive_variants.mixins.json",
     "${mod_id_short}.more_bookshelf_variants.mixins.json",
-    "${mod_id_short}.more_chest_variants.mixins.json"
+    "${mod_id_short}.more_chest_variants.mixins.json",
+    "${mod_id_short}.more_crafting_tables.mixins.json"
   ],
   "depends": {
         "fabricloader": ">=${loader_version}",
