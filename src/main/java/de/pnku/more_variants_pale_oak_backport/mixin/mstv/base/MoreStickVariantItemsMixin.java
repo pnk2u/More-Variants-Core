@@ -23,7 +23,7 @@ public abstract class MoreStickVariantItemsMixin {
         throw new AssertionError();
     }
 
-    @Inject(method = "registerStickItems", at = @At(value = "HEAD", target = "Lde/pnku/mstv_base/item/MoreStickVariantItems;registerStickItem(Lnet/minecraft/world/item/Item;Lnet/minecraft/world/item/Item;)V"), remap = false)
+    @Inject(method = "registerStickItems", at = @At("HEAD"), remap = false)
     private static void injectedRegisterStickItemsAtHead(CallbackInfo ci) {
         if (PALE_OAK_STICK.getDefaultInstance().isEmpty()) {
             throw new IllegalStateException("Failed to register Pale Oak Stick Item");
