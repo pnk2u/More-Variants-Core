@@ -43,8 +43,8 @@
       }
     },
     "mc-publish": {
-      "modrinth": "",
-      "curseforge": "",
+      "modrinth": "vD5gEL9d",
+      "curseforge": "1517935",
       "dependencies": [
         "fabric-api(required)#(ignore)"
       ]
