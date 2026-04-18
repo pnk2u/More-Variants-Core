@@ -19,6 +19,7 @@ public abstract class MoreStickVariantItemsMixin {
     private static final Item PALE_OAK_STICK = registerPaleOakStickItem();
 
     @Invoker("registerStickItem")
+    @SuppressWarnings("SameParameterValue")
     private static void invokeRegisterStickItem(Item stickItem, Item stickItemAfter) {
         throw new AssertionError();
     }
