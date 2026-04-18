@@ -2,6 +2,8 @@
   "replace": false,
   "values": [
     "more_barrel_variants:pale_oak_barrel",
-    "lolmbv:pale_oak_bookshelf"
+    "lolmbv:pale_oak_bookshelf",
+    "lolmcv:pale_oak_chest",
+    "lolmcv:pale_oak_trapped_chest"
   ]
 }
