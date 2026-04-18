@@ -133,6 +133,8 @@ dependencies {
 	include(implementation(annotationProcessor("com.github.bawnorton.mixinsquared:mixinsquared-fabric:0.3.7-beta.1")))
 
 	// More Variants
+		// Quad
+		modCompileOnly modLocalRuntime("maven.modrinth:quad:${project.quad_version_id}")
 		// More Barrel Variants
 		modCompileOnly modLocalRuntime("maven.modrinth:more-barrel-variants:${project.m_barrel_v_version_id}")
 		// More Bed Variants
