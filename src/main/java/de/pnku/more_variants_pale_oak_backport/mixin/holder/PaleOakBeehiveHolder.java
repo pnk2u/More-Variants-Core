@@ -4,8 +4,24 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 
 public final class PaleOakBeehiveHolder {
-    public static Block PALE_OAK_BEEHIVE;
-    public static Item PALE_OAK_BEEHIVE_ITEM;
+    private static Block paleOakBeehive;
+    private static Item paleOakBeehiveItem;
+
+    public static void setBlock(Block block) {
+        paleOakBeehive = block;
+    }
+
+    public static Block getBlock() {
+        return paleOakBeehive;
+    }
+
+    public static void setItem(Item item) {
+        paleOakBeehiveItem = item;
+    }
+
+    public static Item getItem() {
+        return paleOakBeehiveItem;
+    }
 
     private PaleOakBeehiveHolder() {
     }

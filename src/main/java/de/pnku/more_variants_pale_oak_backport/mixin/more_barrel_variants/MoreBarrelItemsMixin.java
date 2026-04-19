@@ -32,9 +32,8 @@ public abstract class MoreBarrelItemsMixin {
 
     @Unique
     private static Item registerPaleOakBarrelItem() {
-        String woodType = "pale_oak";
-        Item stickItem = new BlockItem(PaleOakBarrelHolder.PALE_OAK_BARREL, new Item.Properties());
-        PaleOakBarrelHolder.PALE_OAK_BARREL_ITEM = stickItem;
-        return stickItem;
+        Item barrelItem = new BlockItem(PaleOakBarrelHolder.getBlock(), new Item.Properties());
+        PaleOakBarrelHolder.setItem(barrelItem);
+        return barrelItem;
     }
 }

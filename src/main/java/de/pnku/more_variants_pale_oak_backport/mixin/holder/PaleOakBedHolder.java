@@ -23,6 +23,10 @@ public final class PaleOakBedHolder {
         ITEMS.put(color, item);
     }
 
+    public static Item getItem(DyeColor color) {
+        return ITEMS.get(color);
+    }
+
     private PaleOakBedHolder() {
     }
 }

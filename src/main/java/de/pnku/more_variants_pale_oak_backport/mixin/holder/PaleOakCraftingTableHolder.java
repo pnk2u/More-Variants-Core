@@ -4,8 +4,24 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 
 public final class PaleOakCraftingTableHolder {
-    public static Block PALE_OAK_CRAFTING_TABLE;
-    public static Item PALE_OAK_CRAFTING_TABLE_ITEM;
+    private static Block paleOakCraftingTable;
+    private static Item paleOakCraftingTableItem;
+
+    public static void setBlock(Block block) {
+        paleOakCraftingTable = block;
+    }
+
+    public static Block getBlock() {
+        return paleOakCraftingTable;
+    }
+
+    public static void setItem(Item item) {
+        paleOakCraftingTableItem = item;
+    }
+
+    public static Item getItem() {
+        return paleOakCraftingTableItem;
+    }
 
     private PaleOakCraftingTableHolder() {
     }

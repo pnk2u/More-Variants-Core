@@ -21,9 +21,9 @@ public abstract class MbhvItemInitMixin {
 
     @Unique
     private static BlockItem registerPaleOakBeehiveItem() {
-        BlockItem beehiveItem = new BlockItem(PaleOakBeehiveHolder.PALE_OAK_BEEHIVE, new Item.Properties());
+        BlockItem beehiveItem = new BlockItem(PaleOakBeehiveHolder.getBlock(), new Item.Properties());
         invokeRegisterBeehiveItem(beehiveItem, Items.BEEHIVE);
-        PaleOakBeehiveHolder.PALE_OAK_BEEHIVE_ITEM = beehiveItem;
+        PaleOakBeehiveHolder.setItem(beehiveItem);
         return beehiveItem;
     }
 }

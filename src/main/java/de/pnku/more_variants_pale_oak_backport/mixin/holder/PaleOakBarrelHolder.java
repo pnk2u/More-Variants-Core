@@ -4,8 +4,24 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 
 public final class PaleOakBarrelHolder {
-    public static Block PALE_OAK_BARREL;
-    public static Item PALE_OAK_BARREL_ITEM;
+    private static Block paleOakBarrel;
+    private static Item paleOakBarrelItem;
+
+    public static void setBlock(Block block) {
+        paleOakBarrel = block;
+    }
+
+    public static Block getBlock() {
+        return paleOakBarrel;
+    }
+
+    public static void setItem(Item item) {
+        paleOakBarrelItem = item;
+    }
+
+    public static Item getItem() {
+        return paleOakBarrelItem;
+    }
 
     private PaleOakBarrelHolder() {
     }

@@ -1,6 +1,7 @@
 package de.pnku.more_variants_pale_oak_backport.mixin.more_chest_variants;
 
 import de.pnku.more_variants_pale_oak_backport.mixin.holder.PaleOakChestHolder;
+import de.pnku.more_variants_pale_oak_backport.mixin.holder.PaleOakChestHolder.ChestType;
 import io.github.lieonlion.mcv.init.McvItemInit;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -32,15 +33,15 @@ public abstract class McvItemInitMixin {
 
     @Unique
     private static BlockItem registerPaleOakChestItem() {
-        BlockItem chestItem = new BlockItem(PaleOakChestHolder.PALE_OAK_CHEST, new Item.Properties());
-        PaleOakChestHolder.PALE_OAK_CHEST_ITEM = chestItem;
+        BlockItem chestItem = new BlockItem(PaleOakChestHolder.getBlock(ChestType.CHEST), new Item.Properties());
+        PaleOakChestHolder.setItem(ChestType.CHEST, chestItem);
         return chestItem;
     }
 
     @Unique
     private static BlockItem registerPaleOakTrappedChestItem() {
-        BlockItem trappedChestItem = new BlockItem(PaleOakChestHolder.PALE_OAK_TRAPPED_CHEST, new Item.Properties());
-        PaleOakChestHolder.PALE_OAK_TRAPPED_CHEST_ITEM = trappedChestItem;
+        BlockItem trappedChestItem = new BlockItem(PaleOakChestHolder.getBlock(ChestType.TRAPPED_CHEST), new Item.Properties());
+        PaleOakChestHolder.setItem(ChestType.TRAPPED_CHEST, trappedChestItem);
         return trappedChestItem;
     }
 }
