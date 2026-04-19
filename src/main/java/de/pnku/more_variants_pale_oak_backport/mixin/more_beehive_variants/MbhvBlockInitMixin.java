@@ -8,9 +8,6 @@ import net.minecraft.world.level.material.MapColor;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.gen.Invoker;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(MbhvBlockInit.class)
 public abstract class MbhvBlockInitMixin {
@@ -20,13 +17,6 @@ public abstract class MbhvBlockInitMixin {
     @Invoker("registerBeehiveBlock")
     public static void invokeRegisterBeehiveBlock(MoreBeehiveVariantBlock beehiveBlock) {
         throw new AssertionError();
-    }
-
-    @Inject(method = "registerBeehiveBlocks", at = @At("HEAD"), remap = false)
-    private static void injectedRegisterBeehiveBlocksAtHead(CallbackInfo ci) {
-        if (PALE_OAK_BEEHIVE.defaultBlockState().isAir()) {
-            throw new IllegalStateException("Failed to register Pale Oak Beehive Block");
-        }
     }
 
     @Unique

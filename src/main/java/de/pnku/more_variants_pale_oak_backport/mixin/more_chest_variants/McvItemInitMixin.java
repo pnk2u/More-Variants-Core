@@ -21,13 +21,13 @@ public abstract class McvItemInitMixin {
 
     @Invoker("registerItem")
     @SuppressWarnings("SameParameterValue")
-    private static void registerChestItem(BlockItem chestItem, BlockItem trappedChestItem, Item chestAfter, Item trappedChestAfter) {
+    private static void invokeRegisterItem(BlockItem chestItem, BlockItem trappedChestItem, Item chestAfter, Item trappedChestAfter) {
         throw new AssertionError();
     }
 
     @Inject(method = "registerItems", at = @At("HEAD"), remap = false)
     private static void injectedRegisterItemsAtHead(CallbackInfo ci) {
-        registerChestItem(PALE_OAK_CHEST_ITEM, PALE_OAK_TRAPPED_CHEST_ITEM, Items.CHEST, Items.TRAPPED_CHEST);
+        invokeRegisterItem(PALE_OAK_CHEST_ITEM, PALE_OAK_TRAPPED_CHEST_ITEM, Items.CHEST, Items.TRAPPED_CHEST);
     }
 
     @Unique

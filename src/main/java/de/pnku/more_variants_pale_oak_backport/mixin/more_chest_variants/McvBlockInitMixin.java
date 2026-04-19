@@ -4,9 +4,6 @@ import de.pnku.more_variants_pale_oak_backport.mixin.holder.PaleOakChestHolder;
 import io.github.lieonlion.mcv.block.MoreChestBlock;
 import io.github.lieonlion.mcv.block.MoreTrappedChestBlock;
 import io.github.lieonlion.mcv.init.McvBlockInit;
-import net.minecraft.core.Registry;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.MapColor;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -24,13 +21,13 @@ public abstract class McvBlockInitMixin {
 
     @Invoker("registerBlock")
     @SuppressWarnings("SameParameterValue")
-    private static void registerBlock(MoreChestBlock chestBlock, MoreTrappedChestBlock trappedChestBlock) {
+    private static void invokeRegisterBlock(MoreChestBlock chestBlock, MoreTrappedChestBlock trappedChestBlock) {
         throw new AssertionError();
     }
 
     @Inject(method = "registerBlocks", at = @At("HEAD"), remap = false)
     private static void injectedRegisterBlocksAtHead(CallbackInfo ci) {
-        registerBlock(PALE_OAK_CHEST, PALE_OAK_TRAPPED_CHEST);
+        invokeRegisterBlock(PALE_OAK_CHEST, PALE_OAK_TRAPPED_CHEST);
     }
 
     @Unique

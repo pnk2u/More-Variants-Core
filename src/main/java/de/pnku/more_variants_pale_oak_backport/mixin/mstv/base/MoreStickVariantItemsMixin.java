@@ -8,9 +8,6 @@ import net.minecraft.world.item.Items;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.gen.Invoker;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 
 @Mixin(MoreStickVariantItems.class)
@@ -22,13 +19,6 @@ public abstract class MoreStickVariantItemsMixin {
     @SuppressWarnings("SameParameterValue")
     private static void invokeRegisterStickItem(Item stickItem, Item stickItemAfter) {
         throw new AssertionError();
-    }
-
-    @Inject(method = "registerStickItems", at = @At("HEAD"), remap = false)
-    private static void injectedRegisterStickItemsAtHead(CallbackInfo ci) {
-        if (PALE_OAK_STICK.getDefaultInstance().isEmpty()) {
-            throw new IllegalStateException("Failed to register Pale Oak Stick Item");
-        }
     }
 
     @Unique
