@@ -1,0 +1,13 @@
+{
+  "required": false,
+  "minVersion": "0.8",
+  "package": "de.pnku.more_variants_pale_oak_backport.mixin.more_bed_variants",
+  "compatibilityLevel": "JAVA_${java_version}",
+  "mixins": [
+    "MbdvBlockInitMixin",
+    "MbdvItemInitMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "parent": "quad-lolmbdv:item/bed",
+  "textures":
+    {
+     "bed": "minecraft:entity/bed/yellow",
+     "bed_frame": "quad-lolmbdv:block/bed_frame_pale_oak",
+     "particle": "minecraft:block/pale_oak_planks"
+    }
+}

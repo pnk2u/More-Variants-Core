@@ -25,6 +25,7 @@
   "mixins": [
     "${mod_id_short}.mstv.base.mixins.json",
     "${mod_id_short}.more_barrel_variants.mixins.json",
+    "${mod_id_short}.more_bed_variants.mixins.json",
     "${mod_id_short}.more_beehive_variants.mixins.json",
     "${mod_id_short}.more_bookshelf_variants.mixins.json",
     "${mod_id_short}.more_chest_variants.mixins.json",
