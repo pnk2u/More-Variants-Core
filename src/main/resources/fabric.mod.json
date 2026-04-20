@@ -31,6 +31,7 @@
     "${mod_id_short}.more_chest_variants.mixins.json",
     "${mod_id_short}.more_crafting_tables.mixins.json",
     "${mod_id_short}.more_shield_variants.mixins.json",
+    "${mod_id_short}.mstv.nemos_more_ladder_variants.mixins.json",
     {
       "config": "${mod_id_short}.more_shield_variants.client.mixins.json",
       "environment": "client"
