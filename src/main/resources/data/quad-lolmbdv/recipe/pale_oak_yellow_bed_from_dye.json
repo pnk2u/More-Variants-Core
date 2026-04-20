@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "group": "bed",
+  "ingredients": [
+    {
+      "tag": "quad-lolmbdv:pale_oak_beds"
+    },
+    {
+      "item": "minecraft:yellow_dye"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "quad-lolmbdv:pale_oak_yellow_bed"
+  }
+}

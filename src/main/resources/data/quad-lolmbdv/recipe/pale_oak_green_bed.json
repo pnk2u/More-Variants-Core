@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "bed_from_planks",
+  "key": {
+    "W": {
+      "item": "minecraft:green_wool"
+    },
+    "_": {
+      "item": "minecraft:pale_oak_planks"
+    }
+  },
+  "pattern": [
+    "WWW",
+    "___"
+  ],
+  "result": {
+    "count": 1,
+    "id": "quad-lolmbdv:pale_oak_green_bed"
+  }
+}
