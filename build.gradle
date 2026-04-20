@@ -236,12 +236,10 @@ def replaceProperties = [
 ["processResources", "processClientResources"].each { taskName ->
 	tasks.named(taskName) {
 		inputs.properties replaceProperties
-
-		filesMatching("fabric.mod.json") {
-			expand replaceProperties
-		}
-		filesMatching("*.mixins.json") {
-			expand replaceProperties
+		["fabric.mod.json", "*.mixins.json"].each { pattern ->
+			filesMatching(pattern) {
+				expand replaceProperties
+			}
 		}
 	}
 }
