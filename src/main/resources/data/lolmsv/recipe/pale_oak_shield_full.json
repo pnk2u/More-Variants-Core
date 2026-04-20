@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "iron_shield_full",
+  "key": {
+    "W": {
+      "item": "minecraft:pale_oak_planks"
+    },
+    "o": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "pattern": [
+    "WoW",
+    "WWW",
+    "WWW"
+  ],
+  "result": {
+    "id": "lolmsv:pale_oak_shield"
+  }
+}

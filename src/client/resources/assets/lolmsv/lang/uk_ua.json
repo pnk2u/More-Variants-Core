@@ -1,0 +1,21 @@
+{
+  "config.shieldTexture_option.moreshieldvariants.paleOakUseCustom": "Використовувати власну текстуру для блідо-дубового щита",
+  "config.shieldTexture_option.moreshieldvariants.paleOakUseCustom.tooltip": "Якщо «Так», блідо-дубовий щит використовуватиме спеціальну текстуру, створену спеціально для щитів із блідного дуба.\nЯкщо вибрано «Ні», блідо-дубовий щит використовуватиме перефарбовану версію оригінальної текстури щита",
+  "item.lolmsv.pale_oak_shield": "Блідо-дубовий щит",
+  "item.lolmsv.pale_oak_shield.black": "Чорний блідо-дубовий щит",
+  "item.lolmsv.pale_oak_shield.red": "Червоний блідо-дубовий щит",
+  "item.lolmsv.pale_oak_shield.green": "Зелений блідо-дубовий щит",
+  "item.lolmsv.pale_oak_shield.brown": "Коричневий блідо-дубовий щит",
+  "item.lolmsv.pale_oak_shield.blue": "Синій блідо-дубовий щит",
+  "item.lolmsv.pale_oak_shield.purple": "Фіолетовий блідо-дубовий щит",
+  "item.lolmsv.pale_oak_shield.cyan": "Бірюзовий блідо-дубовий щит",
+  "item.lolmsv.pale_oak_shield.light_gray": "Світло-сірий блідо-дубовий щит",
+  "item.lolmsv.pale_oak_shield.gray": "Сірий блідо-дубовий щит",
+  "item.lolmsv.pale_oak_shield.pink": "Рожевий блідо-дубовий щит",
+  "item.lolmsv.pale_oak_shield.lime": "Лаймовий блідо-дубовий щит",
+  "item.lolmsv.pale_oak_shield.yellow": "Жовтий блідо-дубовий щит",
+  "item.lolmsv.pale_oak_shield.light_blue": "Блакитний блідо-дубовий щит",
+  "item.lolmsv.pale_oak_shield.magenta": "Пурпуровий блідо-дубовий щит",
+  "item.lolmsv.pale_oak_shield.orange": "Помаранчевий блідо-дубовий щит",
+  "item.lolmsv.pale_oak_shield.white": "Білий блідо-дубовий щит"
+}

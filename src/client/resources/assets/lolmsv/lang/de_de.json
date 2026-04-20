@@ -1,0 +1,21 @@
+{
+  "config.shieldTexture_option.moreshieldvariants.paleOakUseCustom": "Blasseichenholzschild: Sondertextur verwenden?",
+  "config.shieldTexture_option.moreshieldvariants.paleOakUseCustom.tooltip": "Bei \"Ja\" verwenden Blasseichenholzschilde eine speziell für Blasseichenholzschilde entworfene Textur.\nFalls \"Nein\" ausgewählt ist, verwenden sie eine farblich angepasste Variante der Vanillatextur.",
+  "item.lolmsv.pale_oak_shield": "Blasseichenholzschild",
+  "item.lolmsv.pale_oak_shield.black": "Blasses Blasseichenholzschild",
+  "item.lolmsv.pale_oak_shield.red": "Rotes Blasseichenholzschild",
+  "item.lolmsv.pale_oak_shield.green": "Grünes Blasseichenholzschild",
+  "item.lolmsv.pale_oak_shield.brown": "Braunes Blasseichenholzschild",
+  "item.lolmsv.pale_oak_shield.blue": "Blaues Blasseichenholzschild",
+  "item.lolmsv.pale_oak_shield.purple": "Violettes Blasseichenholzschild",
+  "item.lolmsv.pale_oak_shield.cyan": "Türkises Blasseichenholzschild",
+  "item.lolmsv.pale_oak_shield.light_gray": "Hellgraues Blasseichenholzschild",
+  "item.lolmsv.pale_oak_shield.gray": "Graues Blasseichenholzschild",
+  "item.lolmsv.pale_oak_shield.pink": "Rosa Blasseichenholzschild",
+  "item.lolmsv.pale_oak_shield.lime": "Hellgrünes Blasseichenholzschild",
+  "item.lolmsv.pale_oak_shield.yellow": "Gelbes Blasseichenholzschild",
+  "item.lolmsv.pale_oak_shield.light_blue": "Hellblaues Blasseichenholzschild",
+  "item.lolmsv.pale_oak_shield.magenta": "Magenta Blasseichenholzschild",
+  "item.lolmsv.pale_oak_shield.orange": "Oranges Blasseichenholzschild",
+  "item.lolmsv.pale_oak_shield.white": "Weißes Blasseichenholzschild"
+}

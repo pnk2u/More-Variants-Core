@@ -1,0 +1,21 @@
+{
+  "config.shieldTexture_option.moreshieldvariants.paleOakUseCustom": "Pale Oak Shield: Use custom texture?",
+  "config.shieldTexture_option.moreshieldvariants.paleOakUseCustom.tooltip": "If \"Yes\", Pale Oak Shields use a custom texture made specifically for Pale Oak Shields.\nIf \"No\" is selected, Pale Oak Shields use a recolored version of the original Vanilla texture.",
+  "item.lolmsv.pale_oak_shield": "Pale Oak Shield",
+  "item.lolmsv.pale_oak_shield.black": "Black Pale Oak Shield",
+  "item.lolmsv.pale_oak_shield.red": "Red Pale Oak Shield",
+  "item.lolmsv.pale_oak_shield.green": "Green Pale Oak Shield",
+  "item.lolmsv.pale_oak_shield.brown": "Brown Pale Oak Shield",
+  "item.lolmsv.pale_oak_shield.blue": "Blue Pale Oak Shield",
+  "item.lolmsv.pale_oak_shield.purple": "Purple Pale Oak Shield",
+  "item.lolmsv.pale_oak_shield.cyan": "Cyan Pale Oak Shield",
+  "item.lolmsv.pale_oak_shield.light_gray": "Light Gray Pale Oak Shield",
+  "item.lolmsv.pale_oak_shield.gray": "Gray Pale Oak Shield",
+  "item.lolmsv.pale_oak_shield.pink": "Pink Pale Oak Shield",
+  "item.lolmsv.pale_oak_shield.lime": "Lime Pale Oak Shield",
+  "item.lolmsv.pale_oak_shield.yellow": "Yellow Pale Oak Shield",
+  "item.lolmsv.pale_oak_shield.light_blue": "Light Blue Pale Oak Shield",
+  "item.lolmsv.pale_oak_shield.magenta": "Magenta Pale Oak Shield",
+  "item.lolmsv.pale_oak_shield.orange": "Orange Pale Oak Shield",
+  "item.lolmsv.pale_oak_shield.white": "White Pale Oak Shield"
+}
