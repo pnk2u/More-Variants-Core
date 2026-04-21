@@ -1,0 +1,12 @@
+{
+  "required": false,
+  "minVersion": "0.8",
+  "package": "de.pnku.more_variants_pale_oak_backport.mixin.mstv.more_rail_variants",
+  "compatibilityLevel": "JAVA_${java_version}",
+  "mixins": [
+    "MrailvBlockInitMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
