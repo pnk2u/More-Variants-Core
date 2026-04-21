@@ -3,6 +3,7 @@ package de.pnku.more_variants_pale_oak_backport.client.mixin.more_shield_variant
 import de.pnku.lolmsv.config.MoreShieldVariantsConfig;
 import de.pnku.lolmsv.config.MoreShieldVariantsConfigScreen;
 import de.pnku.more_variants_pale_oak_backport.client.mixin.util.PaleOakShieldConfigAccessor;
+import me.shedaniel.clothconfig2.api.AbstractConfigListEntry;
 import me.shedaniel.clothconfig2.api.ConfigBuilder;
 import me.shedaniel.clothconfig2.api.ConfigCategory;
 import net.minecraft.network.chat.Component;
@@ -13,15 +14,19 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(MoreShieldVariantsConfigScreen.class)
 public abstract class MoreShieldVariantsConfigScreenMixin {
-    @Inject(method = "builder", at = @At(value = "INVOKE", target = "Lde/pnku/lolmsv/config/MoreShieldVariantsConfig;isDarkOakUseCustom()Z"), remap = false)
+    @Inject(method = "builder", at = @At("RETURN"), remap = false)
     private static void injectedBuilderAtReturn(CallbackInfoReturnable<ConfigBuilder> cir) {
         ConfigBuilder configBuilder = cir.getReturnValue();
+        if (configBuilder == null) {
+            return;
+        }
+
         ConfigCategory shieldTexture = configBuilder.getOrCreateCategory(
                 Component.translatable("config.category.moreshieldvariants.shieldTexture")
         );
 
         PaleOakShieldConfigAccessor configAccess = (PaleOakShieldConfigAccessor) MoreShieldVariantsConfig.getInstance();
-        shieldTexture.addEntry(configBuilder.entryBuilder()
+        AbstractConfigListEntry<?> paleOakEntry = configBuilder.entryBuilder()
                 .startBooleanToggle(
                         Component.translatable("config.shieldTexture_option.moreshieldvariants.paleOakUseCustom"),
                         configAccess.mvpob$isPaleOakUseCustom()
@@ -31,7 +36,18 @@ public abstract class MoreShieldVariantsConfigScreenMixin {
                 .setTooltip(new Component[]{
                         Component.translatable("config.shieldTexture_option.moreshieldvariants.paleOakUseCustom.tooltip")
                 })
-                .build());
+                .build();
+
+        Component darkOakKey = Component.translatable("config.shieldTexture_option.moreshieldvariants.darkOakUseCustom");
+        for (int i = 0; i < shieldTexture.getEntries().size(); i++) {
+            Object entry = shieldTexture.getEntries().get(i);
+            if (entry instanceof AbstractConfigListEntry<?> configEntry && configEntry.getFieldName().equals(darkOakKey)) {
+                shieldTexture.getEntries().add(i + 1, paleOakEntry);
+                return;
+            }
+        }
+
+        // Fallback
+        shieldTexture.addEntry(paleOakEntry);
     }
 }
-
