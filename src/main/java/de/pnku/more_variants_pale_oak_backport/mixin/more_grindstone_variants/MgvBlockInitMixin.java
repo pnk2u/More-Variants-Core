@@ -1,0 +1,41 @@
+package de.pnku.more_variants_pale_oak_backport.mixin.more_grindstone_variants;
+
+import de.pnku.mgv.block.MoreGrindstoneBlock;
+import de.pnku.mgv.init.MgvBlockInit;
+import de.pnku.more_variants_pale_oak_backport.mixin.holder.PaleOakGrindstoneHolder;
+import de.pnku.more_variants_pale_oak_backport.mixin.holder.PaleOakGrindstoneHolder.GrindstoneType;
+import de.pnku.more_variants_pale_oak_backport.util.WoodType;
+import net.minecraft.world.level.block.Block;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.gen.Invoker;
+
+@Mixin(MgvBlockInit.class)
+public abstract class MgvBlockInitMixin {
+    @Unique
+    private static final WoodType WOOD_TYPE = WoodType.PALE_OAK;
+
+    @Unique
+    private static final Block PALE_OAK_STONE_GRINDSTONE = registerPaleOakGrindstone(GrindstoneType.STONE);
+    @Unique
+    private static final Block PALE_OAK_SANDSTONE_GRINDSTONE = registerPaleOakGrindstone(GrindstoneType.SANDSTONE);
+    @Unique
+    private static final Block PALE_OAK_GRANITE_GRINDSTONE = registerPaleOakGrindstone(GrindstoneType.GRANITE);
+    @Unique
+    private static final Block PALE_OAK_DEEPSLATE_GRINDSTONE = registerPaleOakGrindstone(GrindstoneType.DEEPSLATE);
+    @Unique
+    private static final Block PALE_OAK_BASALT_GRINDSTONE = registerPaleOakGrindstone(GrindstoneType.BASALT);
+
+    @Invoker("registerBlock")
+    public static void invokeRegisterBlock(MoreGrindstoneBlock grindstoneBlock) {
+        throw new AssertionError();
+    }
+
+    @Unique
+    private static Block registerPaleOakGrindstone(GrindstoneType grindstoneType) {
+        MoreGrindstoneBlock grindstoneBlock = new MoreGrindstoneBlock(WOOD_TYPE.getMapColor(), WOOD_TYPE.getName(), WOOD_TYPE.getPlanksBlock(), grindstoneType.registrationType(), grindstoneType.getStoneSlabBlock(), grindstoneType.blockIdSuffix());
+        invokeRegisterBlock(grindstoneBlock);
+        PaleOakGrindstoneHolder.setBlock(WOOD_TYPE, grindstoneType, grindstoneBlock);
+        return grindstoneBlock;
+    }
+}

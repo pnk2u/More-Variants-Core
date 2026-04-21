@@ -1,13 +1,5 @@
 {
   "parent": "minecraft:recipes/root",
-  "fabric:load_conditions": [
-    {
-      "condition": "fabric:all_mods_loaded",
-      "values": [
-        "lolmgv"
-      ]
-    }
-  ],
   "criteria": {
     "has_slab": {
       "conditions": {
@@ -33,7 +25,7 @@
       "conditions": {
         "items": [
           {
-            "items": "mstv-base:pale_oak_stick"
+            "items": "#lolmgv:pale_oak_grindstone_sticks"
           }
         ]
       },
