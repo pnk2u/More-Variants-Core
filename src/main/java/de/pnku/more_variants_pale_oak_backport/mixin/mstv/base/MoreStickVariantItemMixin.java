@@ -5,6 +5,7 @@ import de.pnku.more_variants_pale_oak_backport.mixin.holder.mstv.PaleOakStickHol
 import de.pnku.mstv_base.item.MoreStickVariantItem;
 import net.minecraft.world.item.Item;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -13,6 +14,7 @@ import static com.blackgear.vanillabackport.common.registries.ModBlocks.PALE_OAK
 
 @Mixin(MoreStickVariantItem.class)
 public abstract class MoreStickVariantItemMixin {
+    @Unique
     private static final WoodType WOOD_TYPE = WoodType.PALE_OAK;
 
     @Inject(method = "getStickItem", at = @At("HEAD"), cancellable = true)
