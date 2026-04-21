@@ -1,26 +1,31 @@
 package de.pnku.more_variants_pale_oak_backport.util;
 
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.MapColor;
 
 import java.util.Arrays;
 import java.util.Locale;
 import java.util.Optional;
 
+import static com.blackgear.vanillabackport.common.registries.ModBlocks.PALE_OAK_PLANKS;
+
 public enum WoodType {
-    PALE_OAK("pale_oak", MapColor.QUARTZ);
+    PALE_OAK("pale_oak", MapColor.QUARTZ, PALE_OAK_PLANKS.get());
 
     private final String namespace;
     private final String name;
     private final MapColor mapColor;
+    private final Block planksBlock;
 
-    WoodType(String name, MapColor mapColor) {
-        this("minecraft", name, mapColor);
+    WoodType(String name, MapColor mapColor, Block planksBlock) {
+        this("minecraft", name, mapColor, planksBlock);
     }
 
-    WoodType(String namespace, String name, MapColor mapColor) {
+    WoodType(String namespace, String name, MapColor mapColor, Block planksBlock) {
         this.namespace = namespace;
         this.name = name;
         this.mapColor = mapColor;
+        this.planksBlock = planksBlock;
     }
 
     public String idString() {
@@ -37,6 +42,10 @@ public enum WoodType {
 
     public MapColor getMapColor() {
         return mapColor;
+    }
+
+    public Block getPlanksBlock() {
+        return planksBlock;
     }
 
     public static Optional<WoodType> fromId(String id) {
