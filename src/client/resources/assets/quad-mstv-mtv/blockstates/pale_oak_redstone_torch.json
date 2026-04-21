@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "quad-mstv-mtv:block/pale_oak_redstone_torch_off"
+    },
+    "lit=true": {
+      "model": "quad-mstv-mtv:block/pale_oak_redstone_torch"
+    }
+  }
+}

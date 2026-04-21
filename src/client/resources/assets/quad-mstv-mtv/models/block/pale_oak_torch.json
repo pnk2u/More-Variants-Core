@@ -1,0 +1,6 @@
+{
+    "parent": "minecraft:block/template_torch",
+    "textures": {
+        "torch": "quad-mstv-mtv:block/pale_oak_torch"
+    }
+}

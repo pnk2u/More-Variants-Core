@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "group": "redstone_torches",
+  "key": {
+    "/": {
+      "item": "mstv-base:pale_oak_stick"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "pattern": [
+    "R  ",
+    "/  "
+  ],
+  "result": {
+    "count": 1,
+    "id": "quad-mstv-mtv:pale_oak_redstone_torch"
+  }
+}

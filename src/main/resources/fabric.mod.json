@@ -32,6 +32,7 @@
     "${mod_id_short}.more_shield_variants.mixins.json",
     "${mod_id_short}.mstv.base.mixins.json",
     "${mod_id_short}.mstv.more_rail_variants.mixins.json",
+    "${mod_id_short}.mstv.more_torch_variants.mixins.json",
     "${mod_id_short}.mstv.nemos_more_ladder_variants.mixins.json",
     {
       "config": "${mod_id_short}.more_shield_variants.client.mixins.json",
