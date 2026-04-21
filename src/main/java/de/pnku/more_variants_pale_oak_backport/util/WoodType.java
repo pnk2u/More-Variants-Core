@@ -1,22 +1,26 @@
 package de.pnku.more_variants_pale_oak_backport.util;
 
+import net.minecraft.world.level.material.MapColor;
+
 import java.util.Arrays;
 import java.util.Locale;
 import java.util.Optional;
 
 public enum WoodType {
-    PALE_OAK("pale_oak");
+    PALE_OAK("pale_oak", MapColor.QUARTZ);
 
     private final String namespace;
     private final String name;
+    private final MapColor mapColor;
 
-    WoodType(String name) {
-        this("minecraft", name);
+    WoodType(String name, MapColor mapColor) {
+        this("minecraft", name, mapColor);
     }
 
-    WoodType(String namespace, String name) {
+    WoodType(String namespace, String name, MapColor mapColor) {
         this.namespace = namespace;
         this.name = name;
+        this.mapColor = mapColor;
     }
 
     public String idString() {
@@ -29,6 +33,10 @@ public enum WoodType {
 
     public String getName() {
         return name;
+    }
+
+    public MapColor getMapColor() {
+        return mapColor;
     }
 
     public static Optional<WoodType> fromId(String id) {

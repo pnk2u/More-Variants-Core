@@ -37,7 +37,7 @@ public abstract class MoreBarrelBlocksMixin {
 
     @Unique
     private static Block registerPaleOakBarrelBlock() {
-        Block barrelBlock = new MoreBarrelBlock(MapColor.QUARTZ, WOOD_TYPE.getName());
+        Block barrelBlock = new MoreBarrelBlock(WOOD_TYPE.getMapColor(), WOOD_TYPE.getName());
         PaleOakBarrelHolder.setBlock(WOOD_TYPE, barrelBlock);
         return barrelBlock;
     }

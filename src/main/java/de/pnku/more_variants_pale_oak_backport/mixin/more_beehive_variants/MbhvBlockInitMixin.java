@@ -25,7 +25,7 @@ public abstract class MbhvBlockInitMixin {
 
     @Unique
     private static Block registerPaleOakBeehiveBlock() {
-        MoreBeehiveVariantBlock beehiveBlock = new MoreBeehiveVariantBlock(MapColor.QUARTZ, WOOD_TYPE.getName());
+        MoreBeehiveVariantBlock beehiveBlock = new MoreBeehiveVariantBlock(WOOD_TYPE.getMapColor(), WOOD_TYPE.getName());
         invokeRegisterBeehiveBlock(beehiveBlock);
         PaleOakBeehiveHolder.setBlock(WOOD_TYPE, beehiveBlock);
         return beehiveBlock;

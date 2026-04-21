@@ -35,7 +35,7 @@ public abstract class MctBlockInitMixin {
 
     @Unique
     private static MoreCraftingTableBlock registerPaleOakCraftingTable() {
-        MoreCraftingTableBlock block = new MoreCraftingTableBlock(MapColor.QUARTZ);
+        MoreCraftingTableBlock block = new MoreCraftingTableBlock(WOOD_TYPE.getMapColor());
         invokeRegisterBlock(WOOD_TYPE.getName() + "_crafting_table", block);
         PaleOakCraftingTableHolder.setBlock(WOOD_TYPE, block);
         return block;

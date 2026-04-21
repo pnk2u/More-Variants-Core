@@ -25,7 +25,7 @@ public abstract class MbvBlockInitMixin {
 
     @Unique
     private static Block registerPaleOakBookshelf() {
-        Block bookshelfBlock = new MoreBookshelfBlock(MapColor.QUARTZ);
+        Block bookshelfBlock = new MoreBookshelfBlock(WOOD_TYPE.getMapColor());
         invokeRegisterBlock(WOOD_TYPE.getName() + "_bookshelf", bookshelfBlock);
         PaleOakBookshelfHolder.setBlock(WOOD_TYPE, bookshelfBlock);
         return bookshelfBlock;
