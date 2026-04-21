@@ -2,7 +2,7 @@ package de.pnku.more_variants_pale_oak_backport.mixin.more_beehive_variants;
 
 import de.pnku.mbhv.block.MoreBeehiveVariantBlock;
 import de.pnku.mbhv.init.MbhvBlockInit;
-import de.pnku.more_variants_pale_oak_backport.PaleOakConstants;
+import de.pnku.more_variants_pale_oak_backport.util.WoodType;
 import de.pnku.more_variants_pale_oak_backport.mixin.holder.PaleOakBeehiveHolder;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.MapColor;
@@ -13,6 +13,9 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 @Mixin(MbhvBlockInit.class)
 public abstract class MbhvBlockInitMixin {
     @Unique
+    private static final WoodType WOOD_TYPE = WoodType.PALE_OAK;
+
+    @Unique
     private static final Block PALE_OAK_BEEHIVE = registerPaleOakBeehiveBlock();
 
     @Invoker("registerBeehiveBlock")
@@ -22,9 +25,9 @@ public abstract class MbhvBlockInitMixin {
 
     @Unique
     private static Block registerPaleOakBeehiveBlock() {
-        MoreBeehiveVariantBlock beehiveBlock = new MoreBeehiveVariantBlock(MapColor.QUARTZ, PaleOakConstants.WOOD_TYPE);
+        MoreBeehiveVariantBlock beehiveBlock = new MoreBeehiveVariantBlock(MapColor.QUARTZ, WOOD_TYPE.getName());
         invokeRegisterBeehiveBlock(beehiveBlock);
-        PaleOakBeehiveHolder.setBlock(beehiveBlock);
+        PaleOakBeehiveHolder.setBlock(WOOD_TYPE, beehiveBlock);
         return beehiveBlock;
     }
 }

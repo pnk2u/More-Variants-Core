@@ -1,6 +1,6 @@
 package de.pnku.more_variants_pale_oak_backport.mixin.more_chest_variants;
 
-import de.pnku.more_variants_pale_oak_backport.PaleOakConstants;
+import de.pnku.more_variants_pale_oak_backport.util.WoodType;
 import de.pnku.more_variants_pale_oak_backport.mixin.holder.PaleOakChestHolder;
 import de.pnku.more_variants_pale_oak_backport.mixin.holder.PaleOakChestHolder.ChestType;
 import io.github.lieonlion.mcv.block.MoreChestBlock;
@@ -16,6 +16,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(McvBlockInit.class)
 public abstract class McvBlockInitMixin {
+    @Unique
+    private static final WoodType WOOD_TYPE = WoodType.PALE_OAK;
+
     @Unique
     private static final MoreChestBlock PALE_OAK_CHEST = registerPaleOakChest();
     @Unique
@@ -34,15 +37,15 @@ public abstract class McvBlockInitMixin {
 
     @Unique
     private static MoreChestBlock registerPaleOakChest() {
-        MoreChestBlock chestBlock = new MoreChestBlock(MapColor.QUARTZ, PaleOakConstants.WOOD_TYPE);
-        PaleOakChestHolder.setBlock(ChestType.CHEST, chestBlock);
+        MoreChestBlock chestBlock = new MoreChestBlock(MapColor.QUARTZ, WOOD_TYPE.getName());
+        PaleOakChestHolder.setBlock(WOOD_TYPE, ChestType.CHEST, chestBlock);
         return chestBlock;
     }
 
     @Unique
     private static MoreTrappedChestBlock registerPaleOakTrappedChest() {
-        MoreTrappedChestBlock trappedChestBlock = new MoreTrappedChestBlock(MapColor.QUARTZ, PaleOakConstants.WOOD_TYPE);
-        PaleOakChestHolder.setBlock(ChestType.TRAPPED_CHEST, trappedChestBlock);
+        MoreTrappedChestBlock trappedChestBlock = new MoreTrappedChestBlock(MapColor.QUARTZ, WOOD_TYPE.getName());
+        PaleOakChestHolder.setBlock(WOOD_TYPE, ChestType.TRAPPED_CHEST, trappedChestBlock);
         return trappedChestBlock;
     }
 }

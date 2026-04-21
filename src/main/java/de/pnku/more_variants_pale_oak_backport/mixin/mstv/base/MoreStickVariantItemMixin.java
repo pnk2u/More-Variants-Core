@@ -1,6 +1,6 @@
 package de.pnku.more_variants_pale_oak_backport.mixin.mstv.base;
 
-import de.pnku.more_variants_pale_oak_backport.PaleOakConstants;
+import de.pnku.more_variants_pale_oak_backport.util.WoodType;
 import de.pnku.more_variants_pale_oak_backport.mixin.holder.mstv.PaleOakStickHolder;
 import de.pnku.mstv_base.item.MoreStickVariantItem;
 import net.minecraft.world.item.Item;
@@ -13,17 +13,19 @@ import static com.blackgear.vanillabackport.common.registries.ModBlocks.PALE_OAK
 
 @Mixin(MoreStickVariantItem.class)
 public abstract class MoreStickVariantItemMixin {
+    private static final WoodType WOOD_TYPE = WoodType.PALE_OAK;
+
     @Inject(method = "getStickItem", at = @At("HEAD"), cancellable = true)
     private static void injectedGetStickItemAtHead(String woodType, CallbackInfoReturnable<Item> cir) {
-        if (PaleOakConstants.WOOD_TYPE.equals(woodType)) {
-            Item paleOakStick = PaleOakStickHolder.getItem();
+        if (WOOD_TYPE.getName().equals(woodType)) {
+            Item paleOakStick = PaleOakStickHolder.getItem(WOOD_TYPE);
             cir.setReturnValue(paleOakStick);
         }
     }
 
     @Inject(method = "getPlanksItem", at = @At("HEAD"), cancellable = true)
     private static void injectedGetPlanksItemAtHead(String woodType, CallbackInfoReturnable<Item> cir) {
-        if (PaleOakConstants.WOOD_TYPE.equals(woodType)) {
+        if (WOOD_TYPE.getName().equals(woodType)) {
             Item paleOakPlanks = PALE_OAK_PLANKS.get().asItem();
             cir.setReturnValue(paleOakPlanks);
         }

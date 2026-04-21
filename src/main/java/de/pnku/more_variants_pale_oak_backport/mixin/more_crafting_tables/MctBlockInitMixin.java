@@ -1,7 +1,7 @@
 package de.pnku.more_variants_pale_oak_backport.mixin.more_crafting_tables;
 
+import de.pnku.more_variants_pale_oak_backport.util.WoodType;
 import de.pnku.more_variants_pale_oak_backport.mixin.holder.PaleOakCraftingTableHolder;
-import de.pnku.more_variants_pale_oak_backport.PaleOakConstants;
 import io.github.lieonlion.lolmct.block.MoreCraftingTableBlock;
 import io.github.lieonlion.lolmct.init.MctBlockInit;
 import net.minecraft.world.level.block.Block;
@@ -15,6 +15,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(MctBlockInit.class)
 public abstract class MctBlockInitMixin {
+    @Unique
+    private static final WoodType WOOD_TYPE = WoodType.PALE_OAK;
+
     @Unique
     private static final MoreCraftingTableBlock PALE_OAK_CRAFTING_TABLE = registerPaleOakCraftingTable();
 
@@ -33,8 +36,8 @@ public abstract class MctBlockInitMixin {
     @Unique
     private static MoreCraftingTableBlock registerPaleOakCraftingTable() {
         MoreCraftingTableBlock block = new MoreCraftingTableBlock(MapColor.QUARTZ);
-        invokeRegisterBlock(PaleOakConstants.WOOD_TYPE + "_crafting_table", block);
-        PaleOakCraftingTableHolder.setBlock(block);
+        invokeRegisterBlock(WOOD_TYPE.getName() + "_crafting_table", block);
+        PaleOakCraftingTableHolder.setBlock(WOOD_TYPE, block);
         return block;
     }
 }

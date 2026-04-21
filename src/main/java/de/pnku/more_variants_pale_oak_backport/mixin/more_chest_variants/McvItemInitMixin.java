@@ -1,5 +1,6 @@
 package de.pnku.more_variants_pale_oak_backport.mixin.more_chest_variants;
 
+import de.pnku.more_variants_pale_oak_backport.util.WoodType;
 import de.pnku.more_variants_pale_oak_backport.mixin.holder.PaleOakChestHolder;
 import de.pnku.more_variants_pale_oak_backport.mixin.holder.PaleOakChestHolder.ChestType;
 import io.github.lieonlion.mcv.init.McvItemInit;
@@ -15,6 +16,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(McvItemInit.class)
 public abstract class McvItemInitMixin {
+    @Unique
+    private static final WoodType WOOD_TYPE = WoodType.PALE_OAK;
+
     @Unique
     private static final BlockItem PALE_OAK_CHEST_ITEM = registerPaleOakChestItem();
     @Unique
@@ -33,15 +37,15 @@ public abstract class McvItemInitMixin {
 
     @Unique
     private static BlockItem registerPaleOakChestItem() {
-        BlockItem chestItem = new BlockItem(PaleOakChestHolder.getBlock(ChestType.CHEST), new Item.Properties());
-        PaleOakChestHolder.setItem(ChestType.CHEST, chestItem);
+        BlockItem chestItem = new BlockItem(PaleOakChestHolder.getBlock(WOOD_TYPE, ChestType.CHEST), new Item.Properties());
+        PaleOakChestHolder.setItem(WOOD_TYPE, ChestType.CHEST, chestItem);
         return chestItem;
     }
 
     @Unique
     private static BlockItem registerPaleOakTrappedChestItem() {
-        BlockItem trappedChestItem = new BlockItem(PaleOakChestHolder.getBlock(ChestType.TRAPPED_CHEST), new Item.Properties());
-        PaleOakChestHolder.setItem(ChestType.TRAPPED_CHEST, trappedChestItem);
+        BlockItem trappedChestItem = new BlockItem(PaleOakChestHolder.getBlock(WOOD_TYPE, ChestType.TRAPPED_CHEST), new Item.Properties());
+        PaleOakChestHolder.setItem(WOOD_TYPE, ChestType.TRAPPED_CHEST, trappedChestItem);
         return trappedChestItem;
     }
 }

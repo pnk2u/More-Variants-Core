@@ -1,7 +1,7 @@
 package de.pnku.more_variants_pale_oak_backport.client.mixin.more_shield_variants;
 
 import de.pnku.lolmsv.config.MoreShieldVariantsConfig;
-import de.pnku.more_variants_pale_oak_backport.PaleOakConstants;
+import de.pnku.more_variants_pale_oak_backport.util.WoodType;
 import de.pnku.more_variants_pale_oak_backport.client.mixin.util.PaleOakShieldConfigAccessor;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -41,13 +41,13 @@ public abstract class MoreShieldVariantsConfigMixin implements PaleOakShieldConf
     private static void syncPaleOakTextureConfigEntry(boolean useCustom) {
         if (useCustom) {
             boolean containsPaleOak = MoreShieldVariantsConfig.textureConfigList.stream()
-                    .anyMatch(PaleOakConstants.WOOD_TYPE::equalsIgnoreCase);
+                    .anyMatch(WoodType.PALE_OAK.getName()::equalsIgnoreCase);
             if (!containsPaleOak) {
-                MoreShieldVariantsConfig.textureConfigList.add(PaleOakConstants.WOOD_TYPE);
+                MoreShieldVariantsConfig.textureConfigList.add(WoodType.PALE_OAK.getName());
             }
             return;
         }
 
-        MoreShieldVariantsConfig.textureConfigList.removeIf(PaleOakConstants.WOOD_TYPE::equalsIgnoreCase);
+        MoreShieldVariantsConfig.textureConfigList.removeIf(WoodType.PALE_OAK.getName()::equalsIgnoreCase);
     }
 }

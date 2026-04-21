@@ -1,6 +1,7 @@
 package de.pnku.more_variants_pale_oak_backport.mixin.more_bed_variants;
 
 import de.pnku.mbdv.init.MbdvItemInit;
+import de.pnku.more_variants_pale_oak_backport.util.WoodType;
 import de.pnku.more_variants_pale_oak_backport.mixin.holder.PaleOakBedHolder;
 import net.minecraft.world.item.BedItem;
 import net.minecraft.world.item.DyeColor;
@@ -14,6 +15,9 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 
 @Mixin(MbdvItemInit.class)
 public abstract class MbdvItemInitMixin {
+    @Unique
+    private static final WoodType WOOD_TYPE = WoodType.PALE_OAK;
+
     @Final
     @Shadow
     public static Item.Properties bedProperties;
@@ -63,13 +67,13 @@ public abstract class MbdvItemInitMixin {
 
     @Unique
     private static Item registerPaleOakBedItem(DyeColor color) {
-        Item bedItem = new BedItem(PaleOakBedHolder.getBlock(color), bedProperties);
+        Item bedItem = new BedItem(PaleOakBedHolder.getBlock(WOOD_TYPE, color), bedProperties);
         if (color == DyeColor.WHITE) {
             invokeRegisterWhiteBedItem(bedItem, Items.WHITE_BED);
         } else {
             invokeRegisterOtherBedItem(bedItem);
         }
-        PaleOakBedHolder.setItem(color, bedItem);
+        PaleOakBedHolder.setItem(WOOD_TYPE, color, bedItem);
         return bedItem;
     }
 }
