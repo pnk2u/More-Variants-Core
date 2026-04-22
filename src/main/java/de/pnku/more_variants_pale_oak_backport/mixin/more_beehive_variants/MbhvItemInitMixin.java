@@ -1,14 +1,14 @@
 package de.pnku.more_variants_pale_oak_backport.mixin.more_beehive_variants;
 
 import de.pnku.mbhv.init.MbhvItemInit;
-import de.pnku.more_variants_pale_oak_backport.util.WoodType;
 import de.pnku.more_variants_pale_oak_backport.mixin.holder.PaleOakBeehiveHolder;
+import de.pnku.more_variants_pale_oak_backport.util.WoodType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
-import org.spongepowered.asm.mixin.gen.Invoker;
 
 @Mixin(MbhvItemInit.class)
 public abstract class MbhvItemInitMixin {
@@ -18,15 +18,13 @@ public abstract class MbhvItemInitMixin {
     @Unique
     private static final BlockItem PALE_OAK_BEEHIVE_ITEM = registerPaleOakBeehiveItem();
 
-    @Invoker("registerBeehiveItem")
-    public static void invokeRegisterBeehiveItem(BlockItem beehiveItem, Item beehiveAfter) {
-        throw new AssertionError();
-    }
+    @Shadow
+    private static void registerBeehiveItem(BlockItem beehiveItem, Item beehiveAfter) {}
 
     @Unique
     private static BlockItem registerPaleOakBeehiveItem() {
         BlockItem beehiveItem = new BlockItem(PaleOakBeehiveHolder.getBlock(WOOD_TYPE), new Item.Properties());
-        invokeRegisterBeehiveItem(beehiveItem, Items.BEEHIVE);
+        registerBeehiveItem(beehiveItem, Items.BEEHIVE);
         PaleOakBeehiveHolder.setItem(WOOD_TYPE, beehiveItem);
         return beehiveItem;
     }

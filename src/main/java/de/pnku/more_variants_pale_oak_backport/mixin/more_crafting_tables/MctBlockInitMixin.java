@@ -1,14 +1,13 @@
 package de.pnku.more_variants_pale_oak_backport.mixin.more_crafting_tables;
 
-import de.pnku.more_variants_pale_oak_backport.util.WoodType;
 import de.pnku.more_variants_pale_oak_backport.mixin.holder.PaleOakCraftingTableHolder;
+import de.pnku.more_variants_pale_oak_backport.util.WoodType;
 import io.github.lieonlion.lolmct.block.MoreCraftingTableBlock;
 import io.github.lieonlion.lolmct.init.MctBlockInit;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.material.MapColor;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
-import org.spongepowered.asm.mixin.gen.Invoker;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -21,10 +20,8 @@ public abstract class MctBlockInitMixin {
     @Unique
     private static final MoreCraftingTableBlock PALE_OAK_CRAFTING_TABLE = registerPaleOakCraftingTable();
 
-    @Invoker("registerBlock")
-    private static void invokeRegisterBlock(String name, Block block) {
-        throw new AssertionError();
-    }
+    @Shadow
+    private static void registerBlock(String name, Block block) {}
 
     @Inject(method = "registerBlocks", at = @At("HEAD"), remap = false)
     private static void injectedRegisterBlocksAtHead(CallbackInfo ci) {
@@ -36,7 +33,7 @@ public abstract class MctBlockInitMixin {
     @Unique
     private static MoreCraftingTableBlock registerPaleOakCraftingTable() {
         MoreCraftingTableBlock block = new MoreCraftingTableBlock(WOOD_TYPE.getMapColor());
-        invokeRegisterBlock(WOOD_TYPE.getName() + "_crafting_table", block);
+        registerBlock(WOOD_TYPE.getName() + "_crafting_table", block);
         PaleOakCraftingTableHolder.setBlock(WOOD_TYPE, block);
         return block;
     }

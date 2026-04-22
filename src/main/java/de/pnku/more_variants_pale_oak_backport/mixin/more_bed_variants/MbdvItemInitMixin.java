@@ -1,8 +1,8 @@
 package de.pnku.more_variants_pale_oak_backport.mixin.more_bed_variants;
 
 import de.pnku.mbdv.init.MbdvItemInit;
-import de.pnku.more_variants_pale_oak_backport.util.WoodType;
 import de.pnku.more_variants_pale_oak_backport.mixin.holder.PaleOakBedHolder;
+import de.pnku.more_variants_pale_oak_backport.util.WoodType;
 import net.minecraft.world.item.BedItem;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
@@ -11,7 +11,6 @@ import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
-import org.spongepowered.asm.mixin.gen.Invoker;
 
 @Mixin(MbdvItemInit.class)
 public abstract class MbdvItemInitMixin {
@@ -55,23 +54,19 @@ public abstract class MbdvItemInitMixin {
     @Unique
     private static final Item PALE_OAK_GREEN_BED_ITEM = registerPaleOakBedItem(DyeColor.GREEN);
 
-    @Invoker("registerWhiteBedItem")
-    public static void invokeRegisterWhiteBedItem(Item bedItem, Item bedItemAfter) {
-        throw new AssertionError();
-    }
+    @Shadow
+    private static void registerWhiteBedItem(Item whiteBed, Item bedAfter) {}
 
-    @Invoker("registerOtherBedItem")
-    public static void invokeRegisterOtherBedItem(Item bedItem) {
-        throw new AssertionError();
-    }
+    @Shadow
+    private static void registerOtherBedItem(Item otherBed) {}
 
     @Unique
     private static Item registerPaleOakBedItem(DyeColor color) {
         Item bedItem = new BedItem(PaleOakBedHolder.getBlock(WOOD_TYPE, color), bedProperties);
         if (color == DyeColor.WHITE) {
-            invokeRegisterWhiteBedItem(bedItem, Items.WHITE_BED);
+            registerWhiteBedItem(bedItem, Items.WHITE_BED);
         } else {
-            invokeRegisterOtherBedItem(bedItem);
+            registerOtherBedItem(bedItem);
         }
         PaleOakBedHolder.setItem(WOOD_TYPE, color, bedItem);
         return bedItem;

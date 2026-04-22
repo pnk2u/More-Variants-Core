@@ -1,15 +1,15 @@
 package de.pnku.more_variants_pale_oak_backport.mixin.more_chest_variants;
 
-import de.pnku.more_variants_pale_oak_backport.util.WoodType;
 import de.pnku.more_variants_pale_oak_backport.mixin.holder.PaleOakChestHolder;
 import de.pnku.more_variants_pale_oak_backport.mixin.holder.PaleOakChestHolder.ChestType;
+import de.pnku.more_variants_pale_oak_backport.util.WoodType;
 import io.github.lieonlion.mcv.init.McvItemInit;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
-import org.spongepowered.asm.mixin.gen.Invoker;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -24,15 +24,12 @@ public abstract class McvItemInitMixin {
     @Unique
     private static final BlockItem PALE_OAK_TRAPPED_CHEST_ITEM = registerPaleOakTrappedChestItem();
 
-    @Invoker("registerItem")
-    @SuppressWarnings("SameParameterValue")
-    private static void invokeRegisterItem(BlockItem chestItem, BlockItem trappedChestItem, Item chestAfter, Item trappedChestAfter) {
-        throw new AssertionError();
-    }
+    @Shadow
+    private static void registerItem(BlockItem chest, BlockItem trappedChest, Item chestAfter, Item trappedChestAfter) {}
 
     @Inject(method = "registerItems", at = @At("HEAD"), remap = false)
     private static void injectedRegisterItemsAtHead(CallbackInfo ci) {
-        invokeRegisterItem(PALE_OAK_CHEST_ITEM, PALE_OAK_TRAPPED_CHEST_ITEM, Items.CHEST, Items.TRAPPED_CHEST);
+        registerItem(PALE_OAK_CHEST_ITEM, PALE_OAK_TRAPPED_CHEST_ITEM, Items.CHEST, Items.TRAPPED_CHEST);
     }
 
     @Unique

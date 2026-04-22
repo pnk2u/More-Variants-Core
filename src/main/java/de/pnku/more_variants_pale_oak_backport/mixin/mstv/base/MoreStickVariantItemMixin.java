@@ -1,7 +1,7 @@
 package de.pnku.more_variants_pale_oak_backport.mixin.mstv.base;
 
-import de.pnku.more_variants_pale_oak_backport.util.WoodType;
 import de.pnku.more_variants_pale_oak_backport.mixin.holder.mstv.PaleOakStickHolder;
+import de.pnku.more_variants_pale_oak_backport.util.WoodType;
 import de.pnku.mstv_base.item.MoreStickVariantItem;
 import net.minecraft.world.item.Item;
 import org.spongepowered.asm.mixin.Mixin;

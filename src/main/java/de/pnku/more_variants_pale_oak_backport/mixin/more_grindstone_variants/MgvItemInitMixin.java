@@ -8,8 +8,8 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
-import org.spongepowered.asm.mixin.gen.Invoker;
 
 @Mixin(MgvItemInit.class)
 public abstract class MgvItemInitMixin {
@@ -27,15 +27,13 @@ public abstract class MgvItemInitMixin {
     @Unique
     private static final BlockItem PALE_OAK_STONE_GRINDSTONE = registerPaleOakGrindstone(GrindstoneType.STONE);
 
-    @Invoker("registerItem")
-    public static void invokeRegisterItem(BlockItem blockItem, Item itemAfter) {
-        throw new AssertionError();
-    }
+    @Shadow
+    private static void registerItem(BlockItem grindstone, Item grindstoneAfter) {}
 
     @Unique
     private static BlockItem registerPaleOakGrindstone(GrindstoneType grindstoneType) {
         BlockItem blockItem = new BlockItem(PaleOakGrindstoneHolder.getBlock(WOOD_TYPE, grindstoneType), new Item.Properties());
-        invokeRegisterItem(blockItem, Items.GRINDSTONE);
+        registerItem(blockItem, Items.GRINDSTONE);
         PaleOakGrindstoneHolder.setItem(WOOD_TYPE, grindstoneType, blockItem);
         return blockItem;
     }

@@ -1,16 +1,16 @@
 package de.pnku.more_variants_pale_oak_backport.mixin.mstv.more_rail_variants;
 
-import de.pnku.more_variants_pale_oak_backport.util.WoodType;
 import de.pnku.more_variants_pale_oak_backport.mixin.holder.mstv.PaleOakRailHolder;
 import de.pnku.more_variants_pale_oak_backport.mixin.holder.mstv.PaleOakRailHolder.RailType;
+import de.pnku.more_variants_pale_oak_backport.util.WoodType;
 import de.pnku.mstv_mrailv.init.MrailvBlockInit;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
-import org.spongepowered.asm.mixin.gen.Invoker;
 
 import static de.pnku.more_variants_pale_oak_backport.mixin.holder.mstv.PaleOakRailHolder.RailType.*;
 
@@ -36,18 +36,18 @@ public abstract class MrailvBlockInitMixin {
     @Unique
     private static final Item PALE_OAK_ACTIVATOR_RAIL_ITEM = registerPaleOakRailItem(ACTIVATOR_RAIL, PALE_OAK_ACTIVATOR_RAIL);
 
-    @Invoker("registerRailBlock")
-    public static Block invokeRegisterRailBlock(String woodType, Block railBlock) {
+    @Shadow
+    public static Block registerRailBlock(String woodType, Block railBlock) {
         throw new AssertionError();
     }
 
-    @Invoker("registerRailBlock")
-    public static Block invokeRegisterRailBlock(String woodType, Block railBlock, String railType) {
+    @Shadow
+    public static Block registerRailBlock(String woodType, Block railBlock, String railType) {
         throw new AssertionError();
     }
 
-    @Invoker("registerRailItem")
-    public static Item invokeRegisterRailItem(String woodType, Item railItem, String railType) {
+    @Shadow
+    public static Item registerRailItem(String woodType, Item railItem, String railType) {
         throw new AssertionError();
     }
 
@@ -55,15 +55,15 @@ public abstract class MrailvBlockInitMixin {
     private static Block registerPaleOakRailBlock(RailType railType) {
         Block inputRailBlock = createInputRailBlock(railType);
         Block railBlock = railType == RAIL
-                ? invokeRegisterRailBlock(WOOD_TYPE.getName(), inputRailBlock)
-                : invokeRegisterRailBlock(WOOD_TYPE.getName(), inputRailBlock, railType.registrationType());
+                ? registerRailBlock(WOOD_TYPE.getName(), inputRailBlock)
+                : registerRailBlock(WOOD_TYPE.getName(), inputRailBlock, railType.registrationType());
         PaleOakRailHolder.setBlock(WOOD_TYPE, railType, railBlock);
         return railBlock;
     }
 
     @Unique
     private static Item registerPaleOakRailItem(RailType railType, Block railBlock) {
-        Item railItem = invokeRegisterRailItem(WOOD_TYPE.getName(), new BlockItem(railBlock, new Item.Properties()), railType.registrationType());
+        Item railItem = registerRailItem(WOOD_TYPE.getName(), new BlockItem(railBlock, new Item.Properties()), railType.registrationType());
         PaleOakRailHolder.setItem(WOOD_TYPE, railType, railItem);
         return railItem;
     }

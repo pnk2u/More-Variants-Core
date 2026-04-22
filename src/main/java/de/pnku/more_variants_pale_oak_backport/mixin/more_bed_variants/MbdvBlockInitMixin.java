@@ -2,12 +2,12 @@ package de.pnku.more_variants_pale_oak_backport.mixin.more_bed_variants;
 
 import de.pnku.mbdv.block.MoreBedVariantBlock;
 import de.pnku.mbdv.init.MbdvBlockInit;
-import de.pnku.more_variants_pale_oak_backport.util.WoodType;
 import de.pnku.more_variants_pale_oak_backport.mixin.holder.PaleOakBedHolder;
+import de.pnku.more_variants_pale_oak_backport.util.WoodType;
 import net.minecraft.world.item.DyeColor;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
-import org.spongepowered.asm.mixin.gen.Invoker;
 
 @Mixin(MbdvBlockInit.class)
 public abstract class MbdvBlockInitMixin {
@@ -47,15 +47,13 @@ public abstract class MbdvBlockInitMixin {
     @Unique
     private static final MoreBedVariantBlock PALE_OAK_GREEN_BED = registerPaleOakBedBlock(DyeColor.GREEN);
 
-    @Invoker("registerBedBlock")
-    public static void invokeRegisterBedBlock(MoreBedVariantBlock bedBlock) {
-        throw new AssertionError();
-    }
+    @Shadow
+    private static void registerBedBlock(MoreBedVariantBlock bed) {}
 
     @Unique
     private static MoreBedVariantBlock registerPaleOakBedBlock(DyeColor color) {
         MoreBedVariantBlock bedBlock = new MoreBedVariantBlock(color, WOOD_TYPE.getName(), color.getName());
-        invokeRegisterBedBlock(bedBlock);
+        registerBedBlock(bedBlock);
         PaleOakBedHolder.setBlock(WOOD_TYPE, color, bedBlock);
         return bedBlock;
     }

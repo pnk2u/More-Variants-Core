@@ -1,8 +1,8 @@
 package de.pnku.more_variants_pale_oak_backport.mixin.mstv.more_torch_variants;
 
-import de.pnku.more_variants_pale_oak_backport.util.WoodType;
 import de.pnku.more_variants_pale_oak_backport.mixin.holder.mstv.PaleOakTorchHolder;
-import de.pnku.more_variants_pale_oak_backport.mixin.holder.mstv.PaleOakTorchHolder.TorchType;
+import de.pnku.more_variants_pale_oak_backport.mixin.holder.mstv.PaleOakTorchHolder.*;
+import de.pnku.more_variants_pale_oak_backport.util.WoodType;
 import de.pnku.mstv_mtv.init.MtvBlockInit;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.Item;
@@ -10,8 +10,8 @@ import net.minecraft.world.item.StandingAndWallBlockItem;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
-import org.spongepowered.asm.mixin.gen.Invoker;
 
 import static de.pnku.more_variants_pale_oak_backport.mixin.holder.mstv.PaleOakTorchHolder.*;
 import static de.pnku.more_variants_pale_oak_backport.mixin.holder.mstv.PaleOakTorchHolder.TorchType.*;
@@ -40,23 +40,23 @@ public abstract class MtvBlockInitMixin {
     @Unique
     private static final Item PALE_OAK_REDSTONE_TORCH_ITEM = registerPaleOakTorchItem(REDSTONE_TORCH);
 
-    @Invoker("registerTorchBlock")
-    public static Block invokeRegisterTorchBlock(String name, Block torchBlock) {
+    @Shadow
+    public static Block registerTorchBlock(String name, Block torchBlock) {
         throw new AssertionError();
     }
 
-    @Invoker("registerFireTorchItem")
-    public static Item invokeRegisterFireTorchItem(String name, Item torchItem) {
+    @Shadow
+    public static Item registerFireTorchItem(String name, Item torchItem) {
         throw new AssertionError();
     }
 
-    @Invoker("registerSoulTorchItem")
-    public static Item invokeRegisterSoulTorchItem(String name, Item torchItem) {
+    @Shadow
+    public static Item registerSoulTorchItem(String name, Item torchItem) {
         throw new AssertionError();
     }
 
-    @Invoker("registerRedstoneTorchItem")
-    public static Item invokeRegisterRedstoneTorchItem(String name, Item torchItem) {
+    @Shadow
+    public static Item registerRedstoneTorchItem(String name, Item torchItem) {
         throw new AssertionError();
     }
 
@@ -65,7 +65,7 @@ public abstract class MtvBlockInitMixin {
         Block inputTorchBlock = torchType.equals(REDSTONE_TORCH) ?
                 new RedstoneTorchBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.REDSTONE_TORCH)) :
                 new TorchBlock(getParticleType(torchType), BlockBehaviour.Properties.ofFullCopy(getVanillaTorchBlock(torchType)));
-        Block torchBlock = invokeRegisterTorchBlock(WOOD_TYPE.getName() + "_" + torchType.torchName(), inputTorchBlock);
+        Block torchBlock = registerTorchBlock(WOOD_TYPE.getName() + "_" + torchType.torchName(), inputTorchBlock);
         PaleOakTorchHolder.setBlock(WOOD_TYPE, torchType, torchBlock);
         return torchBlock;
     }
@@ -75,7 +75,7 @@ public abstract class MtvBlockInitMixin {
         Block inputWallTorchBlock = torchType.equals(REDSTONE_TORCH) ?
                 new RedstoneWallTorchBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.REDSTONE_WALL_TORCH))
                 : new WallTorchBlock(getParticleType(torchType), BlockBehaviour.Properties.ofFullCopy(getVanillaWallTorchBlock(torchType)).dropsLike(torchBlock));
-        Block wallTorchBlock = invokeRegisterTorchBlock(WOOD_TYPE.getName()+ "_" + torchType.wallTorchName(), inputWallTorchBlock);
+        Block wallTorchBlock = registerTorchBlock(WOOD_TYPE.getName()+ "_" + torchType.wallTorchName(), inputWallTorchBlock);
         PaleOakTorchHolder.setWallBlock(WOOD_TYPE, torchType, wallTorchBlock);
         return wallTorchBlock;
     }
@@ -88,11 +88,11 @@ public abstract class MtvBlockInitMixin {
         String torchName = WOOD_TYPE.getName() + "_" + torchType.torchName();
         Item torchItem;
         if (torchType == REDSTONE_TORCH) {
-            torchItem = invokeRegisterRedstoneTorchItem(torchName, inputItem);
+            torchItem = registerRedstoneTorchItem(torchName, inputItem);
         } else if (torchType == SOUL_TORCH) {
-            torchItem = invokeRegisterSoulTorchItem(torchName, inputItem);
+            torchItem = registerSoulTorchItem(torchName, inputItem);
         } else {
-            torchItem = invokeRegisterFireTorchItem(torchName, inputItem);
+            torchItem = registerFireTorchItem(torchName, inputItem);
         }
         PaleOakTorchHolder.setItem(WOOD_TYPE, torchType, torchItem);
         return torchItem;

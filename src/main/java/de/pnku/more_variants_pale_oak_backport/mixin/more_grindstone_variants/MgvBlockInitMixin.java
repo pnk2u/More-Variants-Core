@@ -7,8 +7,8 @@ import de.pnku.more_variants_pale_oak_backport.mixin.holder.PaleOakGrindstoneHol
 import de.pnku.more_variants_pale_oak_backport.util.WoodType;
 import net.minecraft.world.level.block.Block;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
-import org.spongepowered.asm.mixin.gen.Invoker;
 
 @Mixin(MgvBlockInit.class)
 public abstract class MgvBlockInitMixin {
@@ -26,15 +26,13 @@ public abstract class MgvBlockInitMixin {
     @Unique
     private static final Block PALE_OAK_BASALT_GRINDSTONE = registerPaleOakGrindstone(GrindstoneType.BASALT);
 
-    @Invoker("registerBlock")
-    public static void invokeRegisterBlock(MoreGrindstoneBlock grindstoneBlock) {
-        throw new AssertionError();
-    }
+    @Shadow
+    private static void registerBlock(MoreGrindstoneBlock grindstone) {}
 
     @Unique
     private static Block registerPaleOakGrindstone(GrindstoneType grindstoneType) {
         MoreGrindstoneBlock grindstoneBlock = new MoreGrindstoneBlock(WOOD_TYPE.getMapColor(), WOOD_TYPE.getName(), WOOD_TYPE.getPlanksBlock(), grindstoneType.registrationType(), grindstoneType.getStoneSlabBlock(), grindstoneType.blockIdSuffix());
-        invokeRegisterBlock(grindstoneBlock);
+        registerBlock(grindstoneBlock);
         PaleOakGrindstoneHolder.setBlock(WOOD_TYPE, grindstoneType, grindstoneBlock);
         return grindstoneBlock;
     }
