@@ -1,0 +1,9 @@
+{
+    "parent": "minecraft:block/orientable_with_bottom",
+    "textures": {
+        "bottom": "quad-lolmsmv:block/pale_oak_cobblestone_smoker_bottom",
+        "front": "quad-lolmsmv:block/pale_oak_cobblestone_smoker_front_on",
+        "side": "quad-lolmsmv:block/pale_oak_cobblestone_smoker_side",
+        "top": "quad-lolmsmv:block/pale_oak_cobblestone_smoker_top"
+    }
+}

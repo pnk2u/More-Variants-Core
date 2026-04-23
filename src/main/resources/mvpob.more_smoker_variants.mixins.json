@@ -1,0 +1,13 @@
+{
+  "required": false,
+  "minVersion": "0.8",
+  "package": "de.pnku.more_variants_pale_oak_backport.mixin.more_smoker_variants",
+  "compatibilityLevel": "JAVA_${java_version}",
+  "mixins": [
+    "MsmvBlockInitMixin",
+    "MsmvItemInitMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

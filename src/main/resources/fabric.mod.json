@@ -31,6 +31,7 @@
     "${mod_id_short}.more_crafting_tables.mixins.json",
     "${mod_id_short}.more_grindstone_variants.mixins.json",
     "${mod_id_short}.more_shield_variants.mixins.json",
+    "${mod_id_short}.more_smoker_variants.mixins.json",
     "${mod_id_short}.mstv.base.mixins.json",
     "${mod_id_short}.mstv.more_rail_variants.mixins.json",
     "${mod_id_short}.mstv.more_torch_variants.mixins.json",

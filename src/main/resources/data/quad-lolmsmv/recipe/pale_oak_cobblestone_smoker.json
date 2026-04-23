@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "cobblestone_smokers",
+  "key": {
+    "#": {
+      "tag": "minecraft:pale_oak_logs"
+    },
+    "X": {
+      "item": "minecraft:furnace"
+    }
+  },
+  "pattern": [
+    " # ",
+    "#X#",
+    " # "
+  ],
+  "result": {
+    "count": 1,
+    "id": "quad-lolmsmv:pale_oak_cobblestone_smoker"
+  }
+}

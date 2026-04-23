@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "lolmfv"
+      ]
+    }
+  ],
+  "category": "misc",
+  "group": "blackstone_smokers",
+  "key": {
+    "#": {
+      "tag": "minecraft:pale_oak_logs"
+    },
+    "X": {
+      "item": "lolmfv:blackstone_furnace"
+    }
+  },
+  "pattern": [
+    " # ",
+    "#X#",
+    " # "
+  ],
+  "result": {
+    "count": 1,
+    "id": "quad-lolmsmv:pale_oak_blackstone_smoker"
+  }
+}

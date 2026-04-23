@@ -1,0 +1,74 @@
+{
+  "values": [
+    {
+      "structures": "#quad:is/spruce",
+      "block_replacement": {
+        "targets": "minecraft:smoker",
+        "replacement": "quad-lolmsmv:spruce_cobblestone_smoker"
+      }
+    },
+    {
+      "structures": "#quad:is/birch",
+      "block_replacement": {
+        "targets": "minecraft:smoker",
+        "replacement": "quad-lolmsmv:birch_cobblestone_smoker"
+      }
+    },
+    {
+      "structures": "#quad:is/jungle",
+      "block_replacement": {
+        "targets": "minecraft:smoker",
+        "replacement": "quad-lolmsmv:jungle_cobblestone_smoker"
+      }
+    },
+    {
+      "structures": "#quad:is/acacia",
+      "block_replacement": {
+        "targets": "minecraft:smoker",
+        "replacement": "quad-lolmsmv:acacia_cobblestone_smoker"
+      }
+    },
+    {
+      "structures": "#quad:is/dark_oak",
+      "block_replacement": {
+        "targets": "minecraft:smoker",
+        "replacement": "quad-lolmsmv:dark_oak_cobblestone_smoker"
+      }
+    },
+    {
+      "structures": "#quad:is/mangrove",
+      "block_replacement": {
+        "targets": "minecraft:smoker",
+        "replacement": "quad-lolmsmv:mangrove_cobblestone_smoker"
+      }
+    },
+    {
+      "structures": "#quad:is/cherry",
+      "block_replacement": {
+        "targets": "minecraft:smoker",
+        "replacement": "quad-lolmsmv:cherry_cobblestone_smoker"
+      }
+    },
+    {
+      "structures": "#quad:is/bamboo",
+      "block_replacement": {
+        "targets": "minecraft:smoker",
+        "replacement": "quad-lolmsmv:bamboo_cobblestone_smoker"
+      }
+    },
+    {
+      "structures": "#quad:is/crimson",
+      "block_replacement": {
+        "targets": "minecraft:smoker",
+        "replacement": "quad-lolmsmv:crimson_cobblestone_smoker"
+      }
+    },
+    {
+      "structures": "#quad:is/warped",
+      "block_replacement": {
+        "targets": "minecraft:smoker",
+        "replacement": "quad-lolmsmv:warped_cobblestone_smoker"
+      }
+    }
+  ]
+}
