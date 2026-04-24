@@ -1,6 +1,7 @@
 package de.pnku.more_variants_pale_oak_backport.mixin.mstv.base;
 
 import de.pnku.more_variants_pale_oak_backport.util.PaleOakVariantHolder;
+import de.pnku.more_variants_pale_oak_backport.util.PaleOakVariantHolder.VariantType;
 import de.pnku.more_variants_pale_oak_backport.util.WoodType;
 import de.pnku.mstv_base.item.MoreStickVariantItem;
 import de.pnku.mstv_base.item.MoreStickVariantItems;
@@ -27,7 +28,7 @@ public abstract class MoreStickVariantItemsMixin {
     private static Item registerPaleOakStickItem() {
         Item stickItem = new MoreStickVariantItem(WOOD_TYPE.getName(), new Item.Properties());
         registerStickItem(stickItem, Items.STICK);
-        PaleOakVariantHolder.setItem(PaleOakVariantHolder.STICK_FAMILY, WOOD_TYPE, stickItem);
+        PaleOakVariantHolder.setItem(VariantType.STICK, WOOD_TYPE, stickItem);
         return stickItem;
     }
 }

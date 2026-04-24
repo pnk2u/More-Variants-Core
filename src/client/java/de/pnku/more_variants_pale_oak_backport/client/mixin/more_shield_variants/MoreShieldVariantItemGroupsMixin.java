@@ -2,6 +2,7 @@ package de.pnku.more_variants_pale_oak_backport.client.mixin.more_shield_variant
 
 import de.pnku.lolmsv.item.MoreShieldVariantItemGroups;
 import de.pnku.more_variants_pale_oak_backport.util.PaleOakVariantHolder;
+import de.pnku.more_variants_pale_oak_backport.util.PaleOakVariantHolder.VariantType;
 import de.pnku.more_variants_pale_oak_backport.util.WoodType;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -19,6 +20,6 @@ public abstract class MoreShieldVariantItemGroupsMixin {
 
     @Inject(method = "registerMoreShieldVariantItemGroups", at = @At("HEAD"), remap = false)
     private static void injectedRegisterMoreShieldVariantItemGroupsAtHead(CallbackInfo ci) {
-        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.COMBAT).register(entries -> entries.addAfter(Items.SHIELD, PaleOakVariantHolder.getItem(PaleOakVariantHolder.SHIELD_FAMILY, WOOD_TYPE)));
+        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.COMBAT).register(entries -> entries.addAfter(Items.SHIELD, PaleOakVariantHolder.getItem(VariantType.SHIELD, WOOD_TYPE)));
     }
 }

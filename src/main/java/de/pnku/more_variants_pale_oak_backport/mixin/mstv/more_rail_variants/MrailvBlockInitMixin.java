@@ -1,6 +1,7 @@
 package de.pnku.more_variants_pale_oak_backport.mixin.mstv.more_rail_variants;
 
 import de.pnku.more_variants_pale_oak_backport.util.PaleOakVariantHolder;
+import de.pnku.more_variants_pale_oak_backport.util.PaleOakVariantHolder.VariantType;
 import de.pnku.more_variants_pale_oak_backport.util.PaleOakVariantHolder.RailType;
 import de.pnku.more_variants_pale_oak_backport.util.WoodType;
 import de.pnku.mstv_mrailv.init.MrailvBlockInit;
@@ -57,14 +58,14 @@ public abstract class MrailvBlockInitMixin {
         Block railBlock = railType == RAIL
                 ? registerRailBlock(WOOD_TYPE.getName(), inputRailBlock)
                 : registerRailBlock(WOOD_TYPE.getName(), inputRailBlock, railType.registrationType());
-        PaleOakVariantHolder.setBlock(PaleOakVariantHolder.RAIL_FAMILY, WOOD_TYPE, railType, railBlock);
+        PaleOakVariantHolder.setBlock(VariantType.RAIL, WOOD_TYPE, railType, railBlock);
         return railBlock;
     }
 
     @Unique
     private static Item registerPaleOakRailItem(RailType railType, Block railBlock) {
         Item railItem = registerRailItem(WOOD_TYPE.getName(), new BlockItem(railBlock, new Item.Properties()), railType.registrationType());
-        PaleOakVariantHolder.setItem(PaleOakVariantHolder.RAIL_FAMILY, WOOD_TYPE, railType, railItem);
+        PaleOakVariantHolder.setItem(VariantType.RAIL, WOOD_TYPE, railType, railItem);
         return railItem;
     }
 

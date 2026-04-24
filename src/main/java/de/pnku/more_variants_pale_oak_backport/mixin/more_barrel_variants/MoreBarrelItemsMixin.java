@@ -2,6 +2,7 @@ package de.pnku.more_variants_pale_oak_backport.mixin.more_barrel_variants;
 
 import de.pnku.more_barrel_variants.init.MoreBarrelItems;
 import de.pnku.more_variants_pale_oak_backport.util.PaleOakVariantHolder;
+import de.pnku.more_variants_pale_oak_backport.util.PaleOakVariantHolder.VariantType;
 import de.pnku.more_variants_pale_oak_backport.util.WoodType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -36,8 +37,8 @@ public abstract class MoreBarrelItemsMixin {
 
     @Unique
     private static Item registerPaleOakBarrelItem() {
-        Item barrelItem = new BlockItem(PaleOakVariantHolder.getBlock(PaleOakVariantHolder.BARREL_FAMILY, WOOD_TYPE), new Item.Properties());
-        PaleOakVariantHolder.setItem(PaleOakVariantHolder.BARREL_FAMILY, WOOD_TYPE, barrelItem);
+        Item barrelItem = new BlockItem(PaleOakVariantHolder.getBlock(VariantType.BARREL, WOOD_TYPE), new Item.Properties());
+        PaleOakVariantHolder.setItem(VariantType.BARREL, WOOD_TYPE, barrelItem);
         return barrelItem;
     }
 }

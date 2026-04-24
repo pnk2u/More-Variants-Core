@@ -2,6 +2,7 @@ package de.pnku.more_variants_pale_oak_backport.client.mixin.more_shield_variant
 
 import de.pnku.lolmsv.item.MoreShieldVariantModelPredicateProvider;
 import de.pnku.more_variants_pale_oak_backport.util.PaleOakVariantHolder;
+import de.pnku.more_variants_pale_oak_backport.util.PaleOakVariantHolder.VariantType;
 import de.pnku.more_variants_pale_oak_backport.util.WoodType;
 import net.minecraft.world.item.Item;
 import org.spongepowered.asm.mixin.Mixin;
@@ -23,6 +24,6 @@ public abstract class MoreShieldVariantModelPredicateProviderMixin {
 
     @Inject(method = "registerMoreShieldVariantItemModelPredicates", at = @At("HEAD"), remap = false)
     private static void injectedRegisterMoreShieldVariantItemModelPredicatesAtHead(CallbackInfo ci) {
-        invokeRegisterShield(PaleOakVariantHolder.getItem(PaleOakVariantHolder.SHIELD_FAMILY, WOOD_TYPE));
+        invokeRegisterShield(PaleOakVariantHolder.getItem(VariantType.SHIELD, WOOD_TYPE));
     }
 }

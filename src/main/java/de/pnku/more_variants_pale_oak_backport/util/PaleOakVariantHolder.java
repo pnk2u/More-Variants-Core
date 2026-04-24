@@ -11,21 +11,33 @@ import java.util.HashMap;
 import java.util.Map;
 
 public final class PaleOakVariantHolder {
-    public static final String BARREL_FAMILY = "barrel";
-    public static final String BED_FAMILY = "bed";
-    public static final String BEEHIVE_FAMILY = "beehive";
-    public static final String BOOKSHELF_FAMILY = "bookshelf";
-    public static final String CHEST_FAMILY = "chest";
-    public static final String CRAFTING_TABLE_FAMILY = "crafting_table";
-    public static final String FLETCHING_TABLE_FAMILY = "fletching_table";
-    public static final String GRINDSTONE_FAMILY = "grindstone";
-    public static final String SHIELD_FAMILY = "shield";
-    public static final String SMOKER_FAMILY = "smoker";
-    public static final String LADDER_FAMILY = "ladder";
-    public static final String RAIL_FAMILY = "rail";
-    public static final String STICK_FAMILY = "stick";
-    public static final String TORCH_FAMILY = "torch";
-    public static final String WALL_TORCH_FAMILY = "wall_torch";
+    public enum VariantType {
+        BARREL,
+        BED,
+        BEEHIVE,
+        BOOKSHELF,
+        CHEST,
+        CRAFTING_TABLE,
+        FLETCHING_TABLE,
+        GRINDSTONE,
+        SHIELD,
+        SMOKER,
+        LADDER,
+        RAIL,
+        STICK,
+        TORCH,
+        WALL_TORCH;
+
+        private final String registrationType;
+
+        VariantType() {
+            this.registrationType = this.name().toLowerCase();
+        }
+
+        public String registrationType() {
+            return registrationType;
+        }
+    }
 
     public enum DefaultSubtype {
         DEFAULT
@@ -120,46 +132,46 @@ public final class PaleOakVariantHolder {
         }
     }
 
-    private static final Map<String, EnumMap<WoodType, Map<Object, Block>>> BLOCKS_BY_FAMILY = new HashMap<>();
-    private static final Map<String, EnumMap<WoodType, Map<Object, Item>>> ITEMS_BY_FAMILY = new HashMap<>();
+    private static final Map<Enum<?>, EnumMap<WoodType, Map<Object, Block>>> BLOCKS_BY_TYPE = new HashMap<>();
+    private static final Map<Enum<?>, EnumMap<WoodType, Map<Object, Item>>> ITEMS_BY_TYPE = new HashMap<>();
 
-    public static void setBlock(String family, WoodType woodType, Block block) {
-        setBlock(family, woodType, DefaultSubtype.DEFAULT, block);
+    public static void setBlock(Enum<?> variantType, WoodType woodType, Block block) {
+        setBlock(variantType, woodType, DefaultSubtype.DEFAULT, block);
     }
 
-    public static Block getBlock(String family, WoodType woodType) {
-        return getBlock(family, woodType, DefaultSubtype.DEFAULT);
+    public static Block getBlock(Enum<?> variantType, WoodType woodType) {
+        return getBlock(variantType, woodType, DefaultSubtype.DEFAULT);
     }
 
-    public static void setBlock(String family, WoodType woodType, Enum<?> subtype, Block block) {
-        blocksFor(family, woodType).put(requireSubtype(subtype), block);
+    public static void setBlock(Enum<?> variantType, WoodType woodType, Enum<?> subtype, Block block) {
+        blocksFor(variantType, woodType).put(requireSubtype(subtype), block);
     }
 
-    public static Block getBlock(String family, WoodType woodType, Enum<?> subtype) {
-        Block block = blocksFor(family, woodType).get(requireSubtype(subtype));
+    public static Block getBlock(Enum<?> variantType, WoodType woodType, Enum<?> subtype) {
+        Block block = blocksFor(variantType, woodType).get(requireSubtype(subtype));
         if (block == null) {
-            throw new IllegalStateException("Tried to get block for family '" + family + "', wood type '" + woodType + "' and subtype: " + subtype
+            throw new IllegalStateException("Tried to get block for variantType '" + variantType + "', wood type '" + woodType + "' and subtype: " + subtype
                     + " but it has not been registered");
         }
         return block;
     }
 
-    public static void setItem(String family, WoodType woodType, Item item) {
-        setItem(family, woodType, DefaultSubtype.DEFAULT, item);
+    public static void setItem(Enum<?> variantType, WoodType woodType, Item item) {
+        setItem(variantType, woodType, DefaultSubtype.DEFAULT, item);
     }
 
-    public static Item getItem(String family, WoodType woodType) {
-        return getItem(family, woodType, DefaultSubtype.DEFAULT);
+    public static Item getItem(Enum<?> variantType, WoodType woodType) {
+        return getItem(variantType, woodType, DefaultSubtype.DEFAULT);
     }
 
-    public static void setItem(String family, WoodType woodType, Enum<?> subtype, Item item) {
-        itemsFor(family, woodType).put(requireSubtype(subtype), item);
+    public static void setItem(Enum<?> variantType, WoodType woodType, Enum<?> subtype, Item item) {
+        itemsFor(variantType, woodType).put(requireSubtype(subtype), item);
     }
 
-    public static Item getItem(String family, WoodType woodType, Enum<?> subtype) {
-        Item item = itemsFor(family, woodType).get(requireSubtype(subtype));
+    public static Item getItem(Enum<?> variantType, WoodType woodType, Enum<?> subtype) {
+        Item item = itemsFor(variantType, woodType).get(requireSubtype(subtype));
         if (item == null) {
-            throw new IllegalStateException("Tried to get item for family '" + family + "', wood type '" + woodType + "' and subtype: " + subtype
+            throw new IllegalStateException("Tried to get item for variantType '" + variantType + "', wood type '" + woodType + "' and subtype: " + subtype
                     + " but it has not been registered");
         }
         return item;
@@ -189,23 +201,23 @@ public final class PaleOakVariantHolder {
         return Blocks.WALL_TORCH;
     }
 
-    private static Map<Object, Block> blocksFor(String family, WoodType woodType) {
-        return BLOCKS_BY_FAMILY
-                .computeIfAbsent(requireFamily(family), key -> new EnumMap<>(WoodType.class))
+    private static Map<Object, Block> blocksFor(Enum<?> variantType, WoodType woodType) {
+        return BLOCKS_BY_TYPE
+                .computeIfAbsent(requireVariantType(variantType), key -> new EnumMap<>(WoodType.class))
                 .computeIfAbsent(requireWoodType(woodType), key -> new HashMap<>());
     }
 
-    private static Map<Object, Item> itemsFor(String family, WoodType woodType) {
-        return ITEMS_BY_FAMILY
-                .computeIfAbsent(requireFamily(family), key -> new EnumMap<>(WoodType.class))
+    private static Map<Object, Item> itemsFor(Enum<?> variantType, WoodType woodType) {
+        return ITEMS_BY_TYPE
+                .computeIfAbsent(requireVariantType(variantType), key -> new EnumMap<>(WoodType.class))
                 .computeIfAbsent(requireWoodType(woodType), key -> new HashMap<>());
     }
 
-    private static String requireFamily(String family) {
-        if (family == null || family.isBlank()) {
-            throw new IllegalArgumentException("family must not be blank");
+    private static Enum<?> requireVariantType(Enum<?> variantType) {
+        if (variantType == null) {
+            throw new IllegalArgumentException("variantType must not be null");
         }
-        return family;
+        return variantType;
     }
 
     private static WoodType requireWoodType(WoodType woodType) {

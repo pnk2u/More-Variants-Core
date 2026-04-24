@@ -3,6 +3,7 @@ package de.pnku.more_variants_pale_oak_backport.mixin.more_fletching_tables;
 import de.pnku.mft.block.MoreFletchingTablesBlock;
 import de.pnku.mft.init.MftBlockInit;
 import de.pnku.more_variants_pale_oak_backport.util.PaleOakVariantHolder;
+import de.pnku.more_variants_pale_oak_backport.util.PaleOakVariantHolder.VariantType;
 import de.pnku.more_variants_pale_oak_backport.util.WoodType;
 import net.minecraft.world.level.block.Block;
 import org.spongepowered.asm.mixin.Mixin;
@@ -24,7 +25,7 @@ public abstract class MftBlockInitMixin {
     private static Block registerPaleOakFletchingTableBlock() {
         MoreFletchingTablesBlock fletchingTable = new MoreFletchingTablesBlock(WOOD_TYPE.getMapColor(), WOOD_TYPE.getName());
         registerBlock(fletchingTable);
-        PaleOakVariantHolder.setBlock(PaleOakVariantHolder.FLETCHING_TABLE_FAMILY, WOOD_TYPE, fletchingTable);
+        PaleOakVariantHolder.setBlock(VariantType.FLETCHING_TABLE, WOOD_TYPE, fletchingTable);
         return fletchingTable;
     }
 }
