@@ -2,8 +2,8 @@ package de.pnku.more_variants_pale_oak_backport.mixin.more_grindstone_variants;
 
 import de.pnku.mgv.block.MoreGrindstoneBlock;
 import de.pnku.mgv.init.MgvBlockInit;
-import de.pnku.more_variants_pale_oak_backport.mixin.holder.PaleOakGrindstoneHolder;
-import de.pnku.more_variants_pale_oak_backport.mixin.holder.PaleOakGrindstoneHolder.GrindstoneType;
+import de.pnku.more_variants_pale_oak_backport.util.PaleOakVariantHolder;
+import de.pnku.more_variants_pale_oak_backport.util.PaleOakVariantHolder.GrindstoneType;
 import de.pnku.more_variants_pale_oak_backport.util.WoodType;
 import net.minecraft.world.level.block.Block;
 import org.spongepowered.asm.mixin.Mixin;
@@ -33,7 +33,7 @@ public abstract class MgvBlockInitMixin {
     private static Block registerPaleOakGrindstone(GrindstoneType grindstoneType) {
         MoreGrindstoneBlock grindstoneBlock = new MoreGrindstoneBlock(WOOD_TYPE.getMapColor(), WOOD_TYPE.getName(), WOOD_TYPE.getPlanksBlock(), grindstoneType.registrationType(), grindstoneType.getStoneSlabBlock(), grindstoneType.blockIdSuffix());
         registerBlock(grindstoneBlock);
-        PaleOakGrindstoneHolder.setBlock(WOOD_TYPE, grindstoneType, grindstoneBlock);
+        PaleOakVariantHolder.setBlock(PaleOakVariantHolder.GRINDSTONE_FAMILY, WOOD_TYPE, grindstoneType, grindstoneBlock);
         return grindstoneBlock;
     }
 }

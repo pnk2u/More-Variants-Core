@@ -1,6 +1,6 @@
 package de.pnku.more_variants_pale_oak_backport.mixin.mstv.nemos_more_ladder_variants;
 
-import de.pnku.more_variants_pale_oak_backport.mixin.holder.mstv.PaleOakLadderHolder;
+import de.pnku.more_variants_pale_oak_backport.util.PaleOakVariantHolder;
 import de.pnku.more_variants_pale_oak_backport.util.WoodType;
 import de.pnku.nemosmoreladdervariants.init.NmlvItems;
 import net.minecraft.world.item.Item;
@@ -24,8 +24,8 @@ public abstract class NmlvItemsMixin {
 
     @Unique
     private static Item registerPaleOakLadderItem() {
-        Item ladderItem = registerLadderBlockItem(WOOD_TYPE.getName() + "_ladder", PaleOakLadderHolder.getBlock(WOOD_TYPE));
-        PaleOakLadderHolder.setItem(WOOD_TYPE, ladderItem);
+        Item ladderItem = registerLadderBlockItem(WOOD_TYPE.getName() + "_ladder", PaleOakVariantHolder.getBlock(PaleOakVariantHolder.LADDER_FAMILY, WOOD_TYPE));
+        PaleOakVariantHolder.setItem(PaleOakVariantHolder.LADDER_FAMILY, WOOD_TYPE, ladderItem);
         return ladderItem;
     }
 }

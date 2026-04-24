@@ -1,7 +1,7 @@
 package de.pnku.more_variants_pale_oak_backport.mixin.mstv.more_rail_variants;
 
-import de.pnku.more_variants_pale_oak_backport.mixin.holder.mstv.PaleOakRailHolder;
-import de.pnku.more_variants_pale_oak_backport.mixin.holder.mstv.PaleOakRailHolder.RailType;
+import de.pnku.more_variants_pale_oak_backport.util.PaleOakVariantHolder;
+import de.pnku.more_variants_pale_oak_backport.util.PaleOakVariantHolder.RailType;
 import de.pnku.more_variants_pale_oak_backport.util.WoodType;
 import de.pnku.mstv_mrailv.init.MrailvBlockInit;
 import net.minecraft.world.item.BlockItem;
@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 
-import static de.pnku.more_variants_pale_oak_backport.mixin.holder.mstv.PaleOakRailHolder.RailType.*;
+import static de.pnku.more_variants_pale_oak_backport.util.PaleOakVariantHolder.RailType.*;
 
 @Mixin(MrailvBlockInit.class)
 public abstract class MrailvBlockInitMixin {
@@ -57,14 +57,14 @@ public abstract class MrailvBlockInitMixin {
         Block railBlock = railType == RAIL
                 ? registerRailBlock(WOOD_TYPE.getName(), inputRailBlock)
                 : registerRailBlock(WOOD_TYPE.getName(), inputRailBlock, railType.registrationType());
-        PaleOakRailHolder.setBlock(WOOD_TYPE, railType, railBlock);
+        PaleOakVariantHolder.setBlock(PaleOakVariantHolder.RAIL_FAMILY, WOOD_TYPE, railType, railBlock);
         return railBlock;
     }
 
     @Unique
     private static Item registerPaleOakRailItem(RailType railType, Block railBlock) {
         Item railItem = registerRailItem(WOOD_TYPE.getName(), new BlockItem(railBlock, new Item.Properties()), railType.registrationType());
-        PaleOakRailHolder.setItem(WOOD_TYPE, railType, railItem);
+        PaleOakVariantHolder.setItem(PaleOakVariantHolder.RAIL_FAMILY, WOOD_TYPE, railType, railItem);
         return railItem;
     }
 

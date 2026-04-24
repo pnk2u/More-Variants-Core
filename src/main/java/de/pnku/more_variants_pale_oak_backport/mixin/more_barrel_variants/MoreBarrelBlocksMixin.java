@@ -2,10 +2,9 @@ package de.pnku.more_variants_pale_oak_backport.mixin.more_barrel_variants;
 
 import de.pnku.more_barrel_variants.block.MoreBarrelBlock;
 import de.pnku.more_barrel_variants.init.MoreBarrelBlocks;
+import de.pnku.more_variants_pale_oak_backport.util.PaleOakVariantHolder;
 import de.pnku.more_variants_pale_oak_backport.util.WoodType;
-import de.pnku.more_variants_pale_oak_backport.mixin.holder.PaleOakBarrelHolder;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.material.MapColor;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -38,7 +37,7 @@ public abstract class MoreBarrelBlocksMixin {
     @Unique
     private static Block registerPaleOakBarrelBlock() {
         Block barrelBlock = new MoreBarrelBlock(WOOD_TYPE.getMapColor(), WOOD_TYPE.getName());
-        PaleOakBarrelHolder.setBlock(WOOD_TYPE, barrelBlock);
+        PaleOakVariantHolder.setBlock(PaleOakVariantHolder.BARREL_FAMILY, WOOD_TYPE, barrelBlock);
         return barrelBlock;
     }
 }

@@ -1,7 +1,7 @@
 package de.pnku.more_variants_pale_oak_backport.mixin.more_smoker_variants;
 
-import de.pnku.more_variants_pale_oak_backport.mixin.holder.PaleOakSmokerHolder;
-import de.pnku.more_variants_pale_oak_backport.mixin.holder.PaleOakSmokerHolder.SmokerType;
+import de.pnku.more_variants_pale_oak_backport.util.PaleOakVariantHolder;
+import de.pnku.more_variants_pale_oak_backport.util.PaleOakVariantHolder.SmokerType;
 import de.pnku.more_variants_pale_oak_backport.util.WoodType;
 import de.pnku.msmv.init.MsmvItemInit;
 import net.minecraft.world.item.BlockItem;
@@ -28,9 +28,9 @@ public abstract class MsmvItemInitMixin {
 
     @Unique
     private static BlockItem registerPaleOakSmokerItem(SmokerType smokerType) {
-        BlockItem smokerItem = new BlockItem(PaleOakSmokerHolder.getBlock(WOOD_TYPE, smokerType), new Item.Properties());
+        BlockItem smokerItem = new BlockItem(PaleOakVariantHolder.getBlock(PaleOakVariantHolder.SMOKER_FAMILY, WOOD_TYPE, smokerType), new Item.Properties());
         registerSmokerItem(smokerItem, Items.SMOKER);
-        PaleOakSmokerHolder.setItem(WOOD_TYPE, smokerType, smokerItem);
+        PaleOakVariantHolder.setItem(PaleOakVariantHolder.SMOKER_FAMILY, WOOD_TYPE, smokerType, smokerItem);
         return smokerItem;
     }
 }

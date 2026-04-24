@@ -1,7 +1,7 @@
 package de.pnku.more_variants_pale_oak_backport.mixin.more_chest_variants;
 
-import de.pnku.more_variants_pale_oak_backport.mixin.holder.PaleOakChestHolder;
-import de.pnku.more_variants_pale_oak_backport.mixin.holder.PaleOakChestHolder.ChestType;
+import de.pnku.more_variants_pale_oak_backport.util.PaleOakVariantHolder;
+import de.pnku.more_variants_pale_oak_backport.util.PaleOakVariantHolder.ChestType;
 import de.pnku.more_variants_pale_oak_backport.util.WoodType;
 import io.github.lieonlion.mcv.init.McvItemInit;
 import net.minecraft.world.item.BlockItem;
@@ -34,15 +34,15 @@ public abstract class McvItemInitMixin {
 
     @Unique
     private static BlockItem registerPaleOakChestItem() {
-        BlockItem chestItem = new BlockItem(PaleOakChestHolder.getBlock(WOOD_TYPE, ChestType.CHEST), new Item.Properties());
-        PaleOakChestHolder.setItem(WOOD_TYPE, ChestType.CHEST, chestItem);
+        BlockItem chestItem = new BlockItem(PaleOakVariantHolder.getBlock(PaleOakVariantHolder.CHEST_FAMILY, WOOD_TYPE, ChestType.CHEST), new Item.Properties());
+        PaleOakVariantHolder.setItem(PaleOakVariantHolder.CHEST_FAMILY, WOOD_TYPE, ChestType.CHEST, chestItem);
         return chestItem;
     }
 
     @Unique
     private static BlockItem registerPaleOakTrappedChestItem() {
-        BlockItem trappedChestItem = new BlockItem(PaleOakChestHolder.getBlock(WOOD_TYPE, ChestType.TRAPPED_CHEST), new Item.Properties());
-        PaleOakChestHolder.setItem(WOOD_TYPE, ChestType.TRAPPED_CHEST, trappedChestItem);
+        BlockItem trappedChestItem = new BlockItem(PaleOakVariantHolder.getBlock(PaleOakVariantHolder.CHEST_FAMILY, WOOD_TYPE, ChestType.TRAPPED_CHEST), new Item.Properties());
+        PaleOakVariantHolder.setItem(PaleOakVariantHolder.CHEST_FAMILY, WOOD_TYPE, ChestType.TRAPPED_CHEST, trappedChestItem);
         return trappedChestItem;
     }
 }

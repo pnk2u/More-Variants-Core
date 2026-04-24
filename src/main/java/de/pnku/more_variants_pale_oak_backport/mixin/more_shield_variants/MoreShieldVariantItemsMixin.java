@@ -2,7 +2,7 @@ package de.pnku.more_variants_pale_oak_backport.mixin.more_shield_variants;
 
 import de.pnku.lolmsv.item.MoreShieldVariantItem;
 import de.pnku.lolmsv.item.MoreShieldVariantItems;
-import de.pnku.more_variants_pale_oak_backport.mixin.holder.PaleOakShieldHolder;
+import de.pnku.more_variants_pale_oak_backport.util.PaleOakVariantHolder;
 import de.pnku.more_variants_pale_oak_backport.util.WoodType;
 import net.minecraft.world.item.Item;
 import org.spongepowered.asm.mixin.Mixin;
@@ -29,7 +29,7 @@ public abstract class MoreShieldVariantItemsMixin {
     private static Item registerPaleOakShieldItem() {
         Item shieldItem = new MoreShieldVariantItem(WOOD_TYPE.getName(), setProperties());
         registerShieldItem(shieldItem);
-        PaleOakShieldHolder.setItem(WOOD_TYPE, shieldItem);
+        PaleOakVariantHolder.setItem(PaleOakVariantHolder.SHIELD_FAMILY, WOOD_TYPE, shieldItem);
         return shieldItem;
     }
 }

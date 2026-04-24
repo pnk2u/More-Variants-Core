@@ -1,6 +1,6 @@
 package de.pnku.more_variants_pale_oak_backport.mixin.more_bookshelf_variants;
 
-import de.pnku.more_variants_pale_oak_backport.mixin.holder.PaleOakBookshelfHolder;
+import de.pnku.more_variants_pale_oak_backport.util.PaleOakVariantHolder;
 import de.pnku.more_variants_pale_oak_backport.util.WoodType;
 import io.github.lieonlion.lolmbv.block.MoreBookshelfBlock;
 import io.github.lieonlion.lolmbv.init.MbvBlockInit;
@@ -24,7 +24,7 @@ public abstract class MbvBlockInitMixin {
     private static Block registerPaleOakBookshelf() {
         Block bookshelfBlock = new MoreBookshelfBlock(WOOD_TYPE.getMapColor());
         registerBlock(WOOD_TYPE.getName() + "_bookshelf", bookshelfBlock);
-        PaleOakBookshelfHolder.setBlock(WOOD_TYPE, bookshelfBlock);
+        PaleOakVariantHolder.setBlock(PaleOakVariantHolder.BOOKSHELF_FAMILY, WOOD_TYPE, bookshelfBlock);
         return bookshelfBlock;
     }
 }

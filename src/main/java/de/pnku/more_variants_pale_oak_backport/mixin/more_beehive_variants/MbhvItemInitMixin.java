@@ -1,7 +1,7 @@
 package de.pnku.more_variants_pale_oak_backport.mixin.more_beehive_variants;
 
 import de.pnku.mbhv.init.MbhvItemInit;
-import de.pnku.more_variants_pale_oak_backport.mixin.holder.PaleOakBeehiveHolder;
+import de.pnku.more_variants_pale_oak_backport.util.PaleOakVariantHolder;
 import de.pnku.more_variants_pale_oak_backport.util.WoodType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -23,9 +23,9 @@ public abstract class MbhvItemInitMixin {
 
     @Unique
     private static BlockItem registerPaleOakBeehiveItem() {
-        BlockItem beehiveItem = new BlockItem(PaleOakBeehiveHolder.getBlock(WOOD_TYPE), new Item.Properties());
+        BlockItem beehiveItem = new BlockItem(PaleOakVariantHolder.getBlock(PaleOakVariantHolder.BEEHIVE_FAMILY, WOOD_TYPE), new Item.Properties());
         registerBeehiveItem(beehiveItem, Items.BEEHIVE);
-        PaleOakBeehiveHolder.setItem(WOOD_TYPE, beehiveItem);
+        PaleOakVariantHolder.setItem(PaleOakVariantHolder.BEEHIVE_FAMILY, WOOD_TYPE, beehiveItem);
         return beehiveItem;
     }
 }

@@ -1,7 +1,7 @@
 package de.pnku.more_variants_pale_oak_backport.mixin.more_smoker_variants;
 
-import de.pnku.more_variants_pale_oak_backport.mixin.holder.PaleOakSmokerHolder;
-import de.pnku.more_variants_pale_oak_backport.mixin.holder.PaleOakSmokerHolder.SmokerType;
+import de.pnku.more_variants_pale_oak_backport.util.PaleOakVariantHolder;
+import de.pnku.more_variants_pale_oak_backport.util.PaleOakVariantHolder.SmokerType;
 import de.pnku.more_variants_pale_oak_backport.util.WoodType;
 import de.pnku.msmv.block.MoreSmokerVariantBlock;
 import de.pnku.msmv.init.MsmvBlockInit;
@@ -28,7 +28,7 @@ public abstract class MsmvBlockInitMixin {
     private static MoreSmokerVariantBlock registerPaleOakSmoker(SmokerType smokerType) {
         MoreSmokerVariantBlock smokerBlock = new MoreSmokerVariantBlock(WOOD_TYPE.getMapColor(), WOOD_TYPE.getName(), smokerType.registrationType());
         registerSmokerBlock(smokerBlock);
-        PaleOakSmokerHolder.setBlock(WOOD_TYPE, smokerType, smokerBlock);
+        PaleOakVariantHolder.setBlock(PaleOakVariantHolder.SMOKER_FAMILY, WOOD_TYPE, smokerType, smokerBlock);
         return smokerBlock;
     }
 }

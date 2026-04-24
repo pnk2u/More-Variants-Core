@@ -1,8 +1,8 @@
 package de.pnku.more_variants_pale_oak_backport.mixin.more_grindstone_variants;
 
 import de.pnku.mgv.init.MgvItemInit;
-import de.pnku.more_variants_pale_oak_backport.mixin.holder.PaleOakGrindstoneHolder;
-import de.pnku.more_variants_pale_oak_backport.mixin.holder.PaleOakGrindstoneHolder.GrindstoneType;
+import de.pnku.more_variants_pale_oak_backport.util.PaleOakVariantHolder;
+import de.pnku.more_variants_pale_oak_backport.util.PaleOakVariantHolder.GrindstoneType;
 import de.pnku.more_variants_pale_oak_backport.util.WoodType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -32,9 +32,9 @@ public abstract class MgvItemInitMixin {
 
     @Unique
     private static BlockItem registerPaleOakGrindstone(GrindstoneType grindstoneType) {
-        BlockItem blockItem = new BlockItem(PaleOakGrindstoneHolder.getBlock(WOOD_TYPE, grindstoneType), new Item.Properties());
+        BlockItem blockItem = new BlockItem(PaleOakVariantHolder.getBlock(PaleOakVariantHolder.GRINDSTONE_FAMILY, WOOD_TYPE, grindstoneType), new Item.Properties());
         registerItem(blockItem, Items.GRINDSTONE);
-        PaleOakGrindstoneHolder.setItem(WOOD_TYPE, grindstoneType, blockItem);
+        PaleOakVariantHolder.setItem(PaleOakVariantHolder.GRINDSTONE_FAMILY, WOOD_TYPE, grindstoneType, blockItem);
         return blockItem;
     }
 }

@@ -1,6 +1,6 @@
 package de.pnku.more_variants_pale_oak_backport.mixin.mstv.base;
 
-import de.pnku.more_variants_pale_oak_backport.mixin.holder.mstv.PaleOakStickHolder;
+import de.pnku.more_variants_pale_oak_backport.util.PaleOakVariantHolder;
 import de.pnku.more_variants_pale_oak_backport.util.WoodType;
 import de.pnku.mstv_base.item.MoreStickVariantItem;
 import net.minecraft.world.item.Item;
@@ -20,7 +20,7 @@ public abstract class MoreStickVariantItemMixin {
     @Inject(method = "getStickItem", at = @At("HEAD"), cancellable = true)
     private static void injectedGetStickItemAtHead(String woodType, CallbackInfoReturnable<Item> cir) {
         if (WOOD_TYPE.getName().equals(woodType)) {
-            Item paleOakStick = PaleOakStickHolder.getItem(WOOD_TYPE);
+            Item paleOakStick = PaleOakVariantHolder.getItem(PaleOakVariantHolder.STICK_FAMILY, WOOD_TYPE);
             cir.setReturnValue(paleOakStick);
         }
     }

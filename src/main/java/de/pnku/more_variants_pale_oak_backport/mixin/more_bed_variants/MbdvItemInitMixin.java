@@ -1,7 +1,7 @@
 package de.pnku.more_variants_pale_oak_backport.mixin.more_bed_variants;
 
 import de.pnku.mbdv.init.MbdvItemInit;
-import de.pnku.more_variants_pale_oak_backport.mixin.holder.PaleOakBedHolder;
+import de.pnku.more_variants_pale_oak_backport.util.PaleOakVariantHolder;
 import de.pnku.more_variants_pale_oak_backport.util.WoodType;
 import net.minecraft.world.item.BedItem;
 import net.minecraft.world.item.DyeColor;
@@ -62,13 +62,13 @@ public abstract class MbdvItemInitMixin {
 
     @Unique
     private static Item registerPaleOakBedItem(DyeColor color) {
-        Item bedItem = new BedItem(PaleOakBedHolder.getBlock(WOOD_TYPE, color), bedProperties);
+        Item bedItem = new BedItem(PaleOakVariantHolder.getBlock(PaleOakVariantHolder.BED_FAMILY, WOOD_TYPE, color), bedProperties);
         if (color == DyeColor.WHITE) {
             registerWhiteBedItem(bedItem, Items.WHITE_BED);
         } else {
             registerOtherBedItem(bedItem);
         }
-        PaleOakBedHolder.setItem(WOOD_TYPE, color, bedItem);
+        PaleOakVariantHolder.setItem(PaleOakVariantHolder.BED_FAMILY, WOOD_TYPE, color, bedItem);
         return bedItem;
     }
 }
