@@ -19,6 +19,7 @@ public final class PaleOakVariantHolder {
         CHEST,
         CRAFTING_TABLE,
         FLETCHING_TABLE,
+        SMITHING_TABLE,
         GRINDSTONE,
         SHIELD,
         SMOKER,
