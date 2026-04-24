@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "lolmft:pale_oak_fletching_table"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "lolmft:blocks/pale_oak_fletching_table"
+}

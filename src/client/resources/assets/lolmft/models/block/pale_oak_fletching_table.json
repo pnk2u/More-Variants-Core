@@ -1,0 +1,12 @@
+{
+    "parent": "minecraft:block/cube",
+    "textures": {
+        "down": "minecraft:block/pale_oak_planks",
+        "east": "lolmft:block/pale_oak_fletching_table_side",
+        "north": "lolmft:block/pale_oak_fletching_table_front",
+        "particle": "lolmft:block/pale_oak_fletching_table_front",
+        "south": "lolmft:block/pale_oak_fletching_table_front",
+        "up": "lolmft:block/pale_oak_fletching_table_top",
+        "west": "lolmft:block/pale_oak_fletching_table_side"
+    }
+}

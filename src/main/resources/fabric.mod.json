@@ -29,6 +29,7 @@
     "${mod_id_short}.more_bookshelf_variants.mixins.json",
     "${mod_id_short}.more_chest_variants.mixins.json",
     "${mod_id_short}.more_crafting_tables.mixins.json",
+    "${mod_id_short}.more_fletching_tables.mixins.json",
     "${mod_id_short}.more_grindstone_variants.mixins.json",
     "${mod_id_short}.more_shield_variants.mixins.json",
     "${mod_id_short}.more_smoker_variants.mixins.json",
