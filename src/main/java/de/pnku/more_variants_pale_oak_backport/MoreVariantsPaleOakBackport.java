@@ -1,19 +1,33 @@
 package de.pnku.more_variants_pale_oak_backport;
 
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.resources.ResourceLocation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class MoreVariantsPaleOakBackport implements ModInitializer {
 	public static final String MOD_ID = "more_variants_pale_oak_backport";
-	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
+	public static final String MOD_NAME = "More Variants: Pale Oak Backport";
+	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_NAME);
+	public static List<String> found_mod_ids = new ArrayList<>();
 
 	
 	@Override
 	public void onInitialize() {
-
+		if (!found_mod_ids.isEmpty()) {
+			List<String> modNames = new ArrayList<>();
+			for (String modId : found_mod_ids) {
+				modNames.add(FabricLoader.getInstance().getModContainer(modId).map(modContainer -> modContainer.getMetadata().getName()).orElse(modId));
+			}
+			LOGGER.info("Added Pale Oak variants for the following Mods: {}", modNames);
+		} else {
+			LOGGER.warn("Did not find any compatible Mods for Pale Oak variants.");
+		}
 	}
 
 	public static ResourceLocation withModId(String path) {

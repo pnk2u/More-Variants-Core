@@ -23,23 +23,9 @@
     ]
   },
   "mixins": [
-    "${mod_id_short}.more_barrel_variants.mixins.json",
-    "${mod_id_short}.more_bed_variants.mixins.json",
-    "${mod_id_short}.more_beehive_variants.mixins.json",
-    "${mod_id_short}.more_bookshelf_variants.mixins.json",
-    "${mod_id_short}.more_chest_variants.mixins.json",
-    "${mod_id_short}.more_crafting_tables.mixins.json",
-    "${mod_id_short}.more_fletching_tables.mixins.json",
-    "${mod_id_short}.more_smithing_tables.mixins.json",
-    "${mod_id_short}.more_grindstone_variants.mixins.json",
-    "${mod_id_short}.more_shield_variants.mixins.json",
-    "${mod_id_short}.more_smoker_variants.mixins.json",
-    "${mod_id_short}.mstv.base.mixins.json",
-    "${mod_id_short}.mstv.more_rail_variants.mixins.json",
-    "${mod_id_short}.mstv.more_torch_variants.mixins.json",
-    "${mod_id_short}.mstv.nemos_more_ladder_variants.mixins.json",
+    "${mod_id}.mixins.json",
     {
-      "config": "${mod_id_short}.more_shield_variants.client.mixins.json",
+      "config": "${mod_id}.client.mixins.json",
       "environment": "client"
     }
   ],
@@ -48,7 +34,7 @@
         "minecraft": ">=${minecraft_version_0} <${minecraft_version_1}",
 		"java": ">=${java_version}",
 		"fabric-api": "*"
-	},
+  },
   "custom": {
     "modmenu": {
       "links": {

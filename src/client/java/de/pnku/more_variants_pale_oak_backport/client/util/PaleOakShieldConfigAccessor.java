@@ -1,4 +1,4 @@
-package de.pnku.more_variants_pale_oak_backport.client.mixin.util;
+package de.pnku.more_variants_pale_oak_backport.client.util;
 
 public interface PaleOakShieldConfigAccessor {
     boolean mvpob$isPaleOakUseCustom();

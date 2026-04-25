@@ -2,7 +2,7 @@ package de.pnku.more_variants_pale_oak_backport.client.mixin.more_shield_variant
 
 import de.pnku.lolmsv.config.MoreShieldVariantsConfig;
 import de.pnku.lolmsv.config.MoreShieldVariantsConfigScreen;
-import de.pnku.more_variants_pale_oak_backport.client.mixin.util.PaleOakShieldConfigAccessor;
+import de.pnku.more_variants_pale_oak_backport.client.util.PaleOakShieldConfigAccessor;
 import me.shedaniel.clothconfig2.api.AbstractConfigListEntry;
 import me.shedaniel.clothconfig2.api.ConfigBuilder;
 import me.shedaniel.clothconfig2.api.ConfigCategory;

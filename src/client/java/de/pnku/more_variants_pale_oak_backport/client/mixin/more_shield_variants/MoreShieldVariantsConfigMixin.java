@@ -2,7 +2,7 @@ package de.pnku.more_variants_pale_oak_backport.client.mixin.more_shield_variant
 
 import de.pnku.lolmsv.config.MoreShieldVariantsConfig;
 import de.pnku.more_variants_pale_oak_backport.util.WoodType;
-import de.pnku.more_variants_pale_oak_backport.client.mixin.util.PaleOakShieldConfigAccessor;
+import de.pnku.more_variants_pale_oak_backport.client.util.PaleOakShieldConfigAccessor;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;

@@ -14,6 +14,7 @@ public enum WoodType {
 
     private final String namespace;
     private final String name;
+    private final String idString;
     private final MapColor mapColor;
     private final Block planksBlock;
 
@@ -24,12 +25,13 @@ public enum WoodType {
     WoodType(String namespace, String name, MapColor mapColor, Block planksBlock) {
         this.namespace = namespace;
         this.name = name;
+        this.idString = namespace + ":" + name;
         this.mapColor = mapColor;
         this.planksBlock = planksBlock;
     }
 
     public String idString() {
-        return namespace + ":" + name;
+        return idString;
     }
 
     public String getNamespace() {

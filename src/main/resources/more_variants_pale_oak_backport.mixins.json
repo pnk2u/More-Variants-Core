@@ -1,0 +1,39 @@
+{
+  "required": false,
+  "minVersion": "0.8",
+  "package": "de.pnku.more_variants_pale_oak_backport.mixin",
+  "plugin": "de.pnku.more_variants_pale_oak_backport.mixin.MoreVariantsPaleOakBackportMixinPlugin",
+  "compatibilityLevel": "JAVA_${java_version}",
+  "mixins": [
+    "mstv.base.MoreStickVariantItemMixin",
+    "mstv.base.MoreStickVariantItemsMixin",
+    "more_barrel_variants.MoreBarrelBlocksMixin",
+    "more_barrel_variants.MoreBarrelItemsMixin",
+    "more_bed_variants.MbdvBlockInitMixin",
+    "more_bed_variants.MbdvItemInitMixin",
+    "more_beehive_variants.MbhvBlockInitMixin",
+    "more_beehive_variants.MbhvItemInitMixin",
+    "more_bookshelf_variants.MbvBlockInitMixin",
+    "more_bookshelf_variants.MbvItemInitMixin",
+    "more_chest_variants.McvBlockInitMixin",
+    "more_chest_variants.McvItemInitMixin",
+    "more_crafting_tables.MctBlockInitMixin",
+    "more_crafting_tables.MctItemInitMixin",
+    "more_fletching_tables.MftBlockInitMixin",
+    "more_fletching_tables.MftItemInitMixin",
+    "more_grindstone_variants.MgvBlockInitMixin",
+    "more_grindstone_variants.MgvItemInitMixin",
+    "more_shield_variants.MoreShieldVariantItemsMixin",
+    "more_smithing_tables.MstBlockInitMixin",
+    "more_smithing_tables.MstItemInitMixin",
+    "more_smoker_variants.MsmvBlockInitMixin",
+    "more_smoker_variants.MsmvItemInitMixin",
+    "mstv.more_rail_variants.MrailvBlockInitMixin",
+    "mstv.more_torch_variants.MtvBlockInitMixin",
+    "mstv.nemos_more_ladder_variants.NmlvBlocksMixin",
+    "mstv.nemos_more_ladder_variants.NmlvItemsMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
