@@ -1,16 +1,15 @@
 package de.pnku.more_variants_pale_oak_backport.util;
 
 import net.fabricmc.loader.api.FabricLoader;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import static de.pnku.more_variants_pale_oak_backport.MoreVariantsPaleOakBackport.found_mod_ids;
+import static de.pnku.more_variants_pale_oak_backport.MoreVariantsPaleOakBackport.LOGGER;
 
-public final class MixinModChecker {
-    private MixinModChecker() {}
+public final class MixinDependencyResolver {
+    private MixinDependencyResolver() {}
     public static Map<String, String> MIXIN_PACKAGE_TO_MOD_ID = new HashMap<>();
 
     public static void init() {
@@ -48,8 +47,7 @@ public final class MixinModChecker {
     public static boolean shouldApplyMixin(String mixinClassName, boolean isClient) {
         String requiredModId = getRequiredModId(mixinClassName, isClient);
         if (requiredModId == null) {
-            Logger logger = LoggerFactory.getLogger(MixinModChecker.class);
-            logger.warn("Could not determine required mod for mixin class: {}", mixinClassName);
+            LOGGER.warn("Could not determine required mod for mixin class: {}", mixinClassName);
             return false;
         } else if (FabricLoader.getInstance().isModLoaded(requiredModId)) {
             found_mod_ids.add(requiredModId);

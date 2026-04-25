@@ -1,6 +1,6 @@
 package de.pnku.more_variants_pale_oak_backport.client.mixin;
 
-import de.pnku.more_variants_pale_oak_backport.util.MixinModChecker;
+import de.pnku.more_variants_pale_oak_backport.util.MixinDependencyResolver;
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
@@ -12,7 +12,7 @@ public class MoreVariantsPaleOakBackportClientMixinPlugin implements IMixinConfi
 
     @Override
     public void onLoad(String mixinPackage) {
-        MixinModChecker.init();
+        MixinDependencyResolver.init();
     }
 
     @Override
@@ -22,7 +22,7 @@ public class MoreVariantsPaleOakBackportClientMixinPlugin implements IMixinConfi
 
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-        return MixinModChecker.shouldApplyMixin(mixinClassName, true);
+        return MixinDependencyResolver.shouldApplyMixin(mixinClassName, true);
     }
 
     @Override
