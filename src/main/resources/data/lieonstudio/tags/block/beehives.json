@@ -1,6 +1,6 @@
 {
   "replace": false,
   "values": [
-    "quad-lolmbhv:pale_oak_beehive"
+    {"id":"quad-lolmbhv:pale_oak_beehive","required":false}
   ]
 }

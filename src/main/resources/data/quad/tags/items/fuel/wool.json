@@ -1,6 +1,6 @@
 {
   "replace": false,
   "values": [
-    "mstv-base:pale_oak_stick"
+    {"id":"mstv-base:pale_oak_stick","required":false}
   ]
 }

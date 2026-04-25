@@ -1,21 +1,21 @@
 {
   "replace": false,
   "values": [
-    "quad-lolmbdv:pale_oak_white_bed",
-    "quad-lolmbdv:pale_oak_orange_bed",
-    "quad-lolmbdv:pale_oak_magenta_bed",
-    "quad-lolmbdv:pale_oak_light_blue_bed",
-    "quad-lolmbdv:pale_oak_yellow_bed",
-    "quad-lolmbdv:pale_oak_lime_bed",
-    "quad-lolmbdv:pale_oak_pink_bed",
-    "quad-lolmbdv:pale_oak_gray_bed",
-    "quad-lolmbdv:pale_oak_light_gray_bed",
-    "quad-lolmbdv:pale_oak_cyan_bed",
-    "quad-lolmbdv:pale_oak_purple_bed",
-    "quad-lolmbdv:pale_oak_blue_bed",
-    "quad-lolmbdv:pale_oak_brown_bed",
-    "quad-lolmbdv:pale_oak_green_bed",
-    "quad-lolmbdv:pale_oak_red_bed",
-    "quad-lolmbdv:pale_oak_black_bed"
+    {"id":"quad-lolmbdv:pale_oak_white_bed","required":false},
+    {"id":"quad-lolmbdv:pale_oak_orange_bed","required":false},
+    {"id":"quad-lolmbdv:pale_oak_magenta_bed","required":false},
+    {"id":"quad-lolmbdv:pale_oak_light_blue_bed","required":false},
+    {"id":"quad-lolmbdv:pale_oak_yellow_bed","required":false},
+    {"id":"quad-lolmbdv:pale_oak_lime_bed","required":false},
+    {"id":"quad-lolmbdv:pale_oak_pink_bed","required":false},
+    {"id":"quad-lolmbdv:pale_oak_gray_bed","required":false},
+    {"id":"quad-lolmbdv:pale_oak_light_gray_bed","required":false},
+    {"id":"quad-lolmbdv:pale_oak_cyan_bed","required":false},
+    {"id":"quad-lolmbdv:pale_oak_purple_bed","required":false},
+    {"id":"quad-lolmbdv:pale_oak_blue_bed","required":false},
+    {"id":"quad-lolmbdv:pale_oak_brown_bed","required":false},
+    {"id":"quad-lolmbdv:pale_oak_green_bed","required":false},
+    {"id":"quad-lolmbdv:pale_oak_red_bed","required":false},
+    {"id":"quad-lolmbdv:pale_oak_black_bed","required":false}
   ]
 }

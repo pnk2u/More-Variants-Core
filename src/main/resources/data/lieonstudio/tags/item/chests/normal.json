@@ -1,6 +1,6 @@
 {
   "replace": false,
   "values": [
-    "lolmcv:pale_oak_chest"
+    {"id":"lolmcv:pale_oak_chest","required":false}
   ]
 }

@@ -1,6 +1,6 @@
 {
   "replace": false,
   "values": [
-    "lolmbv:pale_oak_bookshelf"
+    {"id":"lolmbv:pale_oak_bookshelf","required":false}
   ]
 }

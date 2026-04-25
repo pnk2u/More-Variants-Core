@@ -1,4 +1,12 @@
 {
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "lolmsv"
+      ]
+    }
+  ],
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "group": "iron_shield_full",

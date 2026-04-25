@@ -1,6 +1,6 @@
 {
   "replace": false,
   "values": [
-    "lolmct:pale_oak_crafting_table"
+    {"id":"lolmct:pale_oak_crafting_table","required":false}
   ]
 }

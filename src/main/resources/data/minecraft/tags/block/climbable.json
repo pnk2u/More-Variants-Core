@@ -1,5 +1,5 @@
 {
   "values": [
-    "nemos-carpentry:pale_oak_ladder"
+    {"id":"nemos-carpentry:pale_oak_ladder","required":false}
   ]
 }

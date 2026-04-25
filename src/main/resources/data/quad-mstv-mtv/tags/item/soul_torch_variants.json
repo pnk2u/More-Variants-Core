@@ -1,5 +1,5 @@
 {
   "values": [
-    "quad-mstv-mtv:pale_oak_soul_torch"
+    {"id":"quad-mstv-mtv:pale_oak_soul_torch","required":false}
   ]
 }

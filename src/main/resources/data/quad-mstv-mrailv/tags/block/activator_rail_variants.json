@@ -1,5 +1,5 @@
 {
   "values": [
-    "quad-mstv-mrailv:pale_oak_activator_rail"
+    {"id":"quad-mstv-mrailv:pale_oak_activator_rail","required":false}
   ]
 }

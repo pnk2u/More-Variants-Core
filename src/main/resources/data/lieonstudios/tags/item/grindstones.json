@@ -1,9 +1,9 @@
 {
   "values": [
-    "lolmgv:pale_oak_stone_grindstone",
-    "lolmgv:pale_oak_sandstone_grindstone",
-    "lolmgv:pale_oak_deepslate_grindstone",
-    "lolmgv:pale_oak_basalt_grindstone",
-    "lolmgv:pale_oak_granite_grindstone"
+    {"id":"lolmgv:pale_oak_stone_grindstone","required":false},
+    {"id":"lolmgv:pale_oak_sandstone_grindstone","required":false},
+    {"id":"lolmgv:pale_oak_deepslate_grindstone","required":false},
+    {"id":"lolmgv:pale_oak_basalt_grindstone","required":false},
+    {"id":"lolmgv:pale_oak_granite_grindstone","required":false}
   ]
 }

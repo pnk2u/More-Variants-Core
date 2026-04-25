@@ -1,5 +1,5 @@
 {
   "values": [
-    "lolmsv:pale_oak_shield"
+    {"id":"lolmsv:pale_oak_shield","required":false}
   ]
 }

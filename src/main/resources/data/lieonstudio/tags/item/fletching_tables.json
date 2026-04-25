@@ -1,6 +1,6 @@
 {
   "replace": false,
   "values": [
-    "lolmft:pale_oak_fletching_table"
+    {"id":"lolmft:pale_oak_fletching_table","required":false}
   ]
 }

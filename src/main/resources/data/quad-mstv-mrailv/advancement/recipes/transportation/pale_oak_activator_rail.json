@@ -1,6 +1,12 @@
 {
   "fabric:load_conditions": [
     {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "quad-mstv-mrailv"
+      ]
+    },
+    {
       "condition": "fabric:not",
       "value": {
         "condition": "fabric:all_mods_loaded",
