@@ -161,22 +161,23 @@ public final class PaleOakVariantHolder {
         }
     }
 
-    private static final Map<Enum<?>, EnumMap<WoodType, Map<Object, Block>>> BLOCKS_BY_TYPE = new HashMap<>();
-    private static final Map<Enum<?>, EnumMap<WoodType, Map<Object, Item>>> ITEMS_BY_TYPE = new HashMap<>();
 
-    public static void setBlock(Enum<?> variantType, WoodType woodType, Block block) {
+    private static final Map<VariantType, EnumMap<WoodType, Map<Object, Block>>> BLOCKS_BY_TYPE = new HashMap<>();
+    private static final Map<VariantType, EnumMap<WoodType, Map<Object, Item>>> ITEMS_BY_TYPE = new HashMap<>();
+
+    public static void setBlock(VariantType variantType, WoodType woodType, Block block) {
         setBlock(variantType, woodType, DefaultSubtype.DEFAULT, block);
     }
 
-    public static Block getBlock(Enum<?> variantType, WoodType woodType) {
+    public static Block getBlock(VariantType variantType, WoodType woodType) {
         return getBlock(variantType, woodType, DefaultSubtype.DEFAULT);
     }
 
-    public static void setBlock(Enum<?> variantType, WoodType woodType, Enum<?> subtype, Block block) {
+    public static void setBlock(VariantType variantType, WoodType woodType, Enum<?> subtype, Block block) {
         blocksFor(variantType, woodType).put(requireSubtype(subtype), block);
     }
 
-    public static Block getBlock(Enum<?> variantType, WoodType woodType, Enum<?> subtype) {
+    public static Block getBlock(VariantType variantType, WoodType woodType, Enum<?> subtype) {
         Block block = blocksFor(variantType, woodType).get(requireSubtype(subtype));
         if (block == null) {
             throw new IllegalStateException("Tried to get block for variantType '" + variantType + "', wood type '" + woodType + "' and subtype: " + subtype
@@ -185,19 +186,19 @@ public final class PaleOakVariantHolder {
         return block;
     }
 
-    public static void setItem(Enum<?> variantType, WoodType woodType, Item item) {
+    public static void setItem(VariantType variantType, WoodType woodType, Item item) {
         setItem(variantType, woodType, DefaultSubtype.DEFAULT, item);
     }
 
-    public static Item getItem(Enum<?> variantType, WoodType woodType) {
+    public static Item getItem(VariantType variantType, WoodType woodType) {
         return getItem(variantType, woodType, DefaultSubtype.DEFAULT);
     }
 
-    public static void setItem(Enum<?> variantType, WoodType woodType, Enum<?> subtype, Item item) {
+    public static void setItem(VariantType variantType, WoodType woodType, Enum<?> subtype, Item item) {
         itemsFor(variantType, woodType).put(requireSubtype(subtype), item);
     }
 
-    public static Item getItem(Enum<?> variantType, WoodType woodType, Enum<?> subtype) {
+    public static Item getItem(VariantType variantType, WoodType woodType, Enum<?> subtype) {
         Item item = itemsFor(variantType, woodType).get(requireSubtype(subtype));
         if (item == null) {
             throw new IllegalStateException("Tried to get item for variantType '" + variantType + "', wood type '" + woodType + "' and subtype: " + subtype
@@ -230,19 +231,19 @@ public final class PaleOakVariantHolder {
         return Blocks.WALL_TORCH;
     }
 
-    private static Map<Object, Block> blocksFor(Enum<?> variantType, WoodType woodType) {
+    private static Map<Object, Block> blocksFor(VariantType variantType, WoodType woodType) {
         return BLOCKS_BY_TYPE
                 .computeIfAbsent(requireVariantType(variantType), key -> new EnumMap<>(WoodType.class))
                 .computeIfAbsent(requireWoodType(woodType), key -> new HashMap<>());
     }
 
-    private static Map<Object, Item> itemsFor(Enum<?> variantType, WoodType woodType) {
+    private static Map<Object, Item> itemsFor(VariantType variantType, WoodType woodType) {
         return ITEMS_BY_TYPE
                 .computeIfAbsent(requireVariantType(variantType), key -> new EnumMap<>(WoodType.class))
                 .computeIfAbsent(requireWoodType(woodType), key -> new HashMap<>());
     }
 
-    private static Enum<?> requireVariantType(Enum<?> variantType) {
+    private static VariantType requireVariantType(VariantType variantType) {
         if (variantType == null) {
             throw new IllegalArgumentException("variantType must not be null");
         }
@@ -256,7 +257,7 @@ public final class PaleOakVariantHolder {
         return woodType;
     }
 
-    private static Object requireSubtype(Enum<?> subtype) {
+    private static Enum<?> requireSubtype(Enum<?> subtype) {
         if (subtype == null) {
             throw new IllegalArgumentException("subtype must not be null");
         }
