@@ -2,6 +2,7 @@ package de.pnku.more_variants_pale_oak_backport;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +20,10 @@ public class MoreVariantsPaleOakBackport implements ModInitializer {
 	
 	@Override
 	public void onInitialize() {
+		BuiltInRegistries.BLOCK.getOptional(ResourceLocation.withDefaultNamespace("pale_oak_plankss"))
+				.ifPresentOrElse(p -> LOGGER.info("Found Pale Oak Planks block in registry, adding Pale Oak variants for compatible Mods."),
+						() -> {throw new IllegalStateException("Pale Oak Planks block not found in registry.\n" +
+								"Please install a mod that backports Pale Oak to Minecraft and uses the vanilla namespace.");});
 		if (!found_mod_ids.isEmpty()) {
 			List<String> modNames = new ArrayList<>();
 			for (String modId : found_mod_ids) {
