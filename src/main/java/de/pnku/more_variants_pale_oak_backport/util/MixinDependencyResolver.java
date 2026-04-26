@@ -50,7 +50,7 @@ public final class MixinDependencyResolver {
             LOGGER.warn("Could not determine required mod for mixin class: {}", mixinClassName);
             return false;
         } else if (FabricLoader.getInstance().isModLoaded(requiredModId)) {
-            found_mod_ids.add(requiredModId);
+            if (!found_mod_ids.contains(requiredModId)) found_mod_ids.add(requiredModId);
             return true;
         }
         return false;

@@ -31,7 +31,7 @@ public class MoreVariantsPaleOakBackport implements ModInitializer {
 			}
 			LOGGER.info("Added Pale Oak variants for the following Mods: {}", modNames);
 		} else {
-			LOGGER.warn("Did not find any compatible Mods for Pale Oak variants.");
+			LOGGER.warn("Did not find any compatible Mods to add Pale Oak variants to.");
 		}
 	}
 
