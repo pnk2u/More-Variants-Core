@@ -20,7 +20,7 @@ public class MoreVariantsPaleOakBackport implements ModInitializer {
 	
 	@Override
 	public void onInitialize() {
-		BuiltInRegistries.BLOCK.getOptional(ResourceLocation.withDefaultNamespace("pale_oak_plankss"))
+		BuiltInRegistries.BLOCK.getOptional(ResourceLocation.withDefaultNamespace("pale_oak_planks"))
 				.ifPresentOrElse(p -> LOGGER.info("Found Pale Oak Planks block in registry, adding Pale Oak variants for compatible Mods."),
 						() -> {throw new IllegalStateException("Pale Oak Planks block not found in registry.\n" +
 								"Please install a mod that backports Pale Oak to Minecraft and uses the vanilla namespace.");});
