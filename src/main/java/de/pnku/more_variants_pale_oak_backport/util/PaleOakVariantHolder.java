@@ -58,7 +58,10 @@ public final class PaleOakVariantHolder {
     }
     public enum ChestType {
         CHEST,
-        TRAPPED_CHEST
+        TRAPPED_CHEST;
+        public VariantType variantType() {
+            return VariantType.CHEST;
+        }
     }
 
     public enum SmokerType {
@@ -74,6 +77,9 @@ public final class PaleOakVariantHolder {
 
         public String registrationType() {
             return registrationType;
+        }
+        public VariantType variantType() {
+            return VariantType.SMOKER;
         }
     }
 
@@ -91,6 +97,9 @@ public final class PaleOakVariantHolder {
 
         public String registrationType() {
             return registrationType;
+        }
+        public VariantType variantType() {
+            return VariantType.RAIL;
         }
     }
 
@@ -113,6 +122,9 @@ public final class PaleOakVariantHolder {
 
         public String wallTorchName() {
             return wallTorchName;
+        }
+        public VariantType variantType() {
+            return VariantType.TORCH;
         }
     }
 
@@ -143,6 +155,9 @@ public final class PaleOakVariantHolder {
 
         public String blockIdSuffix() {
             return blockIdSuffix;
+        }
+        public VariantType variantType() {
+            return VariantType.GRINDSTONE;
         }
     }
 
