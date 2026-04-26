@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "quad-lolmjnv:pale_oak_jukebox",
+      "required": false
+    },
+    {
+      "id": "quad-lolmjnv:pale_oak_noteblock",
+      "required": false
+    }
+  ]
+}

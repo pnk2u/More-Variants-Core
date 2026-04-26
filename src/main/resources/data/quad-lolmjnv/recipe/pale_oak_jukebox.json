@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "jukebox",
+  "key": {
+    "0": {
+      "item": "minecraft:diamond"
+    },
+    "P": {
+      "item": "minecraft:pale_oak_planks"
+    }
+  },
+  "pattern": [
+    "PPP",
+    "P0P",
+    "PPP"
+  ],
+  "result": {
+    "count": 1,
+    "id": "quad-lolmjnv:pale_oak_jukebox"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "quad-lolmjnv"
+      ]
+    }
+  ]
+}

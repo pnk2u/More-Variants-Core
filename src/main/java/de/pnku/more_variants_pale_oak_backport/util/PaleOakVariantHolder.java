@@ -161,6 +161,23 @@ public final class PaleOakVariantHolder {
         }
     }
 
+    public enum JukeboxNoteblockType {
+        JUKEBOX,
+        NOTEBLOCK;
+
+        private final String registrationType;
+
+        JukeboxNoteblockType() {
+            this.registrationType = this.name().toLowerCase();
+        }
+
+        public String registrationType() {
+            return registrationType;
+        }
+        public VariantType variantType() {
+            return VariantType.JUKEBOX_NOTEBLOCK;
+        }
+    }
 
     private static final Map<VariantType, EnumMap<WoodType, Map<Object, Block>>> BLOCKS_BY_TYPE = new HashMap<>();
     private static final Map<VariantType, EnumMap<WoodType, Map<Object, Item>>> ITEMS_BY_TYPE = new HashMap<>();
