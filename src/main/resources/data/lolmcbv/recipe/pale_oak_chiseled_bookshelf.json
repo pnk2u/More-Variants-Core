@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "chiseled_bookshelves",
+  "key": {
+    "#": {
+      "item": "minecraft:pale_oak_planks"
+    },
+    "-": {
+      "item": "minecraft:pale_oak_slab"
+    }
+  },
+  "pattern": [
+    "###",
+    "---",
+    "###"
+  ],
+  "result": {
+    "count": 1,
+    "id": "lolmcbv:pale_oak_chiseled_bookshelf"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "lolmcbv"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "values": [
+    {
+      "structures": "#quad:is/birch",
+      "block_replacement": {
+        "targets": "minecraft:loom",
+        "replacement": "lolmlmv:birch_loom"
+      }
+    },
+    {
+      "structures": "#quad:is/spruce",
+      "block_replacement": {
+        "targets": "minecraft:loom",
+        "replacement": "lolmlmv:spruce_loom"
+      }
+    },
+    {
+      "structures": "#quad:is/dark_oak",
+      "block_replacement": {
+        "targets": "minecraft:loom",
+        "replacement": "lolmlmv:dark_oak_loom"
+      }
+    },
+    {
+      "structures": "#quad:is/jungle",
+      "block_replacement": {
+        "targets": "minecraft:loom",
+        "replacement": "lolmlmv:jungle_loom"
+      }
+    },
+    {
+      "structures": "#quad:is/acacia",
+      "block_replacement": {
+        "targets": "minecraft:loom",
+        "replacement": "lolmlmv:acacia_loom"
+      }
+    },
+    {
+      "structures": "#quad:is/mangrove",
+      "block_replacement": {
+        "targets": "minecraft:loom",
+        "replacement": "lolmlmv:mangrove_loom"
+      }
+    },
+    {
+      "structures": "#quad:is/cherry",
+      "block_replacement": {
+        "targets": "minecraft:loom",
+        "replacement": "lolmlmv:cherry_loom"
+      }
+    },
+    {
+      "structures": "#quad:is/bamboo",
+      "block_replacement": {
+        "targets": "minecraft:loom",
+        "replacement": "lolmlmv:bamboo_loom"
+      }
+    },
+    {
+      "structures": "#quad:is/crimson",
+      "block_replacement": {
+        "targets": "minecraft:loom",
+        "replacement": "lolmlmv:crimson_loom"
+      }
+    },
+    {
+      "structures": "#quad:is/warped",
+      "block_replacement": {
+        "targets": "minecraft:loom",
+        "replacement": "lolmlmv:warped_loom"
+      }
+    }
+  ]
+}

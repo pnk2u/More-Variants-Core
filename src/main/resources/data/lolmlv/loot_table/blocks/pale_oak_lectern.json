@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "lolmlv:pale_oak_lectern"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "lolmlv:blocks/pale_oak_lectern",
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "lolmlv"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "values": [
+    {
+      "structures": "#quad:is/oak",
+      "block_replacement": {
+        "targets": "minecraft:composter",
+        "replacement": "lolmcmv:oak_composter"
+      }
+    },
+    {
+      "structures": "#quad:is/spruce",
+      "block_replacement": {
+        "targets": "minecraft:composter",
+        "replacement": "lolmcmv:spruce_composter"
+      }
+    },
+    {
+      "structures": "#quad:is/birch",
+      "block_replacement": {
+        "targets": "minecraft:composter",
+        "replacement": "lolmcmv:birch_composter"
+      }
+    },
+    {
+      "structures": "#quad:is/jungle",
+      "block_replacement": {
+        "targets": "minecraft:composter",
+        "replacement": "lolmcmv:jungle_composter"
+      }
+    },
+    {
+      "structures": "#quad:is/acacia",
+      "block_replacement": {
+        "targets": "minecraft:composter",
+        "replacement": "lolmcmv:acacia_composter"
+      }
+    },
+    {
+      "structures": "#quad:is/dark_oak",
+      "block_replacement": {
+        "targets": "minecraft:composter",
+        "replacement": "lolmcmv:dark_oak_composter"
+      }
+    },
+    {
+      "structures": "#quad:is/mangrove",
+      "block_replacement": {
+        "targets": "minecraft:composter",
+        "replacement": "lolmcmv:mangrove_composter"
+      }
+    },
+    {
+      "structures": "#quad:is/cherry",
+      "block_replacement": {
+        "targets": "minecraft:composter",
+        "replacement": "lolmcmv:cherry_composter"
+      }
+    },
+    {
+      "structures": "#quad:is/bamboo",
+      "block_replacement": {
+        "targets": "minecraft:composter",
+        "replacement": "lolmcmv:bamboo_composter"
+      }
+    },
+    {
+      "structures": "#quad:is/crimson",
+      "block_replacement": {
+        "targets": "minecraft:composter",
+        "replacement": "lolmcmv:crimson_composter"
+      }
+    },
+    {
+      "structures": "#quad:is/warped",
+      "block_replacement": {
+        "targets": "minecraft:composter",
+        "replacement": "lolmcmv:warped_composter"
+      }
+    }
+  ]
+}

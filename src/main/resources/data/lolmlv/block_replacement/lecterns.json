@@ -1,0 +1,74 @@
+{
+  "values": [
+    {
+      "structures": "#quad:is/birch",
+      "block_replacement": {
+        "targets": "minecraft:lectern",
+        "replacement": "lolmlv:birch_lectern"
+      }
+    },
+    {
+      "structures": "#quad:is/spruce",
+      "block_replacement": {
+        "targets": "minecraft:lectern",
+        "replacement": "lolmlv:spruce_lectern"
+      }
+    },
+    {
+      "structures": "#quad:is/dark_oak",
+      "block_replacement": {
+        "targets": "minecraft:lectern",
+        "replacement": "lolmlv:dark_oak_lectern"
+      }
+    },
+    {
+      "structures": "#quad:is/jungle",
+      "block_replacement": {
+        "targets": "minecraft:lectern",
+        "replacement": "lolmlv:jungle_lectern"
+      }
+    },
+    {
+      "structures": "#quad:is/acacia",
+      "block_replacement": {
+        "targets": "minecraft:lectern",
+        "replacement": "lolmlv:acacia_lectern"
+      }
+    },
+    {
+      "structures": "#quad:is/mangrove",
+      "block_replacement": {
+        "targets": "minecraft:lectern",
+        "replacement": "lolmlv:mangrove_lectern"
+      }
+    },
+    {
+      "structures": "#quad:is/cherry",
+      "block_replacement": {
+        "targets": "minecraft:lectern",
+        "replacement": "lolmlv:cherry_lectern"
+      }
+    },
+    {
+      "structures": "#quad:is/bamboo",
+      "block_replacement": {
+        "targets": "minecraft:lectern",
+        "replacement": "lolmlv:bamboo_lectern"
+      }
+    },
+    {
+      "structures": "#quad:is/crimson",
+      "block_replacement": {
+        "targets": "minecraft:lectern",
+        "replacement": "lolmlv:crimson_lectern"
+      }
+    },
+    {
+      "structures": "#quad:is/warped",
+      "block_replacement": {
+        "targets": "minecraft:lectern",
+        "replacement": "lolmlv:warped_lectern"
+      }
+    }
+  ]
+}

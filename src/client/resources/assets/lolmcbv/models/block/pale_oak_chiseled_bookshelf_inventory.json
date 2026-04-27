@@ -1,0 +1,9 @@
+{
+  "parent": "lolmcbv:block/parent_chiseled_bookshelf_inventory",
+  "textures": {
+    "front": "lolmcbv:block/pale_oak_chiseled_bookshelf_empty",
+    "particle": "lolmcbv:block/pale_oak_chiseled_bookshelf_top",
+    "side": "lolmcbv:block/pale_oak_chiseled_bookshelf_side",
+    "top": "lolmcbv:block/pale_oak_chiseled_bookshelf_top"
+  }
+}

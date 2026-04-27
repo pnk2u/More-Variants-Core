@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "lolmlmv:pale_oak_loom"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "lolmlmv:blocks/pale_oak_loom",
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "lolmlmv"
+      ]
+    }
+  ]
+}
