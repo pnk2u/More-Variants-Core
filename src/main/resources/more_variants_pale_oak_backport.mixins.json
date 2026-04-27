@@ -13,6 +13,8 @@
     "more_beehive_variants.MbhvItemInitMixin",
     "more_bookshelf_variants.MbvBlockInitMixin",
     "more_bookshelf_variants.MbvItemInitMixin",
+    "more_cartography_tables.McgtBlockInitMixin",
+    "more_cartography_tables.McgtItemInitMixin",
     "more_chest_variants.McvBlockInitMixin",
     "more_chest_variants.McvItemInitMixin",
     "more_crafter_variants.McrvBlockInitMixin",
