@@ -73,7 +73,7 @@ public abstract class MtvBlockInitMixin {
 
     @Unique
     private static Block registerPaleOakWallTorchBlock(TorchType torchType, Block torchBlock) {
-        Block inputWallTorchBlock = torchType.equals(REDSTONE_TORCH) ?
+        Block inputWallTorchBlock = torchType.getBaseTorchType().equals(REDSTONE_TORCH) ?
                 new RedstoneWallTorchBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.REDSTONE_WALL_TORCH))
                 : new WallTorchBlock(torchType.getParticleType(), BlockBehaviour.Properties.ofFullCopy(getVanillaWallTorchBlock(torchType)).dropsLike(torchBlock));
         Block wallTorchBlock = registerTorchBlock(WOOD_TYPE.getName()+ "_" + torchType.wallTorchName(), inputWallTorchBlock);
