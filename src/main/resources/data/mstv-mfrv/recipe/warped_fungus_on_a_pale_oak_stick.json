@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "warped_fungus_on_a_stick_variants",
+  "key": {
+    "F": {
+      "item": "mstv-mfrv:pale_oak_fishing_rod"
+    },
+    "T": {
+      "item": "minecraft:warped_fungus"
+    }
+  },
+  "pattern": [
+    "F ",
+    " T"
+  ],
+  "result": {
+    "count": 1,
+    "id": "mstv-mfrv:warped_fungus_on_a_pale_oak_stick"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "mstv-mfrv"
+      ]
+    }
+  ]
+}

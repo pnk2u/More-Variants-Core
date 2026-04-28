@@ -43,6 +43,7 @@
     "mstv.base.MoreStickVariantItemMixin",
     "mstv.base.MoreStickVariantItemsMixin",
     "mstv.more_armor_stand_variants.MoreArmorStandVariantItemsMixin",
+    "mstv.more_fishing_rod_variants.MoreFishingRodVariantItemsMixin",
     "mstv.more_rail_variants.MrailvBlockInitMixin",
     "mstv.more_torch_variants.MtvBlockInitMixin",
     "mstv.nemos_more_ladder_variants.NmlvBlocksMixin",

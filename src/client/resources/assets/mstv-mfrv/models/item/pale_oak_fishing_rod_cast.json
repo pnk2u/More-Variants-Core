@@ -1,0 +1,6 @@
+{
+    "parent": "mstv-mfrv:item/pale_oak_fishing_rod",
+    "textures": {
+        "layer0": "mstv-mfrv:item/pale_oak_fishing_rod_cast"
+    }
+}

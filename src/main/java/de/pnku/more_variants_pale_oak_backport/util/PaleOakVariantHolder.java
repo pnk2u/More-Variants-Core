@@ -223,17 +223,16 @@ public final class PaleOakVariantHolder {
         }
     }
 
-        private final String registrationType;
-
-        JukeboxNoteblockType() {
-            this.registrationType = this.name().toLowerCase();
-        }
+    public enum RodType implements VariantSubType {
+        FISHING_ROD,
+        CARROT_ON_A_STICK,
+        WARPED_FUNGUS_ON_A_STICK;
 
         public String registrationType() {
-            return registrationType;
+            return this.name().toLowerCase();
         }
         public VariantType variantType() {
-            return VariantType.JUKEBOX_NOTEBLOCK;
+            return VariantType.ROD;
         }
     }
 

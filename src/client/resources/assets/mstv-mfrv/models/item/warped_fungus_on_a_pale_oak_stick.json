@@ -1,0 +1,6 @@
+{
+    "parent": "minecraft:item/handheld_rod",
+    "textures": {
+        "layer0": "mstv-mfrv:item/warped_fungus_on_a_pale_oak_stick"
+    }
+}
