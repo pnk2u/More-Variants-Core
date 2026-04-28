@@ -24,14 +24,17 @@ public abstract class MoreBarrelItemsMixin {
     @Mutable
     @Final
     public static List<Item> more_barrels;
+    @Shadow
+    @Final
+    public static Item DARK_OAK_BARREL;
     @Unique
     private static final Item PALE_OAK_BARREL_ITEM = registerPaleOakBarrelItem();
 
-    @Inject(method = "registerItems", at = @At(value = "HEAD", target = "Lde/pnku/mstv_base/item/MoreStickVariantItems;registerStickItem(Lnet/minecraft/world/item/Item;Lnet/minecraft/world/item/Item;)V"), remap = false)
-    private static void injectedRegisterSticksAtRegisterDarkOak(CallbackInfo ci) {
+    @Inject(method = "registerItems", at = @At(value = "HEAD"), remap = false)
+    private static void injectedRegisterSticksAtHead(CallbackInfo ci) {
         more_barrels = new ArrayList<>(more_barrels);
         if (!more_barrels.contains(PALE_OAK_BARREL_ITEM)) {
-            more_barrels.add(PALE_OAK_BARREL_ITEM);
+            more_barrels.add(more_barrels.indexOf(DARK_OAK_BARREL) + 1, PALE_OAK_BARREL_ITEM);
         }
     }
 

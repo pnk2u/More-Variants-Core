@@ -24,6 +24,9 @@ public abstract class MoreBarrelBlocksMixin {
     @Mutable
     @Final
     public static List<Block> more_barrels;
+    @Shadow
+    @Final
+    public static Block DARK_OAK_BARREL;
     @Unique
     private static final Block PALE_OAK_BARREL = registerPaleOakBarrelBlock();
 
@@ -31,7 +34,7 @@ public abstract class MoreBarrelBlocksMixin {
     private static void injectedRegisterBlocksAtHead(CallbackInfo ci) {
         more_barrels = new ArrayList<>(more_barrels);
         if (!more_barrels.contains(PALE_OAK_BARREL)) {
-            more_barrels.add(PALE_OAK_BARREL);
+            more_barrels.add(more_barrels.indexOf(DARK_OAK_BARREL) + 1, PALE_OAK_BARREL);
         }
     }
 
