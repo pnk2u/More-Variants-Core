@@ -20,7 +20,7 @@ public abstract class NmlvBlocksMixin {
     private static final Block PALE_OAK_LADDER = registerPaleOakLadderBlock();
 
     @Shadow
-    public static Block registerLadderBlock(String name, Block ladderBlock) {
+    private static Block registerLadderBlock(String name, Block ladderBlock) {
         throw new AssertionError();
     }
 
