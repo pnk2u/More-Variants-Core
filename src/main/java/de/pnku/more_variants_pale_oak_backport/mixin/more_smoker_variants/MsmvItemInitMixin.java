@@ -29,9 +29,9 @@ public abstract class MsmvItemInitMixin {
 
     @Unique
     private static BlockItem registerPaleOakSmokerItem(SmokerType smokerType) {
-        BlockItem smokerItem = new BlockItem(PaleOakVariantHolder.getBlock(VariantType.SMOKER, WOOD_TYPE, smokerType), new Item.Properties());
+        BlockItem smokerItem = new BlockItem(PaleOakVariantHolder.getBlock(smokerType, WOOD_TYPE), new Item.Properties());
         registerSmokerItem(smokerItem, Items.SMOKER);
-        PaleOakVariantHolder.setItem(VariantType.SMOKER, WOOD_TYPE, smokerType, smokerItem);
+        PaleOakVariantHolder.setItem(smokerType, WOOD_TYPE, smokerItem);
         return smokerItem;
     }
 }

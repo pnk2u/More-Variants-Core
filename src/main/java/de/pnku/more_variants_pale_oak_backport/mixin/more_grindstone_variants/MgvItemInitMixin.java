@@ -33,9 +33,9 @@ public abstract class MgvItemInitMixin {
 
     @Unique
     private static BlockItem registerPaleOakGrindstone(GrindstoneType grindstoneType) {
-        BlockItem blockItem = new BlockItem(PaleOakVariantHolder.getBlock(VariantType.GRINDSTONE, WOOD_TYPE, grindstoneType), new Item.Properties());
+        BlockItem blockItem = new BlockItem(PaleOakVariantHolder.getBlock(grindstoneType, WOOD_TYPE), new Item.Properties());
         registerItem(blockItem, Items.GRINDSTONE);
-        PaleOakVariantHolder.setItem(VariantType.GRINDSTONE, WOOD_TYPE, grindstoneType, blockItem);
+        PaleOakVariantHolder.setItem(grindstoneType, WOOD_TYPE, blockItem);
         return blockItem;
     }
 }

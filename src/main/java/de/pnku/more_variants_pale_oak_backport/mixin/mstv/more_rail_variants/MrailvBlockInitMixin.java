@@ -58,14 +58,14 @@ public abstract class MrailvBlockInitMixin {
         Block railBlock = railType == RAIL
                 ? registerRailBlock(WOOD_TYPE.getName(), inputRailBlock)
                 : registerRailBlock(WOOD_TYPE.getName(), inputRailBlock, railType.registrationType());
-        PaleOakVariantHolder.setBlock(VariantType.RAIL, WOOD_TYPE, railType, railBlock);
+        PaleOakVariantHolder.setBlock(railType, WOOD_TYPE, railBlock);
         return railBlock;
     }
 
     @Unique
     private static Item registerPaleOakRailItem(RailType railType, Block railBlock) {
         Item railItem = registerRailItem(WOOD_TYPE.getName(), new BlockItem(railBlock, new Item.Properties()), railType.registrationType());
-        PaleOakVariantHolder.setItem(VariantType.RAIL, WOOD_TYPE, railType, railItem);
+        PaleOakVariantHolder.setItem(railType, WOOD_TYPE, railItem);
         return railItem;
     }
 

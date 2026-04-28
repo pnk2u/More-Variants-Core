@@ -9,7 +9,7 @@ import java.util.Optional;
 
 import static com.blackgear.vanillabackport.common.registries.ModBlocks.PALE_OAK_PLANKS;
 
-public enum WoodType {
+public enum WoodType implements Type {
     PALE_OAK("pale_oak", MapColor.QUARTZ, PALE_OAK_PLANKS.get());
 
     private final String namespace;
@@ -40,6 +40,10 @@ public enum WoodType {
 
     public String getName() {
         return name;
+    }
+
+    public String registrationType() {
+        return "minecraft".equals(namespace) ? name : idString.replace(":", "_");
     }
 
     public MapColor getMapColor() {

@@ -30,7 +30,7 @@ public abstract class MjnvItemInitMixin {
 
     @Unique
     private static BlockItem registerPaleOakJukeboxNoteblockItem(JukeboxNoteblockType type) {
-        BlockItem item = new BlockItem(PaleOakVariantHolder.getBlock(type.variantType(), WOOD_TYPE, type), new Item.Properties());
+        BlockItem item = new BlockItem(PaleOakVariantHolder.getBlock(type, WOOD_TYPE), new Item.Properties());
         PaleOakVariantHolder.setItem(type.variantType(), WOOD_TYPE, item);
         if (type == JukeboxNoteblockType.JUKEBOX) {
             registerJukeboxItem(item, Items.JUKEBOX);

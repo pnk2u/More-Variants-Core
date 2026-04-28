@@ -29,7 +29,7 @@ public abstract class MsmvBlockInitMixin {
     private static MoreSmokerVariantBlock registerPaleOakSmoker(SmokerType smokerType) {
         MoreSmokerVariantBlock smokerBlock = new MoreSmokerVariantBlock(WOOD_TYPE.getMapColor(), WOOD_TYPE.getName(), smokerType.registrationType());
         registerSmokerBlock(smokerBlock);
-        PaleOakVariantHolder.setBlock(VariantType.SMOKER, WOOD_TYPE, smokerType, smokerBlock);
+        PaleOakVariantHolder.setBlock(smokerType, WOOD_TYPE, smokerBlock);
         return smokerBlock;
     }
 }

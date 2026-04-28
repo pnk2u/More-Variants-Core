@@ -25,21 +25,21 @@ public abstract class MtvBlockInitMixin {
     @Unique
     private static final Block PALE_OAK_TORCH = registerPaleOakTorchBlock(TORCH);
     @Unique
-    private static final Block PALE_OAK_WALL_TORCH = registerPaleOakWallTorchBlock(TORCH, PALE_OAK_TORCH);
+    private static final Block PALE_OAK_WALL_TORCH = registerPaleOakWallTorchBlock(WALL_TORCH, PALE_OAK_TORCH);
     @Unique
     private static final Block PALE_OAK_SOUL_TORCH = registerPaleOakTorchBlock(SOUL_TORCH);
     @Unique
-    private static final Block PALE_OAK_SOUL_WALL_TORCH = registerPaleOakWallTorchBlock(SOUL_TORCH, PALE_OAK_SOUL_TORCH);
+    private static final Block PALE_OAK_SOUL_WALL_TORCH = registerPaleOakWallTorchBlock(SOUL_WALL_TORCH, PALE_OAK_SOUL_TORCH);
     @Unique
     private static final Block PALE_OAK_REDSTONE_TORCH = registerPaleOakTorchBlock(REDSTONE_TORCH);
     @Unique
-    private static final Block PALE_OAK_REDSTONE_WALL_TORCH = registerPaleOakWallTorchBlock(REDSTONE_TORCH, PALE_OAK_REDSTONE_TORCH);
+    private static final Block PALE_OAK_REDSTONE_WALL_TORCH = registerPaleOakWallTorchBlock(REDSTONE_WALL_TORCH, PALE_OAK_REDSTONE_TORCH);
     @Unique
-    private static final Item PALE_OAK_TORCH_ITEM = registerPaleOakTorchItem(TORCH);
+    private static final Item PALE_OAK_TORCH_ITEM = registerPaleOakTorchItem(WALL_TORCH);
     @Unique
-    private static final Item PALE_OAK_SOUL_TORCH_ITEM = registerPaleOakTorchItem(SOUL_TORCH);
+    private static final Item PALE_OAK_SOUL_TORCH_ITEM = registerPaleOakTorchItem(SOUL_WALL_TORCH);
     @Unique
-    private static final Item PALE_OAK_REDSTONE_TORCH_ITEM = registerPaleOakTorchItem(REDSTONE_TORCH);
+    private static final Item PALE_OAK_REDSTONE_TORCH_ITEM = registerPaleOakTorchItem(REDSTONE_WALL_TORCH);
 
     @Shadow
     public static Block registerTorchBlock(String name, Block torchBlock) {
@@ -65,9 +65,9 @@ public abstract class MtvBlockInitMixin {
     private static Block registerPaleOakTorchBlock(TorchType torchType) {
         Block inputTorchBlock = torchType.equals(REDSTONE_TORCH) ?
                 new RedstoneTorchBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.REDSTONE_TORCH)) :
-                new TorchBlock(getParticleType(torchType), BlockBehaviour.Properties.ofFullCopy(getVanillaTorchBlock(torchType)));
+                new TorchBlock(torchType.getParticleType(), BlockBehaviour.Properties.ofFullCopy(getVanillaTorchBlock(torchType)));
         Block torchBlock = registerTorchBlock(WOOD_TYPE.getName() + "_" + torchType.torchName(), inputTorchBlock);
-        PaleOakVariantHolder.setBlock(VariantType.TORCH, WOOD_TYPE, torchType, torchBlock);
+        PaleOakVariantHolder.setBlock(torchType, WOOD_TYPE, torchBlock);
         return torchBlock;
     }
 
@@ -75,16 +75,17 @@ public abstract class MtvBlockInitMixin {
     private static Block registerPaleOakWallTorchBlock(TorchType torchType, Block torchBlock) {
         Block inputWallTorchBlock = torchType.equals(REDSTONE_TORCH) ?
                 new RedstoneWallTorchBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.REDSTONE_WALL_TORCH))
-                : new WallTorchBlock(getParticleType(torchType), BlockBehaviour.Properties.ofFullCopy(getVanillaWallTorchBlock(torchType)).dropsLike(torchBlock));
+                : new WallTorchBlock(torchType.getParticleType(), BlockBehaviour.Properties.ofFullCopy(getVanillaWallTorchBlock(torchType)).dropsLike(torchBlock));
         Block wallTorchBlock = registerTorchBlock(WOOD_TYPE.getName()+ "_" + torchType.wallTorchName(), inputWallTorchBlock);
-        PaleOakVariantHolder.setBlock(VariantType.WALL_TORCH, WOOD_TYPE, torchType, wallTorchBlock);
+        PaleOakVariantHolder.setBlock(torchType, WOOD_TYPE, wallTorchBlock);
         return wallTorchBlock;
     }
 
     @Unique
-    private static Item registerPaleOakTorchItem(TorchType torchType) {
-        Block torchBlock = PaleOakVariantHolder.getBlock(VariantType.TORCH, WOOD_TYPE, torchType);
-        Block wallTorchBlock = PaleOakVariantHolder.getBlock(VariantType.WALL_TORCH, WOOD_TYPE, torchType);
+    private static Item registerPaleOakTorchItem(TorchType wallTorchType) {
+        TorchType torchType = wallTorchType.getBaseTorchType();
+        Block torchBlock = PaleOakVariantHolder.getBlock(torchType, WOOD_TYPE);
+        Block wallTorchBlock = PaleOakVariantHolder.getBlock(wallTorchType, WOOD_TYPE);
         StandingAndWallBlockItem inputItem = new StandingAndWallBlockItem(torchBlock, wallTorchBlock, new Item.Properties(), Direction.DOWN);
         String torchName = WOOD_TYPE.getName() + "_" + torchType.torchName();
         Item torchItem;
@@ -95,7 +96,7 @@ public abstract class MtvBlockInitMixin {
         } else {
             torchItem = registerFireTorchItem(torchName, inputItem);
         }
-        PaleOakVariantHolder.setItem(VariantType.TORCH, WOOD_TYPE, torchType, torchItem);
+        PaleOakVariantHolder.setItem(torchType, WOOD_TYPE, torchItem);
         return torchItem;
     }
 }

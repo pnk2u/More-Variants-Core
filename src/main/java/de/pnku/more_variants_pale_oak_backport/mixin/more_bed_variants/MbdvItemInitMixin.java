@@ -2,10 +2,9 @@ package de.pnku.more_variants_pale_oak_backport.mixin.more_bed_variants;
 
 import de.pnku.mbdv.init.MbdvItemInit;
 import de.pnku.more_variants_pale_oak_backport.util.PaleOakVariantHolder;
-import de.pnku.more_variants_pale_oak_backport.util.PaleOakVariantHolder.VariantType;
+import de.pnku.more_variants_pale_oak_backport.util.PaleOakVariantHolder.BedColorType;
 import de.pnku.more_variants_pale_oak_backport.util.WoodType;
 import net.minecraft.world.item.BedItem;
-import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import org.spongepowered.asm.mixin.Final;
@@ -23,37 +22,37 @@ public abstract class MbdvItemInitMixin {
     public static Item.Properties bedProperties;
 
     @Unique
-    private static final Item PALE_OAK_RED_BED_ITEM = registerPaleOakBedItem(DyeColor.RED);
+    private static final Item PALE_OAK_RED_BED_ITEM = registerPaleOakBedItem(BedColorType.RED);
     @Unique
-    private static final Item PALE_OAK_BLACK_BED_ITEM = registerPaleOakBedItem(DyeColor.BLACK);
+    private static final Item PALE_OAK_BLACK_BED_ITEM = registerPaleOakBedItem(BedColorType.BLACK);
     @Unique
-    private static final Item PALE_OAK_WHITE_BED_ITEM = registerPaleOakBedItem(DyeColor.WHITE);
+    private static final Item PALE_OAK_WHITE_BED_ITEM = registerPaleOakBedItem(BedColorType.WHITE);
     @Unique
-    private static final Item PALE_OAK_ORANGE_BED_ITEM = registerPaleOakBedItem(DyeColor.ORANGE);
+    private static final Item PALE_OAK_ORANGE_BED_ITEM = registerPaleOakBedItem(BedColorType.ORANGE);
     @Unique
-    private static final Item PALE_OAK_MAGENTA_BED_ITEM = registerPaleOakBedItem(DyeColor.MAGENTA);
+    private static final Item PALE_OAK_MAGENTA_BED_ITEM = registerPaleOakBedItem(BedColorType.MAGENTA);
     @Unique
-    private static final Item PALE_OAK_LIGHT_BLUE_BED_ITEM = registerPaleOakBedItem(DyeColor.LIGHT_BLUE);
+    private static final Item PALE_OAK_LIGHT_BLUE_BED_ITEM = registerPaleOakBedItem(BedColorType.LIGHT_BLUE);
     @Unique
-    private static final Item PALE_OAK_YELLOW_BED_ITEM = registerPaleOakBedItem(DyeColor.YELLOW);
+    private static final Item PALE_OAK_YELLOW_BED_ITEM = registerPaleOakBedItem(BedColorType.YELLOW);
     @Unique
-    private static final Item PALE_OAK_LIME_BED_ITEM = registerPaleOakBedItem(DyeColor.LIME);
+    private static final Item PALE_OAK_LIME_BED_ITEM = registerPaleOakBedItem(BedColorType.LIME);
     @Unique
-    private static final Item PALE_OAK_PINK_BED_ITEM = registerPaleOakBedItem(DyeColor.PINK);
+    private static final Item PALE_OAK_PINK_BED_ITEM = registerPaleOakBedItem(BedColorType.PINK);
     @Unique
-    private static final Item PALE_OAK_GRAY_BED_ITEM = registerPaleOakBedItem(DyeColor.GRAY);
+    private static final Item PALE_OAK_GRAY_BED_ITEM = registerPaleOakBedItem(BedColorType.GRAY);
     @Unique
-    private static final Item PALE_OAK_LIGHT_GRAY_BED_ITEM = registerPaleOakBedItem(DyeColor.LIGHT_GRAY);
+    private static final Item PALE_OAK_LIGHT_GRAY_BED_ITEM = registerPaleOakBedItem(BedColorType.LIGHT_GRAY);
     @Unique
-    private static final Item PALE_OAK_CYAN_BED_ITEM = registerPaleOakBedItem(DyeColor.CYAN);
+    private static final Item PALE_OAK_CYAN_BED_ITEM = registerPaleOakBedItem(BedColorType.CYAN);
     @Unique
-    private static final Item PALE_OAK_PURPLE_BED_ITEM = registerPaleOakBedItem(DyeColor.PURPLE);
+    private static final Item PALE_OAK_PURPLE_BED_ITEM = registerPaleOakBedItem(BedColorType.PURPLE);
     @Unique
-    private static final Item PALE_OAK_BLUE_BED_ITEM = registerPaleOakBedItem(DyeColor.BLUE);
+    private static final Item PALE_OAK_BLUE_BED_ITEM = registerPaleOakBedItem(BedColorType.BLUE);
     @Unique
-    private static final Item PALE_OAK_BROWN_BED_ITEM = registerPaleOakBedItem(DyeColor.BROWN);
+    private static final Item PALE_OAK_BROWN_BED_ITEM = registerPaleOakBedItem(BedColorType.BROWN);
     @Unique
-    private static final Item PALE_OAK_GREEN_BED_ITEM = registerPaleOakBedItem(DyeColor.GREEN);
+    private static final Item PALE_OAK_GREEN_BED_ITEM = registerPaleOakBedItem(BedColorType.GREEN);
 
     @Shadow
     private static void registerWhiteBedItem(Item whiteBed, Item bedAfter) {}
@@ -62,14 +61,14 @@ public abstract class MbdvItemInitMixin {
     private static void registerOtherBedItem(Item otherBed) {}
 
     @Unique
-    private static Item registerPaleOakBedItem(DyeColor color) {
-        Item bedItem = new BedItem(PaleOakVariantHolder.getBlock(VariantType.BED, WOOD_TYPE, color), bedProperties);
-        if (color == DyeColor.WHITE) {
+    private static Item registerPaleOakBedItem(BedColorType colorType) {
+        Item bedItem = new BedItem(PaleOakVariantHolder.getBlock(colorType, WOOD_TYPE), bedProperties);
+        if (colorType == BedColorType.WHITE) {
             registerWhiteBedItem(bedItem, Items.WHITE_BED);
         } else {
             registerOtherBedItem(bedItem);
         }
-        PaleOakVariantHolder.setItem(VariantType.BED, WOOD_TYPE, color, bedItem);
+        PaleOakVariantHolder.setItem(colorType, WOOD_TYPE, bedItem);
         return bedItem;
     }
 }

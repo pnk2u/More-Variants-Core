@@ -35,14 +35,14 @@ public abstract class McvBlockInitMixin {
     @Unique
     private static MoreChestBlock registerPaleOakChest() {
         MoreChestBlock chestBlock = new MoreChestBlock(WOOD_TYPE.getMapColor(), WOOD_TYPE.getName());
-        PaleOakVariantHolder.setBlock(VariantType.CHEST, WOOD_TYPE, ChestType.CHEST, chestBlock);
+        PaleOakVariantHolder.setBlock(ChestType.CHEST, WOOD_TYPE, chestBlock);
         return chestBlock;
     }
 
     @Unique
     private static MoreTrappedChestBlock registerPaleOakTrappedChest() {
         MoreTrappedChestBlock trappedChestBlock = new MoreTrappedChestBlock(WOOD_TYPE.getMapColor(), WOOD_TYPE.getName());
-        PaleOakVariantHolder.setBlock(VariantType.CHEST, WOOD_TYPE, ChestType.TRAPPED_CHEST, trappedChestBlock);
+        PaleOakVariantHolder.setBlock(ChestType.TRAPPED_CHEST, WOOD_TYPE, trappedChestBlock);
         return trappedChestBlock;
     }
 }
