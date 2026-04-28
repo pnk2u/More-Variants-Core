@@ -8,6 +8,7 @@ import io.github.lieonlion.mcv.init.McvItemInit;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -28,9 +29,17 @@ public abstract class McvItemInitMixin {
     @Shadow
     private static void registerItem(BlockItem chest, BlockItem trappedChest, Item chestAfter, Item trappedChestAfter) {}
 
-    @Inject(method = "registerItems", at = @At("HEAD"), remap = false)
+    @Shadow
+    @Final
+    public static BlockItem DARK_OAK_CHEST_I;
+
+    @Shadow
+    @Final
+    public static BlockItem DARK_OAK_TRAPPED_CHEST_I;
+
+    @Inject(method = "registerItems", at = @At("TAIL"), remap = false)
     private static void injectedRegisterItemsAtHead(CallbackInfo ci) {
-        registerItem(PALE_OAK_CHEST_ITEM, PALE_OAK_TRAPPED_CHEST_ITEM, Items.CHEST, Items.TRAPPED_CHEST);
+        registerItem(PALE_OAK_CHEST_ITEM, PALE_OAK_TRAPPED_CHEST_ITEM, DARK_OAK_CHEST_I, DARK_OAK_TRAPPED_CHEST_I);
     }
 
     @Unique
