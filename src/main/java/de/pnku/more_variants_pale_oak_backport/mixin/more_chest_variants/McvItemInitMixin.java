@@ -21,9 +21,9 @@ public abstract class McvItemInitMixin {
     private static final WoodType WOOD_TYPE = WoodType.PALE_OAK;
 
     @Unique
-    private static final BlockItem PALE_OAK_CHEST_ITEM = registerPaleOakChestItem(ChestType.CHEST);
+    private static final BlockItem PALE_OAK_CHEST_ITEM = createPaleOakChestItem(ChestType.CHEST);
     @Unique
-    private static final BlockItem PALE_OAK_TRAPPED_CHEST_ITEM = registerPaleOakChestItem(ChestType.TRAPPED_CHEST);
+    private static final BlockItem PALE_OAK_TRAPPED_CHEST_ITEM = createPaleOakChestItem(ChestType.TRAPPED_CHEST);
 
     @Shadow
     private static void registerItem(BlockItem chest, BlockItem trappedChest, Item chestAfter, Item trappedChestAfter) {}
@@ -34,7 +34,7 @@ public abstract class McvItemInitMixin {
     }
 
     @Unique
-    private static BlockItem registerPaleOakChestItem(ChestType chestType) {
+    private static BlockItem createPaleOakChestItem(ChestType chestType) {
         BlockItem chestItem = new BlockItem(PaleOakVariantHolder.getBlock(chestType, WOOD_TYPE), new Item.Properties());
         PaleOakVariantHolder.setItem(chestType, WOOD_TYPE, chestItem);
         return chestItem;
