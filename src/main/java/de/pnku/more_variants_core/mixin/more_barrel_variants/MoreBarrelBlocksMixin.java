@@ -5,6 +5,7 @@ import de.pnku.more_barrel_variants.init.MoreBarrelBlocks;
 import de.pnku.more_variants_core.util.MoreVariantHolder;
 import de.pnku.more_variants_core.util.MoreVariantHolder.VariantType;
 import de.pnku.more_variants_core.util.WoodType;
+import de.pnku.more_variants_core.util.WoodTypeHolder;
 import de.pnku.more_variants_core.util.WoodTypes;
 import net.minecraft.world.level.block.Block;
 import org.spongepowered.asm.mixin.*;
@@ -18,31 +19,25 @@ import java.util.List;
 
 @Mixin(MoreBarrelBlocks.class)
 public abstract class MoreBarrelBlocksMixin {
-    @Unique
-    private static final WoodType WOOD_TYPE = WoodTypes.PALE_OAK;
-
     @Shadow
     @Mutable
     @Final
     public static List<Block> more_barrels;
-    @Shadow
-    @Final
-    public static Block DARK_OAK_BARREL;
-    @Unique
-    private static final Block PALE_OAK_BARREL = registerPaleOakBarrelBlock();
 
     @Inject(method = "registerBlocks", at = @At(value = "HEAD"), remap = false)
     private static void injectedRegisterBlocksAtHead(CallbackInfo ci) {
         more_barrels = new ArrayList<>(more_barrels);
-        if (!more_barrels.contains(PALE_OAK_BARREL)) {
-            more_barrels.add(more_barrels.indexOf(DARK_OAK_BARREL) + 1, PALE_OAK_BARREL);
-        }
+        more_barrels.addAll(registerBarrelBlockVariants(WoodTypeHolder.getWoodTypes()));
     }
 
     @Unique
-    private static Block registerPaleOakBarrelBlock() {
-        Block barrelBlock = new MoreBarrelBlock(WOOD_TYPE.getMapColor(), WOOD_TYPE.getName());
-        MoreVariantHolder.setBlock(VariantType.BARREL, WOOD_TYPE, barrelBlock);
-        return barrelBlock;
+    private static List<Block> registerBarrelBlockVariants(List<WoodType> woodTypes) {
+        List<Block> barrelBlocks = new ArrayList<>();
+        for (WoodType woodType : woodTypes) {
+            Block barrelBlock = new MoreBarrelBlock(woodType.getMapColor(), woodType.getName());
+            MoreVariantHolder.setBlock(VariantType.BARREL, woodType, barrelBlock);
+            barrelBlocks.add(barrelBlock);
+        }
+        return barrelBlocks;
     }
 }
