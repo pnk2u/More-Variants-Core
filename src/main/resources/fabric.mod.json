@@ -16,10 +16,10 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "de.pnku.more_variants_pale_oak_backport.MoreVariantsCore"
+      "de.pnku.more_variants_core.MoreVariantsCore"
     ],
     "client": [
-      "de.pnku.more_variants_pale_oak_backport.MoreVariantsPaleOakBackportClient"
+      "de.pnku.more_variants_core.MoreVariantsCoreClient"
     ]
   },
   "mixins": [

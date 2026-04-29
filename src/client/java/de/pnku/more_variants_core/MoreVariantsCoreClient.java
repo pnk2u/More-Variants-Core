@@ -12,7 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Environment(EnvType.CLIENT)
-public class MoreVariantsPaleOakBackportClient implements ClientModInitializer {
+public class MoreVariantsCoreClient implements ClientModInitializer {
 	public static final String MOD_ID = "more_variants_core";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID + " (Client)");
 

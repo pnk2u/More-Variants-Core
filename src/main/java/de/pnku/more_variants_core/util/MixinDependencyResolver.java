@@ -57,7 +57,7 @@ public final class MixinDependencyResolver {
     }
 
     public static String getRequiredModId(String mixinClassName, boolean isClient) {
-        String packagePrefix = "de.pnku.more_variants_pale_oak_backport." + (isClient ? "client." : "") + "mixin.";
+        String packagePrefix = "de.pnku.more_variants_core." + (isClient ? "client." : "") + "mixin.";
         String normalizedPackageName = mixinClassName.replaceFirst(packagePrefix, "")
                 .substring(0, mixinClassName
                         .lastIndexOf('.') - packagePrefix.length());
