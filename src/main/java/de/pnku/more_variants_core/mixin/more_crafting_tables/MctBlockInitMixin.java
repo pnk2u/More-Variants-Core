@@ -3,7 +3,7 @@ package de.pnku.more_variants_core.mixin.more_crafting_tables;
 import de.pnku.more_variants_core.util.MoreVariantHolder;
 import de.pnku.more_variants_core.util.MoreVariantHolder.VariantType;
 import de.pnku.more_variants_core.util.WoodType;
-import de.pnku.more_variants_core.util.WoodTypes;
+import de.pnku.more_variants_core.util.WoodTypeHolder;
 import io.github.lieonlion.lolmct.block.MoreCraftingTableBlock;
 import io.github.lieonlion.lolmct.init.MctBlockInit;
 import net.minecraft.world.level.block.Block;
@@ -14,29 +14,25 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.util.List;
+
 @Mixin(MctBlockInit.class)
 public abstract class MctBlockInitMixin {
-    @Unique
-    private static final WoodType WOOD_TYPE = WoodTypes.PALE_OAK;
-
-    @Unique
-    private static final MoreCraftingTableBlock PALE_OAK_CRAFTING_TABLE = registerPaleOakCraftingTable();
-
     @Shadow
     private static void registerBlock(String name, Block block) {}
 
-    @Inject(method = "registerBlocks", at = @At("HEAD"), remap = false)
-    private static void injectedRegisterBlocksAtHead(CallbackInfo ci) {
-        if (PALE_OAK_CRAFTING_TABLE.defaultBlockState().isAir()) {
-            throw new IllegalStateException("Failed to register Pale Oak Crafting Table Block");
+
+    @Unique
+    private static void registerCraftingTableVariants(List<WoodType> woodTypes) {
+        for (WoodType woodType : woodTypes) {
+            MoreCraftingTableBlock block = new MoreCraftingTableBlock(woodType.getMapColor());
+            registerBlock(woodType.getName() + "_" + VariantType.CRAFTING_TABLE.registrationType(), block);
+            MoreVariantHolder.setBlock(VariantType.CRAFTING_TABLE, woodType, block);
         }
     }
 
-    @Unique
-    private static MoreCraftingTableBlock registerPaleOakCraftingTable() {
-        MoreCraftingTableBlock block = new MoreCraftingTableBlock(WOOD_TYPE.getMapColor());
-        registerBlock(WOOD_TYPE.getName() + "_crafting_table", block);
-        MoreVariantHolder.setBlock(VariantType.CRAFTING_TABLE, WOOD_TYPE, block);
-        return block;
+    @Inject(method = "registerBlocks", at = @At("TAIL"), remap = false)
+    private static void injectedRegisterBlocksAtHead(CallbackInfo ci) {
+        registerCraftingTableVariants(WoodTypeHolder.getWoodTypes());
     }
 }
