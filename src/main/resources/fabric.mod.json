@@ -16,7 +16,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "de.pnku.more_variants_pale_oak_backport.MoreVariantsPaleOakBackport"
+      "de.pnku.more_variants_pale_oak_backport.MoreVariantsCore"
     ],
     "client": [
       "de.pnku.more_variants_pale_oak_backport.MoreVariantsPaleOakBackportClient"
@@ -42,8 +42,8 @@
       }
     },
     "mc-publish": {
-      "modrinth": "vD5gEL9d",
-      "curseforge": "1517935",
+      "modrinth": "Oq6Ws6cs",
+      "curseforge": "1528246",
       "dependencies": [
         "fabric-api(required)#(ignore)"
       ]
