@@ -4,30 +4,35 @@ import de.pnku.mft.init.MftItemInit;
 import de.pnku.more_variants_core.util.MoreVariantHolder;
 import de.pnku.more_variants_core.util.MoreVariantHolder.VariantType;
 import de.pnku.more_variants_core.util.WoodType;
-import de.pnku.more_variants_core.util.WoodTypes;
+import de.pnku.more_variants_core.util.WoodTypeHolder;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import java.util.List;
 
 @Mixin(MftItemInit.class)
 public abstract class MftItemInitMixin {
-    @Unique
-    private static final WoodType WOOD_TYPE = WoodTypes.PALE_OAK;
-
-    @Unique
-    private static final BlockItem PALE_OAK_FLETCHING_TABLE_ITEM = registerPaleOakFletchingTableItem();
-
     @Shadow
     private static void registerItem(BlockItem fletchingTable, Item fletchingTableAfter) {}
 
     @Unique
-    private static BlockItem registerPaleOakFletchingTableItem() {
-        BlockItem fletchingTableItem = new BlockItem(MoreVariantHolder.getBlock(VariantType.FLETCHING_TABLE, WOOD_TYPE), new Item.Properties());
-        registerItem(fletchingTableItem, Items.FLETCHING_TABLE);
-        MoreVariantHolder.setItem(VariantType.FLETCHING_TABLE, WOOD_TYPE, fletchingTableItem);
-        return fletchingTableItem;
+    private static void registerFletchingTableItemVariants(List<WoodType> woodTypes) {
+        for (WoodType woodType : woodTypes) {
+            BlockItem fletchingTableItem = new BlockItem(MoreVariantHolder.getBlock(VariantType.FLETCHING_TABLE, woodType), new Item.Properties());
+            registerItem(fletchingTableItem, Items.FLETCHING_TABLE);
+            MoreVariantHolder.setItem(VariantType.FLETCHING_TABLE, woodType, fletchingTableItem);
+        }
+    }
+
+    @Inject(method = "registerItems", at = @At("TAIL"), remap = false)
+    private static void injectedRegisterFletchingTableItemsAtTail(CallbackInfo ci) {
+        registerFletchingTableItemVariants(WoodTypeHolder.getWoodTypes());
     }
 }
