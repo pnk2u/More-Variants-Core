@@ -2,7 +2,7 @@
   "required": false,
   "minVersion": "0.8",
   "package": "de.pnku.more_variants_core.client.mixin",
-  "plugin": "de.pnku.more_variants_core.client.mixin.MoreVariantsPaleOakBackportClientMixinPlugin",
+  "plugin": "de.pnku.more_variants_core.client.mixin.MoreVariantsCoreClientMixinPlugin",
   "compatibilityLevel": "JAVA_${java_version}",
   "client": [
     "more_shield_variants.MoreShieldVariantItemGroupsMixin",

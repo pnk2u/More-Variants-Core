@@ -2,15 +2,20 @@ package de.pnku.more_variants_core.client.mixin.more_shield_variants;
 
 import de.pnku.lolmsv.config.MoreShieldVariantsConfig;
 import de.pnku.lolmsv.config.MoreShieldVariantsConfigScreen;
-import de.pnku.more_variants_core.client.util.PaleOakShieldConfigAccessor;
+import de.pnku.more_variants_core.client.util.MoreVariantShieldConfigAccessor;
+import de.pnku.more_variants_core.util.WoodType;
+import de.pnku.more_variants_core.util.WoodTypeHolder;
 import me.shedaniel.clothconfig2.api.AbstractConfigListEntry;
 import me.shedaniel.clothconfig2.api.ConfigBuilder;
 import me.shedaniel.clothconfig2.api.ConfigCategory;
 import net.minecraft.network.chat.Component;
+import org.apache.commons.text.CaseUtils;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+import java.util.List;
 
 @Mixin(MoreShieldVariantsConfigScreen.class)
 public abstract class MoreShieldVariantsConfigScreenMixin {
@@ -21,33 +26,27 @@ public abstract class MoreShieldVariantsConfigScreenMixin {
             return;
         }
 
-        ConfigCategory shieldTexture = configBuilder.getOrCreateCategory(
-                Component.translatable("config.category.moreshieldvariants.shieldTexture")
-        );
+        List<WoodType> woodTypes = WoodTypeHolder.getWoodTypes();
+        for (WoodType woodType : woodTypes) {
+            ConfigCategory shieldTexture = configBuilder.getOrCreateCategory(
+                    Component.translatable("config.category.moreshieldvariants.shieldTexture")
+            );
+            String woodTypeAsCamel = CaseUtils.toCamelCase(woodType.getName(), false, '_');
 
-        PaleOakShieldConfigAccessor configAccess = (PaleOakShieldConfigAccessor) MoreShieldVariantsConfig.getInstance();
-        AbstractConfigListEntry<?> paleOakEntry = configBuilder.entryBuilder()
-                .startBooleanToggle(
-                        Component.translatable("config.shieldTexture_option.moreshieldvariants.paleOakUseCustom"),
-                        configAccess.mvpob$isPaleOakUseCustom()
-                )
-                .setDefaultValue(true)
-                .setSaveConsumer(configAccess::mvpob$setPaleOakUseCustom)
-                .setTooltip(new Component[]{
-                        Component.translatable("config.shieldTexture_option.moreshieldvariants.paleOakUseCustom.tooltip")
-                })
-                .build();
+            MoreVariantShieldConfigAccessor configAccess = (MoreVariantShieldConfigAccessor) MoreShieldVariantsConfig.getInstance();
+            AbstractConfigListEntry<?> variantEntry = configBuilder.entryBuilder()
+                    .startBooleanToggle(
+                            Component.translatable("config.shieldTexture_option.moreshieldvariants." + woodTypeAsCamel + "UseCustom"),
+                            configAccess.mvpob$isWoodTypeUseCustom(woodType)
+                    )
+                    .setDefaultValue(true)
+                    .setSaveConsumer(newUseCustom -> configAccess.mvpob$setWoodTypeUseCustom(woodType, newUseCustom))
+                    .setTooltip(new Component[]{
+                            Component.translatable("config.shieldTexture_option.moreshieldvariants." + woodTypeAsCamel + "UseCustom.tooltip")
+                    })
+                    .build();
 
-        Component darkOakKey = Component.translatable("config.shieldTexture_option.moreshieldvariants.darkOakUseCustom");
-        for (int i = 0; i < shieldTexture.getEntries().size(); i++) {
-            Object entry = shieldTexture.getEntries().get(i);
-            if (entry instanceof AbstractConfigListEntry<?> configEntry && configEntry.getFieldName().equals(darkOakKey)) {
-                shieldTexture.getEntries().add(i + 1, paleOakEntry);
-                return;
+            shieldTexture.addEntry(variantEntry);
             }
-        }
-
-        // Fallback
-        shieldTexture.addEntry(paleOakEntry);
     }
 }
