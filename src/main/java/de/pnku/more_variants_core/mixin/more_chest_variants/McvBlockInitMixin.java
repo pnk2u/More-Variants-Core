@@ -4,7 +4,6 @@ import de.pnku.more_variants_core.util.MoreVariantHolder;
 import de.pnku.more_variants_core.util.MoreVariantHolder.ChestType;
 import de.pnku.more_variants_core.util.WoodType;
 import de.pnku.more_variants_core.util.WoodTypeHolder;
-import de.pnku.more_variants_core.util.WoodTypes;
 import io.github.lieonlion.mcv.block.MoreChestBlock;
 import io.github.lieonlion.mcv.block.MoreTrappedChestBlock;
 import io.github.lieonlion.mcv.init.McvBlockInit;

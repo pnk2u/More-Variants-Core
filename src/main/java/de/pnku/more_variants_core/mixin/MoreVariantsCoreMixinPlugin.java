@@ -1,15 +1,12 @@
 package de.pnku.more_variants_core.mixin;
 
 import de.pnku.more_variants_core.util.MixinDependencyResolver;
-import de.pnku.more_variants_core.util.WoodTypes;
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
 
 import java.util.List;
 import java.util.Set;
-
-import static de.pnku.more_variants_core.util.WoodTypeHolder.addWoodTypes;
 
 public class MoreVariantsCoreMixinPlugin implements IMixinConfigPlugin {
 
@@ -44,6 +41,5 @@ public class MoreVariantsCoreMixinPlugin implements IMixinConfigPlugin {
 
     @Override
     public void postApply(String targetClassName, ClassNode targetClass, String mixinClassName, IMixinInfo mixinInfo) {
-        addWoodTypes(WoodTypes.PALE_OAK);
     }
 }

@@ -23,12 +23,6 @@ public abstract class MoreBarrelItemsMixin {
     @Final
     public static List<Item> more_barrels;
 
-    @Inject(method = "registerItems", at = @At(value = "HEAD"), remap = false)
-    private static void injectedRegisterSticksAtHead(CallbackInfo ci) {
-        more_barrels = new ArrayList<>(more_barrels);
-        more_barrels.addAll(registerBarrelItemVariants(WoodTypeHolder.getWoodTypes()));
-    }
-
     @Unique
     private static List<Item> registerBarrelItemVariants(List<WoodType> woodTypes) {
         List<Item> barrelItems = new ArrayList<>();
@@ -39,5 +33,11 @@ public abstract class MoreBarrelItemsMixin {
         }
         return barrelItems;
         
+    }
+
+    @Inject(method = "registerItems", at = @At(value = "HEAD"), remap = false)
+    private static void injectedRegisterSticksAtHead(CallbackInfo ci) {
+        more_barrels = new ArrayList<>(more_barrels);
+        more_barrels.addAll(registerBarrelItemVariants(WoodTypeHolder.getWoodTypes()));
     }
 }

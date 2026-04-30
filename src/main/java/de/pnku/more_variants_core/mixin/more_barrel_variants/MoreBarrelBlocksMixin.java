@@ -24,12 +24,6 @@ public abstract class MoreBarrelBlocksMixin {
     @Final
     public static List<Block> more_barrels;
 
-    @Inject(method = "registerBlocks", at = @At(value = "HEAD"), remap = false)
-    private static void injectedRegisterBlocksAtHead(CallbackInfo ci) {
-        more_barrels = new ArrayList<>(more_barrels);
-        more_barrels.addAll(registerBarrelBlockVariants(WoodTypeHolder.getWoodTypes()));
-    }
-
     @Unique
     private static List<Block> registerBarrelBlockVariants(List<WoodType> woodTypes) {
         List<Block> barrelBlocks = new ArrayList<>();
@@ -39,5 +33,11 @@ public abstract class MoreBarrelBlocksMixin {
             barrelBlocks.add(barrelBlock);
         }
         return barrelBlocks;
+    }
+
+    @Inject(method = "registerBlocks", at = @At(value = "HEAD"), remap = false)
+    private static void injectedRegisterBlocksAtHead(CallbackInfo ci) {
+        more_barrels = new ArrayList<>(more_barrels);
+        more_barrels.addAll(registerBarrelBlockVariants(WoodTypeHolder.getWoodTypes()));
     }
 }

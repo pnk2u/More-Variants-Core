@@ -30,11 +30,6 @@ public abstract class MbdvItemInitMixin {
     @Shadow
     private static void registerOtherBedItem(Item otherBed) {}
 
-    @Inject(method = "registerBedItems", at = @At("TAIL"), remap = false)
-    private static void injectedRegisterBedItems(CallbackInfo ci) {
-        registerBedItemVariants(WoodTypeHolder.getWoodTypes());
-    }
-
     @Unique
     private static void registerBedItemVariants(List<WoodType> woodTypes) {
         for (WoodType woodType : woodTypes) {
@@ -48,5 +43,10 @@ public abstract class MbdvItemInitMixin {
                 MoreVariantHolder.setItem(colorType, woodType, bedItem);
             }
         }
+    }
+
+    @Inject(method = "registerBedItems", at = @At("TAIL"), remap = false)
+    private static void injectedRegisterBedItems(CallbackInfo ci) {
+        registerBedItemVariants(WoodTypeHolder.getWoodTypes());
     }
 }
