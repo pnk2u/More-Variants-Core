@@ -3,7 +3,7 @@ package de.pnku.more_variants_core.mixin.mstv.more_rail_variants;
 import de.pnku.more_variants_core.util.MoreVariantHolder;
 import de.pnku.more_variants_core.util.MoreVariantHolder.RailType;
 import de.pnku.more_variants_core.util.WoodType;
-import de.pnku.more_variants_core.util.WoodTypes;
+import de.pnku.more_variants_core.util.WoodTypeHolder;
 import de.pnku.mstv_mrailv.init.MrailvBlockInit;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -12,61 +12,52 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import java.util.List;
 
 import static de.pnku.more_variants_core.util.MoreVariantHolder.RailType.*;
 
 @Mixin(MrailvBlockInit.class)
 public abstract class MrailvBlockInitMixin {
-    @Unique
-    private static final WoodType WOOD_TYPE = WoodTypes.PALE_OAK;
-
-    @Unique
-    private static final Block PALE_OAK_RAIL = registerPaleOakRailBlock(RAIL);
-    @Unique
-    private static final Block PALE_OAK_DETECTOR_RAIL = registerPaleOakRailBlock(DETECTOR_RAIL);
-    @Unique
-    private static final Block PALE_OAK_POWERED_RAIL = registerPaleOakRailBlock(POWERED_RAIL);
-    @Unique
-    private static final Block PALE_OAK_ACTIVATOR_RAIL = registerPaleOakRailBlock(ACTIVATOR_RAIL);
-    @Unique
-    private static final Item PALE_OAK_RAIL_ITEM = registerPaleOakRailItem(RAIL, PALE_OAK_RAIL);
-    @Unique
-    private static final Item PALE_OAK_DETECTOR_RAIL_ITEM = registerPaleOakRailItem(DETECTOR_RAIL, PALE_OAK_DETECTOR_RAIL);
-    @Unique
-    private static final Item PALE_OAK_POWERED_RAIL_ITEM = registerPaleOakRailItem(POWERED_RAIL, PALE_OAK_POWERED_RAIL);
-    @Unique
-    private static final Item PALE_OAK_ACTIVATOR_RAIL_ITEM = registerPaleOakRailItem(ACTIVATOR_RAIL, PALE_OAK_ACTIVATOR_RAIL);
-
     @Shadow
-    public static Block registerRailBlock(String woodType, Block railBlock) {
+    private static Block registerRailBlock(String woodType, Block railBlock) {
         throw new AssertionError();
     }
 
     @Shadow
-    public static Block registerRailBlock(String woodType, Block railBlock, String railType) {
+    private static Block registerRailBlock(String woodType, Block railBlock, String railType) {
         throw new AssertionError();
     }
 
     @Shadow
-    public static Item registerRailItem(String woodType, Item railItem, String railType) {
+    private static Item registerRailItem(String woodType, Item railItem, String railType) {
         throw new AssertionError();
     }
 
     @Unique
-    private static Block registerPaleOakRailBlock(RailType railType) {
-        Block inputRailBlock = createInputRailBlock(railType);
-        Block railBlock = railType == RAIL
-                ? registerRailBlock(WOOD_TYPE.getName(), inputRailBlock)
-                : registerRailBlock(WOOD_TYPE.getName(), inputRailBlock, railType.registrationType());
-        MoreVariantHolder.setBlock(railType, WOOD_TYPE, railBlock);
-        return railBlock;
+    private static void registerRailBlockVariants(List<WoodType> woodTypes) {
+        for (WoodType woodType : woodTypes) {
+            for (RailType railType : RailType.values()) {
+                Block inputRailBlock = createInputRailBlock(railType);
+                Block railBlock = railType == RAIL
+                        ? registerRailBlock(woodType.getName(), inputRailBlock)
+                        : registerRailBlock(woodType.getName(), inputRailBlock, railType.registrationType());
+                MoreVariantHolder.setBlock(railType, woodType, railBlock);
+            }
+        }
     }
 
     @Unique
-    private static Item registerPaleOakRailItem(RailType railType, Block railBlock) {
-        Item railItem = registerRailItem(WOOD_TYPE.getName(), new BlockItem(railBlock, new Item.Properties()), railType.registrationType());
-        MoreVariantHolder.setItem(railType, WOOD_TYPE, railItem);
-        return railItem;
+    private static void registerPaleOakRailItemVariants(List<WoodType> woodTypes) {
+        for (WoodType woodType : woodTypes) {
+            for (RailType railType : RailType.values()) {
+                Item railItem = registerRailItem(woodType.getName(), new BlockItem(MoreVariantHolder.getBlock(railType, woodType), new Item.Properties()), railType.registrationType());
+                MoreVariantHolder.setItem(railType, woodType, railItem);
+            }
+        }
     }
 
     @Unique
@@ -79,5 +70,12 @@ public abstract class MrailvBlockInitMixin {
         }
         Block vanillaRail = railType == ACTIVATOR_RAIL ? Blocks.ACTIVATOR_RAIL : Blocks.POWERED_RAIL;
         return new PoweredRailBlock(BlockBehaviour.Properties.ofFullCopy(vanillaRail));
+    }
+
+    @Inject(method = "registerRail", at = @At("HEAD"), remap = false)
+    private static void injectedRegisterRailAtHead(CallbackInfo ci) {
+        List<WoodType> woodTypes = WoodTypeHolder.getWoodTypes();
+        registerRailBlockVariants(woodTypes);
+        registerPaleOakRailItemVariants(woodTypes);
     }
 }

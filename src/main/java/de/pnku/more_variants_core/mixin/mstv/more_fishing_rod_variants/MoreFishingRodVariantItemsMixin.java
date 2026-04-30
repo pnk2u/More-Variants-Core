@@ -1,9 +1,10 @@
 package de.pnku.more_variants_core.mixin.mstv.more_fishing_rod_variants;
 
 import de.pnku.more_variants_core.util.MoreVariantHolder;
-import de.pnku.more_variants_core.util.MoreVariantHolder.*;
+import de.pnku.more_variants_core.util.MoreVariantHolder.RodType;
+import de.pnku.more_variants_core.util.MoreVariantHolder.VariantType;
 import de.pnku.more_variants_core.util.WoodType;
-import de.pnku.more_variants_core.util.WoodTypes;
+import de.pnku.more_variants_core.util.WoodTypeHolder;
 import de.pnku.mstv_mfrv.item.MoreFishingRodVariantItems;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -14,24 +15,12 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.util.List;
+
 @Mixin(MoreFishingRodVariantItems.class)
 public abstract class MoreFishingRodVariantItemsMixin {
     @Shadow
-    public static Item createRodItem(String rodType, String woodType) {
-        throw new UnsupportedOperationException("Implemented via mixin");
-    }
-
-    @Unique
-    private static final WoodType WOOD_TYPE = WoodTypes.PALE_OAK;
-
-    @Unique
-    private static final Item PALE_OAK_FISHING_ROD = createRodItem("fish", WOOD_TYPE.getName());
-
-    @Unique
-    private static final Item CARROT_ON_A_PALE_OAK_STICK = createRodItem("pig", WOOD_TYPE.getName());
-
-    @Unique
-    private static final Item WARPED_FUNGUS_ON_A_PALE_OAK_STICK = createRodItem("strider", WOOD_TYPE.getName());
+    public static Item createRodItem(String rodType, String woodType) {throw new AssertionError();}
 
     @Shadow
     private static void registerFishingRodItem(Item fishingRodItem, Item fishingRodAfter, Item stickItem) {}
@@ -42,14 +31,29 @@ public abstract class MoreFishingRodVariantItemsMixin {
     @Shadow
     private static void registerWarpedFungusOnAStickItem(Item warpedFungusOnAStickItem, Item warpedFungusOnAStickAfter, Item stickItem) {}
 
-    @Inject(method = "registerRodItems", at = @At(value = "HEAD", remap = false))
-    private static void injectedRegisterRodItemsAtHead(CallbackInfo ci) {
-        Item paleOakStickItem = MoreVariantHolder.getItem(VariantType.STICK, WOOD_TYPE);
-        registerFishingRodItem(PALE_OAK_FISHING_ROD, Items.FISHING_ROD, paleOakStickItem);
-        MoreVariantHolder.setItem(RodType.FISHING_ROD, WOOD_TYPE, PALE_OAK_FISHING_ROD);
-        registerCarrotOnAStickItem(CARROT_ON_A_PALE_OAK_STICK, Items.CARROT_ON_A_STICK, paleOakStickItem);
-        MoreVariantHolder.setItem(RodType.CARROT_ON_A_STICK, WOOD_TYPE, CARROT_ON_A_PALE_OAK_STICK);
-        registerWarpedFungusOnAStickItem(WARPED_FUNGUS_ON_A_PALE_OAK_STICK, Items.WARPED_FUNGUS_ON_A_STICK, paleOakStickItem);
-        MoreVariantHolder.setItem(RodType.WARPED_FUNGUS_ON_A_STICK, WOOD_TYPE, WARPED_FUNGUS_ON_A_PALE_OAK_STICK);
+    @Unique
+    private static void registerFishingRodItemVariants(List<WoodType> woodTypes) {
+        for (WoodType woodType : woodTypes) {
+            Item stickItem = MoreVariantHolder.getItem(VariantType.STICK, woodType);
+            for (RodType rodType : RodType.values()) {
+                Item rodItem = createRodItem(rodType.entityType(), woodType.getName());
+                if (RodType.WARPED_FUNGUS_ON_A_STICK.equals(rodType)) {
+                    registerWarpedFungusOnAStickItem(rodItem, Items.WARPED_FUNGUS_ON_A_STICK, stickItem);
+                } else if (RodType.CARROT_ON_A_STICK.equals(rodType)) {
+                    registerCarrotOnAStickItem(rodItem, Items.CARROT_ON_A_STICK, stickItem);
+                } else if (RodType.FISHING_ROD.equals(rodType)) {
+                    registerFishingRodItem(rodItem, Items.FISHING_ROD, stickItem);
+                } else {
+                    throw new IllegalStateException("Unexpected RodType: " + rodType);
+                }
+                MoreVariantHolder.setItem(rodType, woodType, rodItem);
+            }
+        }
     }
+
+    @Inject(method = "registerRodItems", at = @At(value = "TAIL", remap = false))
+    private static void injectedRegisterRodItemsAtHead(CallbackInfo ci) {
+        registerFishingRodItemVariants(WoodTypeHolder.getWoodTypes());
+    }
+
 }

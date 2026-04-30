@@ -149,16 +149,19 @@ public final class MoreVariantHolder {
         private final String torchName;
         private final String wallTorchName;
         private final TorchType baseTorchType;
+        private boolean isWallTorch;
 
         TorchType(String torchName, String wallTorchName) {
             this.torchName = torchName;
             this.wallTorchName = wallTorchName;
             this.baseTorchType = this;
+            this.isWallTorch = false;
         }
         TorchType(TorchType baseTorchType) {
             this.torchName = baseTorchType.torchName;
             this.wallTorchName = baseTorchType.wallTorchName;
             this.baseTorchType = baseTorchType;
+            this.isWallTorch = true;
         }
 
         public String torchName() {
@@ -167,7 +170,12 @@ public final class MoreVariantHolder {
         public String wallTorchName() {
             return wallTorchName;
         }
-        public TorchType getBaseTorchType() {return baseTorchType;}
+        public TorchType getBaseTorchType() {
+            return baseTorchType;
+        }
+        public boolean isWallTorch() {
+            return isWallTorch;
+        }
         public SimpleParticleType getParticleType() {
             return this == SOUL_TORCH ? ParticleTypes.SOUL_FIRE_FLAME : ParticleTypes.FLAME;
         }
@@ -223,10 +231,19 @@ public final class MoreVariantHolder {
     }
 
     public enum RodType implements IVariantSubType {
-        FISHING_ROD,
-        CARROT_ON_A_STICK,
-        WARPED_FUNGUS_ON_A_STICK;
+        FISHING_ROD("fish"),
+        CARROT_ON_A_STICK("pig"),
+        WARPED_FUNGUS_ON_A_STICK("strider");
 
+        private final String entityType;
+
+        RodType(String entityType) {
+            this.entityType = entityType;
+        }
+
+        public String entityType() {
+            return entityType;
+        }
         public String registrationType() {
             return this.name().toLowerCase();
         }
