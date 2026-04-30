@@ -40,7 +40,7 @@ loom {
 	splitEnvironmentSourceSets()
 
 	mods {
-		"more_variants_pale_oak_backport" {
+		project.properties.get("mod_id") {
 			sourceSet sourceSets.main
 			sourceSet sourceSets.client
 		}
