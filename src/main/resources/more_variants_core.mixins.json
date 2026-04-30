@@ -5,6 +5,8 @@
   "plugin": "de.pnku.more_variants_core.mixin.MoreVariantsCoreMixinPlugin",
   "compatibilityLevel": "JAVA_${java_version}",
   "mixins": [
+    "compat.EveryCompatModulesMixin",
+    "compat.SimpleModuleMixin",
     "more_barrel_variants.MoreBarrelBlocksMixin",
     "more_barrel_variants.MoreBarrelItemsMixin",
     "more_bed_variants.MbdvBlockInitMixin",

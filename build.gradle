@@ -30,6 +30,10 @@ repositories {
 	maven { url = "https://maven.bawnorton.com/releases" }
 	maven { url "https://maven.terraformersmc.com/releases/" }
 	maven { url "https://maven.shedaniel.me/" }
+	maven {
+		name = 'SomethingSketchy' // EveryCompat, Moonlight
+		url = "https://registry.somethingcatchy.net/repository/maven-releases/"
+	}
 }
 
 loom {
@@ -195,6 +199,18 @@ dependencies {
 			modCompileOnly modLocalRuntime("maven.modrinth:more-torch-variants:${project.mstv_m_torch_v_version_id}")
 			// More Weapon Variants
 			modCompileOnly modLocalRuntime("maven.modrinth:more-weapon-variants:${project.mstv_m_weapon_v_version_id}")
+
+	// Every Compat
+		// Moonlight
+		modCompileOnly modLocalRuntime("net.mehvahdjukaar:moonlight-fabric:${moonlight_version}:fabric") { transitive = false }
+		// Every Compat
+		modCompileOnly modLocalRuntime("net.mehvahdjukaar:everycomp-fabric:${every_compat_version}:fabric") { transitive = false }
+			// Above for docs, if needed - below in case above's maven is down
+			//modCompileOnly("maven.modrinth:moonlight:${moonlight_version}-fabric")
+			//modCompileOnly("maven.modrinth:every-compat:${every_compat_version}-fabric")
+		// Testing
+		modRuntimeOnly("maven.modrinth:wilder-wild:${wilder_wild_version}-mc${project.minecraft_version}")
+		modRuntimeOnly("maven.modrinth:frozenlib:${frozen_lib_version}-mc${project.minecraft_version}")
 
 
 }
