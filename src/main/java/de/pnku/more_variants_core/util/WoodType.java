@@ -10,11 +10,11 @@ public class WoodType {
     private final MapColor mapColor;
     private final Block planksBlock;
 
-    WoodType(String name, MapColor mapColor, Block planksBlock) {
+    public WoodType(String name, MapColor mapColor, Block planksBlock) {
         this("minecraft", name, mapColor, planksBlock);
     }
 
-    WoodType(String namespace, String name, MapColor mapColor, Block planksBlock) {
+    public WoodType(String namespace, String name, MapColor mapColor, Block planksBlock) {
         this.namespace = namespace;
         this.name = name;
         this.idString = namespace + ":" + name;
