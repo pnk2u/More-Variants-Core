@@ -5,20 +5,19 @@ import de.pnku.lolmsv.item.MoreShieldVariantItems;
 import de.pnku.more_variants_core.util.MoreVariantHolder;
 import de.pnku.more_variants_core.util.MoreVariantHolder.VariantType;
 import de.pnku.more_variants_core.util.WoodType;
-import de.pnku.more_variants_core.util.WoodTypes;
+import de.pnku.more_variants_core.util.WoodTypeHolder;
 import net.minecraft.world.item.Item;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import java.util.List;
 
 @Mixin(MoreShieldVariantItems.class)
 public abstract class MoreShieldVariantItemsMixin {
-    @Unique
-    private static final WoodType WOOD_TYPE = WoodTypes.PALE_OAK;
-
-    @Unique
-    private static final Item PALE_OAK_SHIELD = registerPaleOakShieldItem();
-
     @Shadow
     private static void registerShieldItem(Item shieldItem) {}
 
@@ -28,10 +27,16 @@ public abstract class MoreShieldVariantItemsMixin {
     }
 
     @Unique
-    private static Item registerPaleOakShieldItem() {
-        Item shieldItem = new MoreShieldVariantItem(WOOD_TYPE.getName(), setProperties());
-        registerShieldItem(shieldItem);
-        MoreVariantHolder.setItem(VariantType.SHIELD, WOOD_TYPE, shieldItem);
-        return shieldItem;
+    private static void registerShieldItemVariants(List<WoodType> woodTypes) {
+        for (WoodType woodType : woodTypes) {
+            Item shieldItem = new MoreShieldVariantItem(woodType.getName(), setProperties());
+            registerShieldItem(shieldItem);
+            MoreVariantHolder.setItem(VariantType.SHIELD, woodType, shieldItem);
+        }
+    }
+
+    @Inject(method = "registerShieldItems", at = @At("TAIL"), remap = false)
+    private static void injectedRegisterShieldItemsAtTail(CallbackInfo ci) {
+        registerShieldItemVariants(WoodTypeHolder.getWoodTypes());
     }
 }
