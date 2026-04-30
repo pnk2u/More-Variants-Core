@@ -14,6 +14,15 @@ public class WoodTypeHolder {
             }
         }
 
+        public static WoodType getWoodTypeByName(String name) {
+            for (WoodType woodType : woodTypes) {
+                if (woodType.getName().equalsIgnoreCase(name)) {
+                    return woodType;
+                }
+            }
+            return null;
+        }
+
         public static List<WoodType> getWoodTypes() {
             return woodTypes;
         }
