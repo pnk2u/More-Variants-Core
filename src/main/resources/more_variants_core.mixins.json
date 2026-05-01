@@ -42,6 +42,7 @@
     "more_smithing_tables.MstItemInitMixin",
     "more_smoker_variants.MsmvBlockInitMixin",
     "more_smoker_variants.MsmvItemInitMixin",
+    "more_smoker_variants.MsmvMfvItemInitMixin",
     "mstv.base.MoreStickVariantItemMixin",
     "mstv.base.MoreStickVariantItemsMixin",
     "mstv.more_armor_stand_variants.MoreArmorStandVariantItemsMixin",

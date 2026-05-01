@@ -21,9 +21,9 @@ public abstract class MsmvBlockInitMixin {
     private static void registerSmokerBlock(MoreSmokerVariantBlock smoker) {}
 
     @Unique
-    private static void registerSmokerBlockVariants(List<WoodType> woodTypes) {
+    private static void registerSmokerBlockVariants(List<WoodType> woodTypes, SmokerType[] smokerTypes) {
         for (WoodType woodType : woodTypes) {
-            for (SmokerType smokerType : SmokerType.values()) {
+            for (SmokerType smokerType : smokerTypes) {
                 MoreSmokerVariantBlock smokerBlock = new MoreSmokerVariantBlock(woodType.getMapColor(), woodType.getName(), smokerType.registrationType());
                 registerSmokerBlock(smokerBlock);
                 MoreVariantHolder.setBlock(smokerType, woodType, smokerBlock);
@@ -31,8 +31,13 @@ public abstract class MsmvBlockInitMixin {
         }
     }
 
-    @Inject(method = "registerSmokerBlocks", at = @At("TAIL"), remap = false)
+    @Inject(method = "registerSmokerBlocks", at = @At(value = "HEAD"), remap = false)
     private static void injectedRegisterSmokerBlocksAtTail(CallbackInfo ci) {
-        registerSmokerBlockVariants(WoodTypeHolder.getWoodTypes());
+        registerSmokerBlockVariants(WoodTypeHolder.getWoodTypes(), SmokerType.values());
+    }
+
+    @Inject(method = "registerCobblestoneSmokerBlocks", at = @At(value = "HEAD"), remap = false)
+    private static void injectedRegisterCobblestoneSmokerBlocksAtTail(CallbackInfo ci) {
+        registerSmokerBlockVariants(WoodTypeHolder.getWoodTypes(), new SmokerType[]{SmokerType.COBBLESTONE});
     }
 }

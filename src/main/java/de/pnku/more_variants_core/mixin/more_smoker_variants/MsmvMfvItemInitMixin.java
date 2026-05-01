@@ -5,6 +5,7 @@ import de.pnku.more_variants_core.util.MoreVariantHolder.SmokerType;
 import de.pnku.more_variants_core.util.WoodType;
 import de.pnku.more_variants_core.util.WoodTypeHolder;
 import de.pnku.msmv.init.MsmvItemInit;
+import de.pnku.msmv.init.MsmvMfvItemInit;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -17,24 +18,24 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.List;
 
-@Mixin(MsmvItemInit.class)
-public abstract class MsmvItemInitMixin {
+@Mixin(MsmvMfvItemInit.class)
+public abstract class MsmvMfvItemInitMixin {
     @Shadow
-    private static void registerSmokerItem(BlockItem smoker, Item smokerAfter) {}
+    private static void registerMfvSmokerItem(BlockItem smoker, Item smokerAfter) {}
 
     @Unique
-    private static void registerSmokerItemVariants(List<WoodType> woodTypes, SmokerType[] smokerTypes) {
+    private static void registerNfvSmokerItemVariants(List<WoodType> woodTypes, SmokerType[] smokerTypes) {
         for (WoodType woodType : woodTypes) {
             for (SmokerType smokerType : smokerTypes) {
                 BlockItem smokerItem = new BlockItem(MoreVariantHolder.getBlock(smokerType, woodType), new Item.Properties());
-                registerSmokerItem(smokerItem, Items.SMOKER);
+                registerMfvSmokerItem(smokerItem, Items.SMOKER);
                 MoreVariantHolder.setItem(smokerType, woodType, smokerItem);
             }
         }
     }
 
-    @Inject(method = "registerSmokerItems", at = @At("TAIL"), remap = false)
+    @Inject(method = "registerMfvSmokerItems", at = @At("TAIL"), remap = false)
     private static void injectedRegisterSmokerItemsAtTail(CallbackInfo ci) {
-        registerSmokerItemVariants(WoodTypeHolder.getWoodTypes(), new SmokerType[]{SmokerType.COBBLESTONE});
+        registerNfvSmokerItemVariants(WoodTypeHolder.getWoodTypes(), new SmokerType[]{SmokerType.BLACKSTONE, SmokerType.DEEPSLATE});
     }
 }

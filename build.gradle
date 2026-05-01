@@ -183,6 +183,8 @@ dependencies {
 		modCompileOnly modLocalRuntime("maven.modrinth:more-smithing-tables:${project.m_smithing_t_version_id}")
 		// More Smoker Variants
 		modCompileOnly modLocalRuntime("maven.modrinth:more-smoker-variants:${project.m_smoker_v_version_id}")
+			// Optional Dependency: More Furnace Variants
+			modLocalRuntime("maven.modrinth:more-furnace-variants-lieonlion:${project.m_furnace_v_lol_version_id}")
 		// MStV
 			// More Stick Variants
 			modCompileOnly modLocalRuntime("maven.modrinth:more-stick-variants:${project.mstv_version_id}")
