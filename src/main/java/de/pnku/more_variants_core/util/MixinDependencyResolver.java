@@ -14,6 +14,7 @@ public final class MixinDependencyResolver {
 
     public static void init() {
         Map<String, String> map = new HashMap<>();
+        map.put("compat", "everycomp");
         map.put("more_barrel_variants", "more_barrel_variants");
         map.put("more_bed_variants", "quad-lolmbdv");
         map.put("more_beehive_variants", "quad-lolmbhv");

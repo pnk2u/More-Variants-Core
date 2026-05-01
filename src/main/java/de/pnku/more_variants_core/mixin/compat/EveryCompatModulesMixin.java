@@ -17,19 +17,19 @@ import java.util.List;
 @Pseudo
 @Mixin(value = {MoreBarrelEveryCompat.MoreBarrelECModule.class, MoreChestVariantsModule.class, MoreCraftingTablesModule.class},
         targets = {
-                "de.pnku.more_bed_variants.compat.ec.MoreBedEveryCompat.MoreBedECModule.class",
-                "de.pnku.more_beehive_variants.compat.ec.MoreBeehiveEveryCompat.MoreBeehiveECModule.class",
-                "de.pnku.more_cartography_tables.compat.ec.MoreCartographyTableEveryCompat.MoreCartographyTableECModule.class",
-                "de.pnku.more_chiseled_bookshelf_variants.compat.ec.MoreChiseledBookshelfEveryCompat.MoreChiseledBookshelfECModule.class",
-                "de.pnku.more_composter_variants.compat.ec.MoreComposterEveryCompat.MoreComposterECModule.class",
-                "de.pnku.more_crafter_variants.compat.ec.MoreCrafterEveryCompat.MoreCrafterECModule.class",
-                "de.pnku.more_fletching_tables.compat.ec.MoreFletchingTableEveryCompat.MoreFletchingTableECModule.class",
-                "de.pnku.more_grindstone_variants.compat.ec.MoreGrindstoneEveryCompat.MoreGrindstoneECModule.class",
-                "de.pnku.more_jukebox_noteblock_variants.compat.ec.MoreJukeboxNoteblockEveryCompat.MoreJukeboxNoteblockECModule.class",
-                "de.pnku.more_lectern_variants.compat.ec.MoreLecternEveryCompat.MoreLecternECModule.class",
-                "de.pnku.more_loom_variants.compat.ec.MoreLoomEveryCompat.MoreLoomECModule.class",
-                "de.pnku.more_smithing_tables.compat.ec.MoreSmithingTableEveryCompat.MoreSmithingTableECModule.class",
-                "de.pnku.more_smoker_variants.compat.ec.MoreSmokerEveryCompat.MoreSmokerECModule.class"
+//                "de.pnku.more_bed_variants.compat.ec.MoreBedEveryCompat.MoreBedECModule.class",
+//                "de.pnku.more_beehive_variants.compat.ec.MoreBeehiveEveryCompat.MoreBeehiveECModule.class",
+//                "de.pnku.more_cartography_tables.compat.ec.MoreCartographyTableEveryCompat.MoreCartographyTableECModule.class",
+//                "de.pnku.more_chiseled_bookshelf_variants.compat.ec.MoreChiseledBookshelfEveryCompat.MoreChiseledBookshelfECModule.class",
+//                "de.pnku.more_composter_variants.compat.ec.MoreComposterEveryCompat.MoreComposterECModule.class",
+//                "de.pnku.more_crafter_variants.compat.ec.MoreCrafterEveryCompat.MoreCrafterECModule.class",
+//                "de.pnku.more_fletching_tables.compat.ec.MoreFletchingTableEveryCompat.MoreFletchingTableECModule.class",
+//                "de.pnku.more_grindstone_variants.compat.ec.MoreGrindstoneEveryCompat.MoreGrindstoneECModule.class",
+//                "de.pnku.more_jukebox_noteblock_variants.compat.ec.MoreJukeboxNoteblockEveryCompat.MoreJukeboxNoteblockECModule.class",
+//                "de.pnku.more_lectern_variants.compat.ec.MoreLecternEveryCompat.MoreLecternECModule.class",
+//                "de.pnku.more_loom_variants.compat.ec.MoreLoomEveryCompat.MoreLoomECModule.class",
+//                "de.pnku.more_smithing_tables.compat.ec.MoreSmithingTableEveryCompat.MoreSmithingTableECModule.class",
+//                "de.pnku.more_smoker_variants.compat.ec.MoreSmokerEveryCompat.MoreSmokerECModule.class"
         }, remap = false)
 public abstract class EveryCompatModulesMixin extends SimpleModuleMixin {
     @Override
