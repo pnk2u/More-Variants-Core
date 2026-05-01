@@ -4,47 +4,62 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public final class MoreVariantHolder {
     public enum VariantType implements IVariantType {
-        BARREL,
-        BED,
-        BEEHIVE,
-        BOOKSHELF,
-        CAMPFIRE,
-        CARTOGRAPHY_TABLE,
-        CHEST,
-        CHISELED_BOOKSHELF,
-        COMPOSTER,
-        CRAFTER,
-        CRAFTING_TABLE,
-        FLETCHING_TABLE,
-        GRINDSTONE,
-        JUKEBOX_NOTEBLOCK,
-        LECTERN,
-        LOOM,
-        SHIELD,
-        SMITHING_TABLE,
-        SMOKER,
-        WOODCUTTER,
-        STICK,
-        ARMOR_STAND,
-        FRAME,
-        LADDER,
-        RAIL,
-        ROD,
-        TOOL,
-        TORCH,
-        WALL_TORCH,
-        WEAPON;
+        BARREL(Blocks.BARREL, Items.BARREL),
+        BED(Blocks.WHITE_BED, Items.WHITE_BED),
+        BEEHIVE(Blocks.BEEHIVE, Items.BEEHIVE),
+        BOOKSHELF(Blocks.BOOKSHELF, Items.BOOKSHELF),
+        CAMPFIRE(Blocks.CAMPFIRE, Items.CAMPFIRE),
+        CARTOGRAPHY_TABLE(Blocks.CARTOGRAPHY_TABLE, Items.CARTOGRAPHY_TABLE),
+        CHEST(Blocks.CHEST, Items.CHEST),
+        CHISELED_BOOKSHELF(Blocks.CHISELED_BOOKSHELF, Items.CHISELED_BOOKSHELF),
+        COMPOSTER(Blocks.COMPOSTER, Items.COMPOSTER),
+        CRAFTER(Blocks.CRAFTING_TABLE, Items.CRAFTING_TABLE),
+        CRAFTING_TABLE(Blocks.CRAFTING_TABLE, Items.CRAFTING_TABLE),
+        FLETCHING_TABLE(Blocks.FLETCHING_TABLE, Items.FLETCHING_TABLE),
+        GRINDSTONE(Blocks.GRINDSTONE, Items.GRINDSTONE),
+        JUKEBOX_NOTEBLOCK(Blocks.JUKEBOX, Items.JUKEBOX),
+        LECTERN(Blocks.LECTERN, Items.LECTERN),
+        LOOM(Blocks.LOOM, Items.LOOM),
+        SHIELD(null, Items.SHIELD),
+        SMITHING_TABLE(Blocks.SMITHING_TABLE, Items.SMITHING_TABLE),
+        SMOKER(Blocks.SMOKER, Items.SMOKER),
+        WOODCUTTER(Blocks.LECTERN, Items.LECTERN),
+        STICK(null, Items.STICK),
+        ARMOR_STAND(null, Items.ARMOR_STAND),
+        FRAME(null, Items.ITEM_FRAME),
+        LADDER(Blocks.LADDER, Items.LADDER),
+        RAIL(Blocks.RAIL, Items.RAIL),
+        ROD(null, Items.FISHING_ROD),
+        TOOL(null, Items.WOODEN_PICKAXE),
+        TORCH(Blocks.TORCH, Items.TORCH),
+        WEAPON(null, Items.WOODEN_SWORD);
+
+        private final Block vanillaBlock;
+        private final Item vanillaItem;
+
+        VariantType(Block vanillaBlock, Item vanillaItem) {
+            this.vanillaBlock = vanillaBlock;
+            this.vanillaItem = vanillaItem;
+        }
 
         public String registrationType() {
             return this.name().toLowerCase();
+        }
+        public @Nullable Block getVanillaBlock() {
+            return vanillaBlock;
+        }
+        public Item getVanillaItem() {
+            return vanillaItem;
         }
     }
 
@@ -59,50 +74,78 @@ public final class MoreVariantHolder {
         public VariantType variantType() {
             throw new UnsupportedOperationException("DefaultSubtype does not have a variant type");
         }
+        public Block getVanillaBlock() {
+            throw new UnsupportedOperationException("DefaultSubtype does not have a vanilla block");
+        }
+        public Item getVanillaItem() {
+            throw new UnsupportedOperationException("DefaultSubtype does not have a vanilla item");
+        }
     }
     public enum BedColorType implements IVariantSubType {
-        RED(DyeColor.RED),
-        BLACK(DyeColor.BLACK),
-        WHITE(DyeColor.WHITE),
-        ORANGE(DyeColor.ORANGE),
-        MAGENTA(DyeColor.MAGENTA),
-        LIGHT_BLUE(DyeColor.LIGHT_BLUE),
-        YELLOW(DyeColor.YELLOW),
-        LIME(DyeColor.LIME),
-        PINK(DyeColor.PINK),
-        GRAY(DyeColor.GRAY),
-        LIGHT_GRAY(DyeColor.LIGHT_GRAY),
-        CYAN(DyeColor.CYAN),
-        PURPLE(DyeColor.PURPLE),
-        BLUE(DyeColor.BLUE),
-        BROWN(DyeColor.BROWN),
-        GREEN(DyeColor.GREEN);
+        RED(DyeColor.RED, Blocks.RED_BED, Items.RED_BED),
+        BLACK(DyeColor.BLACK, Blocks.BLACK_BED, Items.BLACK_BED),
+        WHITE(DyeColor.WHITE, Blocks.WHITE_BED, Items.WHITE_BED),
+        ORANGE(DyeColor.ORANGE, Blocks.ORANGE_BED, Items.ORANGE_BED),
+        MAGENTA(DyeColor.MAGENTA, Blocks.MAGENTA_BED, Items.MAGENTA_BED),
+        LIGHT_BLUE(DyeColor.LIGHT_BLUE, Blocks.LIGHT_BLUE_BED, Items.LIGHT_BLUE_BED),
+        YELLOW(DyeColor.YELLOW, Blocks.YELLOW_BED, Items.YELLOW_BED),
+        LIME(DyeColor.LIME, Blocks.LIME_BED, Items.LIME_BED),
+        PINK(DyeColor.PINK, Blocks.PINK_BED, Items.PINK_BED),
+        GRAY(DyeColor.GRAY, Blocks.GRAY_BED, Items.GRAY_BED),
+        LIGHT_GRAY(DyeColor.LIGHT_GRAY, Blocks.LIGHT_GRAY_BED, Items.LIGHT_GRAY_BED),
+        CYAN(DyeColor.CYAN, Blocks.CYAN_BED, Items.CYAN_BED),
+        PURPLE(DyeColor.PURPLE, Blocks.PURPLE_BED, Items.PURPLE_BED),
+        BLUE(DyeColor.BLUE, Blocks.BLUE_BED, Items.BLUE_BED),
+        BROWN(DyeColor.BROWN, Blocks.BROWN_BED, Items.BROWN_BED),
+        GREEN(DyeColor.GREEN, Blocks.GREEN_BED, Items.GREEN_BED);
 
-        private final String registrationType;
         private final DyeColor color;
+        private final Block vanillaBlock;
+        private final Item vanillaItem;
 
-        BedColorType(DyeColor color) {
-            this.registrationType = this.name().toLowerCase();
+        BedColorType(DyeColor color, Block vanillaBlock, Item vanillaItem) {
             this.color = color;
+            this.vanillaBlock = vanillaBlock;
+            this.vanillaItem = vanillaItem;
         }
 
         public DyeColor color() {
             return color;
         }
         public String registrationType() {
-            return registrationType;
+            return this.name().toLowerCase();
         }
         public VariantType variantType() {
             return VariantType.BED;
         }
+        public Block getVanillaBlock() {
+            return vanillaBlock;
+        }
+        public Item getVanillaItem() {
+            return vanillaItem;
+        }
     }
     public enum ChestType implements IVariantSubType {
-        CHEST,
-        TRAPPED_CHEST;
+        CHEST(Blocks.CHEST, Items.CHEST),
+        TRAPPED_CHEST(Blocks.TRAPPED_CHEST, Items.TRAPPED_CHEST);
+
+        private final Block vanillaBlock;
+        private final Item vanillaItem;
+
+        ChestType(Block vanillaBlock, Item vanillaItem) {
+            this.vanillaBlock = vanillaBlock;
+            this.vanillaItem = vanillaItem;
+        }
 
         public String registrationType() {return this.name().toLowerCase();}
         public VariantType variantType() {
             return VariantType.CHEST;
+        }
+        public Block getVanillaBlock() {
+            return vanillaBlock;
+        }
+        public Item getVanillaItem() {
+            return vanillaItem;
         }
     }
     public enum SmokerType implements IVariantSubType {
@@ -110,24 +153,35 @@ public final class MoreVariantHolder {
         DEEPSLATE,
         BLACKSTONE;
 
+
         public String registrationType() {
             return this.name().toLowerCase();
         }
         public VariantType variantType() {
             return VariantType.SMOKER;
         }
+        public Block getVanillaBlock() {
+            return this.variantType().getVanillaBlock();
+        }
+        public Item getVanillaItem() {
+            return this.variantType().getVanillaItem();
+        }
     }
 
     public enum RailType implements IVariantSubType {
-        RAIL(""),
-        ACTIVATOR_RAIL("activator"),
-        DETECTOR_RAIL("detector"),
-        POWERED_RAIL("powered");
+        RAIL("", Blocks.RAIL, Items.RAIL),
+        ACTIVATOR_RAIL("activator", Blocks.ACTIVATOR_RAIL, Items.ACTIVATOR_RAIL),
+        DETECTOR_RAIL("detector", Blocks.DETECTOR_RAIL, Items.DETECTOR_RAIL),
+        POWERED_RAIL("powered", Blocks.POWERED_RAIL, Items.POWERED_RAIL);
 
         private final String registrationType;
+        private final Block vanillaBlock;
+        private final Item vanillaItem;
 
-        RailType(String registrationType) {
+        RailType(String registrationType, Block vanillaBlock, Item vanillaItem) {
             this.registrationType = registrationType;
+            this.vanillaBlock = vanillaBlock;
+            this.vanillaItem = vanillaItem;
         }
 
         public String registrationType() {
@@ -136,32 +190,44 @@ public final class MoreVariantHolder {
         public VariantType variantType() {
             return VariantType.RAIL;
         }
+        public Block getVanillaBlock() {
+            return vanillaBlock;
+        }
+        public Item getVanillaItem() {
+            return vanillaItem;
+        }
     }
 
     public enum TorchType implements IVariantSubType {
-        TORCH("torch", "wall_torch"),
-        WALL_TORCH(TORCH),
-        SOUL_TORCH("soul_torch", "soul_wall_torch"),
-        SOUL_WALL_TORCH(SOUL_TORCH),
-        REDSTONE_TORCH("redstone_torch", "redstone_wall_torch"),
-        REDSTONE_WALL_TORCH(REDSTONE_TORCH);
+        TORCH("torch", "wall_torch", Blocks.TORCH, Items.TORCH),
+        WALL_TORCH(TORCH, Blocks.WALL_TORCH),
+        SOUL_TORCH("soul_torch", "soul_wall_torch", Blocks.SOUL_TORCH, Items.SOUL_TORCH),
+        SOUL_WALL_TORCH(SOUL_TORCH, Blocks.SOUL_WALL_TORCH),
+        REDSTONE_TORCH("redstone_torch", "redstone_wall_torch", Blocks.REDSTONE_TORCH, Items.REDSTONE_TORCH),
+        REDSTONE_WALL_TORCH(REDSTONE_TORCH, Blocks.REDSTONE_WALL_TORCH);
 
         private final String torchName;
         private final String wallTorchName;
         private final TorchType baseTorchType;
         private boolean isWallTorch;
+        private final Block vanillaBlock;
+        private final Item vanillaItem;
 
-        TorchType(String torchName, String wallTorchName) {
+        TorchType(String torchName, String wallTorchName, Block vanillaBlock, Item vanillaItem) {
             this.torchName = torchName;
             this.wallTorchName = wallTorchName;
             this.baseTorchType = this;
             this.isWallTorch = false;
+            this.vanillaBlock = vanillaBlock;
+            this.vanillaItem = vanillaItem;
         }
-        TorchType(TorchType baseTorchType) {
+        TorchType(TorchType baseTorchType, Block vanillaBlock) {
             this.torchName = baseTorchType.torchName;
             this.wallTorchName = baseTorchType.wallTorchName;
             this.baseTorchType = baseTorchType;
             this.isWallTorch = true;
+            this.vanillaBlock = vanillaBlock;
+            this.vanillaItem = baseTorchType.vanillaItem;
         }
 
         public String torchName() {
@@ -184,6 +250,12 @@ public final class MoreVariantHolder {
         }
         public VariantType variantType() {
             return VariantType.TORCH;
+        }
+        public Block getVanillaBlock() {
+            return vanillaBlock;
+        }
+        public Item getVanillaItem() {
+            return vanillaItem;
         }
     }
 
@@ -216,11 +288,25 @@ public final class MoreVariantHolder {
         public VariantType variantType() {
             return VariantType.GRINDSTONE;
         }
+        public Block getVanillaBlock() {
+            return this.variantType().getVanillaBlock();
+        }
+        public Item getVanillaItem() {
+            return this.variantType().getVanillaItem();
+        }
     }
 
     public enum JukeboxNoteblockType implements IVariantSubType {
-        JUKEBOX,
-        NOTEBLOCK;
+        JUKEBOX(Blocks.JUKEBOX, Items.JUKEBOX),
+        NOTEBLOCK(Blocks.NOTE_BLOCK, Items.NOTE_BLOCK);
+
+        private final Block vanillaBlock;
+        private final Item vanillaItem;
+
+        JukeboxNoteblockType(Block vanillaBlock, Item vanillaItem) {
+            this.vanillaBlock = vanillaBlock;
+            this.vanillaItem = vanillaItem;
+        }
 
         public String registrationType() {
             return this.name().toLowerCase();
@@ -228,17 +314,25 @@ public final class MoreVariantHolder {
         public VariantType variantType() {
             return VariantType.JUKEBOX_NOTEBLOCK;
         }
+        public Block getVanillaBlock() {
+            return vanillaBlock;
+        }
+        public Item getVanillaItem() {
+            return vanillaItem;
+        }
     }
 
     public enum RodType implements IVariantSubType {
-        FISHING_ROD("fish"),
-        CARROT_ON_A_STICK("pig"),
-        WARPED_FUNGUS_ON_A_STICK("strider");
+        FISHING_ROD("fish", Items.FISHING_ROD),
+        CARROT_ON_A_STICK("pig", Items.CARROT_ON_A_STICK),
+        WARPED_FUNGUS_ON_A_STICK("strider", Items.WARPED_FUNGUS_ON_A_STICK);
 
         private final String entityType;
+        private final Item vanillaItem;
 
-        RodType(String entityType) {
+        RodType(String entityType, Item vanillaItem) {
             this.entityType = entityType;
+            this.vanillaItem = vanillaItem;
         }
 
         public String entityType() {
@@ -249,6 +343,12 @@ public final class MoreVariantHolder {
         }
         public VariantType variantType() {
             return VariantType.ROD;
+        }
+        public Block getVanillaBlock() {
+            return this.variantType().getVanillaBlock();
+        }
+        public Item getVanillaItem() {
+            return vanillaItem;
         }
     }
 
@@ -294,26 +394,6 @@ public final class MoreVariantHolder {
                     + " but it has not been registered");
         }
         return item;
-    }
-
-    public static Block getVanillaTorchBlock(TorchType type) {
-        if (type == TorchType.REDSTONE_TORCH) {
-            return Blocks.REDSTONE_TORCH;
-        }
-        if (type == TorchType.SOUL_TORCH) {
-            return Blocks.SOUL_TORCH;
-        }
-        return Blocks.TORCH;
-    }
-
-    public static Block getVanillaWallTorchBlock(TorchType type) {
-        if (type == TorchType.REDSTONE_TORCH) {
-            return Blocks.REDSTONE_WALL_TORCH;
-        }
-        if (type == TorchType.SOUL_TORCH) {
-            return Blocks.SOUL_WALL_TORCH;
-        }
-        return Blocks.WALL_TORCH;
     }
 
     private static Map<Object, Block> blocksFor(VariantType variantType, WoodType woodType) {
