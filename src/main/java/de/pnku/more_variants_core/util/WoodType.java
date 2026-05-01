@@ -1,5 +1,7 @@
 package de.pnku.more_variants_core.util;
 
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.MapColor;
 
@@ -8,18 +10,18 @@ public class WoodType {
     private final String name;
     private final String idString;
     private final MapColor mapColor;
-    private final Block planksBlock;
+    private final ResourceLocation planksBlockId;
 
-    public WoodType(String name, MapColor mapColor, Block planksBlock) {
-        this("minecraft", name, mapColor, planksBlock);
+    public WoodType(String name, MapColor mapColor, ResourceLocation planksBlockId) {
+        this("minecraft", name, mapColor, planksBlockId);
     }
 
-    public WoodType(String namespace, String name, MapColor mapColor, Block planksBlock) {
+    public WoodType(String namespace, String name, MapColor mapColor, ResourceLocation planksBlockId) {
         this.namespace = namespace;
         this.name = name;
         this.idString = namespace + ":" + name;
         this.mapColor = mapColor;
-        this.planksBlock = planksBlock;
+        this.planksBlockId = planksBlockId;
     }
 
     public String idString() {
@@ -39,7 +41,7 @@ public class WoodType {
     }
 
     public Block getPlanksBlock() {
-        return planksBlock;
+        return BuiltInRegistries.BLOCK.get(planksBlockId);
     }
 }
 
