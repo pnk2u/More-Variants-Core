@@ -7,7 +7,6 @@ import de.pnku.more_variants_core.util.WoodType;
 import de.pnku.more_variants_core.util.WoodTypeHolder;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -24,10 +23,11 @@ public abstract class MlvItemInitMixin {
 
     @Unique
     private static void registerLecternItemVariants(List<WoodType> woodTypes) {
+        VariantType lecternType = VariantType.LECTERN;
         for (WoodType woodType : woodTypes) {
-            BlockItem lecternItem = new BlockItem(MoreVariantHolder.getBlock(VariantType.LECTERN, woodType), new Item.Properties());
-            registerItem(lecternItem, Items.LECTERN);
-            MoreVariantHolder.setItem(VariantType.LECTERN, woodType, lecternItem);
+            BlockItem lecternItem = new BlockItem(MoreVariantHolder.getBlock(lecternType, woodType), new Item.Properties());
+            registerItem(lecternItem, lecternType.getVanillaItem());
+            MoreVariantHolder.setItem(lecternType, woodType, lecternItem);
         }
     }
 

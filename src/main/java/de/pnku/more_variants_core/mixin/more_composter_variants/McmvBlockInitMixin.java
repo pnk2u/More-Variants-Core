@@ -22,10 +22,11 @@ public abstract class McmvBlockInitMixin {
 
     @Unique
     private static void registerComposterBlockVariants(List<WoodType> woodTypes) {
+        VariantType composterType = VariantType.COMPOSTER;
         for (WoodType woodType : woodTypes) {
             MoreComposterBlock composter = new MoreComposterBlock(woodType.getMapColor(), woodType.getName());
             registerBlock(composter);
-            MoreVariantHolder.setBlock(VariantType.COMPOSTER, woodType, composter);
+            MoreVariantHolder.setBlock(composterType, woodType, composter);
         }
     }
 

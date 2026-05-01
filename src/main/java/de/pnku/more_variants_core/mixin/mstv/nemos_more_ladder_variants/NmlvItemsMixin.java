@@ -25,9 +25,10 @@ public abstract class NmlvItemsMixin {
 
     @Unique
     private static void registerLadderItemVariants(List<WoodType> woodTypes) {
+        VariantType ladderType = VariantType.LADDER;
         for (WoodType woodType : woodTypes) {
-            Item ladderItem = registerLadderBlockItem(woodType.getName() + "_" + VariantType.LADDER.registrationType(), MoreVariantHolder.getBlock(VariantType.LADDER, woodType));
-            MoreVariantHolder.setItem(VariantType.LADDER, woodType, ladderItem);
+            Item ladderItem = registerLadderBlockItem(woodType.getName() + "_" + ladderType.registrationType(), MoreVariantHolder.getBlock(ladderType, woodType));
+            MoreVariantHolder.setItem(ladderType, woodType, ladderItem);
         }
     }
 

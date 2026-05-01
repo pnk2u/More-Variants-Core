@@ -7,7 +7,6 @@ import de.pnku.more_variants_core.util.WoodType;
 import de.pnku.more_variants_core.util.WoodTypeHolder;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -24,10 +23,11 @@ public abstract class MftItemInitMixin {
 
     @Unique
     private static void registerFletchingTableItemVariants(List<WoodType> woodTypes) {
+        VariantType fletchingTableType = VariantType.FLETCHING_TABLE;
         for (WoodType woodType : woodTypes) {
-            BlockItem fletchingTableItem = new BlockItem(MoreVariantHolder.getBlock(VariantType.FLETCHING_TABLE, woodType), new Item.Properties());
-            registerItem(fletchingTableItem, Items.FLETCHING_TABLE);
-            MoreVariantHolder.setItem(VariantType.FLETCHING_TABLE, woodType, fletchingTableItem);
+            BlockItem fletchingTableItem = new BlockItem(MoreVariantHolder.getBlock(fletchingTableType, woodType), new Item.Properties());
+            registerItem(fletchingTableItem, fletchingTableType.getVanillaItem());
+            MoreVariantHolder.setItem(fletchingTableType, woodType, fletchingTableItem);
         }
     }
 

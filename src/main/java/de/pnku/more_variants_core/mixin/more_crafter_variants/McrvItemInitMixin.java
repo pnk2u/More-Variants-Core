@@ -1,8 +1,10 @@
 package de.pnku.more_variants_core.mixin.more_crafter_variants;
 
 import de.pnku.mcrv.init.McrvItemInit;
-import de.pnku.more_variants_core.util.*;
+import de.pnku.more_variants_core.util.MoreVariantHolder;
 import de.pnku.more_variants_core.util.MoreVariantHolder.VariantType;
+import de.pnku.more_variants_core.util.WoodType;
+import de.pnku.more_variants_core.util.WoodTypeHolder;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import org.spongepowered.asm.mixin.Mixin;
@@ -21,10 +23,11 @@ public abstract class McrvItemInitMixin {
 
     @Unique
     private static void registerCrafterItemVariants(List<WoodType> woodTypes) {
+        VariantType crafterType = VariantType.CRAFTER;
         for (WoodType woodType : woodTypes) {
-            BlockItem crafterItem = new BlockItem(MoreVariantHolder.getBlock(VariantType.CRAFTER, woodType), new Item.Properties());
+            BlockItem crafterItem = new BlockItem(MoreVariantHolder.getBlock(crafterType, woodType), new Item.Properties());
             registerCrafterItem(crafterItem);
-            MoreVariantHolder.setItem(VariantType.CRAFTER, woodType, crafterItem);
+            MoreVariantHolder.setItem(crafterType, woodType, crafterItem);
         }
     }
 

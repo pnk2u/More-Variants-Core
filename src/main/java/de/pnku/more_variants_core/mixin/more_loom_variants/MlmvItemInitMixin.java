@@ -7,7 +7,6 @@ import de.pnku.more_variants_core.util.WoodType;
 import de.pnku.more_variants_core.util.WoodTypeHolder;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -24,10 +23,11 @@ public abstract class MlmvItemInitMixin {
 
     @Unique
     private static void registerLoomItemVariants(List<WoodType> woodTypes) {
+        VariantType loomType = VariantType.LOOM;
         for (WoodType woodType : woodTypes) {
-            BlockItem loomItem = new BlockItem(MoreVariantHolder.getBlock(VariantType.LOOM, woodType), new Item.Properties());
-            registerItem(loomItem, Items.LOOM);
-            MoreVariantHolder.setItem(VariantType.LOOM, woodType, loomItem);
+            BlockItem loomItem = new BlockItem(MoreVariantHolder.getBlock(loomType, woodType), new Item.Properties());
+            registerItem(loomItem, loomType.getVanillaItem());
+            MoreVariantHolder.setItem(loomType, woodType, loomItem);
         }
     }
 

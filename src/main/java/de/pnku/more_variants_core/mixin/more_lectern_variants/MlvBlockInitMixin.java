@@ -22,10 +22,11 @@ public abstract class MlvBlockInitMixin {
 
     @Unique
     private static void registerkLecternBlockVariants(List<WoodType> woodTypes) {
+        VariantType lecternType = VariantType.LECTERN;
         for (WoodType woodType : woodTypes) {
             MoreLecternBlock lectern = new MoreLecternBlock(woodType.getMapColor(), woodType.getName());
             registerBlock(lectern);
-            MoreVariantHolder.setBlock(VariantType.LECTERN, woodType, lectern);
+            MoreVariantHolder.setBlock(lecternType, woodType, lectern);
         }
     }
 

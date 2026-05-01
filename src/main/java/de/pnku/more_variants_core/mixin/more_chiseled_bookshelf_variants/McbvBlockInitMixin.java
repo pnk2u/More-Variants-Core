@@ -22,10 +22,11 @@ public abstract class McbvBlockInitMixin {
 
     @Unique
     private static void registerChiseledBookshelfBlockVariants(List<WoodType> woodTypes) {
+        VariantType chiseledBookshelfType = VariantType.CHISELED_BOOKSHELF;
         for (WoodType woodType : woodTypes) {
-            MoreChiseledBookShelfBlock block = new MoreChiseledBookShelfBlock(woodType.getMapColor(), woodType.getName());
-            registerBlock(block);
-            MoreVariantHolder.setBlock(VariantType.CHISELED_BOOKSHELF, woodType, block);
+            MoreChiseledBookShelfBlock chiseledBookShelfBlock = new MoreChiseledBookShelfBlock(woodType.getMapColor(), woodType.getName());
+            registerBlock(chiseledBookShelfBlock);
+            MoreVariantHolder.setBlock(chiseledBookshelfType, woodType, chiseledBookShelfBlock);
         }
     }
 

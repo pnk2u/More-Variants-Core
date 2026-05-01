@@ -7,7 +7,6 @@ import de.pnku.more_variants_core.util.WoodTypeHolder;
 import io.github.lieonlion.lolmct.init.MctItemInit;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -24,10 +23,11 @@ public abstract class MctItemInitMixin {
 
     @Unique
     private static void registerCraftingTableItemVariants(List<WoodType> woodTypes) {
+        VariantType craftingTableType = VariantType.CRAFTING_TABLE;
         for (WoodType woodType : woodTypes) {
-            BlockItem craftingTableItem = new BlockItem(MoreVariantHolder.getBlock(VariantType.CRAFTING_TABLE, woodType), new Item.Properties());
-            registerItem(woodType.getName() + "_" + VariantType.CRAFTING_TABLE.registrationType(), craftingTableItem, Items.CRAFTING_TABLE);
-            MoreVariantHolder.setItem(VariantType.CRAFTING_TABLE, woodType, craftingTableItem);
+            BlockItem craftingTableItem = new BlockItem(MoreVariantHolder.getBlock(craftingTableType, woodType), new Item.Properties());
+            registerItem(woodType.getName() + "_" + craftingTableType.registrationType(), craftingTableItem, craftingTableType.getVanillaItem());
+            MoreVariantHolder.setItem(craftingTableType, woodType, craftingTableItem);
         }
     }
 

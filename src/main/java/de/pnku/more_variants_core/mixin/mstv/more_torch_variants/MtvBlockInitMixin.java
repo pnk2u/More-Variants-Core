@@ -21,8 +21,6 @@ import java.util.List;
 
 import static de.pnku.more_variants_core.util.MoreVariantHolder.TorchType.REDSTONE_TORCH;
 import static de.pnku.more_variants_core.util.MoreVariantHolder.TorchType.SOUL_TORCH;
-import static de.pnku.more_variants_core.util.MoreVariantHolder.getVanillaTorchBlock;
-import static de.pnku.more_variants_core.util.MoreVariantHolder.getVanillaWallTorchBlock;
 
 @Mixin(MtvBlockInit.class)
 public abstract class MtvBlockInitMixin {
@@ -50,17 +48,18 @@ public abstract class MtvBlockInitMixin {
     private static void registerTorchBlockVariants(List<WoodType> woodTypes) {
         for (WoodType woodType : woodTypes) {
             for (TorchType torchType : TorchType.values()) {
+                Block vanillaTorchBlock = torchType.getVanillaBlock();
                 if (!torchType.isWallTorch()) {
                     Block inputTorchBlock = torchType.equals(REDSTONE_TORCH) ?
-                            new RedstoneTorchBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.REDSTONE_TORCH)) :
-                            new TorchBlock(torchType.getParticleType(), BlockBehaviour.Properties.ofFullCopy(getVanillaTorchBlock(torchType)));
+                            new RedstoneTorchBlock(BlockBehaviour.Properties.ofFullCopy(vanillaTorchBlock)) :
+                            new TorchBlock(torchType.getParticleType(), BlockBehaviour.Properties.ofFullCopy(vanillaTorchBlock));
                     Block torchBlock = registerTorchBlock(woodType.getName() + "_" + torchType.torchName(), inputTorchBlock);
                     MoreVariantHolder.setBlock(torchType, woodType, torchBlock);
                 } else {
                     Block baseTorchBlock = MoreVariantHolder.getBlock(torchType.getBaseTorchType(), woodType);
                     Block inputWallTorchBlock = torchType.getBaseTorchType().equals(REDSTONE_TORCH) ?
-                            new RedstoneWallTorchBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.REDSTONE_WALL_TORCH).dropsLike(baseTorchBlock))
-                            : new WallTorchBlock(torchType.getParticleType(), BlockBehaviour.Properties.ofFullCopy(getVanillaWallTorchBlock(torchType)).dropsLike(baseTorchBlock));
+                            new RedstoneWallTorchBlock(BlockBehaviour.Properties.ofFullCopy(vanillaTorchBlock).dropsLike(baseTorchBlock))
+                            : new WallTorchBlock(torchType.getParticleType(), BlockBehaviour.Properties.ofFullCopy(vanillaTorchBlock).dropsLike(baseTorchBlock));
                     Block wallTorchBlock = registerTorchBlock(woodType.getName() + "_" + torchType.wallTorchName(), inputWallTorchBlock);
                     MoreVariantHolder.setBlock(torchType, woodType, wallTorchBlock);
                 }

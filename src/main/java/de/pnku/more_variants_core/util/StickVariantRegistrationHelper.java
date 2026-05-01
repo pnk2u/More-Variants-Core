@@ -12,12 +12,13 @@ import java.util.List;
 public final class StickVariantRegistrationHelper {
     public static List<Item> registerStickItemVariants(List<WoodType> woodTypes) {
         List<Item> registeredStickItems = new ArrayList<>();
+        VariantType stickType = VariantType.STICK;
         for (WoodType woodType : woodTypes) {
-            if (BuiltInRegistries.ITEM.containsKey(MoreStickVariants.withModId(woodType.getName() + "_" + VariantType.STICK.registrationType()))) {
+            if (BuiltInRegistries.ITEM.containsKey(MoreStickVariants.withModId(woodType.getName() + "_" + stickType.registrationType()))) {
                 continue;
             }
             Item stickItem = new MoreStickVariantItem(woodType.getName(), new Item.Properties());
-            MoreVariantHolder.setItem(VariantType.STICK, woodType, stickItem);
+            MoreVariantHolder.setItem(stickType, woodType, stickItem);
             registeredStickItems.add(stickItem);
         }
         return registeredStickItems;

@@ -28,10 +28,11 @@ public abstract class MoreShieldVariantItemsMixin {
 
     @Unique
     private static void registerShieldItemVariants(List<WoodType> woodTypes) {
+        VariantType shieldType = VariantType.SHIELD;
         for (WoodType woodType : woodTypes) {
             Item shieldItem = new MoreShieldVariantItem(woodType.getName(), setProperties());
             registerShieldItem(shieldItem);
-            MoreVariantHolder.setItem(VariantType.SHIELD, woodType, shieldItem);
+            MoreVariantHolder.setItem(shieldType, woodType, shieldItem);
         }
     }
 

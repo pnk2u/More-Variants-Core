@@ -23,13 +23,14 @@ public abstract class MstBlockInitMixin {
 
     @Unique
     private static void registerSmithingTableBlockVariants(List<WoodType> woodTypes) {
+        VariantType smithingTableType = VariantType.SMITHING_TABLE;
         for (WoodType woodType : woodTypes) {
             Block smithingTableBlock = new MoreSmithingTableBlock(woodType.getMapColor(), woodType.getName());
             registerBlock(smithingTableBlock);
-            MoreVariantHolder.setBlock(VariantType.SMITHING_TABLE, woodType, smithingTableBlock);
+            MoreVariantHolder.setBlock(smithingTableType, woodType, smithingTableBlock);
         }
     }
-    
+
     @Inject(method = "registerBlocks", at = @At("TAIL"), remap = false)
     private static void injectedRegisterBlocksAtTail(CallbackInfo ci) {
         registerSmithingTableBlockVariants(WoodTypeHolder.getWoodTypes());

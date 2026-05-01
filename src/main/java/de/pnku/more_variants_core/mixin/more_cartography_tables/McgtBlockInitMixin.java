@@ -22,10 +22,11 @@ public abstract class McgtBlockInitMixin {
 
     @Unique
     private static void registerCartographyTableBlockVariants(List<WoodType> woodTypes) {
+        VariantType cartographyTableType = VariantType.CARTOGRAPHY_TABLE;
         for (WoodType woodType : woodTypes) {
             MoreCartographyTablesBlock cartographyTable = new MoreCartographyTablesBlock(woodType.getMapColor(), woodType.getName());
             registerBlock(cartographyTable);
-            MoreVariantHolder.setBlock(VariantType.CARTOGRAPHY_TABLE, woodType, cartographyTable);
+            MoreVariantHolder.setBlock(cartographyTableType, woodType, cartographyTable);
         }
     }
 

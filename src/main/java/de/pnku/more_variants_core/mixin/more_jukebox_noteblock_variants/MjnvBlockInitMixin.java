@@ -33,7 +33,7 @@ public abstract class MjnvBlockInitMixin {
                         ? new MoreJukeboxVariantBlock(woodType.getMapColor(), woodType.getName())
                         : new MoreNoteblockVariantBlock(woodType.getMapColor(), woodType.getName());
                 MoreVariantHolder.setBlock(type, woodType, block);
-                if (type == JukeboxNoteblockType.JUKEBOX) {
+                if (JukeboxNoteblockType.JUKEBOX.equals(type)) {
                     registerJukeboxBlock(block);
                 } else {
                     registerNoteblockBlock(block);

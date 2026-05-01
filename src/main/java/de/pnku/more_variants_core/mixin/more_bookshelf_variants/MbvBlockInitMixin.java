@@ -23,10 +23,11 @@ public abstract class MbvBlockInitMixin {
 
     @Unique
     private static void registerBookshelfBlockVariants(List<WoodType> woodTypes) {
+        VariantType bookshelfType = VariantType.BOOKSHELF;
         for (WoodType woodType : woodTypes) {
             Block bookshelfBlock = new MoreBookshelfBlock(woodType.getMapColor());
             registerBlock(woodType.getName() + "_bookshelf", bookshelfBlock);
-            MoreVariantHolder.setBlock(VariantType.BOOKSHELF, woodType, bookshelfBlock);
+            MoreVariantHolder.setBlock(bookshelfType, woodType, bookshelfBlock);
         }
     }
 

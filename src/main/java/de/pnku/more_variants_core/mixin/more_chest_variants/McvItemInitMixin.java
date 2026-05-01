@@ -7,7 +7,6 @@ import de.pnku.more_variants_core.util.WoodTypeHolder;
 import io.github.lieonlion.mcv.init.McvItemInit;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -26,7 +25,7 @@ public abstract class McvItemInitMixin {
     private static void registerChestItemVariants(List<WoodType> woodTypes) {
         for (WoodType woodType : woodTypes) {
             registerItem(createChestItem(ChestType.CHEST, woodType), createChestItem(ChestType.TRAPPED_CHEST, woodType),
-                    Items.CHEST, Items.TRAPPED_CHEST);
+                    ChestType.CHEST.getVanillaItem(), ChestType.TRAPPED_CHEST.getVanillaItem());
         }
     }
 

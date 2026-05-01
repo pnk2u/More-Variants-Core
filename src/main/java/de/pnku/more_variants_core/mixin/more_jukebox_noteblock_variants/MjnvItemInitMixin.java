@@ -7,7 +7,6 @@ import de.pnku.more_variants_core.util.WoodType;
 import de.pnku.more_variants_core.util.WoodTypeHolder;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -30,11 +29,12 @@ public abstract class MjnvItemInitMixin {
         for (WoodType woodType : woodTypes) {
             for (JukeboxNoteblockType type : JukeboxNoteblockType.values()) {
                 BlockItem item = new BlockItem(MoreVariantHolder.getBlock(type, woodType), new Item.Properties());
+                Item vanillaItem = type.getVanillaItem();
                 MoreVariantHolder.setItem(type.variantType(), woodType, item);
-                if (type == JukeboxNoteblockType.JUKEBOX) {
-                    registerJukeboxItem(item, Items.JUKEBOX);
+                if (JukeboxNoteblockType.JUKEBOX.equals(type)) {
+                    registerJukeboxItem(item, vanillaItem);
                 } else {
-                    registerNoteblockItem(item, Items.NOTE_BLOCK);
+                    registerNoteblockItem(item, vanillaItem);
                 }
             }
         }

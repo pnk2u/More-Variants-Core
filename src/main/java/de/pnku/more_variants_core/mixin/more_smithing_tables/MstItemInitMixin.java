@@ -23,10 +23,11 @@ public abstract class MstItemInitMixin {
 
     @Unique
     private static void registerSmithingTableItemVariants(List<WoodType> woodTypes) {
+        VariantType smithingTableType = VariantType.SMITHING_TABLE;
         for (WoodType woodType : woodTypes) {
-            Item smithingTableItem = new BlockItem(MoreVariantHolder.getBlock(VariantType.SMITHING_TABLE, woodType), new Item.Properties());
+            Item smithingTableItem = new BlockItem(MoreVariantHolder.getBlock(smithingTableType, woodType), new Item.Properties());
             registerItem(smithingTableItem);
-            MoreVariantHolder.setItem(VariantType.SMITHING_TABLE, woodType, smithingTableItem);
+            MoreVariantHolder.setItem(smithingTableType, woodType, smithingTableItem);
         }
     }
 

@@ -4,11 +4,9 @@ import de.pnku.more_variants_core.util.MoreVariantHolder;
 import de.pnku.more_variants_core.util.MoreVariantHolder.SmokerType;
 import de.pnku.more_variants_core.util.WoodType;
 import de.pnku.more_variants_core.util.WoodTypeHolder;
-import de.pnku.msmv.init.MsmvItemInit;
 import de.pnku.msmv.init.MsmvMfvItemInit;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -28,7 +26,7 @@ public abstract class MsmvMfvItemInitMixin {
         for (WoodType woodType : woodTypes) {
             for (SmokerType smokerType : smokerTypes) {
                 BlockItem smokerItem = new BlockItem(MoreVariantHolder.getBlock(smokerType, woodType), new Item.Properties());
-                registerMfvSmokerItem(smokerItem, Items.SMOKER);
+                registerMfvSmokerItem(smokerItem, smokerType.getVanillaItem());
                 MoreVariantHolder.setItem(smokerType, woodType, smokerItem);
             }
         }

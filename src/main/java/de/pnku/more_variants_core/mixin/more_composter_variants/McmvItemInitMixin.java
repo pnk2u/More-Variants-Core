@@ -2,12 +2,11 @@ package de.pnku.more_variants_core.mixin.more_composter_variants;
 
 import de.pnku.mcmv.init.McmvItemInit;
 import de.pnku.more_variants_core.util.MoreVariantHolder;
-import de.pnku.more_variants_core.util.WoodType;
 import de.pnku.more_variants_core.util.MoreVariantHolder.VariantType;
+import de.pnku.more_variants_core.util.WoodType;
 import de.pnku.more_variants_core.util.WoodTypeHolder;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -24,10 +23,11 @@ public abstract class McmvItemInitMixin {
 
     @Unique
     private static void registerComposterItemVariants(List<WoodType> woodTypes) {
+        VariantType composterType = VariantType.COMPOSTER;
         for (WoodType woodType : woodTypes) {
-            BlockItem composterItem = new BlockItem(MoreVariantHolder.getBlock(VariantType.COMPOSTER, woodType), new Item.Properties());
-            registerItem(composterItem, Items.COMPOSTER);
-            MoreVariantHolder.setItem(VariantType.COMPOSTER, woodType, composterItem);
+            BlockItem composterItem = new BlockItem(MoreVariantHolder.getBlock(composterType, woodType), new Item.Properties());
+            registerItem(composterItem, composterType.getVanillaItem());
+            MoreVariantHolder.setItem(composterType, woodType, composterItem);
         }
     }
 

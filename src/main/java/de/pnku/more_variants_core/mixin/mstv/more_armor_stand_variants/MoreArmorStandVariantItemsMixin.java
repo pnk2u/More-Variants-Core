@@ -7,7 +7,6 @@ import de.pnku.more_variants_core.util.WoodTypeHolder;
 import de.pnku.mstv_masv.item.MoreArmorStandVariantItem;
 import de.pnku.mstv_masv.item.MoreArmorStandVariantItems;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -24,10 +23,11 @@ public abstract class MoreArmorStandVariantItemsMixin {
 
     @Unique
     private static void registerArmorStandItemVariants(List<WoodType> woodTypes) {
+        VariantType armorStandType = VariantType.ARMOR_STAND;
         for (WoodType woodType : woodTypes) {
             Item armorStandItem = new MoreArmorStandVariantItem(woodType.getName(), new Item.Properties().stacksTo(16));
-            registerArmorStandItem(armorStandItem, Items.ARMOR_STAND);
-            MoreVariantHolder.setItem(VariantType.ARMOR_STAND, woodType, armorStandItem);
+            registerArmorStandItem(armorStandItem, armorStandType.getVanillaItem());
+            MoreVariantHolder.setItem(armorStandType, woodType, armorStandItem);
         }
     }
 

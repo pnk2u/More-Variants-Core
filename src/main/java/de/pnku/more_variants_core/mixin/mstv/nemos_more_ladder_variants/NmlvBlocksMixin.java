@@ -6,7 +6,6 @@ import de.pnku.more_variants_core.util.WoodType;
 import de.pnku.more_variants_core.util.WoodTypeHolder;
 import de.pnku.nemosmoreladdervariants.init.NmlvBlocks;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LadderBlock;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -16,6 +15,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.List;
+import java.util.Objects;
 
 @Mixin(NmlvBlocks.class)
 public abstract class NmlvBlocksMixin {
@@ -26,9 +26,10 @@ public abstract class NmlvBlocksMixin {
 
     @Unique
     private static void registerLadderBlockVariants(List<WoodType> woodTypes) {
+        VariantType ladderType = VariantType.LADDER;
         for (WoodType woodType : woodTypes) {
-            Block ladderBlock = registerLadderBlock(woodType.getName() + "_" + VariantType.LADDER.registrationType(), new LadderBlock(Block.Properties.ofFullCopy(Blocks.LADDER)));
-            MoreVariantHolder.setBlock(VariantType.LADDER, woodType, ladderBlock);
+            Block ladderBlock = registerLadderBlock(woodType.getName() + "_" + ladderType.registrationType(), new LadderBlock(Block.Properties.ofFullCopy(Objects.requireNonNull(ladderType.getVanillaBlock()))));
+            MoreVariantHolder.setBlock(ladderType, woodType, ladderBlock);
         }
     }
 

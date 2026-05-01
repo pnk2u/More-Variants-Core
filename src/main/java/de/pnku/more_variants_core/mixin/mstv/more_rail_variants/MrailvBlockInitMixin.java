@@ -7,7 +7,10 @@ import de.pnku.more_variants_core.util.WoodTypeHolder;
 import de.pnku.mstv_mrailv.init.MrailvBlockInit;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.DetectorRailBlock;
+import net.minecraft.world.level.block.PoweredRailBlock;
+import net.minecraft.world.level.block.RailBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -18,7 +21,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.List;
 
-import static de.pnku.more_variants_core.util.MoreVariantHolder.RailType.*;
+import static de.pnku.more_variants_core.util.MoreVariantHolder.RailType.DETECTOR_RAIL;
+import static de.pnku.more_variants_core.util.MoreVariantHolder.RailType.RAIL;
 
 @Mixin(MrailvBlockInit.class)
 public abstract class MrailvBlockInitMixin {
@@ -62,14 +66,14 @@ public abstract class MrailvBlockInitMixin {
 
     @Unique
     private static Block createInputRailBlock(RailType railType) {
+        Block vanillaRailBlock = railType.getVanillaBlock();
         if (railType == RAIL) {
-            return new RailBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.RAIL));
+            return new RailBlock(BlockBehaviour.Properties.ofFullCopy(vanillaRailBlock));
         }
         if (railType == DETECTOR_RAIL) {
-            return new DetectorRailBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DETECTOR_RAIL));
+            return new DetectorRailBlock(BlockBehaviour.Properties.ofFullCopy(vanillaRailBlock));
         }
-        Block vanillaRail = railType == ACTIVATOR_RAIL ? Blocks.ACTIVATOR_RAIL : Blocks.POWERED_RAIL;
-        return new PoweredRailBlock(BlockBehaviour.Properties.ofFullCopy(vanillaRail));
+        return new PoweredRailBlock(BlockBehaviour.Properties.ofFullCopy(vanillaRailBlock));
     }
 
     @Inject(method = "registerRail", at = @At("HEAD"), remap = false)

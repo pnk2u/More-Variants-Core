@@ -7,7 +7,6 @@ import de.pnku.more_variants_core.util.WoodType;
 import de.pnku.more_variants_core.util.WoodTypeHolder;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -24,10 +23,11 @@ public abstract class MbhvItemInitMixin {
 
     @Unique
     private static void registerBeehiveItemVariants(List<WoodType> woodTypes) {
+        VariantType beehiveType = VariantType.BEEHIVE;
         for (WoodType woodType : woodTypes) {
-            BlockItem beehiveItem = new BlockItem(MoreVariantHolder.getBlock(VariantType.BEEHIVE, woodType), new Item.Properties());
-            registerBeehiveItem(beehiveItem, Items.BEEHIVE);
-            MoreVariantHolder.setItem(VariantType.BEEHIVE, woodType, beehiveItem);
+            BlockItem beehiveItem = new BlockItem(MoreVariantHolder.getBlock(beehiveType, woodType), new Item.Properties());
+            registerBeehiveItem(beehiveItem, beehiveType.getVanillaItem());
+            MoreVariantHolder.setItem(beehiveType, woodType, beehiveItem);
         }
     }
 

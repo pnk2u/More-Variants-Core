@@ -26,9 +26,10 @@ public abstract class MoreBarrelItemsMixin {
     @Unique
     private static List<Item> registerBarrelItemVariants(List<WoodType> woodTypes) {
         List<Item> barrelItems = new ArrayList<>();
+        VariantType barrelType = VariantType.BARREL;
         for (WoodType woodType : woodTypes) {
-            Item barrelItem = new BlockItem(MoreVariantHolder.getBlock(VariantType.BARREL, woodType), new Item.Properties());
-            MoreVariantHolder.setItem(VariantType.BARREL, woodType, barrelItem);
+            Item barrelItem = new BlockItem(MoreVariantHolder.getBlock(barrelType, woodType), new Item.Properties());
+            MoreVariantHolder.setItem(barrelType, woodType, barrelItem);
             barrelItems.add(barrelItem);
         }
         return barrelItems;

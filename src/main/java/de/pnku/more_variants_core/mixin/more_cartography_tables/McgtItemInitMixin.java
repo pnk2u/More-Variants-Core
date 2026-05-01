@@ -7,7 +7,6 @@ import de.pnku.more_variants_core.util.WoodType;
 import de.pnku.more_variants_core.util.WoodTypeHolder;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -24,10 +23,11 @@ public abstract class McgtItemInitMixin {
 
     @Unique
     private static void registerCartographyTableItemVariants(List<WoodType> woodTypes) {
+        VariantType cartographyTableType = VariantType.CARTOGRAPHY_TABLE;
         for (WoodType woodType : woodTypes) {
-            BlockItem cartographyTableItem = new BlockItem(MoreVariantHolder.getBlock(VariantType.CARTOGRAPHY_TABLE, woodType), new Item.Properties());
-            registerItem(cartographyTableItem, Items.CARTOGRAPHY_TABLE);
-            MoreVariantHolder.setItem(VariantType.CARTOGRAPHY_TABLE, woodType, cartographyTableItem);
+            BlockItem cartographyTableItem = new BlockItem(MoreVariantHolder.getBlock(cartographyTableType, woodType), new Item.Properties());
+            registerItem(cartographyTableItem, cartographyTableType.getVanillaItem());
+            MoreVariantHolder.setItem(cartographyTableType, woodType, cartographyTableItem);
         }
     }
 

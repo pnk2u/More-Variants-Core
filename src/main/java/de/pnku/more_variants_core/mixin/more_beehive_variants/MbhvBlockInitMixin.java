@@ -20,17 +20,18 @@ public abstract class MbhvBlockInitMixin {
     @Shadow
     private static void registerBeehiveBlock(MoreBeehiveVariantBlock beehiveBlock) {}
 
-    @Inject(method = "registerBeehiveBlocks", at = @At("TAIL"), remap = false)
-    private static void injectedRegisterBeehiveBlocksAtTail(CallbackInfo ci) {
-        registerBeehiveBlockVariants(WoodTypeHolder.getWoodTypes());
-    }
-
     @Unique
     private static void registerBeehiveBlockVariants(List<WoodType> woodTypes) {
+        VariantType beehiveType = VariantType.BEEHIVE;
         for (WoodType woodType : woodTypes) {
             MoreBeehiveVariantBlock beehiveBlock = new MoreBeehiveVariantBlock(woodType.getMapColor(), woodType.getName());
             registerBeehiveBlock(beehiveBlock);
-            MoreVariantHolder.setBlock(VariantType.BEEHIVE, woodType, beehiveBlock);
+            MoreVariantHolder.setBlock(beehiveType, woodType, beehiveBlock);
         }
+    }
+
+    @Inject(method = "registerBeehiveBlocks", at = @At("TAIL"), remap = false)
+    private static void injectedRegisterBeehiveBlocksAtTail(CallbackInfo ci) {
+        registerBeehiveBlockVariants(WoodTypeHolder.getWoodTypes());
     }
 }
