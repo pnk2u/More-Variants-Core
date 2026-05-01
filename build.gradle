@@ -34,6 +34,7 @@ repositories {
 		name = 'SomethingSketchy' // EveryCompat, Moonlight
 		url = "https://registry.somethingcatchy.net/repository/maven-releases/"
 	}
+	mavenLocal()
 }
 
 loom {
@@ -133,10 +134,12 @@ dependencies {
 	modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_api_version}"
 
-	// Vanilla Backport
-	modCompileOnly modLocalRuntime("maven.modrinth:vanillabackport:${project.vanillabackport_version_id}")
-	modCompileOnly modLocalRuntime("maven.modrinth:platform:${project.platform_version_id}")
-	include(implementation(annotationProcessor("com.github.bawnorton.mixinsquared:mixinsquared-fabric:0.3.7-beta.1")))
+	// More Variants: Pale Oak Backport
+		modLocalRuntime("de.pnku:MoreVariantsPaleOakBackport:1.0.0+1.21(.1)-Fabric")
+		// Vanilla Backport
+		modLocalRuntime("maven.modrinth:vanillabackport:${project.vanillabackport_version_id}")
+		modLocalRuntime("maven.modrinth:platform:${project.platform_version_id}")
+		include(implementation(annotationProcessor("com.github.bawnorton.mixinsquared:mixinsquared-fabric:0.3.7-beta.1")))
 
 	// More Variants
 		// Quad
