@@ -3,10 +3,11 @@ package de.pnku.more_variants_core.mixin.mstv.more_fishing_rod_variants;
 import de.pnku.more_variants_core.util.MoreVariantHolder;
 import de.pnku.more_variants_core.util.MoreVariantHolder.RodType;
 import de.pnku.more_variants_core.util.MoreVariantHolder.VariantType;
-import de.pnku.more_variants_core.util.StickVariantRegistrationHelper;
 import de.pnku.more_variants_core.util.WoodType;
 import de.pnku.more_variants_core.util.WoodTypeHolder;
 import de.pnku.mstv_mfrv.item.MoreFishingRodVariantItems;
+import net.fabricmc.fabric.api.event.registry.RegistryEntryAddedCallback;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.Item;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -34,22 +35,23 @@ public abstract class MoreFishingRodVariantItemsMixin {
     @Unique
     private static void registerFishingRodItemVariants(List<WoodType> woodTypes) {
         for (WoodType woodType : woodTypes) {
-            Item stickItem = MoreVariantHolder.getItem(VariantType.STICK, woodType);
-            if (stickItem == null) {
-                StickVariantRegistrationHelper.registerStickItemVariants(WoodTypeHolder.getWoodTypes());
-            }
             for (RodType rodType : RodType.values()) {
                 Item rodItem = createRodItem(rodType.entityType(), woodType.getName());
                 Item vanillaRodItem = rodType.getVanillaItem();
-                if (RodType.WARPED_FUNGUS_ON_A_STICK.equals(rodType)) {
-                    registerWarpedFungusOnAStickItem(rodItem, vanillaRodItem, stickItem);
-                } else if (RodType.CARROT_ON_A_STICK.equals(rodType)) {
-                    registerCarrotOnAStickItem(rodItem, vanillaRodItem, stickItem);
-                } else if (RodType.FISHING_ROD.equals(rodType)) {
-                    registerFishingRodItem(rodItem, vanillaRodItem, stickItem);
-                } else {
-                    throw new IllegalStateException("Unexpected RodType: " + rodType);
-                }
+                RegistryEntryAddedCallback.event(BuiltInRegistries.ITEM).register((rawId, id, item) -> {
+                        if (id.getPath().equals(woodType.getName() + "_" + VariantType.STICK.registrationType())) {
+                            Item stickItem = MoreVariantHolder.getItem(VariantType.STICK, woodType, true);
+                            if (RodType.WARPED_FUNGUS_ON_A_STICK.equals(rodType)) {
+                                registerWarpedFungusOnAStickItem(rodItem, vanillaRodItem, stickItem);
+                            } else if (RodType.CARROT_ON_A_STICK.equals(rodType)) {
+                                registerCarrotOnAStickItem(rodItem, vanillaRodItem, stickItem);
+                            } else if (RodType.FISHING_ROD.equals(rodType)) {
+                                registerFishingRodItem(rodItem, vanillaRodItem, stickItem);
+                            } else {
+                                throw new IllegalStateException("Unexpected RodType: " + rodType);
+                        }
+                    }
+                });
                 MoreVariantHolder.setItem(rodType, woodType, rodItem);
             }
         }
