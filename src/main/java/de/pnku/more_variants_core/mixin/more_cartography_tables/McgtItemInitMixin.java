@@ -22,17 +22,17 @@ public abstract class McgtItemInitMixin {
     @Shadow
     private static void registerItem(BlockItem cartographyTable, Item cartographyTableAfter) {}
 
-    @Inject(method = "registerItems", at = @At("TAIL"), remap = false)
-    private static void injectedRegisterCartographyTableItemsAtTail(CallbackInfo ci) {
-        registerCartographyTableItemVariants(WoodTypeHolder.getWoodTypes());
-    }
-
     @Unique
     private static void registerCartographyTableItemVariants(List<WoodType> woodTypes) {
         for (WoodType woodType : woodTypes) {
-            BlockItem cartographyTableItem = new BlockItem(MoreVariantHolder.getBlock(MoreVariantHolder.VariantType.CARTOGRAPHY_TABLE, woodType), new Item.Properties());
+            BlockItem cartographyTableItem = new BlockItem(MoreVariantHolder.getBlock(VariantType.CARTOGRAPHY_TABLE, woodType), new Item.Properties());
             registerItem(cartographyTableItem, Items.CARTOGRAPHY_TABLE);
             MoreVariantHolder.setItem(VariantType.CARTOGRAPHY_TABLE, woodType, cartographyTableItem);
         }
+    }
+
+    @Inject(method = "registerItems", at = @At("TAIL"), remap = false)
+    private static void injectedRegisterCartographyTableItemsAtTail(CallbackInfo ci) {
+        registerCartographyTableItemVariants(WoodTypeHolder.getWoodTypes());
     }
 }
