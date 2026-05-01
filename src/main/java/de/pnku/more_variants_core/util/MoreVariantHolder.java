@@ -259,15 +259,18 @@ public final class MoreVariantHolder {
     public static void setBlock(IVariantType type, WoodType woodType, Block block) {
         VariantType variantType = typeToVariantType(type);
         IVariantSubType variantSubType = typeToVariantSubType(type);
-        blocksFor(variantType, woodType).put(requireSubtype(variantSubType), block);
+        blocksFor(variantType, woodType).putIfAbsent(requireSubtype(variantSubType), block);
     }
 
     public static Block getBlock(IVariantType type, WoodType woodType) {
+        return getBlock(type, woodType, false);
+    }
+    public static Block getBlock(IVariantType type, WoodType woodType, boolean allowNull) {
         VariantType variantType = typeToVariantType(type);
         IVariantSubType variantSubType = typeToVariantSubType(type);
         Block block = blocksFor(variantType, woodType).get(requireSubtype(variantSubType));
-        if (block == null) {
-            throw new IllegalStateException("Tried to get block for variantType '" + variantType + "', wood type '" + woodType + "' and subtype: " + variantSubType
+        if (block == null && !allowNull) {
+            throw new IllegalStateException("Tried to get block for variantType '" + variantType + "', wood type '" + woodType.getName() + "' and subtype: " + variantSubType
                     + " but it has not been registered");
         }
         return block;
@@ -276,15 +279,18 @@ public final class MoreVariantHolder {
     public static void setItem(IVariantType type, WoodType woodType, Item item) {
         VariantType variantType = typeToVariantType(type);
         IVariantSubType variantSubType = typeToVariantSubType(type);
-        itemsFor(variantType, woodType).put(requireSubtype(variantSubType), item);
+        itemsFor(variantType, woodType).putIfAbsent(requireSubtype(variantSubType), item);
     }
 
     public static Item getItem(IVariantType type, WoodType woodType) {
+        return getItem(type, woodType, false);
+    }
+    public static Item getItem(IVariantType type, WoodType woodType, boolean allowNull) {
         VariantType variantType = typeToVariantType(type);
         IVariantSubType variantSubType = typeToVariantSubType(type);
         Item item = itemsFor(variantType, woodType).get(requireSubtype(variantSubType));
-        if (item == null) {
-            throw new IllegalStateException("Tried to get item for variantType '" + variantType + "', wood type '" + woodType + "' and subtype: " + variantSubType
+        if (item == null && !allowNull) {
+            throw new IllegalStateException("Tried to get item for variantType '" + variantType + "', wood type '" + woodType.getName() + "' and subtype: " + variantSubType
                     + " but it has not been registered");
         }
         return item;
