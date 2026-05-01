@@ -209,8 +209,8 @@ dependencies {
 			//modCompileOnly("maven.modrinth:moonlight:${moonlight_version}-fabric")
 			//modCompileOnly("maven.modrinth:every-compat:${every_compat_version}-fabric")
 		// Testing
-		modRuntimeOnly("maven.modrinth:wilder-wild:${wilder_wild_version}-mc${project.minecraft_version}")
-		modRuntimeOnly("maven.modrinth:frozenlib:${frozen_lib_version}-mc${project.minecraft_version}")
+		modRuntimeOnly("maven.modrinth:wilder-wild:${wilder_wild_version}")
+		modRuntimeOnly("maven.modrinth:frozenlib:${frozenlib_version}")
 
 
 }
