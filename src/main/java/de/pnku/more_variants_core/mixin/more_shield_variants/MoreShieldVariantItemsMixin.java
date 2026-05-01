@@ -3,9 +3,9 @@ package de.pnku.more_variants_core.mixin.more_shield_variants;
 import de.pnku.lolmsv.item.MoreShieldVariantItem;
 import de.pnku.lolmsv.item.MoreShieldVariantItems;
 import de.pnku.more_variants_core.util.MoreVariantHolder;
-import de.pnku.more_variants_core.util.MoreVariantHolder.VariantType;
-import de.pnku.more_variants_core.util.WoodType;
-import de.pnku.more_variants_core.util.WoodTypeHolder;
+import de.pnku.more_variants_core.util.MoreVariantHolder.MoreVariantType;
+import de.pnku.more_variants_core.util.MoreVariantWoodType;
+import de.pnku.more_variants_core.util.MoreVariantWoodTypeHolder;
 import net.minecraft.world.item.Item;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -27,9 +27,9 @@ public abstract class MoreShieldVariantItemsMixin {
     }
 
     @Unique
-    private static void registerShieldItemVariants(List<WoodType> woodTypes) {
-        VariantType shieldType = VariantType.SHIELD;
-        for (WoodType woodType : woodTypes) {
+    private static void registerShieldItemVariants(List<MoreVariantWoodType> woodTypes) {
+        MoreVariantHolder.MoreVariantType shieldType = MoreVariantType.SHIELD;
+        for (MoreVariantWoodType woodType : woodTypes) {
             Item shieldItem = new MoreShieldVariantItem(woodType.getName(), setProperties());
             registerShieldItem(shieldItem);
             MoreVariantHolder.setItem(shieldType, woodType, shieldItem);
@@ -38,6 +38,6 @@ public abstract class MoreShieldVariantItemsMixin {
 
     @Inject(method = "registerShieldItems", at = @At("TAIL"), remap = false)
     private static void injectedRegisterShieldItemsAtTail(CallbackInfo ci) {
-        registerShieldItemVariants(WoodTypeHolder.getWoodTypes());
+        registerShieldItemVariants(MoreVariantWoodTypeHolder.getWoodTypes());
     }
 }

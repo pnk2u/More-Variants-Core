@@ -1,9 +1,9 @@
 package de.pnku.more_variants_core.mixin.more_bookshelf_variants;
 
 import de.pnku.more_variants_core.util.MoreVariantHolder;
-import de.pnku.more_variants_core.util.MoreVariantHolder.VariantType;
-import de.pnku.more_variants_core.util.WoodType;
-import de.pnku.more_variants_core.util.WoodTypeHolder;
+import de.pnku.more_variants_core.util.MoreVariantHolder.MoreVariantType;
+import de.pnku.more_variants_core.util.MoreVariantWoodType;
+import de.pnku.more_variants_core.util.MoreVariantWoodTypeHolder;
 import io.github.lieonlion.lolmbv.init.MbvItemInit;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -22,9 +22,9 @@ public abstract class MbvItemInitMixin {
     public static void registerItem(String name, Item item, Item after) {}
 
     @Unique
-    private static void registerBookshelfItemVariants(List<WoodType> woodTypes) {
-        VariantType bookshelfType = VariantType.BOOKSHELF;
-        for (WoodType woodType : woodTypes) {
+    private static void registerBookshelfItemVariants(List<MoreVariantWoodType> woodTypes) {
+        MoreVariantType bookshelfType = MoreVariantType.BOOKSHELF;
+        for (MoreVariantWoodType woodType : woodTypes) {
             Item bookshelfItem = new BlockItem(MoreVariantHolder.getBlock(bookshelfType, woodType), new Item.Properties());
             registerItem(woodType.getName() + "_bookshelf", bookshelfItem, bookshelfType.getVanillaItem());
             MoreVariantHolder.setItem(bookshelfType, woodType, bookshelfItem);
@@ -33,6 +33,6 @@ public abstract class MbvItemInitMixin {
 
     @Inject(method = "registerItems", at = @At("TAIL"), remap = false)
     private static void injectedRegisterItemsAtTail(CallbackInfo ci) {
-        registerBookshelfItemVariants(WoodTypeHolder.getWoodTypes());
+        registerBookshelfItemVariants(MoreVariantWoodTypeHolder.getWoodTypes());
     }
 }

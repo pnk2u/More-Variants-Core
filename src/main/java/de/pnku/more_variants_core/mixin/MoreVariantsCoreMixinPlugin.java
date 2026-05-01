@@ -1,6 +1,5 @@
 package de.pnku.more_variants_core.mixin;
 
-import de.pnku.more_variants_core.util.MixinDependencyResolver;
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
@@ -12,7 +11,7 @@ public class MoreVariantsCoreMixinPlugin implements IMixinConfigPlugin {
 
     @Override
     public void onLoad(String mixinPackage) {
-        MixinDependencyResolver.init();
+        MoreVariantsCoreMixinDependencyResolver.init();
     }
 
     @Override
@@ -22,7 +21,7 @@ public class MoreVariantsCoreMixinPlugin implements IMixinConfigPlugin {
 
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-        return MixinDependencyResolver.shouldApplyMixin(mixinClassName, false);
+        return MoreVariantsCoreMixinDependencyResolver.shouldApplyMixin(mixinClassName, false);
     }
 
     @Override

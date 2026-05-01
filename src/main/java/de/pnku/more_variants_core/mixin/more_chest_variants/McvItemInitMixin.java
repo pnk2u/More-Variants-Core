@@ -2,8 +2,8 @@ package de.pnku.more_variants_core.mixin.more_chest_variants;
 
 import de.pnku.more_variants_core.util.MoreVariantHolder;
 import de.pnku.more_variants_core.util.MoreVariantHolder.ChestType;
-import de.pnku.more_variants_core.util.WoodType;
-import de.pnku.more_variants_core.util.WoodTypeHolder;
+import de.pnku.more_variants_core.util.MoreVariantWoodType;
+import de.pnku.more_variants_core.util.MoreVariantWoodTypeHolder;
 import io.github.lieonlion.mcv.init.McvItemInit;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -22,8 +22,8 @@ public abstract class McvItemInitMixin {
     private static void registerItem(BlockItem chest, BlockItem trappedChest, Item chestAfter, Item trappedChestAfter) {}
 
     @Unique
-    private static void registerChestItemVariants(List<WoodType> woodTypes) {
-        for (WoodType woodType : woodTypes) {
+    private static void registerChestItemVariants(List<MoreVariantWoodType> woodTypes) {
+        for (MoreVariantWoodType woodType : woodTypes) {
             registerItem(createChestItem(ChestType.CHEST, woodType), createChestItem(ChestType.TRAPPED_CHEST, woodType),
                     ChestType.CHEST.getVanillaItem(), ChestType.TRAPPED_CHEST.getVanillaItem());
         }
@@ -31,11 +31,11 @@ public abstract class McvItemInitMixin {
 
     @Inject(method = "registerItems", at = @At("TAIL"), remap = false)
     private static void injectedRegisterItemsAtHead(CallbackInfo ci) {
-        registerChestItemVariants(WoodTypeHolder.getWoodTypes());
+        registerChestItemVariants(MoreVariantWoodTypeHolder.getWoodTypes());
     }
 
     @Unique
-    private static BlockItem createChestItem(ChestType chestType, WoodType woodType) {
+    private static BlockItem createChestItem(ChestType chestType, MoreVariantWoodType woodType) {
         BlockItem chestItem = new BlockItem(MoreVariantHolder.getBlock(chestType, woodType), new Item.Properties());
         MoreVariantHolder.setItem(chestType, woodType, chestItem);
         return chestItem;

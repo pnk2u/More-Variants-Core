@@ -1,9 +1,9 @@
 package de.pnku.more_variants_core.mixin.mstv.more_armor_stand_variants;
 
 import de.pnku.more_variants_core.util.MoreVariantHolder;
-import de.pnku.more_variants_core.util.MoreVariantHolder.VariantType;
-import de.pnku.more_variants_core.util.WoodType;
-import de.pnku.more_variants_core.util.WoodTypeHolder;
+import de.pnku.more_variants_core.util.MoreVariantHolder.MoreVariantType;
+import de.pnku.more_variants_core.util.MoreVariantWoodType;
+import de.pnku.more_variants_core.util.MoreVariantWoodTypeHolder;
 import de.pnku.mstv_masv.item.MoreArmorStandVariantItem;
 import de.pnku.mstv_masv.item.MoreArmorStandVariantItems;
 import net.minecraft.world.item.Item;
@@ -22,9 +22,9 @@ public abstract class MoreArmorStandVariantItemsMixin {
     private static void registerArmorStandItem(Item armorStandItem, Item armorStandAfter) {}
 
     @Unique
-    private static void registerArmorStandItemVariants(List<WoodType> woodTypes) {
-        VariantType armorStandType = VariantType.ARMOR_STAND;
-        for (WoodType woodType : woodTypes) {
+    private static void registerArmorStandItemVariants(List<MoreVariantWoodType> woodTypes) {
+        MoreVariantHolder.MoreVariantType armorStandType = MoreVariantType.ARMOR_STAND;
+        for (MoreVariantWoodType woodType : woodTypes) {
             Item armorStandItem = new MoreArmorStandVariantItem(woodType.getName(), new Item.Properties().stacksTo(16));
             registerArmorStandItem(armorStandItem, armorStandType.getVanillaItem());
             MoreVariantHolder.setItem(armorStandType, woodType, armorStandItem);
@@ -33,6 +33,6 @@ public abstract class MoreArmorStandVariantItemsMixin {
 
     @Inject(method = "registerArmorStandItems", at = @At("TAIL"), remap = false)
     private static void injectedRegisterArmorStandItemsAtTail(CallbackInfo ci) {
-        registerArmorStandItemVariants(WoodTypeHolder.getWoodTypes());
+        registerArmorStandItemVariants(MoreVariantWoodTypeHolder.getWoodTypes());
     }
 }

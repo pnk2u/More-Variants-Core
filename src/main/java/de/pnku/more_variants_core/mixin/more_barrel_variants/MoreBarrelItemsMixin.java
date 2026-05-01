@@ -2,9 +2,9 @@ package de.pnku.more_variants_core.mixin.more_barrel_variants;
 
 import de.pnku.more_barrel_variants.init.MoreBarrelItems;
 import de.pnku.more_variants_core.util.MoreVariantHolder;
-import de.pnku.more_variants_core.util.MoreVariantHolder.VariantType;
-import de.pnku.more_variants_core.util.WoodType;
-import de.pnku.more_variants_core.util.WoodTypeHolder;
+import de.pnku.more_variants_core.util.MoreVariantHolder.MoreVariantType;
+import de.pnku.more_variants_core.util.MoreVariantWoodType;
+import de.pnku.more_variants_core.util.MoreVariantWoodTypeHolder;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import org.spongepowered.asm.mixin.*;
@@ -24,10 +24,10 @@ public abstract class MoreBarrelItemsMixin {
     public static List<Item> more_barrels;
 
     @Unique
-    private static List<Item> registerBarrelItemVariants(List<WoodType> woodTypes) {
+    private static List<Item> registerBarrelItemVariants(List<MoreVariantWoodType> woodTypes) {
         List<Item> barrelItems = new ArrayList<>();
-        VariantType barrelType = VariantType.BARREL;
-        for (WoodType woodType : woodTypes) {
+        MoreVariantType barrelType = MoreVariantHolder.MoreVariantType.BARREL;
+        for (MoreVariantWoodType woodType : woodTypes) {
             Item barrelItem = new BlockItem(MoreVariantHolder.getBlock(barrelType, woodType), new Item.Properties());
             MoreVariantHolder.setItem(barrelType, woodType, barrelItem);
             barrelItems.add(barrelItem);
@@ -39,6 +39,6 @@ public abstract class MoreBarrelItemsMixin {
     @Inject(method = "registerItems", at = @At(value = "HEAD"), remap = false)
     private static void injectedRegisterSticksAtHead(CallbackInfo ci) {
         more_barrels = new ArrayList<>(more_barrels);
-        more_barrels.addAll(registerBarrelItemVariants(WoodTypeHolder.getWoodTypes()));
+        more_barrels.addAll(registerBarrelItemVariants(MoreVariantWoodTypeHolder.getWoodTypes()));
     }
 }

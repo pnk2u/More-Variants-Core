@@ -3,8 +3,8 @@ package de.pnku.more_variants_core.mixin.more_bed_variants;
 import de.pnku.mbdv.init.MbdvItemInit;
 import de.pnku.more_variants_core.util.MoreVariantHolder;
 import de.pnku.more_variants_core.util.MoreVariantHolder.BedColorType;
-import de.pnku.more_variants_core.util.WoodType;
-import de.pnku.more_variants_core.util.WoodTypeHolder;
+import de.pnku.more_variants_core.util.MoreVariantWoodType;
+import de.pnku.more_variants_core.util.MoreVariantWoodTypeHolder;
 import net.minecraft.world.item.BedItem;
 import net.minecraft.world.item.Item;
 import org.spongepowered.asm.mixin.Final;
@@ -30,8 +30,8 @@ public abstract class MbdvItemInitMixin {
     private static void registerOtherBedItem(Item otherBed) {}
 
     @Unique
-    private static void registerBedItemVariants(List<WoodType> woodTypes) {
-        for (WoodType woodType : woodTypes) {
+    private static void registerBedItemVariants(List<MoreVariantWoodType> woodTypes) {
+        for (MoreVariantWoodType woodType : woodTypes) {
             for (BedColorType colorType : BedColorType.values()) {
                 Item bedItem = new BedItem(MoreVariantHolder.getBlock(colorType, woodType), bedProperties);
                 if (colorType == BedColorType.WHITE) {
@@ -46,6 +46,6 @@ public abstract class MbdvItemInitMixin {
 
     @Inject(method = "registerBedItems", at = @At("TAIL"), remap = false)
     private static void injectedRegisterBedItems(CallbackInfo ci) {
-        registerBedItemVariants(WoodTypeHolder.getWoodTypes());
+        registerBedItemVariants(MoreVariantWoodTypeHolder.getWoodTypes());
     }
 }

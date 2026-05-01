@@ -2,9 +2,9 @@ package de.pnku.more_variants_core.mixin.more_beehive_variants;
 
 import de.pnku.mbhv.init.MbhvItemInit;
 import de.pnku.more_variants_core.util.MoreVariantHolder;
-import de.pnku.more_variants_core.util.MoreVariantHolder.VariantType;
-import de.pnku.more_variants_core.util.WoodType;
-import de.pnku.more_variants_core.util.WoodTypeHolder;
+import de.pnku.more_variants_core.util.MoreVariantHolder.MoreVariantType;
+import de.pnku.more_variants_core.util.MoreVariantWoodType;
+import de.pnku.more_variants_core.util.MoreVariantWoodTypeHolder;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import org.spongepowered.asm.mixin.Mixin;
@@ -22,9 +22,9 @@ public abstract class MbhvItemInitMixin {
     private static void registerBeehiveItem(BlockItem beehiveItem, Item beehiveAfter) {}
 
     @Unique
-    private static void registerBeehiveItemVariants(List<WoodType> woodTypes) {
-        VariantType beehiveType = VariantType.BEEHIVE;
-        for (WoodType woodType : woodTypes) {
+    private static void registerBeehiveItemVariants(List<MoreVariantWoodType> woodTypes) {
+        MoreVariantType beehiveType = MoreVariantType.BEEHIVE;
+        for (MoreVariantWoodType woodType : woodTypes) {
             BlockItem beehiveItem = new BlockItem(MoreVariantHolder.getBlock(beehiveType, woodType), new Item.Properties());
             registerBeehiveItem(beehiveItem, beehiveType.getVanillaItem());
             MoreVariantHolder.setItem(beehiveType, woodType, beehiveItem);
@@ -33,6 +33,6 @@ public abstract class MbhvItemInitMixin {
 
     @Inject(method = "registerBeehiveItems", at = @At("TAIL"), remap = false)
     private static void injectedRegisterBeehiveItemsAtTail(CallbackInfo ci) {
-        registerBeehiveItemVariants(WoodTypeHolder.getWoodTypes());
+        registerBeehiveItemVariants(MoreVariantWoodTypeHolder.getWoodTypes());
     }
 }

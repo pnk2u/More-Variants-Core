@@ -1,9 +1,8 @@
 package de.pnku.more_variants_core.mixin.mstv.nemos_more_ladder_variants;
 
 import de.pnku.more_variants_core.util.MoreVariantHolder;
-import de.pnku.more_variants_core.util.MoreVariantHolder.VariantType;
-import de.pnku.more_variants_core.util.WoodType;
-import de.pnku.more_variants_core.util.WoodTypeHolder;
+import de.pnku.more_variants_core.util.MoreVariantWoodType;
+import de.pnku.more_variants_core.util.MoreVariantWoodTypeHolder;
 import de.pnku.nemosmoreladdervariants.init.NmlvItems;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -24,9 +23,9 @@ public abstract class NmlvItemsMixin {
     }
 
     @Unique
-    private static void registerLadderItemVariants(List<WoodType> woodTypes) {
-        VariantType ladderType = VariantType.LADDER;
-        for (WoodType woodType : woodTypes) {
+    private static void registerLadderItemVariants(List<MoreVariantWoodType> woodTypes) {
+        MoreVariantHolder.MoreVariantType ladderType = MoreVariantHolder.MoreVariantType.LADDER;
+        for (MoreVariantWoodType woodType : woodTypes) {
             Item ladderItem = registerLadderBlockItem(woodType.getName() + "_" + ladderType.registrationType(), MoreVariantHolder.getBlock(ladderType, woodType));
             MoreVariantHolder.setItem(ladderType, woodType, ladderItem);
         }
@@ -34,6 +33,6 @@ public abstract class NmlvItemsMixin {
 
     @Inject(method = "register", at = @At(value = "HEAD"), remap = false)
     private static void injectedRegisterLadderItemsAtHead(CallbackInfo ci) {
-        registerLadderItemVariants(WoodTypeHolder.getWoodTypes());
+        registerLadderItemVariants(MoreVariantWoodTypeHolder.getWoodTypes());
     }
 }

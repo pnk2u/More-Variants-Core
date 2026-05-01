@@ -1,9 +1,9 @@
 package de.pnku.more_variants_core.mixin.more_smithing_tables;
 
 import de.pnku.more_variants_core.util.MoreVariantHolder;
-import de.pnku.more_variants_core.util.MoreVariantHolder.VariantType;
-import de.pnku.more_variants_core.util.WoodType;
-import de.pnku.more_variants_core.util.WoodTypeHolder;
+import de.pnku.more_variants_core.util.MoreVariantHolder.MoreVariantType;
+import de.pnku.more_variants_core.util.MoreVariantWoodType;
+import de.pnku.more_variants_core.util.MoreVariantWoodTypeHolder;
 import de.pnku.mst.init.MstItemInit;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -22,9 +22,9 @@ public abstract class MstItemInitMixin {
     private static void registerItem(Item smithingTableItem) {}
 
     @Unique
-    private static void registerSmithingTableItemVariants(List<WoodType> woodTypes) {
-        VariantType smithingTableType = VariantType.SMITHING_TABLE;
-        for (WoodType woodType : woodTypes) {
+    private static void registerSmithingTableItemVariants(List<MoreVariantWoodType> woodTypes) {
+        MoreVariantType smithingTableType = MoreVariantType.SMITHING_TABLE;
+        for (MoreVariantWoodType woodType : woodTypes) {
             Item smithingTableItem = new BlockItem(MoreVariantHolder.getBlock(smithingTableType, woodType), new Item.Properties());
             registerItem(smithingTableItem);
             MoreVariantHolder.setItem(smithingTableType, woodType, smithingTableItem);
@@ -33,6 +33,6 @@ public abstract class MstItemInitMixin {
 
     @Inject(method = "registerItems", at = @At("TAIL"), remap = false)
     private static void injectedRegisterItemsAtTail(CallbackInfo ci) {
-        registerSmithingTableItemVariants(WoodTypeHolder.getWoodTypes());
+        registerSmithingTableItemVariants(MoreVariantWoodTypeHolder.getWoodTypes());
     }
 }

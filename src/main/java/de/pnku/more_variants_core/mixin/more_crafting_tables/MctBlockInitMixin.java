@@ -1,9 +1,8 @@
 package de.pnku.more_variants_core.mixin.more_crafting_tables;
 
 import de.pnku.more_variants_core.util.MoreVariantHolder;
-import de.pnku.more_variants_core.util.MoreVariantHolder.VariantType;
-import de.pnku.more_variants_core.util.WoodType;
-import de.pnku.more_variants_core.util.WoodTypeHolder;
+import de.pnku.more_variants_core.util.MoreVariantWoodType;
+import de.pnku.more_variants_core.util.MoreVariantWoodTypeHolder;
 import io.github.lieonlion.lolmct.block.MoreCraftingTableBlock;
 import io.github.lieonlion.lolmct.init.MctBlockInit;
 import net.minecraft.world.level.block.Block;
@@ -23,9 +22,9 @@ public abstract class MctBlockInitMixin {
 
 
     @Unique
-    private static void registerCraftingTableVariants(List<WoodType> woodTypes) {
-        VariantType craftingTableType = VariantType.CRAFTING_TABLE;
-        for (WoodType woodType : woodTypes) {
+    private static void registerCraftingTableVariants(List<MoreVariantWoodType> woodTypes) {
+        MoreVariantHolder.MoreVariantType craftingTableType = MoreVariantHolder.MoreVariantType.CRAFTING_TABLE;
+        for (MoreVariantWoodType woodType : woodTypes) {
             MoreCraftingTableBlock craftingTableBlock = new MoreCraftingTableBlock(woodType.getMapColor());
             registerBlock(woodType.getName() + "_" + craftingTableType.registrationType(), craftingTableBlock);
             MoreVariantHolder.setBlock(craftingTableType, woodType, craftingTableBlock);
@@ -34,6 +33,6 @@ public abstract class MctBlockInitMixin {
 
     @Inject(method = "registerBlocks", at = @At("TAIL"), remap = false)
     private static void injectedRegisterBlocksAtHead(CallbackInfo ci) {
-        registerCraftingTableVariants(WoodTypeHolder.getWoodTypes());
+        registerCraftingTableVariants(MoreVariantWoodTypeHolder.getWoodTypes());
     }
 }

@@ -2,8 +2,8 @@ package de.pnku.more_variants_core.mixin.more_smoker_variants;
 
 import de.pnku.more_variants_core.util.MoreVariantHolder;
 import de.pnku.more_variants_core.util.MoreVariantHolder.SmokerType;
-import de.pnku.more_variants_core.util.WoodType;
-import de.pnku.more_variants_core.util.WoodTypeHolder;
+import de.pnku.more_variants_core.util.MoreVariantWoodType;
+import de.pnku.more_variants_core.util.MoreVariantWoodTypeHolder;
 import de.pnku.msmv.block.MoreSmokerVariantBlock;
 import de.pnku.msmv.init.MsmvBlockInit;
 import org.spongepowered.asm.mixin.Mixin;
@@ -21,8 +21,8 @@ public abstract class MsmvBlockInitMixin {
     private static void registerSmokerBlock(MoreSmokerVariantBlock smoker) {}
 
     @Unique
-    private static void registerSmokerBlockVariants(List<WoodType> woodTypes, SmokerType[] smokerTypes) {
-        for (WoodType woodType : woodTypes) {
+    private static void registerSmokerBlockVariants(List<MoreVariantWoodType> woodTypes, SmokerType[] smokerTypes) {
+        for (MoreVariantWoodType woodType : woodTypes) {
             for (SmokerType smokerType : smokerTypes) {
                 MoreSmokerVariantBlock smokerBlock = new MoreSmokerVariantBlock(woodType.getMapColor(), woodType.getName(), smokerType.registrationType());
                 registerSmokerBlock(smokerBlock);
@@ -33,11 +33,11 @@ public abstract class MsmvBlockInitMixin {
 
     @Inject(method = "registerSmokerBlocks", at = @At(value = "HEAD"), remap = false)
     private static void injectedRegisterSmokerBlocksAtTail(CallbackInfo ci) {
-        registerSmokerBlockVariants(WoodTypeHolder.getWoodTypes(), SmokerType.values());
+        registerSmokerBlockVariants(MoreVariantWoodTypeHolder.getWoodTypes(), SmokerType.values());
     }
 
     @Inject(method = "registerCobblestoneSmokerBlocks", at = @At(value = "HEAD"), remap = false)
     private static void injectedRegisterCobblestoneSmokerBlocksAtTail(CallbackInfo ci) {
-        registerSmokerBlockVariants(WoodTypeHolder.getWoodTypes(), new SmokerType[]{SmokerType.COBBLESTONE});
+        registerSmokerBlockVariants(MoreVariantWoodTypeHolder.getWoodTypes(), new SmokerType[]{SmokerType.COBBLESTONE});
     }
 }

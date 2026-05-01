@@ -2,8 +2,8 @@ package de.pnku.more_variants_core.mixin.mstv.more_rail_variants;
 
 import de.pnku.more_variants_core.util.MoreVariantHolder;
 import de.pnku.more_variants_core.util.MoreVariantHolder.RailType;
-import de.pnku.more_variants_core.util.WoodType;
-import de.pnku.more_variants_core.util.WoodTypeHolder;
+import de.pnku.more_variants_core.util.MoreVariantWoodType;
+import de.pnku.more_variants_core.util.MoreVariantWoodTypeHolder;
 import de.pnku.mstv_mrailv.init.MrailvBlockInit;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -42,8 +42,8 @@ public abstract class MrailvBlockInitMixin {
     }
 
     @Unique
-    private static void registerRailBlockVariants(List<WoodType> woodTypes) {
-        for (WoodType woodType : woodTypes) {
+    private static void registerRailBlockVariants(List<MoreVariantWoodType> woodTypes) {
+        for (MoreVariantWoodType woodType : woodTypes) {
             for (RailType railType : RailType.values()) {
                 Block inputRailBlock = createInputRailBlock(railType);
                 Block railBlock = railType == RAIL
@@ -55,8 +55,8 @@ public abstract class MrailvBlockInitMixin {
     }
 
     @Unique
-    private static void registerPaleOakRailItemVariants(List<WoodType> woodTypes) {
-        for (WoodType woodType : woodTypes) {
+    private static void registerPaleOakRailItemVariants(List<MoreVariantWoodType> woodTypes) {
+        for (MoreVariantWoodType woodType : woodTypes) {
             for (RailType railType : RailType.values()) {
                 Item railItem = registerRailItem(woodType.getName(), new BlockItem(MoreVariantHolder.getBlock(railType, woodType), new Item.Properties()), railType.registrationType());
                 MoreVariantHolder.setItem(railType, woodType, railItem);
@@ -78,7 +78,7 @@ public abstract class MrailvBlockInitMixin {
 
     @Inject(method = "registerRail", at = @At("HEAD"), remap = false)
     private static void injectedRegisterRailAtHead(CallbackInfo ci) {
-        List<WoodType> woodTypes = WoodTypeHolder.getWoodTypes();
+        List<MoreVariantWoodType> woodTypes = MoreVariantWoodTypeHolder.getWoodTypes();
         registerRailBlockVariants(woodTypes);
         registerPaleOakRailItemVariants(woodTypes);
     }

@@ -5,8 +5,8 @@ import de.pnku.mjnv.block.MoreNoteblockVariantBlock;
 import de.pnku.mjnv.init.MjnvBlockInit;
 import de.pnku.more_variants_core.util.MoreVariantHolder;
 import de.pnku.more_variants_core.util.MoreVariantHolder.JukeboxNoteblockType;
-import de.pnku.more_variants_core.util.WoodType;
-import de.pnku.more_variants_core.util.WoodTypeHolder;
+import de.pnku.more_variants_core.util.MoreVariantWoodType;
+import de.pnku.more_variants_core.util.MoreVariantWoodTypeHolder;
 import net.minecraft.world.level.block.Block;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -26,8 +26,8 @@ public abstract class MjnvBlockInitMixin {
     private static void registerNoteblockBlock(Block noteblock) {}
 
     @Unique
-    private static void registerJukeboxNoteblockBlockVariants(List<WoodType> woodTypes) {
-        for (WoodType woodType : woodTypes) {
+    private static void registerJukeboxNoteblockBlockVariants(List<MoreVariantWoodType> woodTypes) {
+        for (MoreVariantWoodType woodType : woodTypes) {
             for (JukeboxNoteblockType type : JukeboxNoteblockType.values()) {
                 Block block = JukeboxNoteblockType.JUKEBOX.equals(type)
                         ? new MoreJukeboxVariantBlock(woodType.getMapColor(), woodType.getName())
@@ -44,6 +44,6 @@ public abstract class MjnvBlockInitMixin {
 
     @Inject(method = "registerJukeboxNoteblockBlocks", at = @At("TAIL"), remap = false)
     private static void injectedRegisterJukeboxNoteblockBlocksAtTail(CallbackInfo ci) {
-        registerJukeboxNoteblockBlockVariants(WoodTypeHolder.getWoodTypes());
+        registerJukeboxNoteblockBlockVariants(MoreVariantWoodTypeHolder.getWoodTypes());
     }
 }

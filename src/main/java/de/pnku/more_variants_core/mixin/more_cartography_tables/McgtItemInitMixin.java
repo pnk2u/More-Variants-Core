@@ -2,9 +2,9 @@ package de.pnku.more_variants_core.mixin.more_cartography_tables;
 
 import de.pnku.mcgt.init.McgtItemInit;
 import de.pnku.more_variants_core.util.MoreVariantHolder;
-import de.pnku.more_variants_core.util.MoreVariantHolder.VariantType;
-import de.pnku.more_variants_core.util.WoodType;
-import de.pnku.more_variants_core.util.WoodTypeHolder;
+import de.pnku.more_variants_core.util.MoreVariantHolder.MoreVariantType;
+import de.pnku.more_variants_core.util.MoreVariantWoodType;
+import de.pnku.more_variants_core.util.MoreVariantWoodTypeHolder;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import org.spongepowered.asm.mixin.Mixin;
@@ -22,9 +22,9 @@ public abstract class McgtItemInitMixin {
     private static void registerItem(BlockItem cartographyTable, Item cartographyTableAfter) {}
 
     @Unique
-    private static void registerCartographyTableItemVariants(List<WoodType> woodTypes) {
-        VariantType cartographyTableType = VariantType.CARTOGRAPHY_TABLE;
-        for (WoodType woodType : woodTypes) {
+    private static void registerCartographyTableItemVariants(List<MoreVariantWoodType> woodTypes) {
+        MoreVariantType cartographyTableType = MoreVariantType.CARTOGRAPHY_TABLE;
+        for (MoreVariantWoodType woodType : woodTypes) {
             BlockItem cartographyTableItem = new BlockItem(MoreVariantHolder.getBlock(cartographyTableType, woodType), new Item.Properties());
             registerItem(cartographyTableItem, cartographyTableType.getVanillaItem());
             MoreVariantHolder.setItem(cartographyTableType, woodType, cartographyTableItem);
@@ -33,6 +33,6 @@ public abstract class McgtItemInitMixin {
 
     @Inject(method = "registerItems", at = @At("TAIL"), remap = false)
     private static void injectedRegisterCartographyTableItemsAtTail(CallbackInfo ci) {
-        registerCartographyTableItemVariants(WoodTypeHolder.getWoodTypes());
+        registerCartographyTableItemVariants(MoreVariantWoodTypeHolder.getWoodTypes());
     }
 }

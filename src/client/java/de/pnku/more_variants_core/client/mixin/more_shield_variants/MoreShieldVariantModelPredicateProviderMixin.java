@@ -2,9 +2,9 @@ package de.pnku.more_variants_core.client.mixin.more_shield_variants;
 
 import de.pnku.lolmsv.item.MoreShieldVariantModelPredicateProvider;
 import de.pnku.more_variants_core.util.MoreVariantHolder;
-import de.pnku.more_variants_core.util.MoreVariantHolder.VariantType;
-import de.pnku.more_variants_core.util.WoodType;
-import de.pnku.more_variants_core.util.WoodTypeHolder;
+import de.pnku.more_variants_core.util.MoreVariantHolder.MoreVariantType;
+import de.pnku.more_variants_core.util.MoreVariantWoodType;
+import de.pnku.more_variants_core.util.MoreVariantWoodTypeHolder;
 import net.minecraft.world.item.Item;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -23,14 +23,14 @@ public abstract class MoreShieldVariantModelPredicateProviderMixin {
     }
 
     @Unique
-    private static void registerShieldVariantModelPredicateProviders(List<WoodType> woodTypes) {
-        for (WoodType woodType : woodTypes) {
-            registerShield(MoreVariantHolder.getItem(VariantType.SHIELD, woodType));
+    private static void registerShieldVariantModelPredicateProviders(List<MoreVariantWoodType> woodTypes) {
+        for (MoreVariantWoodType woodType : woodTypes) {
+            registerShield(MoreVariantHolder.getItem(MoreVariantType.SHIELD, woodType));
         }
     }
 
     @Inject(method = "registerMoreShieldVariantItemModelPredicates", at = @At("HEAD"), remap = false)
     private static void injectedRegisterMoreShieldVariantItemModelPredicatesAtHead(CallbackInfo ci) {
-        registerShieldVariantModelPredicateProviders(WoodTypeHolder.getWoodTypes());
+        registerShieldVariantModelPredicateProviders(MoreVariantWoodTypeHolder.getWoodTypes());
     }
 }

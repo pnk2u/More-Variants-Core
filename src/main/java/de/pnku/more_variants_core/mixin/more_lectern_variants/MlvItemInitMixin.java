@@ -2,9 +2,9 @@ package de.pnku.more_variants_core.mixin.more_lectern_variants;
 
 import de.pnku.mlv.init.MlvItemInit;
 import de.pnku.more_variants_core.util.MoreVariantHolder;
-import de.pnku.more_variants_core.util.MoreVariantHolder.VariantType;
-import de.pnku.more_variants_core.util.WoodType;
-import de.pnku.more_variants_core.util.WoodTypeHolder;
+import de.pnku.more_variants_core.util.MoreVariantHolder.MoreVariantType;
+import de.pnku.more_variants_core.util.MoreVariantWoodType;
+import de.pnku.more_variants_core.util.MoreVariantWoodTypeHolder;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import org.spongepowered.asm.mixin.Mixin;
@@ -22,9 +22,9 @@ public abstract class MlvItemInitMixin {
     private static void registerItem(BlockItem lectern, Item lecternAfter) {}
 
     @Unique
-    private static void registerLecternItemVariants(List<WoodType> woodTypes) {
-        VariantType lecternType = VariantType.LECTERN;
-        for (WoodType woodType : woodTypes) {
+    private static void registerLecternItemVariants(List<MoreVariantWoodType> woodTypes) {
+        MoreVariantType lecternType = MoreVariantHolder.MoreVariantType.LECTERN;
+        for (MoreVariantWoodType woodType : woodTypes) {
             BlockItem lecternItem = new BlockItem(MoreVariantHolder.getBlock(lecternType, woodType), new Item.Properties());
             registerItem(lecternItem, lecternType.getVanillaItem());
             MoreVariantHolder.setItem(lecternType, woodType, lecternItem);
@@ -33,6 +33,6 @@ public abstract class MlvItemInitMixin {
 
     @Inject(method = "registerItems", at = @At("TAIL"), remap = false)
     private static void injectedRegisterItemsAtTail(CallbackInfo ci) {
-        registerLecternItemVariants(WoodTypeHolder.getWoodTypes());
+        registerLecternItemVariants(MoreVariantWoodTypeHolder.getWoodTypes());
     }
 }

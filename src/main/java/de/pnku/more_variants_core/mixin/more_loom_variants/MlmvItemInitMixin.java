@@ -2,9 +2,9 @@ package de.pnku.more_variants_core.mixin.more_loom_variants;
 
 import de.pnku.mlmv.init.MlmvItemInit;
 import de.pnku.more_variants_core.util.MoreVariantHolder;
-import de.pnku.more_variants_core.util.MoreVariantHolder.VariantType;
-import de.pnku.more_variants_core.util.WoodType;
-import de.pnku.more_variants_core.util.WoodTypeHolder;
+import de.pnku.more_variants_core.util.MoreVariantHolder.MoreVariantType;
+import de.pnku.more_variants_core.util.MoreVariantWoodType;
+import de.pnku.more_variants_core.util.MoreVariantWoodTypeHolder;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import org.spongepowered.asm.mixin.Mixin;
@@ -22,9 +22,9 @@ public abstract class MlmvItemInitMixin {
     private static void registerItem(BlockItem loom, Item loomAfter) {}
 
     @Unique
-    private static void registerLoomItemVariants(List<WoodType> woodTypes) {
-        VariantType loomType = VariantType.LOOM;
-        for (WoodType woodType : woodTypes) {
+    private static void registerLoomItemVariants(List<MoreVariantWoodType> woodTypes) {
+        MoreVariantType loomType = MoreVariantType.LOOM;
+        for (MoreVariantWoodType woodType : woodTypes) {
             BlockItem loomItem = new BlockItem(MoreVariantHolder.getBlock(loomType, woodType), new Item.Properties());
             registerItem(loomItem, loomType.getVanillaItem());
             MoreVariantHolder.setItem(loomType, woodType, loomItem);
@@ -33,6 +33,6 @@ public abstract class MlmvItemInitMixin {
 
     @Inject(method = "registerItems", at = @At("TAIL"), remap = false)
     private static void injectedRegisterItemsAtTail(CallbackInfo ci) {
-        registerLoomItemVariants(WoodTypeHolder.getWoodTypes());
+        registerLoomItemVariants(MoreVariantWoodTypeHolder.getWoodTypes());
     }
 }

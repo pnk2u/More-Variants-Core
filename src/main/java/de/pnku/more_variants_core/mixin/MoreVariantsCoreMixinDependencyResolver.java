@@ -1,4 +1,4 @@
-package de.pnku.more_variants_core.util;
+package de.pnku.more_variants_core.mixin;
 
 import net.fabricmc.loader.api.FabricLoader;
 
@@ -8,8 +8,8 @@ import java.util.Map;
 import static de.pnku.more_variants_core.MoreVariantsCore.found_mod_ids;
 import static de.pnku.more_variants_core.MoreVariantsCore.LOGGER;
 
-public final class MixinDependencyResolver {
-    private MixinDependencyResolver() {}
+public final class MoreVariantsCoreMixinDependencyResolver {
+    private MoreVariantsCoreMixinDependencyResolver() {}
     public static Map<String, String> MIXIN_PACKAGE_TO_MOD_ID = new HashMap<>();
 
     public static void init() {

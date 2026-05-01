@@ -2,9 +2,8 @@ package de.pnku.more_variants_core.mixin.more_composter_variants;
 
 import de.pnku.mcmv.init.McmvItemInit;
 import de.pnku.more_variants_core.util.MoreVariantHolder;
-import de.pnku.more_variants_core.util.MoreVariantHolder.VariantType;
-import de.pnku.more_variants_core.util.WoodType;
-import de.pnku.more_variants_core.util.WoodTypeHolder;
+import de.pnku.more_variants_core.util.MoreVariantWoodType;
+import de.pnku.more_variants_core.util.MoreVariantWoodTypeHolder;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import org.spongepowered.asm.mixin.Mixin;
@@ -22,9 +21,9 @@ public abstract class McmvItemInitMixin {
     private static void registerItem(BlockItem composter, Item composterAfter) {}
 
     @Unique
-    private static void registerComposterItemVariants(List<WoodType> woodTypes) {
-        VariantType composterType = VariantType.COMPOSTER;
-        for (WoodType woodType : woodTypes) {
+    private static void registerComposterItemVariants(List<MoreVariantWoodType> woodTypes) {
+        MoreVariantHolder.MoreVariantType composterType = MoreVariantHolder.MoreVariantType.COMPOSTER;
+        for (MoreVariantWoodType woodType : woodTypes) {
             BlockItem composterItem = new BlockItem(MoreVariantHolder.getBlock(composterType, woodType), new Item.Properties());
             registerItem(composterItem, composterType.getVanillaItem());
             MoreVariantHolder.setItem(composterType, woodType, composterItem);
@@ -33,6 +32,6 @@ public abstract class McmvItemInitMixin {
 
     @Inject(method = "registerItems", at = @At("TAIL"), remap = false)
     private static void injectedRegisterCrafterItemsAtTail(CallbackInfo ci) {
-        registerComposterItemVariants(WoodTypeHolder.getWoodTypes());
+        registerComposterItemVariants(MoreVariantWoodTypeHolder.getWoodTypes());
     }
 }

@@ -2,8 +2,8 @@ package de.pnku.more_variants_core.mixin.more_chest_variants;
 
 import de.pnku.more_variants_core.util.MoreVariantHolder;
 import de.pnku.more_variants_core.util.MoreVariantHolder.ChestType;
-import de.pnku.more_variants_core.util.WoodType;
-import de.pnku.more_variants_core.util.WoodTypeHolder;
+import de.pnku.more_variants_core.util.MoreVariantWoodType;
+import de.pnku.more_variants_core.util.MoreVariantWoodTypeHolder;
 import io.github.lieonlion.mcv.block.MoreChestBlock;
 import io.github.lieonlion.mcv.block.MoreTrappedChestBlock;
 import io.github.lieonlion.mcv.init.McvBlockInit;
@@ -22,26 +22,26 @@ public abstract class McvBlockInitMixin {
     private static void registerBlock(MoreChestBlock chest, MoreTrappedChestBlock trappedChest) {}
 
     @Unique
-    private static void registerChestBlockVariants(List<WoodType> woodTypes) {
-        for (WoodType woodType : woodTypes) {
+    private static void registerChestBlockVariants(List<MoreVariantWoodType> woodTypes) {
+        for (MoreVariantWoodType woodType : woodTypes) {
             registerBlock(createChestVariant(woodType), createTrappedChestVariant(woodType));
         }
     }
 
     @Inject(method = "registerBlocks", at = @At("HEAD"), remap = false)
     private static void injectedRegisterBlocksAtHead(CallbackInfo ci) {
-        registerChestBlockVariants(WoodTypeHolder.getWoodTypes());
+        registerChestBlockVariants(MoreVariantWoodTypeHolder.getWoodTypes());
     }
 
     @Unique
-    private static MoreChestBlock createChestVariant(WoodType woodType) {
+    private static MoreChestBlock createChestVariant(MoreVariantWoodType woodType) {
         MoreChestBlock chestBlock = new MoreChestBlock(woodType.getMapColor(), woodType.getName());
         MoreVariantHolder.setBlock(ChestType.CHEST, woodType, chestBlock);
         return chestBlock;
     }
 
     @Unique
-    private static MoreTrappedChestBlock createTrappedChestVariant(WoodType woodType) {
+    private static MoreTrappedChestBlock createTrappedChestVariant(MoreVariantWoodType woodType) {
         MoreTrappedChestBlock trappedChestBlock = new MoreTrappedChestBlock(woodType.getMapColor(), woodType.getName());
         MoreVariantHolder.setBlock(ChestType.TRAPPED_CHEST, woodType, trappedChestBlock);
         return trappedChestBlock;

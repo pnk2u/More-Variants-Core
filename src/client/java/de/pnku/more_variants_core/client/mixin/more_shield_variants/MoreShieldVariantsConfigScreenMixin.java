@@ -2,9 +2,9 @@ package de.pnku.more_variants_core.client.mixin.more_shield_variants;
 
 import de.pnku.lolmsv.config.MoreShieldVariantsConfig;
 import de.pnku.lolmsv.config.MoreShieldVariantsConfigScreen;
-import de.pnku.more_variants_core.client.util.MoreVariantShieldConfigAccessor;
-import de.pnku.more_variants_core.util.WoodType;
-import de.pnku.more_variants_core.util.WoodTypeHolder;
+import de.pnku.more_variants_core.client.util.MoreShieldVariantConfigAccessor;
+import de.pnku.more_variants_core.util.MoreVariantWoodType;
+import de.pnku.more_variants_core.util.MoreVariantWoodTypeHolder;
 import me.shedaniel.clothconfig2.api.AbstractConfigListEntry;
 import me.shedaniel.clothconfig2.api.ConfigBuilder;
 import me.shedaniel.clothconfig2.api.ConfigCategory;
@@ -26,14 +26,14 @@ public abstract class MoreShieldVariantsConfigScreenMixin {
             return;
         }
 
-        List<WoodType> woodTypes = WoodTypeHolder.getWoodTypes();
-        for (WoodType woodType : woodTypes) {
+        List<MoreVariantWoodType> woodTypes = MoreVariantWoodTypeHolder.getWoodTypes();
+        for (MoreVariantWoodType woodType : woodTypes) {
             ConfigCategory shieldTexture = configBuilder.getOrCreateCategory(
                     Component.translatable("config.category.moreshieldvariants.shieldTexture")
             );
             String woodTypeAsCamel = CaseUtils.toCamelCase(woodType.getName(), false, '_');
 
-            MoreVariantShieldConfigAccessor configAccess = (MoreVariantShieldConfigAccessor) MoreShieldVariantsConfig.getInstance();
+            MoreShieldVariantConfigAccessor configAccess = (MoreShieldVariantConfigAccessor) MoreShieldVariantsConfig.getInstance();
             AbstractConfigListEntry<?> variantEntry = configBuilder.entryBuilder()
                     .startBooleanToggle(
                             Component.translatable("config.shieldTexture_option.moreshieldvariants." + woodTypeAsCamel + "UseCustom"),

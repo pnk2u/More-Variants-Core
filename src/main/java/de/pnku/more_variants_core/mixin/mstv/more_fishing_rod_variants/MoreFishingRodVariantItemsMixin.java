@@ -2,9 +2,9 @@ package de.pnku.more_variants_core.mixin.mstv.more_fishing_rod_variants;
 
 import de.pnku.more_variants_core.util.MoreVariantHolder;
 import de.pnku.more_variants_core.util.MoreVariantHolder.RodType;
-import de.pnku.more_variants_core.util.MoreVariantHolder.VariantType;
-import de.pnku.more_variants_core.util.WoodType;
-import de.pnku.more_variants_core.util.WoodTypeHolder;
+import de.pnku.more_variants_core.util.MoreVariantHolder.MoreVariantType;
+import de.pnku.more_variants_core.util.MoreVariantWoodType;
+import de.pnku.more_variants_core.util.MoreVariantWoodTypeHolder;
 import de.pnku.mstv_mfrv.item.MoreFishingRodVariantItems;
 import net.fabricmc.fabric.api.event.registry.RegistryEntryAddedCallback;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -33,14 +33,14 @@ public abstract class MoreFishingRodVariantItemsMixin {
     private static void registerWarpedFungusOnAStickItem(Item warpedFungusOnAStickItem, Item warpedFungusOnAStickAfter, Item stickItem) {}
 
     @Unique
-    private static void registerFishingRodItemVariants(List<WoodType> woodTypes) {
-        for (WoodType woodType : woodTypes) {
+    private static void registerFishingRodItemVariants(List<MoreVariantWoodType> woodTypes) {
+        for (MoreVariantWoodType woodType : woodTypes) {
             for (RodType rodType : RodType.values()) {
                 Item rodItem = createRodItem(rodType.entityType(), woodType.getName());
                 Item vanillaRodItem = rodType.getVanillaItem();
                 RegistryEntryAddedCallback.event(BuiltInRegistries.ITEM).register((rawId, id, item) -> {
-                        if (id.getPath().equals(woodType.getName() + "_" + VariantType.STICK.registrationType())) {
-                            Item stickItem = MoreVariantHolder.getItem(VariantType.STICK, woodType, true);
+                        if (id.getPath().equals(woodType.getName() + "_" + MoreVariantType.STICK.registrationType())) {
+                            Item stickItem = MoreVariantHolder.getItem(MoreVariantHolder.MoreVariantType.STICK, woodType, true);
                             if (RodType.WARPED_FUNGUS_ON_A_STICK.equals(rodType)) {
                                 registerWarpedFungusOnAStickItem(rodItem, vanillaRodItem, stickItem);
                             } else if (RodType.CARROT_ON_A_STICK.equals(rodType)) {
@@ -59,7 +59,7 @@ public abstract class MoreFishingRodVariantItemsMixin {
 
     @Inject(method = "registerRodItems", at = @At(value = "TAIL", remap = false))
     private static void injectedRegisterRodItemsAtHead(CallbackInfo ci) {
-        registerFishingRodItemVariants(WoodTypeHolder.getWoodTypes());
+        registerFishingRodItemVariants(MoreVariantWoodTypeHolder.getWoodTypes());
     }
 
 }

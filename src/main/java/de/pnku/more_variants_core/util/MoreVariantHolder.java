@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public final class MoreVariantHolder {
-    public enum VariantType implements IVariantType {
+    public enum MoreVariantType implements IMoreVariantType {
         BARREL(Blocks.BARREL, Items.BARREL),
         BED(Blocks.WHITE_BED, Items.WHITE_BED),
         BEEHIVE(Blocks.BEEHIVE, Items.BEEHIVE),
@@ -47,7 +47,7 @@ public final class MoreVariantHolder {
         private final Block vanillaBlock;
         private final Item vanillaItem;
 
-        VariantType(Block vanillaBlock, Item vanillaItem) {
+        MoreVariantType(Block vanillaBlock, Item vanillaItem) {
             this.vanillaBlock = vanillaBlock;
             this.vanillaItem = vanillaItem;
         }
@@ -63,15 +63,15 @@ public final class MoreVariantHolder {
         }
     }
 
-    public interface IVariantSubType extends IVariantType {
-        VariantType variantType();
+    public interface IMoreVariantSubType extends IMoreVariantType {
+        MoreVariantType variantType();
     }
-    public enum DefaultSubtype implements IVariantSubType {
+    public enum DefaultSubtype implements IMoreVariantSubType {
         DEFAULT;
         public String registrationType() {
             throw new UnsupportedOperationException("DefaultSubtype does not have a registration type");
         }
-        public VariantType variantType() {
+        public MoreVariantType variantType() {
             throw new UnsupportedOperationException("DefaultSubtype does not have a variant type");
         }
         public Block getVanillaBlock() {
@@ -81,7 +81,7 @@ public final class MoreVariantHolder {
             throw new UnsupportedOperationException("DefaultSubtype does not have a vanilla item");
         }
     }
-    public enum BedColorType implements IVariantSubType {
+    public enum BedColorType implements IMoreVariantSubType {
         RED(DyeColor.RED, Blocks.RED_BED, Items.RED_BED),
         BLACK(DyeColor.BLACK, Blocks.BLACK_BED, Items.BLACK_BED),
         WHITE(DyeColor.WHITE, Blocks.WHITE_BED, Items.WHITE_BED),
@@ -115,8 +115,8 @@ public final class MoreVariantHolder {
         public String registrationType() {
             return this.name().toLowerCase();
         }
-        public VariantType variantType() {
-            return VariantType.BED;
+        public MoreVariantType variantType() {
+            return MoreVariantType.BED;
         }
         public Block getVanillaBlock() {
             return vanillaBlock;
@@ -125,7 +125,7 @@ public final class MoreVariantHolder {
             return vanillaItem;
         }
     }
-    public enum ChestType implements IVariantSubType {
+    public enum ChestType implements IMoreVariantSubType {
         CHEST(Blocks.CHEST, Items.CHEST),
         TRAPPED_CHEST(Blocks.TRAPPED_CHEST, Items.TRAPPED_CHEST);
 
@@ -138,8 +138,8 @@ public final class MoreVariantHolder {
         }
 
         public String registrationType() {return this.name().toLowerCase();}
-        public VariantType variantType() {
-            return VariantType.CHEST;
+        public MoreVariantType variantType() {
+            return MoreVariantType.CHEST;
         }
         public Block getVanillaBlock() {
             return vanillaBlock;
@@ -148,7 +148,7 @@ public final class MoreVariantHolder {
             return vanillaItem;
         }
     }
-    public enum SmokerType implements IVariantSubType {
+    public enum SmokerType implements IMoreVariantSubType {
         COBBLESTONE,
         DEEPSLATE,
         BLACKSTONE;
@@ -157,8 +157,8 @@ public final class MoreVariantHolder {
         public String registrationType() {
             return this.name().toLowerCase();
         }
-        public VariantType variantType() {
-            return VariantType.SMOKER;
+        public MoreVariantType variantType() {
+            return MoreVariantType.SMOKER;
         }
         public Block getVanillaBlock() {
             return this.variantType().getVanillaBlock();
@@ -168,7 +168,7 @@ public final class MoreVariantHolder {
         }
     }
 
-    public enum RailType implements IVariantSubType {
+    public enum RailType implements IMoreVariantSubType {
         RAIL("", Blocks.RAIL, Items.RAIL),
         ACTIVATOR_RAIL("activator", Blocks.ACTIVATOR_RAIL, Items.ACTIVATOR_RAIL),
         DETECTOR_RAIL("detector", Blocks.DETECTOR_RAIL, Items.DETECTOR_RAIL),
@@ -187,8 +187,8 @@ public final class MoreVariantHolder {
         public String registrationType() {
             return registrationType;
         }
-        public VariantType variantType() {
-            return VariantType.RAIL;
+        public MoreVariantType variantType() {
+            return MoreVariantType.RAIL;
         }
         public Block getVanillaBlock() {
             return vanillaBlock;
@@ -198,7 +198,7 @@ public final class MoreVariantHolder {
         }
     }
 
-    public enum TorchType implements IVariantSubType {
+    public enum TorchType implements IMoreVariantSubType {
         TORCH("torch", "wall_torch", Blocks.TORCH, Items.TORCH),
         WALL_TORCH(TORCH, Blocks.WALL_TORCH),
         SOUL_TORCH("soul_torch", "soul_wall_torch", Blocks.SOUL_TORCH, Items.SOUL_TORCH),
@@ -248,8 +248,8 @@ public final class MoreVariantHolder {
         public String registrationType() {
             return torchName;
         }
-        public VariantType variantType() {
-            return VariantType.TORCH;
+        public MoreVariantType variantType() {
+            return MoreVariantType.TORCH;
         }
         public Block getVanillaBlock() {
             return vanillaBlock;
@@ -259,7 +259,7 @@ public final class MoreVariantHolder {
         }
     }
 
-    public enum GrindstoneType implements IVariantSubType {
+    public enum GrindstoneType implements IMoreVariantSubType {
         STONE(Blocks.STONE_SLAB),
         SANDSTONE(Blocks.SANDSTONE_SLAB),
         GRANITE(Blocks.GRANITE_SLAB),
@@ -285,8 +285,8 @@ public final class MoreVariantHolder {
         public String registrationType() {
             return registrationType;
         }
-        public VariantType variantType() {
-            return VariantType.GRINDSTONE;
+        public MoreVariantType variantType() {
+            return MoreVariantType.GRINDSTONE;
         }
         public Block getVanillaBlock() {
             return this.variantType().getVanillaBlock();
@@ -296,7 +296,7 @@ public final class MoreVariantHolder {
         }
     }
 
-    public enum JukeboxNoteblockType implements IVariantSubType {
+    public enum JukeboxNoteblockType implements IMoreVariantSubType {
         JUKEBOX(Blocks.JUKEBOX, Items.JUKEBOX),
         NOTEBLOCK(Blocks.NOTE_BLOCK, Items.NOTE_BLOCK);
 
@@ -311,8 +311,8 @@ public final class MoreVariantHolder {
         public String registrationType() {
             return this.name().toLowerCase();
         }
-        public VariantType variantType() {
-            return VariantType.JUKEBOX_NOTEBLOCK;
+        public MoreVariantType variantType() {
+            return MoreVariantType.JUKEBOX_NOTEBLOCK;
         }
         public Block getVanillaBlock() {
             return vanillaBlock;
@@ -322,7 +322,7 @@ public final class MoreVariantHolder {
         }
     }
 
-    public enum RodType implements IVariantSubType {
+    public enum RodType implements IMoreVariantSubType {
         FISHING_ROD("fish", Items.FISHING_ROD),
         CARROT_ON_A_STICK("pig", Items.CARROT_ON_A_STICK),
         WARPED_FUNGUS_ON_A_STICK("strider", Items.WARPED_FUNGUS_ON_A_STICK);
@@ -341,8 +341,8 @@ public final class MoreVariantHolder {
         public String registrationType() {
             return this.name().toLowerCase();
         }
-        public VariantType variantType() {
-            return VariantType.ROD;
+        public MoreVariantType variantType() {
+            return MoreVariantType.ROD;
         }
         public Block getVanillaBlock() {
             return this.variantType().getVanillaBlock();
@@ -352,22 +352,22 @@ public final class MoreVariantHolder {
         }
     }
 
-    private static final Map<VariantType, Map<WoodType, Map<Object, Block>>> BLOCKS_BY_TYPE = new HashMap<>();
-    private static final Map<VariantType, Map<WoodType, Map<Object, Item>>> ITEMS_BY_TYPE = new HashMap<>();
+    private static final Map<MoreVariantType, Map<MoreVariantWoodType, Map<Object, Block>>> BLOCKS_BY_TYPE = new HashMap<>();
+    private static final Map<MoreVariantType, Map<MoreVariantWoodType, Map<Object, Item>>> ITEMS_BY_TYPE = new HashMap<>();
 
 
-    public static void setBlock(IVariantType type, WoodType woodType, Block block) {
-        VariantType variantType = typeToVariantType(type);
-        IVariantSubType variantSubType = typeToVariantSubType(type);
+    public static void setBlock(IMoreVariantType type, MoreVariantWoodType woodType, Block block) {
+        MoreVariantType variantType = typeToVariantType(type);
+        IMoreVariantSubType variantSubType = typeToVariantSubType(type);
         blocksFor(variantType, woodType).putIfAbsent(requireSubtype(variantSubType), block);
     }
 
-    public static Block getBlock(IVariantType type, WoodType woodType) {
+    public static Block getBlock(IMoreVariantType type, MoreVariantWoodType woodType) {
         return getBlock(type, woodType, false);
     }
-    public static Block getBlock(IVariantType type, WoodType woodType, boolean allowNull) {
-        VariantType variantType = typeToVariantType(type);
-        IVariantSubType variantSubType = typeToVariantSubType(type);
+    public static Block getBlock(IMoreVariantType type, MoreVariantWoodType woodType, boolean allowNull) {
+        MoreVariantType variantType = typeToVariantType(type);
+        IMoreVariantSubType variantSubType = typeToVariantSubType(type);
         Block block = blocksFor(variantType, woodType).get(requireSubtype(variantSubType));
         if (block == null && !allowNull) {
             throw new IllegalStateException("Tried to get block for variantType '" + variantType + "', wood type '" + woodType.getName() + "' and subtype: " + variantSubType
@@ -376,18 +376,18 @@ public final class MoreVariantHolder {
         return block;
     }
 
-    public static void setItem(IVariantType type, WoodType woodType, Item item) {
-        VariantType variantType = typeToVariantType(type);
-        IVariantSubType variantSubType = typeToVariantSubType(type);
+    public static void setItem(IMoreVariantType type, MoreVariantWoodType woodType, Item item) {
+        MoreVariantType variantType = typeToVariantType(type);
+        IMoreVariantSubType variantSubType = typeToVariantSubType(type);
         itemsFor(variantType, woodType).putIfAbsent(requireSubtype(variantSubType), item);
     }
 
-    public static Item getItem(IVariantType type, WoodType woodType) {
+    public static Item getItem(IMoreVariantType type, MoreVariantWoodType woodType) {
         return getItem(type, woodType, false);
     }
-    public static Item getItem(IVariantType type, WoodType woodType, boolean allowNull) {
-        VariantType variantType = typeToVariantType(type);
-        IVariantSubType variantSubType = typeToVariantSubType(type);
+    public static Item getItem(IMoreVariantType type, MoreVariantWoodType woodType, boolean allowNull) {
+        MoreVariantType variantType = typeToVariantType(type);
+        IMoreVariantSubType variantSubType = typeToVariantSubType(type);
         Item item = itemsFor(variantType, woodType).get(requireSubtype(variantSubType));
         if (item == null && !allowNull) {
             throw new IllegalStateException("Tried to get item for variantType '" + variantType + "', wood type '" + woodType.getName() + "' and subtype: " + variantSubType
@@ -396,56 +396,56 @@ public final class MoreVariantHolder {
         return item;
     }
 
-    private static Map<Object, Block> blocksFor(VariantType variantType, WoodType woodType) {
+    private static Map<Object, Block> blocksFor(MoreVariantType variantType, MoreVariantWoodType woodType) {
         return BLOCKS_BY_TYPE
                 .computeIfAbsent(requireVariantType(variantType), key -> new HashMap<>())
                 .computeIfAbsent(requireWoodType(woodType), key -> new HashMap<>());
     }
 
-    private static Map<Object, Item> itemsFor(VariantType variantType, WoodType woodType) {
+    private static Map<Object, Item> itemsFor(MoreVariantType variantType, MoreVariantWoodType woodType) {
         return ITEMS_BY_TYPE
                 .computeIfAbsent(requireVariantType(variantType), key -> new HashMap<>())
                 .computeIfAbsent(requireWoodType(woodType), key -> new HashMap<>());
     }
 
-    private static VariantType requireVariantType(VariantType variantType) {
+    private static MoreVariantType requireVariantType(MoreVariantType variantType) {
         if (variantType == null) {
-            throw new IllegalArgumentException("VariantType must not be null");
+            throw new IllegalArgumentException("MoreVariantType must not be null");
         }
         return variantType;
     }
 
-    private static WoodType requireWoodType(WoodType woodType) {
+    private static MoreVariantWoodType requireWoodType(MoreVariantWoodType woodType) {
         if (woodType == null) {
             throw new IllegalArgumentException("WoodType must not be null");
         }
         return woodType;
     }
 
-    private static IVariantSubType requireSubtype(IVariantSubType variantSubType) {
+    private static IMoreVariantSubType requireSubtype(IMoreVariantSubType variantSubType) {
         if (variantSubType == null) {
-            throw new IllegalArgumentException("IVariantSubType must not be null");
+            throw new IllegalArgumentException("IMoreVariantSubType must not be null");
         }
         return variantSubType;
     }
 
-    private static VariantType typeToVariantType(IVariantType type) {
-        if (type instanceof VariantType) {
-            return (VariantType) type;
-        } else if (type instanceof IVariantSubType) {
-            return ((IVariantSubType) type).variantType();
+    private static MoreVariantType typeToVariantType(IMoreVariantType type) {
+        if (type instanceof MoreVariantType) {
+            return (MoreVariantType) type;
+        } else if (type instanceof IMoreVariantSubType) {
+            return ((IMoreVariantSubType) type).variantType();
         } else {
-            throw new IllegalArgumentException("Type must be either a VariantType or IVariantSubType");
+            throw new IllegalArgumentException("Type must be either a MoreVariantType or IMoreVariantSubType");
         }
     }
 
-    private static IVariantSubType typeToVariantSubType(IVariantType type) {
-        if (type instanceof IVariantSubType) {
-            return (IVariantSubType) type;
-        } else if (type instanceof VariantType) {
+    private static IMoreVariantSubType typeToVariantSubType(IMoreVariantType type) {
+        if (type instanceof IMoreVariantSubType) {
+            return (IMoreVariantSubType) type;
+        } else if (type instanceof MoreVariantType) {
             return DefaultSubtype.DEFAULT;
         } else {
-            throw new IllegalArgumentException("Type must be either a VariantType or IVariantSubType");
+            throw new IllegalArgumentException("Type must be either a MoreVariantType or IMoreVariantSubType");
         }
     }
 

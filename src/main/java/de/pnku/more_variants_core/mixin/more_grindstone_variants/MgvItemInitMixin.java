@@ -3,8 +3,8 @@ package de.pnku.more_variants_core.mixin.more_grindstone_variants;
 import de.pnku.mgv.init.MgvItemInit;
 import de.pnku.more_variants_core.util.MoreVariantHolder;
 import de.pnku.more_variants_core.util.MoreVariantHolder.GrindstoneType;
-import de.pnku.more_variants_core.util.WoodType;
-import de.pnku.more_variants_core.util.WoodTypeHolder;
+import de.pnku.more_variants_core.util.MoreVariantWoodType;
+import de.pnku.more_variants_core.util.MoreVariantWoodTypeHolder;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import org.spongepowered.asm.mixin.Mixin;
@@ -22,8 +22,8 @@ public abstract class MgvItemInitMixin {
     private static void registerItem(BlockItem grindstone, Item grindstoneAfter) {}
 
     @Unique
-    private static void registerGrindstoneItemVariants(List<WoodType> woodTypes) {
-        for (WoodType woodType : woodTypes) {
+    private static void registerGrindstoneItemVariants(List<MoreVariantWoodType> woodTypes) {
+        for (MoreVariantWoodType woodType : woodTypes) {
             for (GrindstoneType grindstoneType : GrindstoneType.values()) {
                 BlockItem grindstoneItem = new BlockItem(MoreVariantHolder.getBlock(grindstoneType, woodType), new Item.Properties());
                 registerItem(grindstoneItem, grindstoneType.getVanillaItem());
@@ -34,6 +34,6 @@ public abstract class MgvItemInitMixin {
 
     @Inject(method = "registerItems", at = @At("TAIL"), remap = false)
     private static void injectedRegisterGrindstoneItemsAtTail(CallbackInfo ci) {
-        registerGrindstoneItemVariants(WoodTypeHolder.getWoodTypes());
+        registerGrindstoneItemVariants(MoreVariantWoodTypeHolder.getWoodTypes());
     }
 }

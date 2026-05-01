@@ -2,8 +2,8 @@ package de.pnku.more_variants_core.mixin.compat;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import de.pnku.more_barrel_variants.compat.ec.MoreBarrelEveryCompat;
-import de.pnku.more_variants_core.util.WoodType;
-import de.pnku.more_variants_core.util.WoodTypeHolder;
+import de.pnku.more_variants_core.util.MoreVariantWoodType;
+import de.pnku.more_variants_core.util.MoreVariantWoodTypeHolder;
 import net.mehvahdjukaar.every_compat.modules.lieonlion.MoreChestVariantsModule;
 import net.mehvahdjukaar.every_compat.modules.lieonlion.MoreCraftingTablesModule;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
@@ -34,8 +34,8 @@ import java.util.List;
 public abstract class EveryCompatModulesMixin extends SimpleModuleMixin {
     @Override
     public boolean wrappedIsEntryAlreadyRegistered(String entrySetId, ResourceLocation blockId, BlockType blockType, Registry<?> registry, Operation<Boolean> original) {
-        List<WoodType> woodTypes = WoodTypeHolder.getWoodTypes();
-        for (WoodType woodType : woodTypes) {
+        List<MoreVariantWoodType> woodTypes = MoreVariantWoodTypeHolder.getWoodTypes();
+        for (MoreVariantWoodType woodType : woodTypes) {
             if (blockId.getPath().contains(woodType.getName())) {
                 return true;
             }

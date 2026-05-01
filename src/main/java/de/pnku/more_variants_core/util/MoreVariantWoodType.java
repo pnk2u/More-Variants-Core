@@ -5,18 +5,18 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.MapColor;
 
-public class WoodType {
+public class MoreVariantWoodType {
     private final String namespace;
     private final String name;
     private final String idString;
     private final MapColor mapColor;
     private final ResourceLocation planksBlockId;
 
-    public WoodType(String name, MapColor mapColor, ResourceLocation planksBlockId) {
+    public MoreVariantWoodType(String name, MapColor mapColor, ResourceLocation planksBlockId) {
         this("minecraft", name, mapColor, planksBlockId);
     }
 
-    public WoodType(String namespace, String name, MapColor mapColor, ResourceLocation planksBlockId) {
+    public MoreVariantWoodType(String namespace, String name, MapColor mapColor, ResourceLocation planksBlockId) {
         this.namespace = namespace;
         this.name = name;
         this.idString = namespace + ":" + name;

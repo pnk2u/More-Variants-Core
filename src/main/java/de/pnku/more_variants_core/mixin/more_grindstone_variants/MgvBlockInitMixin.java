@@ -3,8 +3,8 @@ package de.pnku.more_variants_core.mixin.more_grindstone_variants;
 import de.pnku.mgv.block.MoreGrindstoneBlock;
 import de.pnku.mgv.init.MgvBlockInit;
 import de.pnku.more_variants_core.util.MoreVariantHolder;
-import de.pnku.more_variants_core.util.WoodType;
-import de.pnku.more_variants_core.util.WoodTypeHolder;
+import de.pnku.more_variants_core.util.MoreVariantWoodType;
+import de.pnku.more_variants_core.util.MoreVariantWoodTypeHolder;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -20,8 +20,8 @@ public abstract class MgvBlockInitMixin {
     private static void registerBlock(MoreGrindstoneBlock grindstone) {}
 
     @Unique
-    private static void registerPaleOakGrindstoneBlockVariants(List<WoodType> woodTypes) {
-        for (WoodType woodType : woodTypes) {
+    private static void registerPaleOakGrindstoneBlockVariants(List<MoreVariantWoodType> woodTypes) {
+        for (MoreVariantWoodType woodType : woodTypes) {
             for (MoreVariantHolder.GrindstoneType grindstoneType : MoreVariantHolder.GrindstoneType.values()) {
                 MoreGrindstoneBlock grindstoneBlock = new MoreGrindstoneBlock(woodType.getMapColor(), woodType.getName(), woodType.getPlanksBlock(), grindstoneType.registrationType(), grindstoneType.getStoneSlabBlock(), grindstoneType.blockIdSuffix());
                 registerBlock(grindstoneBlock);
@@ -32,6 +32,6 @@ public abstract class MgvBlockInitMixin {
 
     @Inject(method = "registerBlocks", at = @At("TAIL"), remap = false)
     private static void injectedRegisterBlocksAtTail(CallbackInfo ci) {
-        registerPaleOakGrindstoneBlockVariants(WoodTypeHolder.getWoodTypes());
+        registerPaleOakGrindstoneBlockVariants(MoreVariantWoodTypeHolder.getWoodTypes());
     }
 }

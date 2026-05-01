@@ -4,8 +4,8 @@ import de.pnku.mbdv.block.MoreBedVariantBlock;
 import de.pnku.mbdv.init.MbdvBlockInit;
 import de.pnku.more_variants_core.util.MoreVariantHolder;
 import de.pnku.more_variants_core.util.MoreVariantHolder.BedColorType;
-import de.pnku.more_variants_core.util.WoodType;
-import de.pnku.more_variants_core.util.WoodTypeHolder;
+import de.pnku.more_variants_core.util.MoreVariantWoodType;
+import de.pnku.more_variants_core.util.MoreVariantWoodTypeHolder;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -21,8 +21,8 @@ public abstract class MbdvBlockInitMixin {
     private static void registerBedBlock(MoreBedVariantBlock bed) {}
 
     @Unique
-    private static void registerBedBlockVariants(List<WoodType> woodTypes) {
-        for (WoodType woodType : woodTypes) {
+    private static void registerBedBlockVariants(List<MoreVariantWoodType> woodTypes) {
+        for (MoreVariantWoodType woodType : woodTypes) {
             for (BedColorType colorType : BedColorType.values()) {
                 MoreBedVariantBlock bedBlock = new MoreBedVariantBlock(colorType.color(), woodType.getName(), colorType.color().getName());
                 registerBedBlock(bedBlock);
@@ -33,6 +33,6 @@ public abstract class MbdvBlockInitMixin {
 
     @Inject(method = "registerBedBlocks", at = @At(value = "INVOKE", target = "Ljava/util/List;removeAll(Ljava/util/Collection;)Z"), remap = false)
     private static void injectedRegisterBedBlocks(CallbackInfo ci) {
-        registerBedBlockVariants(WoodTypeHolder.getWoodTypes());
+        registerBedBlockVariants(MoreVariantWoodTypeHolder.getWoodTypes());
     }
 }

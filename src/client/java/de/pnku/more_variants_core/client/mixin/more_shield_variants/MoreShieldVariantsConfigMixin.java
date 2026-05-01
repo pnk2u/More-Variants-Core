@@ -1,9 +1,9 @@
 package de.pnku.more_variants_core.client.mixin.more_shield_variants;
 
 import de.pnku.lolmsv.config.MoreShieldVariantsConfig;
-import de.pnku.more_variants_core.client.util.MoreVariantShieldConfigAccessor;
-import de.pnku.more_variants_core.util.WoodType;
-import de.pnku.more_variants_core.util.WoodTypeHolder;
+import de.pnku.more_variants_core.client.util.MoreShieldVariantConfigAccessor;
+import de.pnku.more_variants_core.util.MoreVariantWoodType;
+import de.pnku.more_variants_core.util.MoreVariantWoodTypeHolder;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -13,35 +13,35 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.List;
 
 @Mixin(MoreShieldVariantsConfig.class)
-public abstract class MoreShieldVariantsConfigMixin implements MoreVariantShieldConfigAccessor {
+public abstract class MoreShieldVariantsConfigMixin implements MoreShieldVariantConfigAccessor {
     @Unique
     private boolean paleOakUseCustom = true;
 
     @Inject(method = "updateConfigs", at = @At("TAIL"), remap = false)
     private void injectedUpdateConfigsAtTail(MoreShieldVariantsConfig config, CallbackInfo ci) {
-        MoreVariantShieldConfigAccessor configAccess = (MoreVariantShieldConfigAccessor) config;
-        updateShieldVariantConfigs(WoodTypeHolder.getWoodTypes(), configAccess);
+        MoreShieldVariantConfigAccessor configAccess = (MoreShieldVariantConfigAccessor) config;
+        updateShieldVariantConfigs(MoreVariantWoodTypeHolder.getWoodTypes(), configAccess);
     }
 
     @Inject(method = "initialReadConfig", at = @At("TAIL"), remap = false)
     private static void injectedInitialReadConfigAtTail(CallbackInfo ci) {
-        MoreVariantShieldConfigAccessor configAccess = (MoreVariantShieldConfigAccessor) MoreShieldVariantsConfig.getInstance();
-        initialReadShieldVariantConfigs(WoodTypeHolder.getWoodTypes(), configAccess);
+        MoreShieldVariantConfigAccessor configAccess = (MoreShieldVariantConfigAccessor) MoreShieldVariantsConfig.getInstance();
+        initialReadShieldVariantConfigs(MoreVariantWoodTypeHolder.getWoodTypes(), configAccess);
     }
 
     @Override
-    public boolean mvpob$isWoodTypeUseCustom(WoodType woodType) {
+    public boolean mvpob$isWoodTypeUseCustom(MoreVariantWoodType woodType) {
         return paleOakUseCustom;
     }
 
     @Override
-    public void mvpob$setWoodTypeUseCustom(WoodType woodType, boolean useCustom) {
+    public void mvpob$setWoodTypeUseCustom(MoreVariantWoodType woodType, boolean useCustom) {
         paleOakUseCustom = useCustom;
         syncPaleOakTextureConfigEntry(woodType, useCustom);
     }
 
     @Unique
-    private static void syncPaleOakTextureConfigEntry(WoodType woodType, boolean useCustom) {
+    private static void syncPaleOakTextureConfigEntry(MoreVariantWoodType woodType, boolean useCustom) {
         if (useCustom) {
             boolean containsPaleOak = MoreShieldVariantsConfig.textureConfigList.stream()
                     .anyMatch(woodType.getName()::equalsIgnoreCase);
@@ -54,16 +54,16 @@ public abstract class MoreShieldVariantsConfigMixin implements MoreVariantShield
     }
 
     @Unique
-    private static void updateShieldVariantConfigs(List<WoodType> woodTypes, MoreVariantShieldConfigAccessor configAccess) {
-        for (WoodType woodType : woodTypes) {
+    private static void updateShieldVariantConfigs(List<MoreVariantWoodType> woodTypes, MoreShieldVariantConfigAccessor configAccess) {
+        for (MoreVariantWoodType woodType : woodTypes) {
             boolean useCustom = configAccess.mvpob$isWoodTypeUseCustom(woodType);
             configAccess.mvpob$setWoodTypeUseCustom(woodType, useCustom);
         }
     }
 
     @Unique
-    private static void initialReadShieldVariantConfigs(List<WoodType> woodTypes, MoreVariantShieldConfigAccessor configAccess) {
-        for (WoodType woodType : woodTypes) {
+    private static void initialReadShieldVariantConfigs(List<MoreVariantWoodType> woodTypes, MoreShieldVariantConfigAccessor configAccess) {
+        for (MoreVariantWoodType woodType : woodTypes) {
             boolean useCustom = configAccess.mvpob$isWoodTypeUseCustom(woodType);
             syncPaleOakTextureConfigEntry(woodType, useCustom);
         }

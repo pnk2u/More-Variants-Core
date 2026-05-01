@@ -3,9 +3,8 @@ package de.pnku.more_variants_core.mixin.more_crafter_variants;
 import de.pnku.mcrv.block.MoreCrafterBlock;
 import de.pnku.mcrv.init.McrvBlockInit;
 import de.pnku.more_variants_core.util.MoreVariantHolder;
-import de.pnku.more_variants_core.util.MoreVariantHolder.VariantType;
-import de.pnku.more_variants_core.util.WoodType;
-import de.pnku.more_variants_core.util.WoodTypeHolder;
+import de.pnku.more_variants_core.util.MoreVariantWoodType;
+import de.pnku.more_variants_core.util.MoreVariantWoodTypeHolder;
 import net.minecraft.world.level.block.Block;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -23,9 +22,9 @@ public abstract class McrvBlockInitMixin {
     private static void registerCrafterBlock(Block crafterBlock) {}
 
     @Unique
-    private static void registerCrafterBlockVariants(List<WoodType> woodTypes) {
-        VariantType crafterType = VariantType.CRAFTER;
-        for (WoodType woodType : woodTypes) {
+    private static void registerCrafterBlockVariants(List<MoreVariantWoodType> woodTypes) {
+        MoreVariantHolder.MoreVariantType crafterType = MoreVariantHolder.MoreVariantType.CRAFTER;
+        for (MoreVariantWoodType woodType : woodTypes) {
             Block crafterBlock = new MoreCrafterBlock(woodType.getMapColor(), woodType.getName());
             registerCrafterBlock(crafterBlock);
             MoreVariantHolder.setBlock(crafterType, woodType, crafterBlock);
@@ -34,6 +33,6 @@ public abstract class McrvBlockInitMixin {
 
     @Inject(method = "registerCrafterBlocks", at = @At("TAIL"), remap = false)
     private static void injectedRegisterCrafterBlocksAtTail(CallbackInfo ci) {
-        registerCrafterBlockVariants(WoodTypeHolder.getWoodTypes());
+        registerCrafterBlockVariants(MoreVariantWoodTypeHolder.getWoodTypes());
     }
 }

@@ -2,8 +2,8 @@ package de.pnku.more_variants_core.mixin.mstv.more_torch_variants;
 
 import de.pnku.more_variants_core.util.MoreVariantHolder;
 import de.pnku.more_variants_core.util.MoreVariantHolder.TorchType;
-import de.pnku.more_variants_core.util.WoodType;
-import de.pnku.more_variants_core.util.WoodTypeHolder;
+import de.pnku.more_variants_core.util.MoreVariantWoodType;
+import de.pnku.more_variants_core.util.MoreVariantWoodTypeHolder;
 import de.pnku.mstv_mtv.init.MtvBlockInit;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.Item;
@@ -45,8 +45,8 @@ public abstract class MtvBlockInitMixin {
     }
 
     @Unique
-    private static void registerTorchBlockVariants(List<WoodType> woodTypes) {
-        for (WoodType woodType : woodTypes) {
+    private static void registerTorchBlockVariants(List<MoreVariantWoodType> woodTypes) {
+        for (MoreVariantWoodType woodType : woodTypes) {
             for (TorchType torchType : TorchType.values()) {
                 Block vanillaTorchBlock = torchType.getVanillaBlock();
                 if (!torchType.isWallTorch()) {
@@ -68,8 +68,8 @@ public abstract class MtvBlockInitMixin {
     }
 
     @Unique
-    private static void registerTorchItemVariants(List<WoodType> woodTypes) {
-        for (WoodType woodType : woodTypes) {
+    private static void registerTorchItemVariants(List<MoreVariantWoodType> woodTypes) {
+        for (MoreVariantWoodType woodType : woodTypes) {
             for (TorchType wallTorchType : TorchType.values()) {
                 if (!wallTorchType.isWallTorch()) continue;
                 TorchType torchType = wallTorchType.getBaseTorchType();
@@ -92,7 +92,7 @@ public abstract class MtvBlockInitMixin {
 
     @Inject(method = "register", at = @At("HEAD"), remap = false)
     private static void injectedRegisterAtHead(CallbackInfo ci) {
-        List<WoodType> woodTypes = WoodTypeHolder.getWoodTypes();
+        List<MoreVariantWoodType> woodTypes = MoreVariantWoodTypeHolder.getWoodTypes();
         registerTorchBlockVariants(woodTypes);
         registerTorchItemVariants(woodTypes);
     }
