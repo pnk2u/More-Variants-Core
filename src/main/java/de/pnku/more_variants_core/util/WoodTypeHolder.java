@@ -6,6 +6,11 @@ import java.util.List;
 public class WoodTypeHolder {
         private static final List<WoodType> woodTypes = new ArrayList<>();
 
+        private static boolean initialized = false;
+        public static void init() {
+            initialized = true;
+        }
+
         public static void addWoodTypes(WoodType... newWoodTypes) {
             for (WoodType woodType : newWoodTypes) {
                 if (!woodTypes.contains(woodType)) {
@@ -24,6 +29,7 @@ public class WoodTypeHolder {
         }
 
         public static List<WoodType> getWoodTypes() {
+            if (!initialized) init();
             return woodTypes;
         }
 }
