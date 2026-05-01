@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_top",
-  "textures": {
-    "side": "quad-lolmjnv:block/pale_oak_noteblock",
-    "top": "quad-lolmjnv:block/pale_oak_jukebox_top"
-  }
-}

@@ -1,7 +1,0 @@
-{
-  "parent": "nemos-carpentry:block/ladders/ladder",
-  "textures": {
-    "particle": "nemos-carpentry:block/pale_oak_ladder",
-    "texture": "nemos-carpentry:block/pale_oak_ladder"
-  }
-}

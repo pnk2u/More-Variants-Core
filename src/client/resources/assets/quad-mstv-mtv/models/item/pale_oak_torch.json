@@ -1,7 +1,0 @@
-{
-    "parent": "minecraft:item/torch",
-    "textures": {
-        "layer0": "quad-mstv-mtv:block/pale_oak_torch",
-        "0": "quad-mstv-mtv:block/pale_oak_torch"
-    }
-}

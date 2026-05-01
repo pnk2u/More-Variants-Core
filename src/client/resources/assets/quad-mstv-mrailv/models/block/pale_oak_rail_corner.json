@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/rail_curved",
-  "textures": {
-    "rail": "quad-mstv-mrailv:block/pale_oak_rail_corner"
-  }
-}

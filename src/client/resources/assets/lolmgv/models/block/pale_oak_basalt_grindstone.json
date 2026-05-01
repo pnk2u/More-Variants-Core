@@ -1,7 +1,0 @@
-{
-  "parent": "lolmgv:block/basalt_grindstone",
-  "textures": {
-    "pivot": "lolmgv:block/pale_oak_grindstone_pivot",
-    "leg": "block/pale_oak_log"
-  }
-}

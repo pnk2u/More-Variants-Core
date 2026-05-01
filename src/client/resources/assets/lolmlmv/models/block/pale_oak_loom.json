@@ -1,9 +1,0 @@
-{
-    "parent": "minecraft:block/orientable_with_bottom",
-    "textures": {
-        "bottom": "lolmlmv:block/pale_oak_loom_bottom",
-        "front": "lolmlmv:block/pale_oak_loom_front",
-        "side": "lolmlmv:block/pale_oak_loom_side",
-        "top": "lolmlmv:block/pale_oak_loom_top"
-    }
-}

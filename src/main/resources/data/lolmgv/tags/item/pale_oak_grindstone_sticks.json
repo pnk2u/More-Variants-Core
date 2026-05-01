@@ -1,9 +1,0 @@
-{
-  "values": [
-    {"id":"minecraft:stick","required":false},
-    {
-      "id": "mstv-base:pale_oak_stick",
-      "required": false
-    }
-  ]
-}
