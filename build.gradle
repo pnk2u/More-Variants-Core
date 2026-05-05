@@ -207,7 +207,7 @@ dependencies {
 
 	// Every Compat
 		// Moonlight
-		modCompileOnly modLocalRuntime("net.mehvahdjukaar:moonlight-fabric:${moonlight_version}:fabric") { transitive = false }
+		modCompileOnly modLocalRuntime("net.mehvahdjukaar:moonlight-fabric:${moonlight_version}") { transitive = false }
 		// Every Compat
 		modCompileOnly modLocalRuntime("net.mehvahdjukaar:everycomp-fabric:${every_compat_version}:fabric") { transitive = false }
 			// Above for docs, if needed - below in case above's maven is down
