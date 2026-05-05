@@ -192,6 +192,13 @@ dependencies {
 			modCompileOnly modLocalRuntime("maven.modrinth:more-armor-stand-variants:${project.mstv_m_armor_stand_v_version_id}")
 			// More Frame Variants
 			modCompileOnly modLocalRuntime("maven.modrinth:more-frame-variants:${project.mstv_m_frame_v_version_id}")
+				// Fast Item Frames
+				modCompileOnly modLocalRuntime("maven.modrinth:fast-item-frames:${project.fast_item_frames_version_id}")
+					// Dependencies: Puzzles Lib, Forge Config API Port
+					modCompileOnly 	modLocalRuntime("maven.modrinth:puzzles-lib:${project.puzzles_lib_version_id}")
+									modLocalRuntime("maven.modrinth:forge-config-api-port:${project.forge_config_api_port_version_id}")
+									implementation 'com.electronwill.night-config:core:3.8.2'
+									implementation 'com.electronwill.night-config:toml:3.8.2'
 			// Nemo's More Ladder Variants
 			modCompileOnly modLocalRuntime("maven.modrinth:nemos-more-ladder-variants:${project.mstv_nemos_m_ladder_v_version_id}")
 			// More Rail Variants
