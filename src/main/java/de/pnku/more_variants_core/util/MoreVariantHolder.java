@@ -2,6 +2,8 @@ package de.pnku.more_variants_core.util;
 
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.decoration.HangingEntity;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -343,6 +345,36 @@ public final class MoreVariantHolder {
         }
         public MoreVariantType variantType() {
             return MoreVariantType.ROD;
+        }
+        public Block getVanillaBlock() {
+            return this.variantType().getVanillaBlock();
+        }
+        public Item getVanillaItem() {
+            return vanillaItem;
+        }
+    }
+
+    public enum FrameType implements IMoreVariantSubType {
+        PAINTING(EntityType.PAINTING, Items.PAINTING),
+        ITEM_FRAME(EntityType.ITEM_FRAME, Items.ITEM_FRAME),
+        GLOW_ITEM_FRAME(EntityType.GLOW_ITEM_FRAME, Items.GLOW_ITEM_FRAME);
+
+        private final EntityType<? extends HangingEntity> entityType;
+        private final Item vanillaItem;
+
+        FrameType(EntityType<? extends HangingEntity> entityType, Item vanillaItem) {
+            this.entityType = entityType;
+            this.vanillaItem = vanillaItem;
+        }
+
+        public EntityType<? extends HangingEntity> entityType() {
+            return entityType;
+        }
+        public String registrationType() {
+            return this.name().toLowerCase();
+        }
+        public MoreVariantType variantType() {
+            return MoreVariantType.FRAME;
         }
         public Block getVanillaBlock() {
             return this.variantType().getVanillaBlock();
