@@ -50,6 +50,7 @@
     "mstv.more_frame_variants.MoreFrameVariantsItemsMixin",
     "mstv.more_frame_variants.WoodTypePropertyMixin",
     "mstv.more_rail_variants.MrailvBlockInitMixin",
+    "mstv.more_tool_variants.MoreToolVariantItemsMixin",
     "mstv.more_torch_variants.MtvBlockInitMixin",
     "mstv.nemos_more_ladder_variants.NmlvBlocksMixin",
     "mstv.nemos_more_ladder_variants.NmlvItemsMixin"
