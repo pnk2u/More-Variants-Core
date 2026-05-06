@@ -40,6 +40,10 @@ public class MoreVariantWoodType {
         return mapColor;
     }
 
+    public ResourceLocation getPlanksBlockId() {
+        return planksBlockId;
+    }
+
     public Block getPlanksBlock() {
         return BuiltInRegistries.BLOCK.get(planksBlockId);
     }
