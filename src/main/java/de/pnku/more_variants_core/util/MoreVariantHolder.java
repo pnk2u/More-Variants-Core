@@ -9,8 +9,8 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Stream;
 
 public final class MoreVariantHolder {
     public enum MoreVariantType implements IMoreVariantType {
@@ -382,117 +382,160 @@ public final class MoreVariantHolder {
         }
     }
 
-    public enum ToolType implements IMoreVariantSubType {
-        WOODEN_SHOVEL(MaterialType.WOOD, true, Items.WOODEN_SHOVEL),
-        WOODEN_PICKAXE(MaterialType.WOOD, false, Items.WOODEN_PICKAXE),
-        WOODEN_AXE(MaterialType.WOOD, ToolTypeType.AXE, 6.0F, -3.2F, Items.WOODEN_AXE),
-        WOODEN_HOE(MaterialType.WOOD, ToolTypeType.HOE, 0.0F, -3.0F, Items.WOODEN_HOE),
-        STONE_SHOVEL(MaterialType.STONE, true, Items.STONE_SHOVEL),
-        STONE_PICKAXE(MaterialType.STONE, false, Items.STONE_PICKAXE),
-        STONE_AXE(MaterialType.STONE, ToolTypeType.AXE, 7.0F, -3.2F, Items.STONE_AXE),
-        STONE_HOE(MaterialType.STONE, ToolTypeType.HOE, -1.0F, -2.0F, Items.STONE_HOE),
-        DEEPSLATE_SHOVEL(MaterialType.DEEPSLATE, true, Items.STONE_SHOVEL),
-        DEEPSLATE_PICKAXE(MaterialType.DEEPSLATE, false, Items.STONE_PICKAXE),
-        DEEPSLATE_AXE(MaterialType.DEEPSLATE, ToolTypeType.AXE, 7.0F, -3.2F, Items.STONE_AXE),
-        DEEPSLATE_HOE(MaterialType.DEEPSLATE, ToolTypeType.HOE, -1.0F, -2.0F, Items.STONE_HOE),
-        BLACKSTONE_SHOVEL(MaterialType.BLACKSTONE, true, Items.STONE_SHOVEL),
-        BLACKSTONE_PICKAXE(MaterialType.BLACKSTONE, false, Items.STONE_PICKAXE),
-        BLACKSTONE_AXE(MaterialType.BLACKSTONE, ToolTypeType.AXE, 7.0F, -3.2F, Items.STONE_AXE),
-        BLACKSTONE_HOE(MaterialType.BLACKSTONE, ToolTypeType.HOE, -1.0F, -2.0F, Items.STONE_HOE),
-        IRON_SHOVEL(MaterialType.IRON, true, Items.IRON_SHOVEL),
-        IRON_PICKAXE(MaterialType.IRON, false, Items.IRON_PICKAXE),
-        IRON_AXE(MaterialType.IRON, ToolTypeType.AXE, 6.0F, -3.1F, Items.IRON_AXE),
-        IRON_HOE(MaterialType.IRON, ToolTypeType.HOE, -2.0F, -1.0F, Items.IRON_HOE),
-        GOLDEN_SHOVEL(MaterialType.GOLD, true, Items.GOLDEN_SHOVEL),
-        GOLDEN_PICKAXE(MaterialType.GOLD, false, Items.GOLDEN_PICKAXE),
-        GOLDEN_AXE(MaterialType.GOLD, ToolTypeType.AXE, 6.0F, -3.0F, Items.GOLDEN_AXE),
-        GOLDEN_HOE(MaterialType.GOLD, ToolTypeType.HOE, 0.0F, -3.0F, Items.GOLDEN_HOE),
-        DIAMOND_SHOVEL(MaterialType.DIAMOND, true, Items.DIAMOND_SHOVEL),
-        DIAMOND_PICKAXE(MaterialType.DIAMOND, false, Items.DIAMOND_PICKAXE),
-        DIAMOND_AXE(MaterialType.DIAMOND, ToolTypeType.AXE, 5.0F, -3.0F, Items.DIAMOND_AXE),
-        DIAMOND_HOE(MaterialType.DIAMOND, ToolTypeType.HOE, -3.0F, 0.0F, Items.DIAMOND_HOE),
-        NETHERITE_SHOVEL(MaterialType.NETHERITE, true, Items.NETHERITE_SHOVEL),
-        NETHERITE_PICKAXE(MaterialType.NETHERITE, false, Items.NETHERITE_PICKAXE),
-        NETHERITE_AXE(MaterialType.NETHERITE, ToolTypeType.AXE, 5.0F, -3.0F, Items.NETHERITE_AXE),
-        NETHERITE_HOE(MaterialType.NETHERITE, ToolTypeType.HOE, -4.0F, 0.0F, Items.NETHERITE_HOE),
-        BRUSH();
+    public interface ToolType extends IMoreVariantSubType {
+        MaterialType materialType();
+        ToolTypeType toolTypeType();
+        float aD();
+        float aS();
+        Item getVanillaItem();
 
-        private final MaterialType materialType;
-        private final ToolTypeType toolTypeType;
-        private final float attackDamage;
-        private final float attackSpeed;
-        private final Item vanillaItem;
-
-        ToolType() {
-            this(null, ToolTypeType.BRUSH, 0.0F, 0.0F, Items.BRUSH);
+        @Override
+        default String registrationType() {
+            return ((Enum<?>) this).name().toLowerCase();
         }
 
-        ToolType(MaterialType materialType, boolean isShovel, Item vanillaItem) {
-            this(materialType, isShovel ? ToolTypeType.SHOVEL : ToolTypeType.PICKAXE, isShovel ? 1.5F : 1.0F, isShovel ? -3.0F : -2.8F, vanillaItem);
-        }
+        @Override
+        default MoreVariantType variantType() { return MoreVariantType.TOOL; }
 
-        ToolType(MaterialType materialType, ToolTypeType toolTypeType, float aD, float aS, Item vanillaItem) {
-            this.materialType = materialType;
-            this.toolTypeType = toolTypeType;
-            this.attackDamage = aD;
-            this.attackSpeed = aS;
-            this.vanillaItem = vanillaItem;
-        }
+        @Override
+        default Block getVanillaBlock() { return variantType().getVanillaBlock(); }
 
-        public MaterialType materialType() {
-            return materialType;
-        }
-        public ToolTypeType toolTypeType() {
-            return toolTypeType;
-        }
-        public float aD() {
-            return attackDamage;
-        }
-        public float aS() {
-            return attackSpeed;
-        }
-        public String registrationType() {
-            return materialType.namePrefix() + "_" + toolTypeType.name().toLowerCase();
-        }
-        public MoreVariantType variantType() {
-            return MoreVariantType.TOOL;
-        }
-        public Block getVanillaBlock() {
-            return this.variantType().getVanillaBlock();
-        }
-        public Item getVanillaItem() {
-            return vanillaItem;
-        }
-        public ToolType getToolTypeByToolTypeTypeAndMaterialType(ToolTypeType toolType, MaterialType materialType) {
-            for (ToolType type : ToolType.values()) {
-                if (type.toolTypeType == toolType && type.materialType == materialType) {
-                    return type;
-                }
+        default boolean isAxe() { return toolTypeType() == ToolTypeType.AXE; }
+        default boolean isPickaxe() { return toolTypeType() == ToolTypeType.PICKAXE; }
+        default boolean isShovel() { return toolTypeType() == ToolTypeType.SHOVEL; }
+        default boolean isHoe() { return toolTypeType() == ToolTypeType.HOE; }
+        default boolean isBrush() { return toolTypeType() == ToolTypeType.BRUSH; }
+
+        enum ToolTypeType { AXE, PICKAXE, SHOVEL, HOE, BRUSH }
+
+        enum ShovelType implements ToolType {
+            WOODEN_SHOVEL(MaterialType.WOOD, Items.WOODEN_SHOVEL),
+            STONE_SHOVEL(MaterialType.STONE, Items.STONE_SHOVEL),
+            BLACKSTONE_SHOVEL(MaterialType.BLACKSTONE, Items.STONE_SHOVEL),
+            DEEPSLATE_SHOVEL(MaterialType.DEEPSLATE, Items.STONE_SHOVEL),
+            GOLDEN_SHOVEL(MaterialType.GOLD, Items.GOLDEN_SHOVEL),
+            IRON_SHOVEL(MaterialType.IRON, Items.IRON_SHOVEL),
+            DIAMOND_SHOVEL(MaterialType.DIAMOND, Items.DIAMOND_SHOVEL),
+            NETHERITE_SHOVEL(MaterialType.NETHERITE, Items.NETHERITE_SHOVEL);
+
+            private final MaterialType materialType;
+            private final float aD; private final float aS;
+            private final Item vanillaItem;
+
+            ShovelType(MaterialType materialType, Item vanillaItem) {
+                this.materialType = materialType; this.aD = 1.5F; this.aS = -3.0F; this.vanillaItem = vanillaItem;
             }
-            throw new IllegalArgumentException("No tool type found for tool type '" + toolType + "' and material type '" + materialType + "'");
-        }
-        public boolean isAxe() {
-            return toolTypeType == ToolTypeType.AXE;
-        }
-        public boolean isPickaxe() {
-            return toolTypeType == ToolTypeType.PICKAXE;
-        }
-        public boolean isShovel() {
-            return toolTypeType == ToolTypeType.SHOVEL;
-        }
-        public boolean isHoe() {
-            return toolTypeType == ToolTypeType.HOE;
-        }
-        public boolean isBrush() {
-            return toolTypeType == ToolTypeType.BRUSH;
+
+            @Override public MaterialType materialType() { return materialType; }
+            @Override public ToolTypeType toolTypeType() { return ToolTypeType.SHOVEL; }
+            @Override public float aD() { return aD; }
+            @Override public float aS() { return aS; }
+            @Override public Item getVanillaItem() { return vanillaItem; }
         }
 
-        public enum ToolTypeType {
-            AXE,
-            PICKAXE,
-            SHOVEL,
-            HOE,
-            BRUSH
+        enum PickaxeType implements ToolType {
+            WOODEN_PICKAXE(MaterialType.WOOD, Items.WOODEN_PICKAXE),
+            STONE_PICKAXE(MaterialType.STONE, Items.STONE_PICKAXE),
+            BLACKSTONE_PICKAXE(MaterialType.BLACKSTONE, Items.STONE_PICKAXE),
+            DEEPSLATE_PICKAXE(MaterialType.DEEPSLATE, Items.STONE_PICKAXE),
+            GOLDEN_PICKAXE(MaterialType.GOLD, Items.GOLDEN_PICKAXE),
+            IRON_PICKAXE(MaterialType.IRON, Items.IRON_PICKAXE),
+            DIAMOND_PICKAXE(MaterialType.DIAMOND, Items.DIAMOND_PICKAXE),
+            NETHERITE_PICKAXE(MaterialType.NETHERITE, Items.NETHERITE_PICKAXE);
+
+            private final MaterialType materialType;
+            private final float aD; private final float aS;
+            private final Item vanillaItem;
+
+            PickaxeType(MaterialType materialType, Item vanillaItem) {
+                this.materialType = materialType; this.aD = 1.0F; this.aS = -2.8F; this.vanillaItem = vanillaItem;
+            }
+
+            @Override public MaterialType materialType() { return materialType; }
+            @Override public ToolTypeType toolTypeType() { return ToolTypeType.PICKAXE; }
+            @Override public float aD() { return aD; }
+            @Override public float aS() { return aS; }
+            @Override public Item getVanillaItem() { return vanillaItem; }
+        }
+
+        enum AxeType implements ToolType {
+            WOODEN_AXE(MaterialType.WOOD, 6.0F, -3.2F, Items.WOODEN_AXE),
+            STONE_AXE(MaterialType.STONE, 7.0F, -3.2F, Items.STONE_AXE),
+            BLACKSTONE_AXE(MaterialType.BLACKSTONE, 7.0F, -3.2F, Items.STONE_AXE),
+            DEEPSLATE_AXE(MaterialType.DEEPSLATE, 7.0F, -3.2F, Items.STONE_AXE),
+            GOLDEN_AXE(MaterialType.GOLD, 6.0F, -3.0F, Items.GOLDEN_AXE),
+            IRON_AXE(MaterialType.IRON, 6.0F, -3.1F, Items.IRON_AXE),
+            DIAMOND_AXE(MaterialType.DIAMOND, 5.0F, -3.0F, Items.DIAMOND_AXE),
+            NETHERITE_AXE(MaterialType.NETHERITE, 5.0F, -3.0F, Items.NETHERITE_AXE);
+
+            private final MaterialType materialType;
+            private final float aD; private final float aS;
+            private final Item vanillaItem;
+
+            AxeType(MaterialType materialType, float aD, float aS, Item vanillaItem) {
+                this.materialType = materialType; this.aD = aD; this.aS = aS; this.vanillaItem = vanillaItem;
+            }
+
+            @Override public MaterialType materialType() { return materialType; }
+            @Override public ToolTypeType toolTypeType() { return ToolTypeType.AXE; }
+            @Override public float aD() { return aD; }
+            @Override public float aS() { return aS; }
+            @Override public Item getVanillaItem() { return vanillaItem; }
+        }
+
+        enum HoeType implements ToolType {
+            WOODEN_HOE(MaterialType.WOOD, 0.0F, -3.0F, Items.WOODEN_HOE),
+            STONE_HOE(MaterialType.STONE, -1.0F, -2.0F, Items.STONE_HOE),
+            BLACKSTONE_HOE(MaterialType.BLACKSTONE, -1.0F, -2.0F, Items.STONE_HOE),
+            DEEPSLATE_HOE(MaterialType.DEEPSLATE, -1.0F, -2.0F, Items.STONE_HOE),
+            GOLDEN_HOE(MaterialType.GOLD, 0.0F, -3.0F, Items.GOLDEN_HOE),
+            IRON_HOE(MaterialType.IRON, -2.0F, -1.0F, Items.IRON_HOE),
+            DIAMOND_HOE(MaterialType.DIAMOND, -3.0F, 0.0F, Items.DIAMOND_HOE),
+            NETHERITE_HOE(MaterialType.NETHERITE, -4.0F, 0.0F, Items.NETHERITE_HOE);
+
+            private final MaterialType materialType;
+            private final float aD; private final float aS;
+            private final Item vanillaItem;
+
+            HoeType(MaterialType materialType, float aD, float aS, Item vanillaItem) {
+                this.materialType = materialType; this.aD = aD; this.aS = aS; this.vanillaItem = vanillaItem;
+            }
+
+            @Override public MaterialType materialType() { return materialType; }
+            @Override public ToolTypeType toolTypeType() { return ToolTypeType.HOE; }
+            @Override public float aD() { return aD; }
+            @Override public float aS() { return aS; }
+            @Override public Item getVanillaItem() { return vanillaItem; }
+        }
+
+        enum BrushType implements ToolType {
+            BRUSH;
+            BrushType() {}
+
+            @Override public MaterialType materialType() {return MaterialType.WOOD;}
+            @Override public ToolTypeType toolTypeType() {return ToolTypeType.BRUSH;}
+            @Override public float aD() {return 0;}
+            @Override public float aS() {return 0;}
+            @Override public Item getVanillaItem() {return Items.BRUSH;}
+        }
+
+        static ToolType[] values() {
+            List<ToolType> toolTypes = new ArrayList<>();
+            for (int i = 0; i < ShovelType.values().length; i++) {
+                toolTypes.add(ShovelType.values()[i]);
+                toolTypes.add(PickaxeType.values()[i]);
+                toolTypes.add(AxeType.values()[i]);
+                toolTypes.add(HoeType.values()[i]);
+            }
+            toolTypes.add(BrushType.BRUSH);
+            return toolTypes.toArray(new ToolType[0]);
+        }
+
+        default ToolType getToolTypeByToolTypeTypeAndMaterialType(ToolTypeType toolType, MaterialType materialType) {
+            for (ToolType type : values()) {
+                if (type.toolTypeType() == toolType && type.materialType() == materialType) return type;
+            }
+            throw new IllegalArgumentException("No tool type found for " + toolType + " " + materialType);
         }
     }
 
