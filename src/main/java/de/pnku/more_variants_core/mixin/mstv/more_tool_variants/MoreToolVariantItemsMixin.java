@@ -117,7 +117,7 @@ public abstract class MoreToolVariantItemsMixin {
     private static void registerToolItemVariants(List<MoreVariantWoodType> woodTypes) {
         ToolType[] toolTypes = ToolType.values();
         for (MoreVariantWoodType woodType : woodTypes) {
-            ResourceLocation stickId = MoreStickVariants.withModId(woodType.getName() + "_" + MoreVariantHolder.MoreVariantType.STICK.registrationType());
+            ResourceLocation stickId = MoreVariantHolder.getRegistrationId(MoreVariantHolder.MoreVariantType.STICK, woodType);
             ResourceLocation planksId = woodType.getPlanksBlockId();
             if (BuiltInRegistries.ITEM.containsKey(stickId)) {
                 Item stickItem = MoreVariantHolder.getItem(MoreVariantHolder.MoreVariantType.STICK, woodType);

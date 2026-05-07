@@ -1,7 +1,9 @@
 package de.pnku.more_variants_core.util;
 
+import de.pnku.more_variants_core.util.MoreVariantMod;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.decoration.HangingEntity;
 import net.minecraft.world.item.*;
@@ -10,50 +12,55 @@ import net.minecraft.world.level.block.Blocks;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
-import java.util.stream.Stream;
 
 public final class MoreVariantHolder {
     public enum MoreVariantType implements IMoreVariantType {
-        BARREL(Blocks.BARREL, Items.BARREL),
-        BED(Blocks.WHITE_BED, Items.WHITE_BED),
-        BEEHIVE(Blocks.BEEHIVE, Items.BEEHIVE),
-        BOOKSHELF(Blocks.BOOKSHELF, Items.BOOKSHELF),
-        CAMPFIRE(Blocks.CAMPFIRE, Items.CAMPFIRE),
-        CARTOGRAPHY_TABLE(Blocks.CARTOGRAPHY_TABLE, Items.CARTOGRAPHY_TABLE),
-        CHEST(Blocks.CHEST, Items.CHEST),
-        CHISELED_BOOKSHELF(Blocks.CHISELED_BOOKSHELF, Items.CHISELED_BOOKSHELF),
-        COMPOSTER(Blocks.COMPOSTER, Items.COMPOSTER),
-        CRAFTER(Blocks.CRAFTING_TABLE, Items.CRAFTING_TABLE),
-        CRAFTING_TABLE(Blocks.CRAFTING_TABLE, Items.CRAFTING_TABLE),
-        FLETCHING_TABLE(Blocks.FLETCHING_TABLE, Items.FLETCHING_TABLE),
-        GRINDSTONE(Blocks.GRINDSTONE, Items.GRINDSTONE),
-        JUKEBOX_NOTEBLOCK(Blocks.JUKEBOX, Items.JUKEBOX),
-        LECTERN(Blocks.LECTERN, Items.LECTERN),
-        LOOM(Blocks.LOOM, Items.LOOM),
-        SHIELD(null, Items.SHIELD),
-        SMITHING_TABLE(Blocks.SMITHING_TABLE, Items.SMITHING_TABLE),
-        SMOKER(Blocks.SMOKER, Items.SMOKER),
-        WOODCUTTER(Blocks.LECTERN, Items.LECTERN),
-        STICK(null, Items.STICK),
-        ARMOR_STAND(null, Items.ARMOR_STAND),
-        FRAME(null, Items.ITEM_FRAME),
-        LADDER(Blocks.LADDER, Items.LADDER),
-        RAIL(Blocks.RAIL, Items.RAIL),
-        ROD(null, Items.FISHING_ROD),
-        TOOL(null, Items.WOODEN_PICKAXE),
-        TORCH(Blocks.TORCH, Items.TORCH),
-        WEAPON(null, Items.WOODEN_SWORD);
+        ANIMAL_FEEDING_TROUGH(null,                     null,                       MoreVariantMod.ANIMAL_FEEDING_TROUGHS),
+        BARREL(             Blocks.BARREL,              Items.BARREL,               MoreVariantMod.BARRELS),
+        BED(                Blocks.WHITE_BED,           Items.WHITE_BED,            MoreVariantMod.BEDS),
+        BEEHIVE(            Blocks.BEEHIVE,             Items.BEEHIVE,              MoreVariantMod.BEEHIVES),
+        BOOKSHELF(          Blocks.BOOKSHELF,           Items.BOOKSHELF,            MoreVariantMod.BOOKSHELVES),
+        CAMPFIRE(           Blocks.CAMPFIRE,            Items.CAMPFIRE,             MoreVariantMod.CAMPFIRES),
+        CARTOGRAPHY_TABLE(  Blocks.CARTOGRAPHY_TABLE,   Items.CARTOGRAPHY_TABLE,    MoreVariantMod.CARTOGRAPHY_TABLES),
+        CHEST(              Blocks.CHEST,               Items.CHEST,                MoreVariantMod.CHESTS),
+        CHISELED_BOOKSHELF( Blocks.CHISELED_BOOKSHELF,  Items.CHISELED_BOOKSHELF,   MoreVariantMod.CHISELED_BOOKSHELVES),
+        COMPOSTER(          Blocks.COMPOSTER,           Items.COMPOSTER,            MoreVariantMod.COMPOSTERS),
+        CRAFTER(            Blocks.CRAFTER,             Items.CRAFTER,              MoreVariantMod.CRAFTERS),
+        CRAFTING_TABLE(     Blocks.CRAFTING_TABLE,      Items.CRAFTING_TABLE,       MoreVariantMod.CRAFTING_TABLES),
+        FLETCHING_TABLE(    Blocks.FLETCHING_TABLE,     Items.FLETCHING_TABLE,      MoreVariantMod.FLETCHING_TABLES),
+        GRINDSTONE(         Blocks.GRINDSTONE,          Items.GRINDSTONE,           MoreVariantMod.GRINDSTONES),
+        JUKEBOX_NOTEBLOCK(  Blocks.JUKEBOX,             Items.JUKEBOX,              MoreVariantMod.JUKEBOX_NOTEBLOCKS),
+        LECTERN(            Blocks.LECTERN,             Items.LECTERN,              MoreVariantMod.LECTERNS),
+        LOOM(               Blocks.LOOM,                Items.LOOM,                 MoreVariantMod.LOOMS),
+        SHIELD(             null,                       Items.SHIELD,               MoreVariantMod.SHIELDS),
+        SMITHING_TABLE(     Blocks.SMITHING_TABLE,      Items.SMITHING_TABLE,       MoreVariantMod.SMITHING_TABLES),
+        SMOKER(             Blocks.SMOKER,              Items.SMOKER,               MoreVariantMod.SMOKERS),
+        WOODCUTTER(         null,                       null,                       MoreVariantMod.WOODCUTTERS),
+        STICK(              null,                       Items.STICK,                MoreVariantMod.STICKS),
+        ARMOR_STAND(        null,                       Items.ARMOR_STAND,          MoreVariantMod.ARMOR_STANDS),
+        FRAME(              null,                       Items.ITEM_FRAME,           MoreVariantMod.FRAMES),
+        LADDER(             Blocks.LADDER,              Items.LADDER,               MoreVariantMod.LADDERS),
+        RAIL(               Blocks.RAIL,                Items.RAIL,                 MoreVariantMod.RAILS),
+        ROD(                null,                       Items.FISHING_ROD,          MoreVariantMod.FISHING_RODS),
+        TOOL(               null,                       Items.WOODEN_PICKAXE,       MoreVariantMod.TOOLS),
+        TORCH(              Blocks.TORCH,               Items.TORCH,                MoreVariantMod.TORCHES),
+        WEAPON(             null,                       Items.WOODEN_SWORD,         MoreVariantMod.WEAPONS);
 
         private final Block vanillaBlock;
         private final Item vanillaItem;
+        private final String modId;
 
-        MoreVariantType(Block vanillaBlock, Item vanillaItem) {
+        MoreVariantType(Block vanillaBlock, Item vanillaItem, MoreVariantMod mod) {
             this.vanillaBlock = vanillaBlock;
             this.vanillaItem = vanillaItem;
+            this.modId = mod.modId();
         }
 
-        public String registrationType() {
-            return this.name().toLowerCase();
+        public String modId() {
+            return modId;
+        }
+        public ResourceLocation getRegistrationId(MoreVariantWoodType woodType) {
+            return ResourceLocation.tryBuild(modId, String.join("_", woodType.getName(), this.registrationType()));
         }
         public @Nullable Block getVanillaBlock() {
             return vanillaBlock;
@@ -65,11 +72,23 @@ public final class MoreVariantHolder {
 
     public interface IMoreVariantSubType extends IMoreVariantType {
         MoreVariantType variantType();
+        default ResourceLocation getRegistrationId(MoreVariantWoodType woodType) {
+            return ResourceLocation.tryBuild(variantType().modId(), String.join("_", woodType.getName(), this.registrationType()));
+        }
+        default Block getVanillaBlock() {
+            return variantType().getVanillaBlock();
+        }
+        default Item getVanillaItem() {
+            return variantType().getVanillaItem();
+        }
     }
     public enum DefaultSubtype implements IMoreVariantSubType {
         DEFAULT;
         public String registrationType() {
             throw new UnsupportedOperationException("DefaultSubtype does not have a registration type");
+        }
+        public ResourceLocation getRegistrationId(MoreVariantWoodType woodType) {
+            throw new UnsupportedOperationException("DefaultSubtype does not have an ID");
         }
         public MoreVariantType variantType() {
             throw new UnsupportedOperationException("DefaultSubtype does not have a variant type");
@@ -113,7 +132,7 @@ public final class MoreVariantHolder {
             return color;
         }
         public String registrationType() {
-            return this.name().toLowerCase();
+            return String.join("_", color.getName(), this.variantType().registrationType());
         }
         public MoreVariantType variantType() {
             return MoreVariantType.BED;
@@ -136,8 +155,6 @@ public final class MoreVariantHolder {
             this.vanillaBlock = vanillaBlock;
             this.vanillaItem = vanillaItem;
         }
-
-        public String registrationType() {return this.name().toLowerCase();}
         public MoreVariantType variantType() {
             return MoreVariantType.CHEST;
         }
@@ -154,8 +171,8 @@ public final class MoreVariantHolder {
         BLACKSTONE;
 
 
-        public String registrationType() {
-            return this.name().toLowerCase();
+        public ResourceLocation getRegistrationId(MoreVariantWoodType woodType) {
+            return ResourceLocation.tryBuild(this.variantType().modId, String.join("_", woodType.getName(), this.registrationType(), this.variantType().registrationType()));
         }
         public MoreVariantType variantType() {
             return MoreVariantType.SMOKER;
@@ -187,6 +204,9 @@ public final class MoreVariantHolder {
         public String registrationType() {
             return registrationType;
         }
+        public ResourceLocation getRegistrationId(MoreVariantWoodType woodType) {
+            return ResourceLocation.tryBuild(this.variantType().modId, String.join("_", woodType.getName(), this.registrationType(), this.variantType().registrationType()));
+        }
         public MoreVariantType variantType() {
             return MoreVariantType.RAIL;
         }
@@ -209,7 +229,7 @@ public final class MoreVariantHolder {
         private final String torchName;
         private final String wallTorchName;
         private final TorchType baseTorchType;
-        private boolean isWallTorch;
+        private final boolean isWallTorch;
         private final Block vanillaBlock;
         private final Item vanillaItem;
 
@@ -266,33 +286,20 @@ public final class MoreVariantHolder {
         DEEPSLATE(Blocks.POLISHED_DEEPSLATE_SLAB),
         BASALT(Blocks.BASALT);
 
-        private final String registrationType;
-        private final String blockIdSuffix;
         private final Block stoneSlabBlock;
 
         GrindstoneType(Block stoneSlabBlock) {
             this.stoneSlabBlock = stoneSlabBlock;
-            this.registrationType = this.name().toLowerCase();
-            this.blockIdSuffix = "_" + (!registrationType.equals("stone") ? "" : ("_" + registrationType)) + "_grindstone";
         }
 
         public Block getStoneSlabBlock() {
             return stoneSlabBlock;
         }
-        public String blockIdSuffix() {
-            return blockIdSuffix;
-        }
-        public String registrationType() {
-            return registrationType;
+        public ResourceLocation getRegistrationId(MoreVariantWoodType woodType) {
+            return ResourceLocation.tryBuild(this.variantType().modId, String.join("_", woodType.getName(), this.registrationType(), this.variantType().registrationType()));
         }
         public MoreVariantType variantType() {
             return MoreVariantType.GRINDSTONE;
-        }
-        public Block getVanillaBlock() {
-            return this.variantType().getVanillaBlock();
-        }
-        public Item getVanillaItem() {
-            return this.variantType().getVanillaItem();
         }
     }
 
@@ -310,6 +317,9 @@ public final class MoreVariantHolder {
 
         public String registrationType() {
             return this.name().toLowerCase();
+        }
+        public ResourceLocation getRegistrationId(MoreVariantWoodType woodType) {
+            return ResourceLocation.tryBuild(this.variantType().modId, String.join("_", woodType.getName(), this.registrationType()));
         }
         public MoreVariantType variantType() {
             return MoreVariantType.JUKEBOX_NOTEBLOCK;
@@ -338,14 +348,8 @@ public final class MoreVariantHolder {
         public String entityType() {
             return entityType;
         }
-        public String registrationType() {
-            return this.name().toLowerCase();
-        }
         public MoreVariantType variantType() {
             return MoreVariantType.ROD;
-        }
-        public Block getVanillaBlock() {
-            return this.variantType().getVanillaBlock();
         }
         public Item getVanillaItem() {
             return vanillaItem;
@@ -368,14 +372,8 @@ public final class MoreVariantHolder {
         public EntityType<? extends HangingEntity> entityType() {
             return entityType;
         }
-        public String registrationType() {
-            return this.name().toLowerCase();
-        }
         public MoreVariantType variantType() {
             return MoreVariantType.FRAME;
-        }
-        public Block getVanillaBlock() {
-            return this.variantType().getVanillaBlock();
         }
         public Item getVanillaItem() {
             return vanillaItem;
@@ -390,15 +388,7 @@ public final class MoreVariantHolder {
         Item getVanillaItem();
 
         @Override
-        default String registrationType() {
-            return ((Enum<?>) this).name().toLowerCase();
-        }
-
-        @Override
         default MoreVariantType variantType() { return MoreVariantType.TOOL; }
-
-        @Override
-        default Block getVanillaBlock() { return variantType().getVanillaBlock(); }
 
         default boolean isAxe() { return toolTypeType() == ToolTypeType.AXE; }
         default boolean isPickaxe() { return toolTypeType() == ToolTypeType.PICKAXE; }
@@ -615,6 +605,10 @@ public final class MoreVariantHolder {
                     + " but it has not been registered");
         }
         return item;
+    }
+
+    public static ResourceLocation getRegistrationId(IMoreVariantType type, MoreVariantWoodType woodType) {
+        return type.getRegistrationId(woodType);
     }
 
     private static Map<Object, Block> blocksFor(MoreVariantType variantType, MoreVariantWoodType woodType) {

@@ -1,5 +1,6 @@
 package de.pnku.more_variants_core.mixin;
 
+import de.pnku.more_variants_core.util.MoreVariantMod;
 import net.fabricmc.loader.api.FabricLoader;
 
 import java.util.HashMap;
@@ -14,34 +15,9 @@ public final class MoreVariantsCoreMixinDependencyResolver {
 
     public static void init() {
         Map<String, String> map = new HashMap<>();
-        map.put("compat", "everycomp");
-        map.put("more_barrel_variants", "more_barrel_variants");
-        map.put("more_bed_variants", "quad-lolmbdv");
-        map.put("more_beehive_variants", "quad-lolmbhv");
-        map.put("more_bookshelf_variants", "lolmbv");
-        map.put("more_cartography_tables", "lolmcgt");
-        map.put("more_chest_variants", "lolmcv");
-        map.put("more_chiseled_bookshelf_variants", "lolmcbv");
-        map.put("more_composter_variants", "lolmcmv");
-        map.put("more_crafter_variants", "quad-lolmcrv");
-        map.put("more_crafting_tables", "lolmct");
-        map.put("more_fletching_tables", "lolmft");
-        map.put("more_grindstone_variants", "lolmgv");
-        map.put("more_jukebox_noteblock_variants", "quad-lolmjnv");
-        map.put("more_lectern_variants", "lolmlv");
-        map.put("more_loom_variants", "lolmlmv");
-        map.put("more_shield_variants", "lolmsv");
-        map.put("more_smithing_tables", "lolmst");
-        map.put("more_smoker_variants", "quad-lolmsmv");
-        map.put("mstv.base", "mstv-base");
-        map.put("mstv.more_armor_stand_variants", "mstv-masv");
-        map.put("mstv.more_fishing_rod_variants", "mstv-mfrv");
-        map.put("mstv.more_frame_variants", "mstv-mframev");
-        map.put("mstv.more_rail_variants", "quad-mstv-mrailv");
-        map.put("mstv.more_tool_variants", "mstv-mtoolv");
-        map.put("mstv.more_torch_variants", "quad-mstv-mtv");
-        map.put("mstv.more_weapon_variants", "mstv-mweaponv");
-        map.put("mstv.nemos_more_ladder_variants", "nemos-moreladdervariants");
+        for (MoreVariantMod mod : MoreVariantMod.values()) {
+            map.put(mod.mixinSubPackage(), mod.modId());
+        }
         MIXIN_PACKAGE_TO_MOD_ID = Map.copyOf(map);
     }
 
