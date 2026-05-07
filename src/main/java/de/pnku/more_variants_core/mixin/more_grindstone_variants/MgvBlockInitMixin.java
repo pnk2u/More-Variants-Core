@@ -23,7 +23,7 @@ public abstract class MgvBlockInitMixin {
     private static void registerPaleOakGrindstoneBlockVariants(List<MoreVariantWoodType> woodTypes) {
         for (MoreVariantWoodType woodType : woodTypes) {
             for (MoreVariantHolder.GrindstoneType grindstoneType : MoreVariantHolder.GrindstoneType.values()) {
-                MoreGrindstoneBlock grindstoneBlock = new MoreGrindstoneBlock(woodType.getMapColor(), woodType.getName(), woodType.getPlanksBlock(), grindstoneType.registrationType(), grindstoneType.getStoneSlabBlock(), grindstoneType.blockIdSuffix());
+                MoreGrindstoneBlock grindstoneBlock = new MoreGrindstoneBlock(woodType.getMapColor(), woodType.getName(), woodType.getPlanksBlock(), grindstoneType.registrationType(), grindstoneType.getStoneSlabBlock(), "");
                 registerBlock(grindstoneBlock);
                 MoreVariantHolder.setBlock(grindstoneType, woodType, grindstoneBlock);
             }
