@@ -9,6 +9,7 @@ import de.pnku.mstv_base.MoreStickVariants;
 import de.pnku.mstv_mfrv.item.MoreFishingRodVariantItems;
 import net.fabricmc.fabric.api.event.registry.RegistryEntryAddedCallback;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -18,6 +19,8 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.List;
+
+import static de.pnku.more_variants_core.util.MoreVariantRegistryHelper.whenItemRegistered;
 
 @Mixin(MoreFishingRodVariantItems.class)
 public abstract class MoreFishingRodVariantItemsMixin {
@@ -39,19 +42,9 @@ public abstract class MoreFishingRodVariantItemsMixin {
             for (RodType rodType : RodType.values()) {
                 Item rodItem = createRodItem(rodType.entityType(), woodType.getName());
                 Item vanillaRodItem = rodType.getVanillaItem();
-                String stickPath = woodType.getName() + "_" + MoreVariantType.STICK.registrationType();
-                boolean stickExisted = BuiltInRegistries.ITEM.containsKey(MoreStickVariants.withModId(stickPath));
-                if (stickExisted) {
-                    Item stickItem = MoreVariantHolder.getItem(MoreVariantHolder.MoreVariantType.STICK, woodType);
-                    registerRodItemVariantForType(rodType, rodItem, vanillaRodItem, stickItem);
-                } else {
-                    RegistryEntryAddedCallback.event(BuiltInRegistries.ITEM).register((rawId, id, item) -> {
-                        if (id.getPath().equals(stickPath)) {
-                            Item stickItem = MoreVariantHolder.getItem(MoreVariantHolder.MoreVariantType.STICK, woodType);
-                            registerRodItemVariantForType(rodType, rodItem, vanillaRodItem, stickItem);
-                        }
-                    });
-                }
+                ResourceLocation stickId = MoreVariantHolder.getRegistrationId(MoreVariantHolder.MoreVariantType.STICK, woodType);
+                whenItemRegistered(stickId, stickItem
+                        -> registerRodItemVariantForType(rodType, rodItem, vanillaRodItem, stickItem));
                 MoreVariantHolder.setItem(rodType, woodType, rodItem);
             }
         }

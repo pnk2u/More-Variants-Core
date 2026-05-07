@@ -1,16 +1,13 @@
 package de.pnku.more_variants_core.mixin.mstv.more_tool_variants;
 
 import de.pnku.more_variants_core.util.MoreVariantHolder;
-import de.pnku.more_variants_core.util.MoreVariantWoodType;
 import de.pnku.more_variants_core.util.MoreVariantHolder.ToolType;
+import de.pnku.more_variants_core.util.MoreVariantWoodType;
 import de.pnku.more_variants_core.util.MoreVariantWoodTypeHolder;
-import de.pnku.mstv_base.MoreStickVariants;
 import de.pnku.mstv_mtoolv.item.MoreToolVariantItems;
-import net.fabricmc.fabric.api.event.registry.RegistryEntryAddedCallback;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.*;
-import net.minecraft.world.level.block.Block;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -20,7 +17,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+
+import static de.pnku.more_variants_core.util.MoreVariantRegistryHelper.whenItemRegistered;
+import static de.pnku.more_variants_core.util.MoreVariantRegistryHelper.whenBlockRegistered;
 
 @Mixin(MoreToolVariantItems.class)
 public abstract class MoreToolVariantItemsMixin {
@@ -88,44 +87,14 @@ public abstract class MoreToolVariantItemsMixin {
     }
 
     @Unique
-    private static void whenItemRegistered(ResourceLocation itemId, Consumer<Item> action) {
-        if (BuiltInRegistries.ITEM.containsKey(itemId)) {
-            action.accept(BuiltInRegistries.ITEM.get(itemId));
-            return;
-        }
-        RegistryEntryAddedCallback.event(BuiltInRegistries.ITEM).register((itemIntId, id, item) -> {
-            if (id.equals(itemId)) {
-                action.accept(item);
-            }
-        });
-    }
-
-    @Unique
-    private static void whenBlockRegistered(ResourceLocation blockId, Consumer<Block> action) {
-        if (BuiltInRegistries.BLOCK.containsKey(blockId)) {
-            action.accept(BuiltInRegistries.BLOCK.get(blockId));
-            return;
-        }
-        RegistryEntryAddedCallback.event(BuiltInRegistries.BLOCK).register((blockIntId, id, block) -> {
-            if (id.equals(blockId)) {
-                action.accept(block);
-            }
-        });
-    }
-
-    @Unique
     private static void registerToolItemVariants(List<MoreVariantWoodType> woodTypes) {
         ToolType[] toolTypes = ToolType.values();
         for (MoreVariantWoodType woodType : woodTypes) {
             ResourceLocation stickId = MoreVariantHolder.getRegistrationId(MoreVariantHolder.MoreVariantType.STICK, woodType);
             ResourceLocation planksId = woodType.getPlanksBlockId();
-            if (BuiltInRegistries.ITEM.containsKey(stickId)) {
-                Item stickItem = MoreVariantHolder.getItem(MoreVariantHolder.MoreVariantType.STICK, woodType);
-                whenBlockRegistered(planksId, block -> registerToolItemVariantForType(toolTypes, woodType, stickItem, block.asItem()));
-            } else {
-                whenItemRegistered(stickId, item ->
-                        whenBlockRegistered(planksId, block -> registerToolItemVariantForType(toolTypes, woodType, item, block.asItem())));
-            }
+            whenItemRegistered(stickId, item
+                    -> whenBlockRegistered(planksId, block
+                            -> registerToolItemVariantForType(toolTypes, woodType, item, block.asItem())));
         }
     }
 
