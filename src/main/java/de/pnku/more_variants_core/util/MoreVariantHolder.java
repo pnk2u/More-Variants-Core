@@ -11,6 +11,10 @@ import net.minecraft.world.level.block.Blocks;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
+import java.util.function.Consumer;
+
+import static de.pnku.more_variants_core.util.MoreVariantRegistryHelper.whenBlockRegistered;
+import static de.pnku.more_variants_core.util.MoreVariantRegistryHelper.whenItemRegistered;
 
 public final class MoreVariantHolder {
     public enum MoreVariantType implements IMoreVariantType {
@@ -647,6 +651,14 @@ public final class MoreVariantHolder {
 
     public static ResourceLocation getRegistrationId(IMoreVariantType type, MoreVariantWoodType woodType) {
         return type.getRegistrationId(woodType);
+    }
+
+    public static void waitForBlockRegistration(IMoreVariantType type, MoreVariantWoodType woodType, Consumer<Block> action) {
+        whenBlockRegistered(getRegistrationId(type, woodType), action);
+    }
+
+    public static void waitForItemRegistration(IMoreVariantType type, MoreVariantWoodType woodType, Consumer<Item> action) {
+        whenItemRegistered(getRegistrationId(type, woodType), action);
     }
 
     private static Map<Object, Block> blocksFor(MoreVariantType variantType, MoreVariantWoodType woodType) {
