@@ -52,6 +52,7 @@
     "mstv.more_rail_variants.MrailvBlockInitMixin",
     "mstv.more_tool_variants.MoreToolVariantItemsMixin",
     "mstv.more_torch_variants.MtvBlockInitMixin",
+    "mstv.more_weapon_variants.MoreWeaponVariantItemsMixin",
     "mstv.nemos_more_ladder_variants.NmlvBlocksMixin",
     "mstv.nemos_more_ladder_variants.NmlvItemsMixin"
   ],

@@ -1,6 +1,5 @@
 package de.pnku.more_variants_core.util;
 
-import de.pnku.more_variants_core.util.MoreVariantMod;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.resources.ResourceLocation;
@@ -526,6 +525,45 @@ public final class MoreVariantHolder {
                 if (type.toolTypeType() == toolType && type.materialType() == materialType) return type;
             }
             throw new IllegalArgumentException("No tool type found for " + toolType + " " + materialType);
+        }
+    }
+
+    public enum WeaponType implements IMoreVariantSubType {
+        WOODEN_SWORD(MaterialType.WOOD, Items.WOODEN_SWORD),
+        STONE_SWORD(MaterialType.STONE, Items.STONE_SWORD),
+        BLACKSTONE_SWORD(MaterialType.BLACKSTONE, Items.STONE_SWORD),
+        DEEPSLATE_SWORD(MaterialType.DEEPSLATE, Items.STONE_SWORD),
+        GOLDEN_SWORD(MaterialType.GOLD, Items.GOLDEN_SWORD),
+        IRON_SWORD(MaterialType.IRON, Items.IRON_SWORD),
+        DIAMOND_SWORD(MaterialType.DIAMOND, Items.DIAMOND_SWORD),
+        NETHERITE_SWORD(MaterialType.NETHERITE, Items.NETHERITE_SWORD),
+        BOW(MaterialType.WOOD, Items.BOW),
+        CROSSBOW(MaterialType.WOOD, Items.CROSSBOW),
+        ARROW(MaterialType.WOOD, Items.ARROW),
+        TIPPED_ARROW(MaterialType.WOOD, Items.TIPPED_ARROW);
+
+        private final MaterialType materialType;
+        private final Item vanillaItem;
+
+        WeaponType(MaterialType materialType, Item vanillaItem) {
+            this.materialType = materialType; this.vanillaItem = vanillaItem;
+        }
+
+        public boolean isBow() { return this == BOW; }
+        public boolean isCrossbow() { return this == CROSSBOW; }
+        public boolean isArrow() { return this == ARROW || this == TIPPED_ARROW; }
+        public boolean isTippedArrow() { return this == TIPPED_ARROW; }
+        public boolean isSword() { return !isBow() && !isCrossbow() && !isArrow(); }
+
+        public MaterialType materialType() { return materialType; }
+        public String registrationType() { return this.name().toLowerCase(); }
+        public ResourceLocation getRegistrationId(MoreVariantWoodType woodType) {
+            if (this.equals(TIPPED_ARROW)) return ResourceLocation.tryBuild(this.variantType().modId, String.join("_", "tipped", woodType.getName(), "arrow"));
+            return ResourceLocation.tryBuild(this.variantType().modId, String.join("_", woodType.getName(), this.registrationType()));
+        }
+        public MoreVariantType variantType() { return MoreVariantType.WEAPON; }
+        public Item getVanillaItem() {
+            return vanillaItem;
         }
     }
 
