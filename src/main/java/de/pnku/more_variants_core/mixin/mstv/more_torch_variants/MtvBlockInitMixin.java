@@ -69,10 +69,10 @@ public abstract class MtvBlockInitMixin {
 
     @Unique
     private static void registerTorchItemVariants(List<MoreVariantWoodType> woodTypes) {
-        for (MoreVariantWoodType woodType : woodTypes) {
-            for (TorchType wallTorchType : TorchType.values()) {
-                if (!wallTorchType.isWallTorch()) continue;
-                TorchType torchType = wallTorchType.getBaseTorchType();
+        for (TorchType wallTorchType : TorchType.values()) {
+            if (!wallTorchType.isWallTorch()) continue;
+            TorchType torchType = wallTorchType.getBaseTorchType();
+            for (MoreVariantWoodType woodType : woodTypes) {
                 Block torchBlock = MoreVariantHolder.getBlock(torchType, woodType);
                 Block wallTorchBlock = MoreVariantHolder.getBlock(wallTorchType, woodType);
                 StandingAndWallBlockItem inputItem = new StandingAndWallBlockItem(torchBlock, wallTorchBlock, new Item.Properties(), Direction.DOWN);
