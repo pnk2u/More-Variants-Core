@@ -85,7 +85,7 @@ public abstract class MoreWeaponVariantItemsMixin {
 
         Item arrowItem = createArrowItemVariant(false);
         Item tippedArrowItem = createArrowItemVariant(true);
-        registerArrowItem(arrowItem, stickItem, tippedArrowItem, woodType.getIntId() + 12);
+        registerArrowItem(arrowItem, stickItem, tippedArrowItem, woodType.getIntId());
         MoreVariantHolder.setItem(WeaponType.ARROW, woodType, arrowItem);
         MoreVariantHolder.setItem(WeaponType.TIPPED_ARROW, woodType, tippedArrowItem);
     }
