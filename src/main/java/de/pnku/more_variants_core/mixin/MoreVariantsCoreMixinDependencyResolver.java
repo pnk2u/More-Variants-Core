@@ -18,6 +18,7 @@ public final class MoreVariantsCoreMixinDependencyResolver {
         for (MoreVariantMod mod : MoreVariantMod.values()) {
             map.put(mod.mixinSubPackage(), mod.modId());
         }
+        map.put("compat", "everycomp");
         MIXIN_PACKAGE_TO_MOD_ID = Map.copyOf(map);
     }
 
