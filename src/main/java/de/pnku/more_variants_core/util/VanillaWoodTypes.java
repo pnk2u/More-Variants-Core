@@ -16,4 +16,8 @@ public class VanillaWoodTypes {
         public static final MoreVariantWoodType SPRUCE = new MoreVariantWoodType("spruce", MapColor.PODZOL, ResourceLocation.withDefaultNamespace("spruce_planks"), 10);
         public static final MoreVariantWoodType WARPED = new MoreVariantWoodType("warped", MapColor.WARPED_STEM, ResourceLocation.withDefaultNamespace("warped_planks"), 11);
         public static final MoreVariantWoodType[] VALUES = new MoreVariantWoodType[]{ACACIA, BAMBOO, BIRCH, CHERRY, CRIMSON, DARK_OAK, JUNGLE, MANGROVE, OAK, SPRUCE, WARPED};
+
+        public static MoreVariantWoodType getLast() {
+            return VALUES[VALUES.length - 1];
+        }
 }
