@@ -55,7 +55,7 @@ public abstract class MrailvBlockInitMixin {
     }
 
     @Unique
-    private static void registerPaleOakRailItemVariants(List<MoreVariantWoodType> woodTypes) {
+    private static void registerRailItemVariants(List<MoreVariantWoodType> woodTypes) {
         for (MoreVariantWoodType woodType : woodTypes) {
             for (RailType railType : RailType.values()) {
                 Item railItem = registerRailItem(woodType.getName(), new BlockItem(MoreVariantHolder.getBlock(railType, woodType), new Item.Properties()), railType.registrationType());
@@ -80,6 +80,6 @@ public abstract class MrailvBlockInitMixin {
     private static void injectedRegisterRailAtHead(CallbackInfo ci) {
         List<MoreVariantWoodType> woodTypes = MoreVariantWoodTypeHolder.getWoodTypes();
         registerRailBlockVariants(woodTypes);
-        registerPaleOakRailItemVariants(woodTypes);
+        registerRailItemVariants(woodTypes);
     }
 }

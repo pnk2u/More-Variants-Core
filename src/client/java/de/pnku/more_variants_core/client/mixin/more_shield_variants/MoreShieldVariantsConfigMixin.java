@@ -11,11 +11,10 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.List;
+import java.util.Set;
 
 @Mixin(MoreShieldVariantsConfig.class)
 public abstract class MoreShieldVariantsConfigMixin implements MoreShieldVariantConfigAccessor {
-    @Unique
-    private boolean paleOakUseCustom = true;
 
     @Inject(method = "updateConfigs", at = @At("TAIL"), remap = false)
     private void injectedUpdateConfigsAtTail(MoreShieldVariantsConfig config, CallbackInfo ci) {
@@ -31,21 +30,20 @@ public abstract class MoreShieldVariantsConfigMixin implements MoreShieldVariant
 
     @Override
     public boolean mvpob$isWoodTypeUseCustom(MoreVariantWoodType woodType) {
-        return paleOakUseCustom;
+        return MoreShieldVariantsConfig.textureConfigList.stream()
+                .anyMatch(woodType.getName()::equalsIgnoreCase);
     }
 
     @Override
     public void mvpob$setWoodTypeUseCustom(MoreVariantWoodType woodType, boolean useCustom) {
-        paleOakUseCustom = useCustom;
-        syncPaleOakTextureConfigEntry(woodType, useCustom);
+        syncWoodTypeTextureConfigEntry(woodType, useCustom);
     }
 
     @Unique
-    private static void syncPaleOakTextureConfigEntry(MoreVariantWoodType woodType, boolean useCustom) {
+    private static void syncWoodTypeTextureConfigEntry(MoreVariantWoodType woodType, boolean useCustom) {
         if (useCustom) {
-            boolean containsPaleOak = MoreShieldVariantsConfig.textureConfigList.stream()
-                    .anyMatch(woodType.getName()::equalsIgnoreCase);
-            if (!containsPaleOak) {
+            if (MoreShieldVariantsConfig.textureConfigList.stream()
+                    .noneMatch(woodType.getName()::equalsIgnoreCase)) {
                 MoreShieldVariantsConfig.textureConfigList.add(woodType.getName());
             }
             return;
@@ -55,17 +53,27 @@ public abstract class MoreShieldVariantsConfigMixin implements MoreShieldVariant
 
     @Unique
     private static void updateShieldVariantConfigs(List<MoreVariantWoodType> woodTypes, MoreShieldVariantConfigAccessor configAccess) {
+        Set<String> configuredShieldVariants = new java.util.HashSet<>(MoreShieldVariantsConfig.textureConfigList);
+
         for (MoreVariantWoodType woodType : woodTypes) {
-            boolean useCustom = configAccess.mvpob$isWoodTypeUseCustom(woodType);
-            configAccess.mvpob$setWoodTypeUseCustom(woodType, useCustom);
+            String woodTypeName = woodType.getName();
+            boolean useCustom = configuredShieldVariants.contains(woodTypeName);
+
+            if (useCustom) {
+                configuredShieldVariants.add(woodTypeName);
+            } else {
+                configuredShieldVariants.remove(woodTypeName);
+            }
         }
+        MoreShieldVariantsConfig.textureConfigList.clear();
+        MoreShieldVariantsConfig.textureConfigList.addAll(configuredShieldVariants);
     }
 
     @Unique
     private static void initialReadShieldVariantConfigs(List<MoreVariantWoodType> woodTypes, MoreShieldVariantConfigAccessor configAccess) {
         for (MoreVariantWoodType woodType : woodTypes) {
             boolean useCustom = configAccess.mvpob$isWoodTypeUseCustom(woodType);
-            syncPaleOakTextureConfigEntry(woodType, useCustom);
+            syncWoodTypeTextureConfigEntry(woodType, useCustom);
         }
     }
 }
