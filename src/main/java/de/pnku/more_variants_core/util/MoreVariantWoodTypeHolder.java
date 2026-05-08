@@ -27,7 +27,7 @@ public class MoreVariantWoodTypeHolder {
             if (!more_variant_wood_types.contains(woodType)) {
                 int minimumId = VALUES.length + 2;
                 if (woodType.getIntId() < minimumId) {
-                    throw new IllegalArgumentException("Wood type '" + woodType.getName() + "' has an integer ID less than " + VALUES.length + ", which is reserved for Vanilla Wood Types.");
+                    throw new IllegalArgumentException("Wood type '" + woodType.getName() + "' has an integer ID less than " + minimumId + ", which is reserved for Vanilla Wood Types.");
                 }
                 more_variant_wood_types.forEach(existingWoodType -> {
                     if (existingWoodType.getIntId() == woodType.getIntId()) {
