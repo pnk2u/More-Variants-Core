@@ -25,7 +25,7 @@ public abstract class MoreStickVariantItemMixin {
     private static void injectedGetPlanksItemAtHead(String woodTypeName, CallbackInfoReturnable<Item> cir) {
         MoreVariantWoodType woodType = MoreVariantWoodTypeHolder.getWoodTypeByName(woodTypeName);
         if (woodType != null) {
-            Item planksItem = woodType.getPlanksBlock().asItem();
+            Item planksItem = woodType.getPlanksItem();
             cir.setReturnValue(planksItem);
         }
     }

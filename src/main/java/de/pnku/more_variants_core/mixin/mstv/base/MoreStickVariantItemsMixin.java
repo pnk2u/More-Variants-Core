@@ -6,6 +6,7 @@ import de.pnku.more_variants_core.util.MoreVariantWoodType;
 import de.pnku.more_variants_core.util.MoreVariantWoodTypeHolder;
 import de.pnku.mstv_base.item.MoreStickVariantItem;
 import de.pnku.mstv_base.item.MoreStickVariantItems;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -15,6 +16,8 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.List;
+
+import static de.pnku.more_variants_core.util.MoreVariantRegistryHelper.whenItemRegistered;
 
 
 @Mixin(MoreStickVariantItems.class)
@@ -26,9 +29,12 @@ public abstract class MoreStickVariantItemsMixin {
     private static void registerStickItemVariants(List<MoreVariantWoodType> woodTypes) {
         MoreVariantHolder.MoreVariantType stickType = MoreVariantType.STICK;
         for (MoreVariantWoodType woodType : woodTypes) {
-            Item stickItem = new MoreStickVariantItem(woodType.getName(), new Item.Properties());
-            MoreVariantHolder.setItem(stickType, woodType, stickItem);
-            registerStickItem(stickItem, MoreVariantHolder.MoreVariantType.STICK.getVanillaItem());
+            ResourceLocation planksId = woodType.getPlanksId();
+            whenItemRegistered(planksId, item -> { // MoreStickVariantItem#getPlanksItem references the Planks item
+                Item stickItem = new MoreStickVariantItem(woodType.getName(), new Item.Properties());
+                MoreVariantHolder.setItem(stickType, woodType, stickItem);
+                registerStickItem(stickItem, MoreVariantHolder.MoreVariantType.STICK.getVanillaItem());
+            });
         }
     }
 
