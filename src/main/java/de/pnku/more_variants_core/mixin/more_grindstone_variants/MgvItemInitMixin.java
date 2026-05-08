@@ -38,7 +38,7 @@ public abstract class MgvItemInitMixin {
         }
     }
 
-    @Inject(method = "registerItems", at = @At("TAIL"), remap = false)
+    @Inject(method = "registerItems", at = @At("HEAD"), remap = false)
     private static void injectedRegisterGrindstoneItemsAtTail(CallbackInfo ci) {
         registerGrindstoneItemVariants(MoreVariantWoodTypeHolder.getWoodTypes());
     }

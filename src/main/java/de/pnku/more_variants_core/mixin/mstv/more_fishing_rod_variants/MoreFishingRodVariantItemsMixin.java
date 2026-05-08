@@ -63,7 +63,7 @@ public abstract class MoreFishingRodVariantItemsMixin {
         }
     }
 
-    @Inject(method = "registerRodItems", at = @At(value = "TAIL", remap = false))
+    @Inject(method = "registerRodItems", at = @At(value = "HEAD", remap = false))
     private static void injectedRegisterRodItemsAtHead(CallbackInfo ci) {
         registerFishingRodItemVariants(MoreVariantWoodTypeHolder.getWoodTypes());
     }

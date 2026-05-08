@@ -40,8 +40,8 @@ public abstract class MjnvItemInitMixin {
         }
     }
 
-    @Inject(method = "registerJukeboxNoteblockItems", at = @At("TAIL"), remap = false)
-    private static void injectedRegisterJukeboxNoteblockItemsAtTail(CallbackInfo ci) {
         registerJukeboxNoteblockItemVariants(MoreVariantWoodTypeHolder.getWoodTypes());
+    @Inject(method = "registerJukeboxNoteblockItems", at = @At("HEAD"), remap = false)
+    private static void injectedRegisterJukeboxNoteblockItemsAtHead(CallbackInfo ci) {
     }
 }

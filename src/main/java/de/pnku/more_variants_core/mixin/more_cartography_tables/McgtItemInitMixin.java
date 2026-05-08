@@ -31,8 +31,8 @@ public abstract class McgtItemInitMixin {
         }
     }
 
-    @Inject(method = "registerItems", at = @At("TAIL"), remap = false)
-    private static void injectedRegisterCartographyTableItemsAtTail(CallbackInfo ci) {
         registerCartographyTableItemVariants(MoreVariantWoodTypeHolder.getWoodTypes());
+    @Inject(method = "registerItems", at = @At("HEAD"), remap = false)
+    private static void injectedRegisterCartographyTableItemsAtHead(CallbackInfo ci) {
     }
 }

@@ -31,8 +31,8 @@ public abstract class MbhvItemInitMixin {
         }
     }
 
-    @Inject(method = "registerBeehiveItems", at = @At("TAIL"), remap = false)
-    private static void injectedRegisterBeehiveItemsAtTail(CallbackInfo ci) {
         registerBeehiveItemVariants(MoreVariantWoodTypeHolder.getWoodTypes());
+    @Inject(method = "registerBeehiveItems", at = @At("HEAD"), remap = false)
+    private static void injectedRegisterBeehiveItemsAtHead(CallbackInfo ci) {
     }
 }

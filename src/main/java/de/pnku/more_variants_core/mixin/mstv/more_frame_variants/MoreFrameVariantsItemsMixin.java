@@ -49,8 +49,8 @@ public abstract class MoreFrameVariantsItemsMixin {
         }
     }
 
-    @Inject(method = "registerFrameItems", at=@At("TAIL"), remap = false)
-    private static void injectedRegisterFrameItemsAtTail(CallbackInfo ci) {
         registerFrameItemVariants(MoreVariantWoodTypeHolder.getWoodTypes());
+    @Inject(method = "registerFrameItems", at=@At("HEAD"), remap = false)
+    private static void injectedRegisterFrameItemsAtHead(CallbackInfo ci) {
     }
 }

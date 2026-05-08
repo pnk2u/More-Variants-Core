@@ -30,8 +30,8 @@ public abstract class McmvItemInitMixin {
         }
     }
 
-    @Inject(method = "registerItems", at = @At("TAIL"), remap = false)
-    private static void injectedRegisterCrafterItemsAtTail(CallbackInfo ci) {
         registerComposterItemVariants(MoreVariantWoodTypeHolder.getWoodTypes());
+    @Inject(method = "registerItems", at = @At("HEAD"), remap = false)
+    private static void injectedRegisterCrafterItemsAtHead(CallbackInfo ci) {
     }
 }

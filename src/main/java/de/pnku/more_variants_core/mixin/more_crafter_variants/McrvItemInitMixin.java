@@ -31,8 +31,8 @@ public abstract class McrvItemInitMixin {
         }
     }
 
-    @Inject(method = "registerCrafterItems", at = @At("TAIL"), remap = false)
-    private static void injectedRegisterCrafterItemsAtTail(CallbackInfo ci) {
         registerCrafterItemVariants(MoreVariantWoodTypeHolder.getWoodTypes());
+    @Inject(method = "registerCrafterItems", at = @At("HEAD"), remap = false)
+    private static void injectedRegisterCrafterItemsAtHead(CallbackInfo ci) {
     }
 }

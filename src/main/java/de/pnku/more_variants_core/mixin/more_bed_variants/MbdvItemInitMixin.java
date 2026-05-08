@@ -44,8 +44,8 @@ public abstract class MbdvItemInitMixin {
         }
     }
 
-    @Inject(method = "registerBedItems", at = @At("TAIL"), remap = false)
-    private static void injectedRegisterBedItems(CallbackInfo ci) {
         registerBedItemVariants(MoreVariantWoodTypeHolder.getWoodTypes());
+    @Inject(method = "registerBedItems", at = @At("HEAD"), remap = false)
+    private static void injectedRegisterBedItemsAtHead(CallbackInfo ci) {
     }
 }
