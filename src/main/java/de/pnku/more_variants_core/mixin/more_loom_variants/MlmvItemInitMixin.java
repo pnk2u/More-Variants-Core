@@ -31,8 +31,8 @@ public abstract class MlmvItemInitMixin {
         }
     }
 
-        registerLoomItemVariants(MoreVariantWoodTypeHolder.getWoodTypes());
     @Inject(method = "registerItems", at = @At("HEAD"), remap = false)
     private static void injectedRegisterItemsAtHead(CallbackInfo ci) {
+        registerLoomItemVariants(MoreVariantWoodTypeHolder.getMoreVariantWoodTypes());
     }
 }

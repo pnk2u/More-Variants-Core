@@ -34,6 +34,6 @@ public abstract class MsmvMfvItemInitMixin {
 
     @Inject(method = "registerMfvSmokerItems", at = @At("TAIL"), remap = false)
     private static void injectedRegisterSmokerItemsAtTail(CallbackInfo ci) {
-        registerNfvSmokerItemVariants(MoreVariantWoodTypeHolder.getWoodTypes(), new SmokerType[]{SmokerType.BLACKSTONE, SmokerType.DEEPSLATE});
+        registerNfvSmokerItemVariants(MoreVariantWoodTypeHolder.getMoreVariantWoodTypes(), new SmokerType[]{SmokerType.BLACKSTONE, SmokerType.DEEPSLATE});
     }
 }

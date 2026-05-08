@@ -31,8 +31,8 @@ public abstract class MbvItemInitMixin {
         }
     }
 
-        registerBookshelfItemVariants(MoreVariantWoodTypeHolder.getWoodTypes());
     @Inject(method = "registerItems", at = @At("HEAD"), remap = false)
     private static void injectedRegisterItemsAtHead(CallbackInfo ci) {
+        registerBookshelfItemVariants(MoreVariantWoodTypeHolder.getMoreVariantWoodTypes());
     }
 }

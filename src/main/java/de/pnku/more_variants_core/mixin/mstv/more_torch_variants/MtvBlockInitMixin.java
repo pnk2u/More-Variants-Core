@@ -92,7 +92,7 @@ public abstract class MtvBlockInitMixin {
 
     @Inject(method = "register", at = @At("HEAD"), remap = false)
     private static void injectedRegisterAtHead(CallbackInfo ci) {
-        List<MoreVariantWoodType> woodTypes = MoreVariantWoodTypeHolder.getWoodTypes();
+        List<MoreVariantWoodType> woodTypes = MoreVariantWoodTypeHolder.getMoreVariantWoodTypes();
         registerTorchBlockVariants(woodTypes);
         registerTorchItemVariants(woodTypes);
     }

@@ -33,6 +33,6 @@ public abstract class MctBlockInitMixin {
 
     @Inject(method = "registerBlocks", at = @At("TAIL"), remap = false)
     private static void injectedRegisterBlocksAtHead(CallbackInfo ci) {
-        registerCraftingTableVariants(MoreVariantWoodTypeHolder.getWoodTypes());
+        registerCraftingTableVariants(MoreVariantWoodTypeHolder.getMoreVariantWoodTypes());
     }
 }

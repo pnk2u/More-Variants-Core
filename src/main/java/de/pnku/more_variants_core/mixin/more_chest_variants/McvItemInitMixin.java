@@ -31,7 +31,7 @@ public abstract class McvItemInitMixin {
 
     @Inject(method = "registerItems", at = @At("HEAD"), remap = false)
     private static void injectedRegisterItemsAtHead(CallbackInfo ci) {
-        registerChestItemVariants(MoreVariantWoodTypeHolder.getWoodTypes());
+        registerChestItemVariants(MoreVariantWoodTypeHolder.getMoreVariantWoodTypes());
     }
 
     @Unique

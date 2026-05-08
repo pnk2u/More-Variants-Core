@@ -30,7 +30,7 @@ public abstract class McvBlockInitMixin {
 
     @Inject(method = "registerBlocks", at = @At("HEAD"), remap = false)
     private static void injectedRegisterBlocksAtHead(CallbackInfo ci) {
-        registerChestBlockVariants(MoreVariantWoodTypeHolder.getWoodTypes());
+        registerChestBlockVariants(MoreVariantWoodTypeHolder.getMoreVariantWoodTypes());
     }
 
     @Unique

@@ -37,6 +37,6 @@ public abstract class MoreBarrelBlocksMixin {
     @Inject(method = "registerBlocks", at = @At(value = "HEAD"), remap = false)
     private static void injectedRegisterBlocksAtHead(CallbackInfo ci) {
         more_barrels = new ArrayList<>(more_barrels);
-        more_barrels.addAll(registerBarrelBlockVariants(MoreVariantWoodTypeHolder.getWoodTypes()));
+        more_barrels.addAll(registerBarrelBlockVariants(MoreVariantWoodTypeHolder.getMoreVariantWoodTypes()));
     }
 }

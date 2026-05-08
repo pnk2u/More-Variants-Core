@@ -38,6 +38,6 @@ public abstract class MoreShieldVariantItemsMixin {
 
     @Inject(method = "registerShieldItems", at = @At("TAIL"), remap = false)
     private static void injectedRegisterShieldItemsAtTail(CallbackInfo ci) {
-        registerShieldItemVariants(MoreVariantWoodTypeHolder.getWoodTypes());
+        registerShieldItemVariants(MoreVariantWoodTypeHolder.getMoreVariantWoodTypes());
     }
 }

@@ -31,8 +31,8 @@ public abstract class MlvItemInitMixin {
         }
     }
 
-        registerLecternItemVariants(MoreVariantWoodTypeHolder.getWoodTypes());
     @Inject(method = "registerItems", at = @At("HEAD"), remap = false)
     private static void injectedRegisterItemsAtHead(CallbackInfo ci) {
+        registerLecternItemVariants(MoreVariantWoodTypeHolder.getMoreVariantWoodTypes());
     }
 }

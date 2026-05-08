@@ -44,6 +44,6 @@ public abstract class MjnvBlockInitMixin {
 
     @Inject(method = "registerJukeboxNoteblockBlocks", at = @At("TAIL"), remap = false)
     private static void injectedRegisterJukeboxNoteblockBlocksAtTail(CallbackInfo ci) {
-        registerJukeboxNoteblockBlockVariants(MoreVariantWoodTypeHolder.getWoodTypes());
+        registerJukeboxNoteblockBlockVariants(MoreVariantWoodTypeHolder.getMoreVariantWoodTypes());
     }
 }

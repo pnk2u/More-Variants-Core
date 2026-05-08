@@ -19,13 +19,13 @@ public abstract class MoreShieldVariantsConfigMixin implements MoreShieldVariant
     @Inject(method = "updateConfigs", at = @At("TAIL"), remap = false)
     private void injectedUpdateConfigsAtTail(MoreShieldVariantsConfig config, CallbackInfo ci) {
         MoreShieldVariantConfigAccessor configAccess = (MoreShieldVariantConfigAccessor) config;
-        updateShieldVariantConfigs(MoreVariantWoodTypeHolder.getWoodTypes(), configAccess);
+        updateShieldVariantConfigs(MoreVariantWoodTypeHolder.getMoreVariantWoodTypes(), configAccess);
     }
 
     @Inject(method = "initialReadConfig", at = @At("TAIL"), remap = false)
     private static void injectedInitialReadConfigAtTail(CallbackInfo ci) {
         MoreShieldVariantConfigAccessor configAccess = (MoreShieldVariantConfigAccessor) MoreShieldVariantsConfig.getInstance();
-        initialReadShieldVariantConfigs(MoreVariantWoodTypeHolder.getWoodTypes(), configAccess);
+        initialReadShieldVariantConfigs(MoreVariantWoodTypeHolder.getMoreVariantWoodTypes(), configAccess);
     }
 
     @Override

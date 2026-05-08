@@ -33,6 +33,6 @@ public abstract class NmlvItemsMixin {
 
     @Inject(method = "register", at = @At(value = "HEAD"), remap = false)
     private static void injectedRegisterLadderItemsAtHead(CallbackInfo ci) {
-        registerLadderItemVariants(MoreVariantWoodTypeHolder.getWoodTypes());
+        registerLadderItemVariants(MoreVariantWoodTypeHolder.getMoreVariantWoodTypes());
     }
 }

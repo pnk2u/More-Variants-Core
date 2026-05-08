@@ -39,6 +39,6 @@ public abstract class MoreBarrelItemsMixin {
     @Inject(method = "registerItems", at = @At(value = "HEAD"), remap = false)
     private static void injectedRegisterSticksAtHead(CallbackInfo ci) {
         more_barrels = new ArrayList<>(more_barrels);
-        more_barrels.addAll(registerBarrelItemVariants(MoreVariantWoodTypeHolder.getWoodTypes()));
+        more_barrels.addAll(registerBarrelItemVariants(MoreVariantWoodTypeHolder.getMoreVariantWoodTypes()));
     }
 }

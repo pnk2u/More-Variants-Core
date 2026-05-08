@@ -107,6 +107,6 @@ public abstract class MoreWeaponVariantItemsMixin {
 
     @Inject(method = "registerWeaponItems", at = @At("TAIL"), remap = false)
     private static void injectedRegisterWeaponItemsAtTail(CallbackInfo ci) {
-        registerWeaponItemVariants(MoreVariantWoodTypeHolder.getWoodTypes());
+        registerWeaponItemVariants(MoreVariantWoodTypeHolder.getMoreVariantWoodTypes());
     }
 }

@@ -30,7 +30,7 @@ public abstract class MgvItemInitMixin {
             for (GrindstoneType grindstoneType : GrindstoneType.values()) {
                 ResourceLocation grindstoneBlockId = MoreVariantHolder.getRegistrationId(grindstoneType, woodType);
                 whenBlockRegistered(grindstoneBlockId, block -> {
-                    BlockItem grindstoneItem = new BlockItem(MoreVariantHolder.getBlock(grindstoneType, woodType), new Item.Properties());
+                    BlockItem grindstoneItem = new BlockItem(block, new Item.Properties());
                     registerItem(grindstoneItem, grindstoneType.getVanillaItem());
                     MoreVariantHolder.setItem(grindstoneType, woodType, grindstoneItem);
                 });
@@ -40,6 +40,6 @@ public abstract class MgvItemInitMixin {
 
     @Inject(method = "registerItems", at = @At("HEAD"), remap = false)
     private static void injectedRegisterGrindstoneItemsAtTail(CallbackInfo ci) {
-        registerGrindstoneItemVariants(MoreVariantWoodTypeHolder.getWoodTypes());
+        registerGrindstoneItemVariants(MoreVariantWoodTypeHolder.getMoreVariantWoodTypes());
     }
 }

@@ -31,6 +31,6 @@ public abstract class MlvBlockInitMixin {
 
     @Inject(method = "registerBlocks", at = @At("TAIL"), remap = false)
     private static void injectedRegisterBlocksAtTail(CallbackInfo ci) {
-        registerkLecternBlockVariants(MoreVariantWoodTypeHolder.getWoodTypes());
+        registerkLecternBlockVariants(MoreVariantWoodTypeHolder.getMoreVariantWoodTypes());
     }
 }

@@ -32,7 +32,7 @@ public abstract class WoodTypePropertyMixin {
 
     @Inject(method = "<init>", at = @At("TAIL"))
     private void injectedConstructor(CallbackInfo ci) {
-        List<MoreVariantWoodType> mVWoodTypes = MoreVariantWoodTypeHolder.getWoodTypes();
+        List<MoreVariantWoodType> mVWoodTypes = MoreVariantWoodTypeHolder.getMoreVariantWoodTypes();
         ImmutableSet.Builder<MoreFrameVariantsCompatibilityFIF.WoodTypeValue> builder = ImmutableSet.builder();
         builder.addAll(this.values);
 

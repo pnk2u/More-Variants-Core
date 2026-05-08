@@ -31,6 +31,6 @@ public abstract class McmvBlockInitMixin {
 
     @Inject(method = "registerBlocks", at = @At("TAIL"), remap = false)
     private static void injectedRegisterCrafterItemsAtTail(CallbackInfo ci) {
-        registerComposterBlockVariants(MoreVariantWoodTypeHolder.getWoodTypes());
+        registerComposterBlockVariants(MoreVariantWoodTypeHolder.getMoreVariantWoodTypes());
     }
 }

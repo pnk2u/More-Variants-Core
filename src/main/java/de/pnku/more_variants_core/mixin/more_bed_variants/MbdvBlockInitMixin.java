@@ -33,6 +33,6 @@ public abstract class MbdvBlockInitMixin {
 
     @Inject(method = "registerBedBlocks", at = @At(value = "INVOKE", target = "Ljava/util/List;removeAll(Ljava/util/Collection;)Z"), remap = false)
     private static void injectedRegisterBedBlocks(CallbackInfo ci) {
-        registerBedBlockVariants(MoreVariantWoodTypeHolder.getWoodTypes());
+        registerBedBlockVariants(MoreVariantWoodTypeHolder.getMoreVariantWoodTypes());
     }
 }

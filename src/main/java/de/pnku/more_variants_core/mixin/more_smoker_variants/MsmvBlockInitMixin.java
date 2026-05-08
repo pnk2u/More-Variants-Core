@@ -33,11 +33,11 @@ public abstract class MsmvBlockInitMixin {
 
     @Inject(method = "registerSmokerBlocks", at = @At(value = "HEAD"), remap = false)
     private static void injectedRegisterSmokerBlocksAtTail(CallbackInfo ci) {
-        registerSmokerBlockVariants(MoreVariantWoodTypeHolder.getWoodTypes(), SmokerType.values());
+        registerSmokerBlockVariants(MoreVariantWoodTypeHolder.getMoreVariantWoodTypes(), SmokerType.values());
     }
 
     @Inject(method = "registerCobblestoneSmokerBlocks", at = @At(value = "HEAD"), remap = false)
     private static void injectedRegisterCobblestoneSmokerBlocksAtTail(CallbackInfo ci) {
-        registerSmokerBlockVariants(MoreVariantWoodTypeHolder.getWoodTypes(), new SmokerType[]{SmokerType.COBBLESTONE});
+        registerSmokerBlockVariants(MoreVariantWoodTypeHolder.getMoreVariantWoodTypes(), new SmokerType[]{SmokerType.COBBLESTONE});
     }
 }

@@ -38,8 +38,8 @@ public abstract class MoreStickVariantItemsMixin {
         }
     }
 
-        registerStickItemVariants(MoreVariantWoodTypeHolder.getWoodTypes());
     @Inject(method = "registerStickItems", at = @At("HEAD"), remap = false)
     private static void injectedRegisterStickItemsAtHead(CallbackInfo ci) {
+        registerStickItemVariants(MoreVariantWoodTypeHolder.getMoreVariantWoodTypes());
     }
 }

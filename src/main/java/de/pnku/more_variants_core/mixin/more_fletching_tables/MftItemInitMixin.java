@@ -30,8 +30,8 @@ public abstract class MftItemInitMixin {
         }
     }
 
-        registerFletchingTableItemVariants(MoreVariantWoodTypeHolder.getWoodTypes());
     @Inject(method = "registerItems", at = @At("HEAD"), remap = false)
     private static void injectedRegisterFletchingTableItemsAtHead(CallbackInfo ci) {
+        registerFletchingTableItemVariants(MoreVariantWoodTypeHolder.getMoreVariantWoodTypes());
     }
 }

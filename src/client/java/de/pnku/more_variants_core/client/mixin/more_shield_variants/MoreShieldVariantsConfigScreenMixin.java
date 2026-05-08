@@ -26,7 +26,7 @@ public abstract class MoreShieldVariantsConfigScreenMixin {
             return;
         }
 
-        List<MoreVariantWoodType> woodTypes = MoreVariantWoodTypeHolder.getWoodTypes();
+        List<MoreVariantWoodType> woodTypes = MoreVariantWoodTypeHolder.getMoreVariantWoodTypes();
         for (MoreVariantWoodType woodType : woodTypes) {
             ConfigCategory shieldTexture = configBuilder.getOrCreateCategory(
                     Component.translatable("config.category.moreshieldvariants.shieldTexture")

@@ -31,8 +31,8 @@ public abstract class MoreArmorStandVariantItemsMixin {
         }
     }
 
-        registerArmorStandItemVariants(MoreVariantWoodTypeHolder.getWoodTypes());
     @Inject(method = "registerArmorStandItems", at = @At("HEAD"), remap = false)
     private static void injectedRegisterArmorStandItemsAtHead(CallbackInfo ci) {
+        registerArmorStandItemVariants(MoreVariantWoodTypeHolder.getMoreVariantWoodTypes());
     }
 }

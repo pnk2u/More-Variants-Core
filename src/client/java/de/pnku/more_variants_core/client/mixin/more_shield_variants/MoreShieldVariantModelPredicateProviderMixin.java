@@ -31,6 +31,6 @@ public abstract class MoreShieldVariantModelPredicateProviderMixin {
 
     @Inject(method = "registerMoreShieldVariantItemModelPredicates", at = @At("HEAD"), remap = false)
     private static void injectedRegisterMoreShieldVariantItemModelPredicatesAtHead(CallbackInfo ci) {
-        registerShieldVariantModelPredicateProviders(MoreVariantWoodTypeHolder.getWoodTypes());
+        registerShieldVariantModelPredicateProviders(MoreVariantWoodTypeHolder.getMoreVariantWoodTypes());
     }
 }

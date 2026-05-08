@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class MoreStickVariantItemMixin {
     @Inject(method = "getStickItem", at = @At("HEAD"), cancellable = true)
     private static void injectedGetStickItemAtHead(String woodTypeName, CallbackInfoReturnable<Item> cir) {
-        MoreVariantWoodType woodType = MoreVariantWoodTypeHolder.getWoodTypeByName(woodTypeName);
+        MoreVariantWoodType woodType = MoreVariantWoodTypeHolder.getMoreVariantWoodTypeByName(woodTypeName);
         if (woodType != null) {
             Item stickItem = MoreVariantHolder.getItem(MoreVariantHolder.MoreVariantType.STICK, woodType);
             cir.setReturnValue(stickItem);
@@ -23,7 +23,7 @@ public abstract class MoreStickVariantItemMixin {
 
     @Inject(method = "getPlanksItem", at = @At("HEAD"), cancellable = true)
     private static void injectedGetPlanksItemAtHead(String woodTypeName, CallbackInfoReturnable<Item> cir) {
-        MoreVariantWoodType woodType = MoreVariantWoodTypeHolder.getWoodTypeByName(woodTypeName);
+        MoreVariantWoodType woodType = MoreVariantWoodTypeHolder.getMoreVariantWoodTypeByName(woodTypeName);
         if (woodType != null) {
             Item planksItem = woodType.getPlanksItem();
             cir.setReturnValue(planksItem);

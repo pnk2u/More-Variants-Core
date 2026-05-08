@@ -34,7 +34,7 @@ import java.util.List;
 public abstract class EveryCompatModulesMixin extends SimpleModuleMixin {
     @Override
     public boolean wrappedIsEntryAlreadyRegistered(String entrySetId, ResourceLocation blockId, BlockType blockType, Registry<?> registry, Operation<Boolean> original) {
-        List<MoreVariantWoodType> woodTypes = MoreVariantWoodTypeHolder.getWoodTypes();
+        List<MoreVariantWoodType> woodTypes = MoreVariantWoodTypeHolder.getMoreVariantWoodTypes();
         for (MoreVariantWoodType woodType : woodTypes) {
             if (blockId.getPath().contains(woodType.getName())) {
                 return true;

@@ -31,8 +31,8 @@ public abstract class McbvItemInitMixin {
         }
     }
 
-        registerChiseledBookshelfItemVariants(MoreVariantWoodTypeHolder.getWoodTypes());
     @Inject(method = "registerItems", at = @At("HEAD"), remap = false)
     private static void injectedRegisterBlocksAtHead(CallbackInfo ci) {
+        registerChiseledBookshelfItemVariants(MoreVariantWoodTypeHolder.getMoreVariantWoodTypes());
     }
 }

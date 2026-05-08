@@ -32,6 +32,6 @@ public abstract class MbvBlockInitMixin {
 
     @Inject(method = "registerBlocks", at = @At("TAIL"), remap = false)
     private static void injectedRegisterBlocksAtTail(CallbackInfo ci) {
-        registerBookshelfBlockVariants(MoreVariantWoodTypeHolder.getWoodTypes());
+        registerBookshelfBlockVariants(MoreVariantWoodTypeHolder.getMoreVariantWoodTypes());
     }
 }

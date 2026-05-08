@@ -31,6 +31,6 @@ public abstract class MbhvBlockInitMixin {
 
     @Inject(method = "registerBeehiveBlocks", at = @At("TAIL"), remap = false)
     private static void injectedRegisterBeehiveBlocksAtTail(CallbackInfo ci) {
-        registerBeehiveBlockVariants(MoreVariantWoodTypeHolder.getWoodTypes());
+        registerBeehiveBlockVariants(MoreVariantWoodTypeHolder.getMoreVariantWoodTypes());
     }
 }

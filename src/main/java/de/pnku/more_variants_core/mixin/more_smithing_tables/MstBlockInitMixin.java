@@ -33,6 +33,6 @@ public abstract class MstBlockInitMixin {
 
     @Inject(method = "registerBlocks", at = @At("TAIL"), remap = false)
     private static void injectedRegisterBlocksAtTail(CallbackInfo ci) {
-        registerSmithingTableBlockVariants(MoreVariantWoodTypeHolder.getWoodTypes());
+        registerSmithingTableBlockVariants(MoreVariantWoodTypeHolder.getMoreVariantWoodTypes());
     }
 }

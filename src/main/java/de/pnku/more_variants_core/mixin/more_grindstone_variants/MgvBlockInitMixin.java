@@ -38,6 +38,6 @@ public abstract class MgvBlockInitMixin {
 
     @Inject(method = "registerBlocks", at = @At("TAIL"), remap = false)
     private static void injectedRegisterBlocksAtTail(CallbackInfo ci) {
-        registerGrindstoneBlockVariants(MoreVariantWoodTypeHolder.getWoodTypes());
+        registerGrindstoneBlockVariants(MoreVariantWoodTypeHolder.getMoreVariantWoodTypes());
     }
 }

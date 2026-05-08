@@ -32,6 +32,6 @@ public abstract class McgtBlockInitMixin {
 
     @Inject(method = "registerBlocks", at = @At("TAIL"), remap = false)
     private static void injectedRegisterCartographyTableBlocksAtTail(CallbackInfo ci) {
-        registerCartographyTableBlockVariants(MoreVariantWoodTypeHolder.getWoodTypes());
+        registerCartographyTableBlockVariants(MoreVariantWoodTypeHolder.getMoreVariantWoodTypes());
     }
 }

@@ -32,6 +32,6 @@ public abstract class MlmvBlockInitMixin {
 
     @Inject(method = "registerBlocks", at = @At("TAIL"), remap = false)
     private static void injectedRegisterBlocksAtTail(CallbackInfo ci) {
-        registerLoomBlockVariants(MoreVariantWoodTypeHolder.getWoodTypes());
+        registerLoomBlockVariants(MoreVariantWoodTypeHolder.getMoreVariantWoodTypes());
     }
 }

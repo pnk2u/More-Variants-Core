@@ -33,6 +33,6 @@ public abstract class McrvBlockInitMixin {
 
     @Inject(method = "registerCrafterBlocks", at = @At("TAIL"), remap = false)
     private static void injectedRegisterCrafterBlocksAtTail(CallbackInfo ci) {
-        registerCrafterBlockVariants(MoreVariantWoodTypeHolder.getWoodTypes());
+        registerCrafterBlockVariants(MoreVariantWoodTypeHolder.getMoreVariantWoodTypes());
     }
 }

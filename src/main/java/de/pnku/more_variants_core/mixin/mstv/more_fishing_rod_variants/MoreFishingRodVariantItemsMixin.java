@@ -2,13 +2,9 @@ package de.pnku.more_variants_core.mixin.mstv.more_fishing_rod_variants;
 
 import de.pnku.more_variants_core.util.MoreVariantHolder;
 import de.pnku.more_variants_core.util.MoreVariantHolder.RodType;
-import de.pnku.more_variants_core.util.MoreVariantHolder.MoreVariantType;
 import de.pnku.more_variants_core.util.MoreVariantWoodType;
 import de.pnku.more_variants_core.util.MoreVariantWoodTypeHolder;
-import de.pnku.mstv_base.MoreStickVariants;
 import de.pnku.mstv_mfrv.item.MoreFishingRodVariantItems;
-import net.fabricmc.fabric.api.event.registry.RegistryEntryAddedCallback;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import org.spongepowered.asm.mixin.Mixin;
@@ -65,7 +61,7 @@ public abstract class MoreFishingRodVariantItemsMixin {
 
     @Inject(method = "registerRodItems", at = @At(value = "HEAD", remap = false))
     private static void injectedRegisterRodItemsAtHead(CallbackInfo ci) {
-        registerFishingRodItemVariants(MoreVariantWoodTypeHolder.getWoodTypes());
+        registerFishingRodItemVariants(MoreVariantWoodTypeHolder.getMoreVariantWoodTypes());
     }
 
 }

@@ -32,6 +32,6 @@ public abstract class MftBlockInitMixin {
 
     @Inject(method = "registerBlocks", at = @At("TAIL"), remap = false)
     private static void injectedRegisterBlocksAtTail(CallbackInfo ci) {
-        registerFletchingTableBlockVariants(MoreVariantWoodTypeHolder.getWoodTypes());
+        registerFletchingTableBlockVariants(MoreVariantWoodTypeHolder.getMoreVariantWoodTypes());
     }
 }

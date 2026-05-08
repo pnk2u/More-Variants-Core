@@ -33,6 +33,6 @@ public abstract class MstItemInitMixin {
 
     @Inject(method = "registerItems", at = @At("TAIL"), remap = false)
     private static void injectedRegisterItemsAtTail(CallbackInfo ci) {
-        registerSmithingTableItemVariants(MoreVariantWoodTypeHolder.getWoodTypes());
+        registerSmithingTableItemVariants(MoreVariantWoodTypeHolder.getMoreVariantWoodTypes());
     }
 }

@@ -78,7 +78,7 @@ public abstract class MrailvBlockInitMixin {
 
     @Inject(method = "registerRail", at = @At("HEAD"), remap = false)
     private static void injectedRegisterRailAtHead(CallbackInfo ci) {
-        List<MoreVariantWoodType> woodTypes = MoreVariantWoodTypeHolder.getWoodTypes();
+        List<MoreVariantWoodType> woodTypes = MoreVariantWoodTypeHolder.getMoreVariantWoodTypes();
         registerRailBlockVariants(woodTypes);
         registerRailItemVariants(woodTypes);
     }

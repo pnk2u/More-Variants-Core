@@ -27,6 +27,6 @@ public abstract class MoreShieldVariantItemGroupsMixin {
 
     @Inject(method = "registerMoreShieldVariantItemGroups", at = @At("HEAD"), remap = false)
     private static void injectedRegisterMoreShieldVariantItemGroupsAtHead(CallbackInfo ci) {
-        registerMoreShieldItemVariantsToItemGroups(MoreVariantWoodTypeHolder.getWoodTypes());
+        registerMoreShieldItemVariantsToItemGroups(MoreVariantWoodTypeHolder.getMoreVariantWoodTypes());
     }
 }

@@ -32,6 +32,6 @@ public abstract class MctItemInitMixin {
 
     @Inject(method = "registerItems", at = @At("HEAD"), remap = false)
     private static void injectedRegisterItemsAtHead(CallbackInfo ci) {
-        registerCraftingTableItemVariants(MoreVariantWoodTypeHolder.getWoodTypes());
+        registerCraftingTableItemVariants(MoreVariantWoodTypeHolder.getMoreVariantWoodTypes());
     }
 }

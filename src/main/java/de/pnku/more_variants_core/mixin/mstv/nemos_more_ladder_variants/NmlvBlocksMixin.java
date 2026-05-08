@@ -35,6 +35,6 @@ public abstract class NmlvBlocksMixin {
 
     @Inject(method = "register", at = @At(value = "HEAD"), remap = false)
     private static void injectedRegisterLadderBlocksAtHead(CallbackInfo ci) {
-        registerLadderBlockVariants(MoreVariantWoodTypeHolder.getWoodTypes());
+        registerLadderBlockVariants(MoreVariantWoodTypeHolder.getMoreVariantWoodTypes());
     }
 }

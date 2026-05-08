@@ -5,7 +5,6 @@ import de.pnku.more_variants_core.util.MoreVariantHolder.ToolType;
 import de.pnku.more_variants_core.util.MoreVariantWoodType;
 import de.pnku.more_variants_core.util.MoreVariantWoodTypeHolder;
 import de.pnku.mstv_mtoolv.item.MoreToolVariantItems;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.*;
 import org.spongepowered.asm.mixin.Mixin;
@@ -19,7 +18,6 @@ import java.util.List;
 import java.util.Objects;
 
 import static de.pnku.more_variants_core.util.MoreVariantRegistryHelper.whenItemRegistered;
-import static de.pnku.more_variants_core.util.MoreVariantRegistryHelper.whenBlockRegistered;
 
 @Mixin(MoreToolVariantItems.class)
 public abstract class MoreToolVariantItemsMixin {
@@ -100,6 +98,6 @@ public abstract class MoreToolVariantItemsMixin {
 
     @Inject(method = "registerToolItems", at=@At("TAIL"), remap = false)
     private static void injectedRegisterToolItemsAtTail(CallbackInfo ci) {
-        registerToolItemVariants(MoreVariantWoodTypeHolder.getWoodTypes());
+        registerToolItemVariants(MoreVariantWoodTypeHolder.getMoreVariantWoodTypes());
     }
 }
