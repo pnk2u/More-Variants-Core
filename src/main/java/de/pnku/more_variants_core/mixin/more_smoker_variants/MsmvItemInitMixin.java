@@ -4,6 +4,7 @@ import de.pnku.more_variants_core.util.MoreVariantHolder;
 import de.pnku.more_variants_core.util.MoreVariantHolder.SmokerType;
 import de.pnku.more_variants_core.util.MoreVariantWoodType;
 import de.pnku.more_variants_core.util.MoreVariantWoodTypeHolder;
+import de.pnku.more_variants_core.util.VanillaWoodTypes;
 import de.pnku.msmv.init.MsmvItemInit;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -16,24 +17,30 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.List;
 
+import static de.pnku.more_variants_core.util.MoreVariantHolder.waitForItemRegistration;
+
 @Mixin(MsmvItemInit.class)
 public abstract class MsmvItemInitMixin {
     @Shadow
     private static void registerSmokerItem(BlockItem smoker, Item smokerAfter) {}
 
     @Unique
-    private static void registerSmokerItemVariants(List<MoreVariantWoodType> woodTypes, SmokerType[] smokerTypes) {
-        for (MoreVariantWoodType woodType : woodTypes) {
-            for (SmokerType smokerType : smokerTypes) {
-                BlockItem smokerItem = new BlockItem(MoreVariantHolder.getBlock(smokerType, woodType), new Item.Properties());
-                registerSmokerItem(smokerItem, smokerType.getVanillaItem());
-                MoreVariantHolder.setItem(smokerType, woodType, smokerItem);
+    private static void registerSmokerItemVariants(List<MoreVariantWoodType> woodTypes) {
+        SmokerType smokerType = SmokerType.COBBLESTONE;
+        waitForItemRegistration(SmokerType.values()[SmokerType.values().length - 1], woodTypes.getLast(), waitedFor ->
+            waitForItemRegistration(smokerType, VanillaWoodTypes.getLast(), vanillaSmokerItem -> {
+                for (MoreVariantWoodType woodType : woodTypes) {
+                    BlockItem smokerItem = new BlockItem(MoreVariantHolder.getBlock(smokerType, woodType), new Item.Properties());
+                    registerSmokerItem(smokerItem, vanillaSmokerItem);
+                    MoreVariantHolder.setItem(smokerType, woodType, smokerItem);
+                }
             }
-        }
+            )
+        );
     }
 
     @Inject(method = "registerSmokerItems", at = @At("TAIL"), remap = false)
     private static void injectedRegisterSmokerItemsAtTail(CallbackInfo ci) {
-        registerSmokerItemVariants(MoreVariantWoodTypeHolder.getMoreVariantWoodTypes(), new SmokerType[]{SmokerType.COBBLESTONE});
+        registerSmokerItemVariants(MoreVariantWoodTypeHolder.getMoreVariantWoodTypes());
     }
 }
