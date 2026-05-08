@@ -5,7 +5,7 @@ import de.pnku.more_variants_core.util.MoreVariantHolder;
 import de.pnku.more_variants_core.util.MoreVariantHolder.GrindstoneType;
 import de.pnku.more_variants_core.util.MoreVariantWoodType;
 import de.pnku.more_variants_core.util.MoreVariantWoodTypeHolder;
-import net.minecraft.resources.ResourceLocation;
+import de.pnku.more_variants_core.util.VanillaWoodTypes;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import org.spongepowered.asm.mixin.Mixin;
@@ -17,7 +17,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.List;
 
-import static de.pnku.more_variants_core.util.MoreVariantRegistryHelper.whenBlockRegistered;
+import static de.pnku.more_variants_core.util.MoreVariantHolder.waitForBlockRegistration;
+import static de.pnku.more_variants_core.util.MoreVariantHolder.waitForItemRegistration;
 
 @Mixin(MgvItemInit.class)
 public abstract class MgvItemInitMixin {
@@ -26,19 +27,20 @@ public abstract class MgvItemInitMixin {
 
     @Unique
     private static void registerGrindstoneItemVariants(List<MoreVariantWoodType> woodTypes) {
-        for (MoreVariantWoodType woodType : woodTypes) {
-            for (GrindstoneType grindstoneType : GrindstoneType.values()) {
-                ResourceLocation grindstoneBlockId = MoreVariantHolder.getRegistrationId(grindstoneType, woodType);
-                whenBlockRegistered(grindstoneBlockId, block -> {
-                    BlockItem grindstoneItem = new BlockItem(block, new Item.Properties());
-                    registerItem(grindstoneItem, grindstoneType.getVanillaItem());
-                    MoreVariantHolder.setItem(grindstoneType, woodType, grindstoneItem);
-                });
-            }
+        for (GrindstoneType grindstoneType : GrindstoneType.values()) {
+            waitForItemRegistration(grindstoneType, VanillaWoodTypes.getLast(), lastOfType -> {
+                for (MoreVariantWoodType woodType : woodTypes) {
+                    waitForBlockRegistration(grindstoneType, woodType, block -> {
+                        BlockItem grindstoneItem = new BlockItem(block, new Item.Properties());
+                        registerItem(grindstoneItem, lastOfType);
+                        MoreVariantHolder.setItem(grindstoneType, woodType, grindstoneItem);
+                    });
+                }
+            });
         }
     }
 
-    @Inject(method = "registerItems", at = @At("HEAD"), remap = false)
+    @Inject(method = "registerItems", at = @At("TAIL"), remap = false)
     private static void injectedRegisterGrindstoneItemsAtTail(CallbackInfo ci) {
         registerGrindstoneItemVariants(MoreVariantWoodTypeHolder.getMoreVariantWoodTypes());
     }
