@@ -28,7 +28,7 @@ public final class MoreVariantsCoreMixinDependencyResolver {
             LOGGER.warn("Could not determine required mod for mixin class: {}", mixinClassName);
             return false;
         } else if (FabricLoader.getInstance().isModLoaded(requiredModId)) {
-            if (!found_mod_ids.contains(requiredModId)) found_mod_ids.add(requiredModId);
+            if (!found_mod_ids.contains(requiredModId) && !requiredModId.equals("everycomp")) found_mod_ids.add(requiredModId);
             return true;
         }
         return false;

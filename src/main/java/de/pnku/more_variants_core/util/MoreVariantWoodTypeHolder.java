@@ -12,10 +12,13 @@ public class MoreVariantWoodTypeHolder {
 
     private static boolean initialized = false;
     public static void init() {
+        LOGGER.debug("Initializing Wood Types...");
+        LOGGER.info("Initialized More Variant Wood Types: " + more_variant_wood_types.stream().map(MoreVariantWoodType::getName).toList());
         more_variant_wood_types.forEach(woodType -> {
             if (!wood_types.contains(woodType)) wood_types.add(woodType);
         });
         addVanillaWoodTypes(VALUES);
+        LOGGER.debug("Initialized Vanilla Wood Types: " + vanilla_wood_types.stream().map(MoreVariantWoodType::getName).toList());
         vanilla_wood_types.forEach(woodType -> {
             if (!wood_types.contains(woodType)) wood_types.add(woodType);
         });
@@ -40,7 +43,7 @@ public class MoreVariantWoodTypeHolder {
                 more_variant_wood_types.add(woodType);
             }
         }
-        LOGGER.info("Added " + newWoodTypes.length + " wood types. Total wood types: " + more_variant_wood_types.size());
+        LOGGER.debug("Added " + newWoodTypes.length + " More Variant Wood Types. Total: " + more_variant_wood_types.size());
     }
 
     public static void addVanillaWoodTypes(MoreVariantWoodType... newVanillaWoodTypes) {
@@ -49,7 +52,7 @@ public class MoreVariantWoodTypeHolder {
                 vanilla_wood_types.add(woodType);
             }
         }
-        LOGGER.info("Added " + newVanillaWoodTypes.length + " vanilla wood types. Total vanilla wood types: " + vanilla_wood_types.size());
+        LOGGER.debug("Added " + newVanillaWoodTypes.length + " Vanilla Wood Types. Total: " + vanilla_wood_types.size());
     }
 
     public static MoreVariantWoodType getMoreVariantWoodTypeByName(String name) {
@@ -84,19 +87,16 @@ public class MoreVariantWoodTypeHolder {
 
     public static List<MoreVariantWoodType> getMoreVariantWoodTypes() {
         if (!initialized) init();
-        LOGGER.info("Retrieving wood types. Total wood types: " + more_variant_wood_types.size());
         return more_variant_wood_types;
     }
 
     public static List<MoreVariantWoodType> getVanillaWoodTypes() {
         if (!initialized) init();
-        LOGGER.info("Retrieving vanilla wood types. Total vanilla wood types: " + vanilla_wood_types.size());
         return vanilla_wood_types;
     }
 
     public static List<MoreVariantWoodType> getAllWoodTypes() {
         if (!initialized) init();
-        LOGGER.info("Retrieving all wood types. Total wood types: " + wood_types.size());
         return wood_types;
     }
 }

@@ -46,6 +46,8 @@ loom {
 			sourceSet sourceSets.client
 		}
 	}
+
+	log4jConfigs.from(file("log4j.xml"))
 }
 
 fabricApi {

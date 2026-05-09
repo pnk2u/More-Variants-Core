@@ -24,7 +24,7 @@ public class MoreVariantsCore implements ModInitializer {
 			for (String modId : found_mod_ids) {
 				modNames.add(FabricLoader.getInstance().getModContainer(modId).map(modContainer -> modContainer.getMetadata().getName()).orElse(modId));
 			}
-			LOGGER.info("Added More Variants for the following Mods: {}", modNames);
+			LOGGER.info("Added More Variants for: {}", modNames);
 		} else {
 			LOGGER.warn("Did not find any compatible Mods to add More Variants to.");
 		}
