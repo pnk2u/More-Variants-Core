@@ -1,7 +1,7 @@
 package de.pnku.more_variants_core.util;
 
 public enum MoreVariantMod {
-    ANIMAL_FEEDING_TROUGHS("animal_feeding_troughs", "animal_feeding_trough"),
+    ANIMAL_FEEDING_TROUGHS("more_composter_variants.more_feeding_trough_variants", "lolmcmv-aft"),
     BARRELS("more_barrel_variants"),
     BEDS("more_bed_variants","quad-lolmbdv"),
     BEEHIVES("more_beehive_variants","quad-lolmbhv"),

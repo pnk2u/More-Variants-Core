@@ -23,6 +23,8 @@
     "more_chiseled_bookshelf_variants.McbvItemInitMixin",
     "more_composter_variants.McmvBlockInitMixin",
     "more_composter_variants.McmvItemInitMixin",
+    "more_composter_variants.more_feeding_trough_variants.McmvaftBlockInitMixin",
+    "more_composter_variants.more_feeding_trough_variants.McmvaftItemInitMixin",
     "more_crafter_variants.McrvBlockInitMixin",
     "more_crafter_variants.McrvItemInitMixin",
     "more_crafting_tables.MctBlockInitMixin",
