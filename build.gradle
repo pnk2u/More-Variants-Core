@@ -126,7 +126,7 @@ def (decrementedVersion, pMinecraftVersion, mostRecentParchmentDate) = getParchm
 
 dependencies {
 	implementation 'org.apache.commons:commons-text:1.12.0'
-	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	minecraft "com.mojang:minecraft:${minecraft_version}"
 	mappings loom.layered() {
 		officialMojangMappings()
 		parchment("org.parchmentmc.data:parchment-${pMinecraftVersion}:${mostRecentParchmentDate}@zip")
@@ -137,80 +137,86 @@ dependencies {
 	// More Variants: Pale Oak Backport
 		modLocalRuntime("de.pnku:MoreVariantsPaleOakBackport:1.0.0+1.21(.1)-Fabric")
 		// Vanilla Backport
-		modLocalRuntime("maven.modrinth:vanillabackport:${project.vanillabackport_version_id}")
-		modLocalRuntime("maven.modrinth:platform:${project.platform_version_id}")
+		modLocalRuntime("maven.modrinth:vanillabackport:${vanillabackport_version_id}")
+		modLocalRuntime("maven.modrinth:platform:${platform_version_id}")
 		include(implementation(annotationProcessor("com.github.bawnorton.mixinsquared:mixinsquared-fabric:0.3.7-beta.1")))
 
 	// More Variants
 		// Quad
-		modCompileOnly modLocalRuntime("maven.modrinth:quad:${project.quad_version_id}")
+		modCompileOnly modLocalRuntime("maven.modrinth:quad:${quad_version_id}")
 		// More Barrel Variants
-		modCompileOnly modLocalRuntime("maven.modrinth:more-barrel-variants:${project.m_barrel_v_version_id}")
+		modCompileOnly modLocalRuntime("maven.modrinth:more-barrel-variants:${m_barrel_v_version_id}")
 		// More Bed Variants
-		modCompileOnly modLocalRuntime("maven.modrinth:more-bed-variants:${project.m_bed_v_version_id}")
+		modCompileOnly modLocalRuntime("maven.modrinth:more-bed-variants:${m_bed_v_version_id}")
 		// More Beehive Variants
-		modCompileOnly modLocalRuntime("maven.modrinth:more-beehive-variants:${project.m_beehive_v_version_id}")
+		modCompileOnly modLocalRuntime("maven.modrinth:more-beehive-variants:${m_beehive_v_version_id}")
 		// More Bookshelf Variants (LieOnLion)
-		modCompileOnly modLocalRuntime("maven.modrinth:more-bookshelf-variants-lieonlion:${project.m_bookshelf_v_lol_version_id}")
+		modCompileOnly modLocalRuntime("maven.modrinth:more-bookshelf-variants-lieonlion:${m_bookshelf_v_lol_version_id}")
 		// More Cartography Tables
-		modCompileOnly modLocalRuntime("maven.modrinth:more-cartography-tables:${project.m_cartography_t_version_id}")
+		modCompileOnly modLocalRuntime("maven.modrinth:more-cartography-tables:${m_cartography_t_version_id}")
 		// More Chiseled Bookshelf Variants
-		modCompileOnly modLocalRuntime("maven.modrinth:more-chiseled-bookshelf-variants:${project.m_chiseled_bookshelf_v_version_id}")
+		modCompileOnly modLocalRuntime("maven.modrinth:more-chiseled-bookshelf-variants:${m_chiseled_bookshelf_v_version_id}")
 		// More Chest Variants (LieOnLion)
-		modCompileOnly modLocalRuntime("maven.modrinth:more-chest-variants-lieonlion:${project.m_chest_v_lol_version_id}")
+		modCompileOnly modLocalRuntime("maven.modrinth:more-chest-variants-lieonlion:${m_chest_v_lol_version_id}")
 		// More Composter Variants
-		modCompileOnly modLocalRuntime("maven.modrinth:more-composter-variants:${project.m_composter_v_version_id}")
+		modCompileOnly modLocalRuntime("maven.modrinth:more-composter-variants:${m_composter_v_version_id}")
+			// More Feeding Trough Variants
+			modCompileOnly modLocalRuntime("maven.modrinth:more-feeding-trough-variants:${m_feeding_trough_v_version_id}")
+				// Dependency: Animal Feeding Trough
+				modCompileOnly modLocalRuntime("maven.modrinth:animal_feeding_trough:${animal__feeding__trough_version_id}")
+					// Dependency: Architectury API
+					modApi "dev.architectury:architectury-fabric:${architectury_api_version}"
 		// More Crafter Variants
-		modCompileOnly modLocalRuntime("maven.modrinth:more-crafter-variants:${project.m_crafter_v_version_id}")
+		modCompileOnly modLocalRuntime("maven.modrinth:more-crafter-variants:${m_crafter_v_version_id}")
 		// More Crafting Tables (LieOnLion)
-		modCompileOnly modLocalRuntime("maven.modrinth:more-crafting-tables-lieonlion:${project.m_crafting_t_lol_version_id}")
+		modCompileOnly modLocalRuntime("maven.modrinth:more-crafting-tables-lieonlion:${m_crafting_t_lol_version_id}")
 		// More Fletching Tables
-		modCompileOnly modLocalRuntime("maven.modrinth:more-fletching-tables:${project.m_fletching_t_version_id}")
+		modCompileOnly modLocalRuntime("maven.modrinth:more-fletching-tables:${m_fletching_t_version_id}")
 		// More Grindstone Variants
-		modCompileOnly modLocalRuntime("maven.modrinth:more-grindstone-variants:${project.m_grindstone_v_version_id}")
+		modCompileOnly modLocalRuntime("maven.modrinth:more-grindstone-variants:${m_grindstone_v_version_id}")
 		// More Jukebox/Noteblock Variants
-		modCompileOnly modLocalRuntime("maven.modrinth:more-jukebox-noteblock-variants:${project.m_jukebox_noteblock_v_version_id}")
+		modCompileOnly modLocalRuntime("maven.modrinth:more-jukebox-noteblock-variants:${m_jukebox_noteblock_v_version_id}")
 		// More Lectern Variants
-		modCompileOnly modLocalRuntime("maven.modrinth:more-lectern-variants:${project.m_lectern_v_version_id}")
+		modCompileOnly modLocalRuntime("maven.modrinth:more-lectern-variants:${m_lectern_v_version_id}")
 		// More Loom Variants
-		modCompileOnly modLocalRuntime("maven.modrinth:more-loom-variants:${project.m_loom_v_version_id}")
+		modCompileOnly modLocalRuntime("maven.modrinth:more-loom-variants:${m_loom_v_version_id}")
 		// More Shield Variants
-		modCompileOnly modLocalRuntime("maven.modrinth:more-shield-variants:${project.m_shield_v_version_id}")
+		modCompileOnly modLocalRuntime("maven.modrinth:more-shield-variants:${m_shield_v_version_id}")
 			// Dependencies: Cloth Config, Mod Menu
-			modApi("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}")
-			modApi("com.terraformersmc:modmenu:${project.modmenu_version}")
+			modApi("me.shedaniel.cloth:cloth-config-fabric:${cloth_config_version}")
+			modApi("com.terraformersmc:modmenu:${modmenu_version}")
 		// More Smithing Tables
-		modCompileOnly modLocalRuntime("maven.modrinth:more-smithing-tables:${project.m_smithing_t_version_id}")
+		modCompileOnly modLocalRuntime("maven.modrinth:more-smithing-tables:${m_smithing_t_version_id}")
 		// More Smoker Variants
-		modCompileOnly modLocalRuntime("maven.modrinth:more-smoker-variants:${project.m_smoker_v_version_id}")
+		modCompileOnly modLocalRuntime("maven.modrinth:more-smoker-variants:${m_smoker_v_version_id}")
 			// Optional Dependency: More Furnace Variants
-			modLocalRuntime("maven.modrinth:more-furnace-variants-lieonlion:${project.m_furnace_v_lol_version_id}")
+			modLocalRuntime("maven.modrinth:more-furnace-variants-lieonlion:${m_furnace_v_lol_version_id}")
 		// MStV
 			// More Stick Variants
-			modCompileOnly modLocalRuntime("maven.modrinth:more-stick-variants:${project.mstv_version_id}")
+			modCompileOnly modLocalRuntime("maven.modrinth:more-stick-variants:${mstv_version_id}")
 			// More Armor Stand Variants
-			modCompileOnly modLocalRuntime("maven.modrinth:more-armor-stand-variants:${project.mstv_m_armor_stand_v_version_id}")
+			modCompileOnly modLocalRuntime("maven.modrinth:more-armor-stand-variants:${mstv_m_armor_stand_v_version_id}")
 			// More Frame Variants
-			modCompileOnly modLocalRuntime("maven.modrinth:more-frame-variants:${project.mstv_m_frame_v_version_id}")
+			modCompileOnly modLocalRuntime("maven.modrinth:more-frame-variants:${mstv_m_frame_v_version_id}")
 				// Fast Item Frames
-				modCompileOnly modLocalRuntime("maven.modrinth:fast-item-frames:${project.fast_item_frames_version_id}")
+				modCompileOnly modLocalRuntime("maven.modrinth:fast-item-frames:${fast_item_frames_version_id}")
 					// Dependencies: Puzzles Lib, Forge Config API Port
-					modCompileOnly 	modLocalRuntime("maven.modrinth:puzzles-lib:${project.puzzles_lib_version_id}")
-									modLocalRuntime("maven.modrinth:forge-config-api-port:${project.forge_config_api_port_version_id}")
+					modCompileOnly 	modLocalRuntime("maven.modrinth:puzzles-lib:${puzzles_lib_version_id}")
+									modLocalRuntime("maven.modrinth:forge-config-api-port:${forge_config_api_port_version_id}")
 									implementation 'com.electronwill.night-config:core:3.8.2'
 									implementation 'com.electronwill.night-config:toml:3.8.2'
 			// Nemo's More Ladder Variants
-			modCompileOnly modLocalRuntime("maven.modrinth:nemos-more-ladder-variants:${project.mstv_nemos_m_ladder_v_version_id}")
+			modCompileOnly modLocalRuntime("maven.modrinth:nemos-more-ladder-variants:${mstv_nemos_m_ladder_v_version_id}")
 			// More Rail Variants
-			modCompileOnly modLocalRuntime("maven.modrinth:more-rail-variants:${project.mstv_m_rail_v_version_id}")
+			modCompileOnly modLocalRuntime("maven.modrinth:more-rail-variants:${mstv_m_rail_v_version_id}")
 			// More (Fishing) Rod Variants
-			modCompileOnly modLocalRuntime("maven.modrinth:more-fishing-rod-variants:${project.mstv_m_fishing_rod_v_version_id}")
+			modCompileOnly modLocalRuntime("maven.modrinth:more-fishing-rod-variants:${mstv_m_fishing_rod_v_version_id}")
 			// More Tool Variants
-			modCompileOnly modLocalRuntime("maven.modrinth:more-tool-variants:${project.mstv_m_tool_v_version_id}")
+			modCompileOnly modLocalRuntime("maven.modrinth:more-tool-variants:${mstv_m_tool_v_version_id}")
 			// More Torch Variants
-			modCompileOnly modLocalRuntime("maven.modrinth:more-torch-variants:${project.mstv_m_torch_v_version_id}")
+			modCompileOnly modLocalRuntime("maven.modrinth:more-torch-variants:${mstv_m_torch_v_version_id}")
 			// More Weapon Variants
-			modCompileOnly modLocalRuntime("maven.modrinth:more-weapon-variants:${project.mstv_m_weapon_v_version_id}")
+			modCompileOnly modLocalRuntime("maven.modrinth:more-weapon-variants:${mstv_m_weapon_v_version_id}")
 
 	// Every Compat
 		// Moonlight
@@ -238,8 +244,8 @@ static def version_reduced(String input) { // Reduces a version string by one mi
 def minecraft_version_0() {
 	String key = 'minecraft_version_lower'
 	if (project.hasProperty(key)) {String value = project.getProperties().get(key); return !value.isEmpty() ? value :
-			version_reduced("${project.minecraft_version}") }
-	else {return version_reduced("${project.minecraft_version}")} // Default to one minor version lower with patch = 0 as lower bound if none is specified
+			version_reduced("${minecraft_version}") }
+	else {return version_reduced("${minecraft_version}")} // Default to one minor version lower with patch = 0 as lower bound if none is specified
 }
 
 def minecraft_version_1() {
@@ -283,7 +289,7 @@ java {
 
 jar {
 	from("LICENSE") {
-		rename { "${project.base.archivesName.get()}_${it}"}
+		rename { "${base.archivesName.get()}_${it}"}
 	}
 }
 
