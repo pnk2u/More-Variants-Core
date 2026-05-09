@@ -1,102 +1,154 @@
 package de.pnku.more_variants_core.util;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+
 import static de.pnku.more_variants_core.MoreVariantsCore.LOGGER;
 import static de.pnku.more_variants_core.util.VanillaWoodTypes.VALUES;
 
 public class MoreVariantWoodTypeHolder {
-    private static final List<MoreVariantWoodType> wood_types = new ArrayList<>();
-    private static final List<MoreVariantWoodType> more_variant_wood_types = new ArrayList<>();
-    private static final List<MoreVariantWoodType> vanilla_wood_types = new ArrayList<>();
+    private static final Set<MoreVariantWoodType> wood_types = new LinkedHashSet<>();
+    private static final Set<MoreVariantWoodType> more_variant_wood_types = new LinkedHashSet<>();
+    private static final Set<MoreVariantWoodType> vanilla_wood_types = new LinkedHashSet<>();
+
+    private static final Map<String, MoreVariantWoodType> wood_types_by_name = new LinkedHashMap<>();
+    private static final Map<String, MoreVariantWoodType> more_variant_wood_types_by_name = new LinkedHashMap<>();
+    private static final Map<String, MoreVariantWoodType> vanilla_wood_types_by_name = new LinkedHashMap<>();
+
+    private static final Map<Integer, MoreVariantWoodType> more_variant_wood_types_by_int_id = new HashMap<>();
+    private static final Map<String, MoreVariantWoodType> more_variant_wood_types_by_id_string = new HashMap<>();
 
     private static boolean initialized = false;
+
     public static void init() {
+        if (initialized) {
+            return;
+        }
+
         LOGGER.debug("Initializing Wood Types...");
         LOGGER.info("Initialized More Variant Wood Types: " + more_variant_wood_types.stream().map(MoreVariantWoodType::getName).toList());
-        more_variant_wood_types.forEach(woodType -> {
-            if (!wood_types.contains(woodType)) wood_types.add(woodType);
-        });
+
         addVanillaWoodTypes(VALUES);
         LOGGER.debug("Initialized Vanilla Wood Types: " + vanilla_wood_types.stream().map(MoreVariantWoodType::getName).toList());
-        vanilla_wood_types.forEach(woodType -> {
-            if (!wood_types.contains(woodType)) wood_types.add(woodType);
-        });
+
+        rebuildAllWoodTypes();
         initialized = true;
     }
 
     public static void addMoreVariantWoodTypes(MoreVariantWoodType... newWoodTypes) {
         for (MoreVariantWoodType woodType : newWoodTypes) {
-            if (!more_variant_wood_types.contains(woodType)) {
-                int minimumId = VALUES.length + 2;
-                if (woodType.getIntId() < minimumId) {
-                    throw new IllegalArgumentException("Wood type '" + woodType.getName() + "' has an integer ID less than " + minimumId + ", which is reserved for Vanilla Wood Types.");
-                }
-                more_variant_wood_types.forEach(existingWoodType -> {
-                    if (existingWoodType.getIntId() == woodType.getIntId()) {
-                        throw new IllegalArgumentException("Wood type '" + woodType.getName() + "' has an integer ID that conflicts with existing wood type '" + existingWoodType.getName() + "'.");
-                    }
-                    if (existingWoodType.idString().equalsIgnoreCase(woodType.idString())) {
-                        throw new IllegalArgumentException("Wood type '" + woodType.getName() + "' has an ID string that conflicts with existing wood type '" + existingWoodType.getName() + "'.");
-                    }
-                });
-                more_variant_wood_types.add(woodType);
+            if (more_variant_wood_types.contains(woodType)) {
+                continue;
+            }
+
+            int minimumId = VALUES.length + 2;
+            if (woodType.getIntId() < minimumId) {
+                throw new IllegalArgumentException("Wood Type '" + woodType.getName() + "' has an integer ID less than " + minimumId + ", which is reserved for Vanilla Wood Types.");
+            }
+
+            MoreVariantWoodType existingByIntId = more_variant_wood_types_by_int_id.get(woodType.getIntId());
+            if (existingByIntId != null) {
+                throw new IllegalArgumentException("Wood Type '" + woodType.getName() + "' has an integer ID that conflicts with existing Wood Type '" + existingByIntId.getName() + "'.");
+            }
+
+            String normalizedIdString = normalize(woodType.idString());
+            MoreVariantWoodType existingByIdString = more_variant_wood_types_by_id_string.get(normalizedIdString);
+            if (existingByIdString != null) {
+                throw new IllegalArgumentException("Wood Type '" + woodType.getName() + "' has an ID string that conflicts with existing Wood Type '" + existingByIdString.getName() + "'.");
+            }
+
+            more_variant_wood_types.add(woodType);
+            more_variant_wood_types_by_name.putIfAbsent(normalize(woodType.getName()), woodType);
+            more_variant_wood_types_by_int_id.put(woodType.getIntId(), woodType);
+            more_variant_wood_types_by_id_string.put(normalizedIdString, woodType);
+
+            if (initialized) {
+                addToAllWoodTypes(woodType);
             }
         }
+
         LOGGER.debug("Added " + newWoodTypes.length + " More Variant Wood Types. Total: " + more_variant_wood_types.size());
     }
 
     public static void addVanillaWoodTypes(MoreVariantWoodType... newVanillaWoodTypes) {
         for (MoreVariantWoodType woodType : newVanillaWoodTypes) {
-            if (!vanilla_wood_types.contains(woodType)) {
-                vanilla_wood_types.add(woodType);
+            if (vanilla_wood_types.add(woodType)) {
+                vanilla_wood_types_by_name.putIfAbsent(normalize(woodType.getName()), woodType);
+                if (initialized) {
+                    addToAllWoodTypes(woodType);
+                }
             }
         }
+
         LOGGER.debug("Added " + newVanillaWoodTypes.length + " Vanilla Wood Types. Total: " + vanilla_wood_types.size());
     }
 
     public static MoreVariantWoodType getMoreVariantWoodTypeByName(String name) {
-        for (MoreVariantWoodType woodType : more_variant_wood_types) {
-            if (woodType.getName().equalsIgnoreCase(name)) {
-                return woodType;
-            }
+        ensureInitialized();
+        MoreVariantWoodType woodType = more_variant_wood_types_by_name.get(normalize(name));
+        if (woodType == null) {
+            LOGGER.warn("Wood Type with name '" + name + "' not found in More Variant Wood Types.");
         }
-        LOGGER.warn("Wood type with name '" + name + "' not found in More Variant Wood Types.");
-        return null;
+        return woodType;
     }
 
     public static MoreVariantWoodType getVanillaWoodTypeByName(String name) {
-        for (MoreVariantWoodType woodType : vanilla_wood_types) {
-            if (woodType.getName().equalsIgnoreCase(name)) {
-                return woodType;
-            }
+        ensureInitialized();
+        MoreVariantWoodType woodType = vanilla_wood_types_by_name.get(normalize(name));
+        if (woodType == null) {
+            LOGGER.warn("Wood Type with name '" + name + "' not found in Vanilla Wood Types.");
         }
-        LOGGER.warn("Wood type with name '" + name + "' not found in Vanilla Wood Types.");
-        return null;
+        return woodType;
     }
 
     public static MoreVariantWoodType getWoodTypeByName(String name) {
-        for (MoreVariantWoodType woodType : wood_types) {
-            if (woodType.getName().equalsIgnoreCase(name)) {
-                return woodType;
-            }
+        ensureInitialized();
+        MoreVariantWoodType woodType = wood_types_by_name.get(normalize(name));
+        if (woodType == null) {
+            LOGGER.warn("Wood Type with name '" + name + "' not found in Wood Types.");
         }
-        LOGGER.warn("Wood type with name '" + name + "' not found in Wood Types.");
-        return null;
+        return woodType;
     }
 
     public static List<MoreVariantWoodType> getMoreVariantWoodTypes() {
-        if (!initialized) init();
-        return more_variant_wood_types;
+        ensureInitialized();
+        return List.copyOf(more_variant_wood_types);
     }
 
     public static List<MoreVariantWoodType> getVanillaWoodTypes() {
-        if (!initialized) init();
-        return vanilla_wood_types;
+        ensureInitialized();
+        return List.copyOf(vanilla_wood_types);
     }
 
     public static List<MoreVariantWoodType> getAllWoodTypes() {
-        if (!initialized) init();
-        return wood_types;
+        ensureInitialized();
+        return List.copyOf(wood_types);
+    }
+
+    private static void ensureInitialized() {
+        if (!initialized) {
+            init();
+        }
+    }
+
+    private static String normalize(String value) {
+        return value.toLowerCase(Locale.ROOT);
+    }
+
+    private static void rebuildAllWoodTypes() {
+        wood_types.clear();
+        wood_types_by_name.clear();
+
+        for (MoreVariantWoodType woodType : more_variant_wood_types) {
+            addToAllWoodTypes(woodType);
+        }
+        for (MoreVariantWoodType woodType : vanilla_wood_types) {
+            addToAllWoodTypes(woodType);
+        }
+    }
+
+    private static void addToAllWoodTypes(MoreVariantWoodType woodType) {
+        if (wood_types.add(woodType)) {
+            wood_types_by_name.putIfAbsent(normalize(woodType.getName()), woodType);
+        }
     }
 }
