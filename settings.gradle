@@ -1,5 +1,5 @@
 pluginManagement {
-	apply from: "latest-loom.gradle"
+	apply from: "versions.gradle"
 
 	repositories {
 		maven {
