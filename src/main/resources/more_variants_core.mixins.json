@@ -39,6 +39,8 @@
     "more_lectern_variants.MlvItemInitMixin",
     "more_loom_variants.MlmvBlockInitMixin",
     "more_loom_variants.MlmvItemInitMixin",
+    "more_nemos_woodcutter_variants.MoreWoodcutterBlocksMixin",
+    "more_nemos_woodcutter_variants.MoreWoodcutterItemsMixin",
     "more_shield_variants.MoreShieldVariantItemsMixin",
     "more_smithing_tables.MstBlockInitMixin",
     "more_smithing_tables.MstItemInitMixin",

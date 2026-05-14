@@ -21,7 +21,7 @@ public enum MoreVariantMod {
     SHIELDS("more_shield_variants", "lolmsv"),
     SMITHING_TABLES("more_smithing_tables", "lolmst"),
     SMOKERS("more_smoker_variants", "quad-lolmsmv"),
-    WOODCUTTERS("nemos_woodcutters"),
+    WOODCUTTERS("more_nemos_woodcutter_variants"),
     // MStV(+)
     STICKS("mstv.base", "mstv-base"),
     ARMOR_STANDS("mstv.more_armor_stand_variants", "mstv-masv"),

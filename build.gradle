@@ -113,6 +113,10 @@ dependencies {
 		modCompileOnly modLocalRuntime("maven.modrinth:more-lectern-variants:${m_lectern_v_version_id}")
 		// More Loom Variants
 		modCompileOnly modLocalRuntime("maven.modrinth:more-loom-variants:${m_loom_v_version_id}")
+		// More Nemo's Woodcutter Variants
+		modCompileOnly modLocalRuntime("maven.modrinth:more-nemos-woodcutter-variants:${m_nemos_woodcutter_v_version_id}")
+			// Dependency: Nemo's Woodcutter
+			modCompileOnly modLocalRuntime("maven.modrinth:nemos-woodcutter:${nemos_woodcutter_version_id}")
 		// More Shield Variants
 		modCompileOnly modLocalRuntime("maven.modrinth:more-shield-variants:${m_shield_v_version_id}")
 			// Dependencies: Cloth Config, Mod Menu
