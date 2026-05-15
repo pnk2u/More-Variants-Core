@@ -179,7 +179,7 @@ def (java_version, java_version_enum) = javaVersions(releaseVersion)
 
 def replaceProperties = [
 		mod_id: mod_id, mod_name: mod_name, mod_description: mod_description, mod_license: mod_license,
-		mod_version: mod_version, mstv_version: mstv_version,
+		mod_version: mod_version,
 		min_floader_version: fabric_loader_version_0,
 		minecraft_version_0: minecraft_version_0, minecraft_version_1: minecraft_version_1, java_version: java_version
 ]
