@@ -6,10 +6,10 @@ plugins {
 apply from: "versions.gradle"
 
 def mc_version_name(){
-	String key = 'minecraft_version_name'
-	if (project.hasProperty(key)) {String value = project.getProperties().get(key); return !value.isEmpty() ? value : project.minecraft_version}
-	else {return project.minecraft_version}
+	def named = project.findProperty('minecraft_version_name')
+	return named ? named : project.minecraft_version
 }
+
 version = "${mod_version}+${mc_version_name()}-Fabric"
 group = project.maven_group
 
