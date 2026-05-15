@@ -8,7 +8,9 @@
     "more_shield_variants.MoreShieldVariantItemGroupsMixin",
     "more_shield_variants.MoreShieldVariantModelPredicateProviderMixin",
     "more_shield_variants.MoreShieldVariantsConfigMixin",
-    "more_shield_variants.MoreShieldVariantsConfigScreenMixin"
+    "more_shield_variants.MoreShieldVariantsConfigScreenMixin",
+    "nemos_campfires.ModCreativeModeTabsMixin",
+    "nemos_campfires.NemosCampfiresClientMixin"
   ],
   "injectors": {
     "defaultRequire": 1

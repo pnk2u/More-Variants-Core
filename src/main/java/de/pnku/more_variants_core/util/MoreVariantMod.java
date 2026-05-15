@@ -6,7 +6,7 @@ public enum MoreVariantMod {
     BEDS("more_bed_variants","quad-lolmbdv"),
     BEEHIVES("more_beehive_variants","quad-lolmbhv"),
     BOOKSHELVES("more_bookshelf_variants", "lolmbv"),
-    CAMPFIRES("nemos_campfires"),
+    CAMPFIRES("nemos_campfires", "nemos-campfires"),
     CARTOGRAPHY_TABLES("more_cartography_tables", "lolmcgt"),
     CHESTS("more_chest_variants", "lolmcv"),
     CHISELED_BOOKSHELVES("more_chiseled_bookshelf_variants", "lolmcbv"),

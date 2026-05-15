@@ -154,6 +154,9 @@ dependencies {
 			modCompileOnly modLocalRuntime("maven.modrinth:more-torch-variants:${mstv_m_torch_v_version_id}")
 			// More Weapon Variants
 			modCompileOnly modLocalRuntime("maven.modrinth:more-weapon-variants:${mstv_m_weapon_v_version_id}")
+		// Nemo
+			// Campfires
+			modCompileOnly modLocalRuntime("maven.modrinth:nemos-campfires:${nemos_campfires_version_id}")
 
 	// Every Compat
 		// Moonlight

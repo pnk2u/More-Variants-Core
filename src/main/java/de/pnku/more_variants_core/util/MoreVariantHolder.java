@@ -282,6 +282,33 @@ public final class MoreVariantHolder {
         }
     }
 
+    public enum CampfireType implements IMoreVariantSubType {
+        CAMPFIRE(Blocks.CAMPFIRE, Items.CAMPFIRE, 15),
+        SOUL_CAMPFIRE(Blocks.SOUL_CAMPFIRE, Items.SOUL_CAMPFIRE, 10);
+
+        private final Block vanillaBlock;
+        private final Item vanillaItem;
+        private final int lightLevel;
+
+        CampfireType(Block vanillaBlock, Item vanillaItem, int lightLevel) {
+            this.vanillaBlock = vanillaBlock;
+            this.vanillaItem = vanillaItem;
+            this.lightLevel = lightLevel;
+        }
+        public MoreVariantType variantType() {
+            return MoreVariantType.CAMPFIRE;
+        }
+        public int lightLevel() {
+            return lightLevel;
+        }
+        public Block getVanillaBlock() {
+            return vanillaBlock;
+        }
+        public Item getVanillaItem() {
+            return vanillaItem;
+        }
+    }
+
     public enum GrindstoneType implements IMoreVariantSubType {
         STONE(Blocks.STONE_SLAB),
         SANDSTONE(Blocks.SANDSTONE_SLAB),
