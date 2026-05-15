@@ -175,7 +175,7 @@ dependencies {
 
 def minecraft_version_0 = lowerMinecraftVersion(minecraft_version_lower)
 def minecraft_version_1 = upperMinecraftVersion(minecraft_version_upper)
-def (java_version, java_version_enum) = javaVersions()
+def (java_version, java_version_enum) = javaVersions(releaseVersion)
 
 def replaceProperties = [
 		mod_id: mod_id, mod_name: mod_name, mod_description: mod_description, mod_license: mod_license,
