@@ -38,19 +38,23 @@ public abstract class MoreToolVariantItemsMixin {
 
     @Unique
     private static Item createToolItemVariant(ToolType toolType) {
+        Item.Properties properties = new Item.Properties();
+        if (toolType.materialType() == MoreVariantHolder.MaterialType.NETHERITE) {
+            properties = properties.fireResistant();
+        }
         if(toolType.isBrush()) {
             return new BrushItem(new Item.Properties().durability(64));
         } else if (toolType.isAxe()) {
-            return new AxeItem(toolType.materialType().tier(), (new Item.Properties())
+            return new AxeItem(toolType.materialType().tier(), (properties)
                     .attributes(AxeItem.createAttributes(toolType.materialType().tier(), toolType.aD(), toolType.aS())));
         } else if (toolType.isPickaxe()) {
-            return new PickaxeItem(toolType.materialType().tier(), (new Item.Properties())
+            return new PickaxeItem(toolType.materialType().tier(), (properties)
                     .attributes(PickaxeItem.createAttributes(toolType.materialType().tier(), toolType.aD(), toolType.aS())));
         } else if (toolType.isHoe()) {
-            return new HoeItem(toolType.materialType().tier(), (new Item.Properties())
+            return new HoeItem(toolType.materialType().tier(), (properties)
                     .attributes(HoeItem.createAttributes(toolType.materialType().tier(), toolType.aD(), toolType.aS())));
         } else if (toolType.isShovel()) {
-            return new ShovelItem(toolType.materialType().tier(), (new Item.Properties())
+            return new ShovelItem(toolType.materialType().tier(), (properties)
                     .attributes(ShovelItem.createAttributes(toolType.materialType().tier(), toolType.aD(), toolType.aS())));
         } else {
             throw new IllegalArgumentException("Invalid tool type: " + toolType);
