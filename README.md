@@ -1,0 +1,84 @@
+<a name="more-variants-core"></a>
+# <img height='48' align=right src="./src/main/resources/icon.png"> <p align="center">&emsp;&emsp;&emsp; More Variants Core <sub><a title="More Variants Core on Modrinth" href="https://www.modrinth.com/mod/more-variants-core"><img width="40" src="https://img.shields.io/badge/-%20-%230f91?style=flat&logo=modrinth"></a></sub> <a title="More Variants Core on Curseforge" href="https://www.curseforge.com/minecraft/mc-mods/more-variants-core"><sub><img width="40" src="https://img.shields.io/badge/--%23f062?style=flat&logo=curseforge"></sub></a> </p>
+> <img align=left height="153" src="https://raw.githubusercontent.com/pnk2u/resources/main/ModProjects/More-Variants-Core/pres/logo/logo_c.png">  
+>  A base mod for Add-on mods adding even more variants for LieOnLion's, Nemo's and my own (pnku) <em>More Variants</em> mods. <br><br><br><br>  
+> <br>  
+> <br>  
+>  <!--<details><summary><h5>Show in-game example image</h5></summary><br><img src="https://raw.githubusercontent.com/pnk2u/resources/main/ModProjects/More-Variants-Core/pres/mr_mini_banner.gif"><sup><br></sup></details>-->
+<br>
+
+<a name="compatibility"></a>
+### <img height="24" align="left" src="https://raw.githubusercontent.com/pnk2u/resources/main/ModProjects/shared/pres/icon/puzzle.svg"> Compatibility
+
+<table>
+  <thead>
+    <tr>
+      <td><strong>Minecraft</strong></td>
+      <td>
+        <a href="https://modrinth.com/mod/more-variants-core/versions?g=1.20.1"><code>1.20.1</code></a><br>
+        <a href="https://modrinth.com/mod/more-variants-core/versions?g=1.21&g=1.21.1"><code>1.21(.1)</code></a>
+      </td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Mod Loaders</strong></td>
+      <td><sub><img width="16" src="https://raw.githubusercontent.com/FabricMC/fabric/1.21.10/src/main/resources/assets/fabric/icon.png"></sub><a href="https://fabricmc.net/use/installer/"><code>Fabric Loader</code></a></td>
+    </tr>
+  </tbody>
+  <thead>
+    <tr>
+      <td><strong>Requires</strong></td>
+      <td>
+        <a href="https://modrinth.com/mod/fabric-api"><sub><img width="16" src="https://raw.githubusercontent.com/FabricMC/fabric/1.21.10/src/main/resources/assets/fabric/icon.png"></sub><code>Fabric API</code></a>
+      </td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Required By</strong></td>
+      <td>
+        <a href="https://modrinth.com/mod/more-variants-pale-oak-backport"><sub><img width="16" src="https://raw.githubusercontent.com/pnk2u/more-variants-pale-oak-backport/1.21(.1)/src/main/resources/icon.png"></sub><code>More Variants: Pale Oak Backport</code></a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+
+<a name="translations"></a>
+### <img height="24" align="left" src="https://raw.githubusercontent.com/pnk2u/resources/main/ModProjects/shared/pres/icon/translate.svg"> Translations
+
+|Language|Translator|
+|--|--|
+|English||
+|German||
+
+> [!NOTE]
+> > Want to help translate? If you can, please open a PR to the **default branch** [`1.21(.1)`](../../tree/1.21(.1)).  
+> > Otherwise, simply send your translation via email (contact@pnku.de) or join the [Discord](https://discord.lieonlion.dev).
+
+<br>
+
+
+<img height="53" align="left" src="https://raw.githubusercontent.com/pnk2u/resources/main/ModProjects/shared/pres/icon/changelog.svg">  
+
+### Versions
+<a name="most-recent-version"></a>
+<!--CHANGELOG:START-->
+#### <ins>0.9.9</ins>
+<!--CHANGELOG:END-->
+<a name="footnote-*"></a>
+> <strong>*</strong><sup>: Most recent version</sup>  
+> _`The version above is automatically updated with the newest release and only after it has been successfully published.`_
+
+<a name="changelog-history"></a>
+> [!TIP]
+> > Looking for changes of previous versions?  
+> > You can find them in the [changelog history](./CHANGELOG_history.md).
+
+---
+#### Support/Contact
+- Suggestions? Questions? Bug reports?  
+  Feel free to [open an issue](/../../issues)!  
+  &nbsp;  
+  You can also contact me via email at [contact@pnku.de](mailto:contact@pnku.de) or join the [Discord](https://dsc.lieonlion.dev) and contact me there.
