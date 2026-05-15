@@ -68,7 +68,7 @@ dependencies {
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_api_version}"
 
 				// More Variants: Pale Oak Backport
-					modLocalRuntime("de.pnku:MoreVariantsPaleOakBackport:${m_v_pale_oak_backport_version_id}+1.21(.1)-Fabric")
+					//modRuntimeOnly("de.pnku:MoreVariantsPaleOakBackport:${m_v_pale_oak_backport_version_id}+1.21(.1)-Fabric")
 		// Vanilla Backport
 		modLocalRuntime("maven.modrinth:vanillabackport:${vanillabackport_version_id}")
 		modLocalRuntime("maven.modrinth:platform:${platform_version_id}")
