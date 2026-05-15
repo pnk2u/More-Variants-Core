@@ -93,7 +93,7 @@ public abstract class MoreToolVariantItemsMixin {
         ToolType[] toolTypes = ToolType.values();
         for (MoreVariantWoodType woodType : woodTypes) {
             ResourceLocation stickId = MoreVariantHolder.getRegistrationId(MoreVariantHolder.MoreVariantType.STICK, woodType);
-            ResourceLocation planksId = woodType.getPlanksId();
+            ResourceLocation planksId = woodType.planksId();
             whenItemRegistered(stickId, stickItem
                     -> whenItemRegistered(planksId, planksItem
                             -> registerToolItemVariantForType(toolTypes, woodType, stickItem, planksItem)));

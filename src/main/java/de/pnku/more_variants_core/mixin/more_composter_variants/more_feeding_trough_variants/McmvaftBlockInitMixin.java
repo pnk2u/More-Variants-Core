@@ -24,7 +24,7 @@ public abstract class McmvaftBlockInitMixin {
     private static void registerFeedingTroughBlockVariants(List<MoreVariantWoodType> woodTypes) {
         MoreVariantHolder.MoreVariantType feedingTroughType = MoreVariantHolder.MoreVariantType.ANIMAL_FEEDING_TROUGH;
         for (MoreVariantWoodType woodType : woodTypes) {
-            Block feedingTrough = new MoreFeedingTroughBlock(woodType.getMapColor(), woodType.getName());
+            Block feedingTrough = new MoreFeedingTroughBlock(woodType.mapColor(), woodType.getName());
             registerBlock(feedingTrough);
             MoreVariantHolder.setBlock(feedingTroughType, woodType, feedingTrough);
         }

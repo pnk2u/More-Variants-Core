@@ -24,7 +24,7 @@ public abstract class MftBlockInitMixin {
     private static void registerFletchingTableBlockVariants(List<MoreVariantWoodType> woodTypes) {
         MoreVariantType fletchingTableType = MoreVariantType.FLETCHING_TABLE;
         for (MoreVariantWoodType woodType : woodTypes) {
-            MoreFletchingTablesBlock fletchingTable = new MoreFletchingTablesBlock(woodType.getMapColor(), woodType.getName());
+            MoreFletchingTablesBlock fletchingTable = new MoreFletchingTablesBlock(woodType.mapColor(), woodType.getName());
             registerBlock(fletchingTable);
             MoreVariantHolder.setBlock(fletchingTableType, woodType, fletchingTable);
         }

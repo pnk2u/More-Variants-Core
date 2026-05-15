@@ -27,7 +27,7 @@ public abstract class MoreBarrelBlocksMixin {
         List<Block> barrelBlocks = new ArrayList<>();
         MoreVariantHolder.MoreVariantType barrelType = MoreVariantHolder.MoreVariantType.BARREL;
         for (MoreVariantWoodType woodType : woodTypes) {
-            Block barrelBlock = new MoreBarrelBlock(woodType.getMapColor(), woodType.getName());
+            Block barrelBlock = new MoreBarrelBlock(woodType.mapColor(), woodType.getName());
             MoreVariantHolder.setBlock(barrelType, woodType, barrelBlock);
             barrelBlocks.add(barrelBlock);
         }

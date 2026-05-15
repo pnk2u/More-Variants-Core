@@ -25,7 +25,7 @@ public abstract class McrvBlockInitMixin {
     private static void registerCrafterBlockVariants(List<MoreVariantWoodType> woodTypes) {
         MoreVariantHolder.MoreVariantType crafterType = MoreVariantHolder.MoreVariantType.CRAFTER;
         for (MoreVariantWoodType woodType : woodTypes) {
-            Block crafterBlock = new MoreCrafterBlock(woodType.getMapColor(), woodType.getName());
+            Block crafterBlock = new MoreCrafterBlock(woodType.mapColor(), woodType.getName());
             registerCrafterBlock(crafterBlock);
             MoreVariantHolder.setBlock(crafterType, woodType, crafterBlock);
         }

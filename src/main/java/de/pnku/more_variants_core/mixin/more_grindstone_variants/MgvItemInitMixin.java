@@ -5,7 +5,7 @@ import de.pnku.more_variants_core.util.MoreVariantHolder;
 import de.pnku.more_variants_core.util.MoreVariantHolder.GrindstoneType;
 import de.pnku.more_variants_core.util.MoreVariantWoodType;
 import de.pnku.more_variants_core.util.MoreVariantWoodTypeHolder;
-import de.pnku.more_variants_core.util.VanillaWoodTypes;
+import de.pnku.more_variants_core.util.MoreVariantVanillaWoodTypes;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import org.spongepowered.asm.mixin.Mixin;
@@ -28,7 +28,7 @@ public abstract class MgvItemInitMixin {
     @Unique
     private static void registerGrindstoneItemVariants(List<MoreVariantWoodType> woodTypes) {
         for (GrindstoneType grindstoneType : GrindstoneType.values()) {
-            waitForItemRegistration(grindstoneType, VanillaWoodTypes.getLast(), lastOfType -> {
+            waitForItemRegistration(grindstoneType, MoreVariantVanillaWoodTypes.getLast(), lastOfType -> {
                 for (MoreVariantWoodType woodType : woodTypes) {
                     waitForBlockRegistration(grindstoneType, woodType, block -> {
                         BlockItem grindstoneItem = new BlockItem(block, new Item.Properties());

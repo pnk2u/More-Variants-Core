@@ -35,7 +35,7 @@ public abstract class ModBlocksMixin {
     private static void registerCampfireBlockVariants(List<MoreVariantWoodType> woodTypes) {
         for (MoreVariantWoodType woodType : woodTypes) {
             for (CampfireType campfireType : CampfireType.values()) {
-                Block campfireBlock = registerBlock(MoreVariantHolder.getRegistrationId(campfireType, woodType).getPath(), new CampfireBlock(true, 1, createCampfireProperties(woodType.getMapColor(), campfireType.lightLevel())));
+                Block campfireBlock = registerBlock(MoreVariantHolder.getRegistrationId(campfireType, woodType).getPath(), new CampfireBlock(true, 1, createCampfireProperties(woodType.mapColor(), campfireType.lightLevel())));
                 MoreVariantHolder.setBlock(campfireType, woodType, campfireBlock);
                 BlockEntityType.CAMPFIRE.addSupportedBlock(campfireBlock);
             }

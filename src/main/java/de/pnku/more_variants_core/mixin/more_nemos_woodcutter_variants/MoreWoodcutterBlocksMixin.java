@@ -26,7 +26,7 @@ public abstract class MoreWoodcutterBlocksMixin {
         List<Block> woodcutterBlocks = new ArrayList<>();
         MoreVariantHolder.MoreVariantType woodcutterType = MoreVariantHolder.MoreVariantType.WOODCUTTER;
         for (MoreVariantWoodType woodType : woodTypes) {
-            Block woodcutterBlock = new MoreWoodcutterBlock(woodType.getMapColor(), woodType.getName());
+            Block woodcutterBlock = new MoreWoodcutterBlock(woodType.mapColor(), woodType.getName());
             MoreVariantHolder.setBlock(woodcutterType, woodType, woodcutterBlock);
             woodcutterBlocks.add(woodcutterBlock);
         }

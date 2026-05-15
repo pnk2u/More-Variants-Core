@@ -4,7 +4,7 @@ import de.pnku.more_variants_core.util.MoreVariantHolder;
 import de.pnku.more_variants_core.util.MoreVariantHolder.SmokerType;
 import de.pnku.more_variants_core.util.MoreVariantWoodType;
 import de.pnku.more_variants_core.util.MoreVariantWoodTypeHolder;
-import de.pnku.more_variants_core.util.VanillaWoodTypes;
+import de.pnku.more_variants_core.util.MoreVariantVanillaWoodTypes;
 import de.pnku.msmv.init.MsmvItemInit;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -28,7 +28,7 @@ public abstract class MsmvItemInitMixin {
     private static void registerSmokerItemVariants(List<MoreVariantWoodType> woodTypes) {
         SmokerType smokerType = SmokerType.COBBLESTONE;
         waitForItemRegistration(SmokerType.values()[SmokerType.values().length - 1], woodTypes.getLast(), waitedFor ->
-            waitForItemRegistration(smokerType, VanillaWoodTypes.getLast(), vanillaSmokerItem -> {
+            waitForItemRegistration(smokerType, MoreVariantVanillaWoodTypes.getLast(), vanillaSmokerItem -> {
                 for (MoreVariantWoodType woodType : woodTypes) {
                     BlockItem smokerItem = new BlockItem(MoreVariantHolder.getBlock(smokerType, woodType), new Item.Properties());
                     registerSmokerItem(smokerItem, vanillaSmokerItem);

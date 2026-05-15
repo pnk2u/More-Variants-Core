@@ -35,14 +35,14 @@ public abstract class McvBlockInitMixin {
 
     @Unique
     private static MoreChestBlock createChestVariant(MoreVariantWoodType woodType) {
-        MoreChestBlock chestBlock = new MoreChestBlock(woodType.getMapColor(), woodType.getName());
+        MoreChestBlock chestBlock = new MoreChestBlock(woodType.mapColor(), woodType.getName());
         MoreVariantHolder.setBlock(ChestType.CHEST, woodType, chestBlock);
         return chestBlock;
     }
 
     @Unique
     private static MoreTrappedChestBlock createTrappedChestVariant(MoreVariantWoodType woodType) {
-        MoreTrappedChestBlock trappedChestBlock = new MoreTrappedChestBlock(woodType.getMapColor(), woodType.getName());
+        MoreTrappedChestBlock trappedChestBlock = new MoreTrappedChestBlock(woodType.mapColor(), woodType.getName());
         MoreVariantHolder.setBlock(ChestType.TRAPPED_CHEST, woodType, trappedChestBlock);
         return trappedChestBlock;
     }

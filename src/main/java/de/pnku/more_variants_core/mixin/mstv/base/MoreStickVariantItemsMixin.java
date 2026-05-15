@@ -29,7 +29,7 @@ public abstract class MoreStickVariantItemsMixin {
     private static void registerStickItemVariants(List<MoreVariantWoodType> woodTypes) {
         MoreVariantHolder.MoreVariantType stickType = MoreVariantType.STICK;
         for (MoreVariantWoodType woodType : woodTypes) {
-            ResourceLocation planksId = woodType.getPlanksId();
+            ResourceLocation planksId = woodType.planksId();
             whenItemRegistered(planksId, item -> { // MoreStickVariantItem#getPlanksItem references the Planks item
                 Item stickItem = new MoreStickVariantItem(woodType.getName(), new Item.Properties());
                 MoreVariantHolder.setItem(stickType, woodType, stickItem);

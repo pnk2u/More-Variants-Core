@@ -24,7 +24,7 @@ public abstract class MsmvBlockInitMixin {
     private static void registerSmokerBlockVariants(List<MoreVariantWoodType> woodTypes, SmokerType[] smokerTypes) {
         for (MoreVariantWoodType woodType : woodTypes) {
             for (SmokerType smokerType : smokerTypes) {
-                MoreSmokerVariantBlock smokerBlock = new MoreSmokerVariantBlock(woodType.getMapColor(), woodType.getName(), smokerType.registrationType());
+                MoreSmokerVariantBlock smokerBlock = new MoreSmokerVariantBlock(woodType.mapColor(), woodType.getName(), smokerType.registrationType());
                 registerSmokerBlock(smokerBlock);
                 MoreVariantHolder.setBlock(smokerType, woodType, smokerBlock);
             }

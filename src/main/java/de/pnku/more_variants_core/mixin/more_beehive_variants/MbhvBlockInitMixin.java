@@ -23,7 +23,7 @@ public abstract class MbhvBlockInitMixin {
     private static void registerBeehiveBlockVariants(List<MoreVariantWoodType> woodTypes) {
         MoreVariantHolder.MoreVariantType beehiveType = MoreVariantHolder.MoreVariantType.BEEHIVE;
         for (MoreVariantWoodType woodType : woodTypes) {
-            MoreBeehiveVariantBlock beehiveBlock = new MoreBeehiveVariantBlock(woodType.getMapColor(), woodType.getName());
+            MoreBeehiveVariantBlock beehiveBlock = new MoreBeehiveVariantBlock(woodType.mapColor(), woodType.getName());
             registerBeehiveBlock(beehiveBlock);
             MoreVariantHolder.setBlock(beehiveType, woodType, beehiveBlock);
         }

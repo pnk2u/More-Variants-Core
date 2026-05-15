@@ -25,7 +25,7 @@ public abstract class MstBlockInitMixin {
     private static void registerSmithingTableBlockVariants(List<MoreVariantWoodType> woodTypes) {
         MoreVariantType smithingTableType = MoreVariantType.SMITHING_TABLE;
         for (MoreVariantWoodType woodType : woodTypes) {
-            Block smithingTableBlock = new MoreSmithingTableBlock(woodType.getMapColor(), woodType.getName());
+            Block smithingTableBlock = new MoreSmithingTableBlock(woodType.mapColor(), woodType.getName());
             registerBlock(smithingTableBlock);
             MoreVariantHolder.setBlock(smithingTableType, woodType, smithingTableBlock);
         }

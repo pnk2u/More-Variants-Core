@@ -25,7 +25,7 @@ public abstract class MctBlockInitMixin {
     private static void registerCraftingTableVariants(List<MoreVariantWoodType> woodTypes) {
         MoreVariantHolder.MoreVariantType craftingTableType = MoreVariantHolder.MoreVariantType.CRAFTING_TABLE;
         for (MoreVariantWoodType woodType : woodTypes) {
-            MoreCraftingTableBlock craftingTableBlock = new MoreCraftingTableBlock(woodType.getMapColor());
+            MoreCraftingTableBlock craftingTableBlock = new MoreCraftingTableBlock(woodType.mapColor());
             registerBlock(woodType.getName() + "_" + craftingTableType.registrationType(), craftingTableBlock);
             MoreVariantHolder.setBlock(craftingTableType, woodType, craftingTableBlock);
         }

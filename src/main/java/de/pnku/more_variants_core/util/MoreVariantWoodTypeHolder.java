@@ -3,7 +3,7 @@ package de.pnku.more_variants_core.util;
 import java.util.*;
 
 import static de.pnku.more_variants_core.MoreVariantsCore.LOGGER;
-import static de.pnku.more_variants_core.util.VanillaWoodTypes.VALUES;
+import static de.pnku.more_variants_core.util.MoreVariantVanillaWoodTypes.VALUES;
 
 public class MoreVariantWoodTypeHolder {
     private static final Set<MoreVariantWoodType> wood_types = new LinkedHashSet<>();
@@ -50,7 +50,7 @@ public class MoreVariantWoodTypeHolder {
                 throw new IllegalArgumentException("Wood Type '" + woodType.getName() + "' has an integer ID that conflicts with existing Wood Type '" + existingByIntId.getName() + "'.");
             }
 
-            String normalizedIdString = normalize(woodType.idString());
+            String normalizedIdString = normalize(woodType.getIdString());
             MoreVariantWoodType existingByIdString = more_variant_wood_types_by_id_string.get(normalizedIdString);
             if (existingByIdString != null) {
                 throw new IllegalArgumentException("Wood Type '" + woodType.getName() + "' has an ID string that conflicts with existing Wood Type '" + existingByIdString.getName() + "'.");

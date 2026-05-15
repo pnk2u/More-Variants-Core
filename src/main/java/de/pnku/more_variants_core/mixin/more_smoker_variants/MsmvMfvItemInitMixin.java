@@ -4,11 +4,9 @@ import de.pnku.more_variants_core.util.MoreVariantHolder;
 import de.pnku.more_variants_core.util.MoreVariantHolder.SmokerType;
 import de.pnku.more_variants_core.util.MoreVariantWoodType;
 import de.pnku.more_variants_core.util.MoreVariantWoodTypeHolder;
-import de.pnku.more_variants_core.util.VanillaWoodTypes;
+import de.pnku.more_variants_core.util.MoreVariantVanillaWoodTypes;
 import de.pnku.msmv.init.MsmvMfvItemInit;
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -29,7 +27,7 @@ public abstract class MsmvMfvItemInitMixin {
     @Unique
     private static void registerNfvSmokerItemVariants(List<MoreVariantWoodType> woodTypes, SmokerType[] smokerTypes) {
         for (SmokerType smokerType : smokerTypes) {
-            waitForItemRegistration(smokerType, VanillaWoodTypes.getLast(), vanillaSmokerItem -> {
+            waitForItemRegistration(smokerType, MoreVariantVanillaWoodTypes.getLast(), vanillaSmokerItem -> {
                 for (MoreVariantWoodType woodType : woodTypes) {
                     BlockItem smokerItem = new BlockItem(MoreVariantHolder.getBlock(smokerType, woodType), new Item.Properties());
                     registerMfvSmokerItem(smokerItem, vanillaSmokerItem);

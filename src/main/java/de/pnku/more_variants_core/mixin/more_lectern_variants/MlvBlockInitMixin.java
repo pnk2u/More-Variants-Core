@@ -23,7 +23,7 @@ public abstract class MlvBlockInitMixin {
     private static void registerkLecternBlockVariants(List<MoreVariantWoodType> woodTypes) {
         MoreVariantHolder.MoreVariantType lecternType = MoreVariantHolder.MoreVariantType.LECTERN;
         for (MoreVariantWoodType woodType : woodTypes) {
-            MoreLecternBlock lectern = new MoreLecternBlock(woodType.getMapColor(), woodType.getName());
+            MoreLecternBlock lectern = new MoreLecternBlock(woodType.mapColor(), woodType.getName());
             registerBlock(lectern);
             MoreVariantHolder.setBlock(lecternType, woodType, lectern);
         }

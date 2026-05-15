@@ -24,7 +24,7 @@ public abstract class MlmvBlockInitMixin {
     private static void registerLoomBlockVariants(List<MoreVariantWoodType> woodTypes) {
         MoreVariantType loomType = MoreVariantType.LOOM;
         for (MoreVariantWoodType woodType : woodTypes) {
-            MoreLoomVariantBlock loomBlock = new MoreLoomVariantBlock(woodType.getMapColor(), woodType.getName());
+            MoreLoomVariantBlock loomBlock = new MoreLoomVariantBlock(woodType.mapColor(), woodType.getName());
             registerBlock(loomBlock);
             MoreVariantHolder.setBlock(loomType, woodType, loomBlock);
         }

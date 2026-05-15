@@ -24,7 +24,7 @@ public abstract class McgtBlockInitMixin {
     private static void registerCartographyTableBlockVariants(List<MoreVariantWoodType> woodTypes) {
         MoreVariantType cartographyTableType = MoreVariantHolder.MoreVariantType.CARTOGRAPHY_TABLE;
         for (MoreVariantWoodType woodType : woodTypes) {
-            MoreCartographyTablesBlock cartographyTable = new MoreCartographyTablesBlock(woodType.getMapColor(), woodType.getName());
+            MoreCartographyTablesBlock cartographyTable = new MoreCartographyTablesBlock(woodType.mapColor(), woodType.getName());
             registerBlock(cartographyTable);
             MoreVariantHolder.setBlock(cartographyTableType, woodType, cartographyTable);
         }
