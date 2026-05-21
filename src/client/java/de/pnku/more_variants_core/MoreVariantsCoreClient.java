@@ -14,15 +14,17 @@ import org.slf4j.LoggerFactory;
 @Environment(EnvType.CLIENT)
 public class MoreVariantsCoreClient implements ClientModInitializer {
 	public static final String MOD_ID = "more_variants_core";
-	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID + " (Client)");
+	public static final String MOD_NAME = "More Variants Core";
+	public static final String PACK_ID = "compatibility_assets";
+	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_NAME + " (Client)");
 
 
 	@Override
 	public void onInitializeClient() {
 		ResourceManagerHelper.registerBuiltinResourcePack(
-				withModId(MOD_ID),
+				withModId(PACK_ID),
 				FabricLoader.getInstance().getModContainer(MOD_ID).orElseThrow(),
-				Component.translatable("resourcePack." + MOD_ID + ".name"),
+				Component.translatable(String.join(".","resourcePack", MOD_ID, PACK_ID, "name")),
 				ResourcePackActivationType.ALWAYS_ENABLED
 		);
 	}
