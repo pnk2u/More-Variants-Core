@@ -266,7 +266,7 @@ public final class MoreVariantHolder {
             return isWallTorch;
         }
         public SimpleParticleType getParticleType() {
-            return this == SOUL_TORCH ? ParticleTypes.SOUL_FIRE_FLAME : ParticleTypes.FLAME;
+            return this.getBaseTorchType() == SOUL_TORCH ? ParticleTypes.SOUL_FIRE_FLAME : ParticleTypes.FLAME;
         }
         public String registrationType() {
             return torchName;
