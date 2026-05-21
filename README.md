@@ -1,11 +1,8 @@
 <a name="more-variants-core"></a>
 # <img height='48' align=right src="./src/main/resources/icon.png"> <p align="center">&emsp;&emsp;&emsp; More Variants Core <sub><a title="More Variants Core on Modrinth" href="https://www.modrinth.com/mod/more-variants-core"><img width="40" src="https://img.shields.io/badge/-%20-%230f91?style=flat&logo=modrinth"></a></sub> <a title="More Variants Core on Curseforge" href="https://www.curseforge.com/minecraft/mc-mods/more-variants-core"><sub><img width="40" src="https://img.shields.io/badge/--%23f062?style=flat&logo=curseforge"></sub></a> </p>
 > <img align=left height="153" src="https://raw.githubusercontent.com/pnk2u/resources/main/ModProjects/More-Variants-Core/pres/logo/logo_c.png">  
->  A base mod for Add-on mods adding even more variants for LieOnLion's, Nemo's and my own (pnku) <em>More Variants</em> mods. <br><br><br><br>  
-> <br>  
-> <br>  
->  <!--<details><summary><h5>Show in-game example image</h5></summary><br><img src="https://raw.githubusercontent.com/pnk2u/resources/main/ModProjects/More-Variants-Core/pres/mr_mini_banner.gif"><sup><br></sup></details>-->
-<br>
+>  A base mod for Add-on mods adding even more variants for LieOnLion's, Nemo's and my own (pnku's) <em>More Variants</em> mods. <br><br><br><br>  
+<br>  
 
 <a name="compatibility"></a>
 ### <img height="24" align="left" src="https://raw.githubusercontent.com/pnk2u/resources/main/ModProjects/shared/pres/icon/puzzle.svg"> Compatibility
