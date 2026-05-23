@@ -18,7 +18,6 @@ public class MoreVariantsCoreClient implements ClientModInitializer {
 	public static final String PACK_ID = "compatibility_assets";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_NAME + " (Client)");
 
-
 	@Override
 	public void onInitializeClient() {
 		ResourceManagerHelper.registerBuiltinResourcePack(
@@ -32,6 +31,4 @@ public class MoreVariantsCoreClient implements ClientModInitializer {
 	public static ResourceLocation withModId(String path) {
 		return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
 	}
-
-
 }

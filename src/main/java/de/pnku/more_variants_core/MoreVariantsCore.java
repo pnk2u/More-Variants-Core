@@ -16,7 +16,6 @@ public class MoreVariantsCore implements ModInitializer {
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_NAME);
 	public static List<String> found_mod_ids = new ArrayList<>();
 
-	
 	@Override
 	public void onInitialize() {
 		if (!found_mod_ids.isEmpty()) {
@@ -33,5 +32,4 @@ public class MoreVariantsCore implements ModInitializer {
 	public static ResourceLocation withModId(String path) {
 		return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
 	}
-
 }
