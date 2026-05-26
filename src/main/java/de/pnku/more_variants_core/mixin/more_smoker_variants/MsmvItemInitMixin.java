@@ -17,7 +17,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.List;
 
+import static de.pnku.more_variants_core.util.MoreVariantHolder.waitForBlockRegistration;
 import static de.pnku.more_variants_core.util.MoreVariantHolder.waitForItemRegistration;
+import static de.pnku.more_variants_core.MoreVariantsCore.LOGGER;
 
 @Mixin(MsmvItemInit.class)
 public abstract class MsmvItemInitMixin {
@@ -26,8 +28,12 @@ public abstract class MsmvItemInitMixin {
 
     @Unique
     private static void registerSmokerItemVariants(List<MoreVariantWoodType> woodTypes) {
+        if (woodTypes.isEmpty()) {
+            LOGGER.warn("No More Variant Wood Types found for Smoker Item registration. Skipping Smoker Item Variant registration.");
+            return;
+        }
         SmokerType smokerType = SmokerType.COBBLESTONE;
-        waitForItemRegistration(SmokerType.values()[SmokerType.values().length - 1], woodTypes.getLast(), waitedFor ->
+        waitForBlockRegistration(smokerType, woodTypes.getLast(), waitedFor ->
             waitForItemRegistration(smokerType, MoreVariantVanillaWoodTypes.getLast(), vanillaSmokerItem -> {
                 for (MoreVariantWoodType woodType : woodTypes) {
                     BlockItem smokerItem = new BlockItem(MoreVariantHolder.getBlock(smokerType, woodType), new Item.Properties());
