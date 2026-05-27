@@ -45,17 +45,13 @@ public abstract class MoreToolVariantItemsMixin {
         if(toolType.isBrush()) {
             return new BrushItem(new Item.Properties().durability(64));
         } else if (toolType.isAxe()) {
-            return new AxeItem(toolType.materialType().tier(), (properties)
-                    .attributes(AxeItem.createAttributes(toolType.materialType().tier(), toolType.aD(), toolType.aS())));
+            return new AxeItem(toolType.materialType().tier(), toolType.aD(), toolType.aS(), (properties));
         } else if (toolType.isPickaxe()) {
-            return new PickaxeItem(toolType.materialType().tier(), (properties)
-                    .attributes(PickaxeItem.createAttributes(toolType.materialType().tier(), toolType.aD(), toolType.aS())));
+            return new PickaxeItem(toolType.materialType().tier(), (int) toolType.aD(), toolType.aS(), (properties));
         } else if (toolType.isHoe()) {
-            return new HoeItem(toolType.materialType().tier(), (properties)
-                    .attributes(HoeItem.createAttributes(toolType.materialType().tier(), toolType.aD(), toolType.aS())));
+            return new HoeItem(toolType.materialType().tier(), (int) toolType.aD(), toolType.aS(), (properties));
         } else if (toolType.isShovel()) {
-            return new ShovelItem(toolType.materialType().tier(), (properties)
-                    .attributes(ShovelItem.createAttributes(toolType.materialType().tier(), toolType.aD(), toolType.aS())));
+            return new ShovelItem(toolType.materialType().tier(), toolType.aD(), toolType.aS(), (properties));
         } else {
             throw new IllegalArgumentException("Invalid tool type: " + toolType);
         }

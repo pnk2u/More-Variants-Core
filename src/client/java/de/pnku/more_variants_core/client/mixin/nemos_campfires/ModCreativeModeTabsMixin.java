@@ -36,7 +36,7 @@ public abstract class ModCreativeModeTabsMixin {
 
     @Inject(method = "registerNemosCampfiresCreativeModeTab", at = @At("TAIL"), remap = false)
     private static void injectedRegisterNemosCampfiresCreativeModeTabAtTail(CallbackInfo ci) {
-        registerCampfireVariantsToCreativeModeTab(MoreVariantWoodTypeHolder.getMoreVariantWoodTypes(), BuiltInRegistries.CREATIVE_MODE_TAB.getResourceKey(BuiltInRegistries.CREATIVE_MODE_TAB.get(ResourceLocation.fromNamespaceAndPath(MoreVariantMod.CAMPFIRES.modId(), MoreVariantMod.CAMPFIRES.modId()))).orElse(CreativeModeTabs.FUNCTIONAL_BLOCKS));
+        registerCampfireVariantsToCreativeModeTab(MoreVariantWoodTypeHolder.getMoreVariantWoodTypes(), BuiltInRegistries.CREATIVE_MODE_TAB.getResourceKey(BuiltInRegistries.CREATIVE_MODE_TAB.get(new ResourceLocation(MoreVariantMod.CAMPFIRES.modId(), MoreVariantMod.CAMPFIRES.modId()))).orElse(CreativeModeTabs.FUNCTIONAL_BLOCKS));
     }
 
     @Inject(method = "modifyFunctionalBlocksCreativeModeTab", at = @At("HEAD"), remap = false)

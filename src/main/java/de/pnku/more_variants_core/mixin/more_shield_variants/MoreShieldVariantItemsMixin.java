@@ -21,16 +21,11 @@ public abstract class MoreShieldVariantItemsMixin {
     @Shadow
     private static void registerShieldItem(Item shieldItem) {}
 
-    @Shadow
-    private static Item.Properties setProperties() {
-        throw new AssertionError();
-    }
-
     @Unique
     private static void registerShieldItemVariants(List<MoreVariantWoodType> woodTypes) {
         MoreVariantHolder.MoreVariantType shieldType = MoreVariantType.SHIELD;
         for (MoreVariantWoodType woodType : woodTypes) {
-            Item shieldItem = new MoreShieldVariantItem(woodType.getName(), setProperties());
+            Item shieldItem = new MoreShieldVariantItem(woodType.getName(), new Item.Properties().durability(336));
             registerShieldItem(shieldItem);
             MoreVariantHolder.setItem(shieldType, woodType, shieldItem);
         }

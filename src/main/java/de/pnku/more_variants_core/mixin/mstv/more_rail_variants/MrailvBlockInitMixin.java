@@ -68,12 +68,12 @@ public abstract class MrailvBlockInitMixin {
     private static Block createInputRailBlock(RailType railType) {
         Block vanillaRailBlock = railType.getVanillaBlock();
         if (railType == RAIL) {
-            return new RailBlock(BlockBehaviour.Properties.ofFullCopy(vanillaRailBlock));
+            return new RailBlock(BlockBehaviour.Properties.copy(vanillaRailBlock));
         }
         if (railType == DETECTOR_RAIL) {
-            return new DetectorRailBlock(BlockBehaviour.Properties.ofFullCopy(vanillaRailBlock));
+            return new DetectorRailBlock(BlockBehaviour.Properties.copy(vanillaRailBlock));
         }
-        return new PoweredRailBlock(BlockBehaviour.Properties.ofFullCopy(vanillaRailBlock));
+        return new PoweredRailBlock(BlockBehaviour.Properties.copy(vanillaRailBlock));
     }
 
     @Inject(method = "registerRail", at = @At("HEAD"), remap = false)

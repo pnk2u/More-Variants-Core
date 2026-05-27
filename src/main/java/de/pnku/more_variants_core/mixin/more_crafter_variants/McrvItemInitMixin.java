@@ -1,6 +1,8 @@
 package de.pnku.more_variants_core.mixin.more_crafter_variants;
 
+/*
 import de.pnku.mcrv.init.McrvItemInit;
+ */
 import de.pnku.more_variants_core.util.MoreVariantHolder;
 import de.pnku.more_variants_core.util.MoreVariantHolder.MoreVariantType;
 import de.pnku.more_variants_core.util.MoreVariantWoodType;
@@ -16,8 +18,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.List;
 
-@Mixin(McrvItemInit.class)
+@Mixin(targets={"de.pnku.mcrv.init.McrvItemInit.class"})
 public abstract class McrvItemInitMixin {
+    /*
     @Shadow
     private static void registerCrafterItem(BlockItem crafter) {}
 
@@ -35,4 +38,5 @@ public abstract class McrvItemInitMixin {
     private static void injectedRegisterCrafterItemsAtHead(CallbackInfo ci) {
         registerCrafterItemVariants(MoreVariantWoodTypeHolder.getMoreVariantWoodTypes());
     }
+    */
 }

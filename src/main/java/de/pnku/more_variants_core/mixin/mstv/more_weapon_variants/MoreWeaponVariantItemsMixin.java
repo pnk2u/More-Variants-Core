@@ -22,6 +22,9 @@ import static de.pnku.more_variants_core.util.MoreVariantRegistryHelper.whenItem
 
 @Mixin(MoreWeaponVariantItems.class)
 public abstract class MoreWeaponVariantItemsMixin {
+    @Shadow static int swordAD;
+    @Shadow static float swordAS;
+
     @Shadow
     private static void registerSwordItem(Item swordItem, Item stickIngredient, String materialPrefix) {}
 
@@ -48,7 +51,7 @@ public abstract class MoreWeaponVariantItemsMixin {
 
     @Unique
     private static Item createSwordItemVariant(WeaponType weaponType) {
-        return new SwordItem(weaponType.materialType().tier(), swordProperties(weaponType.materialType().tier()));
+        return new SwordItem(weaponType.materialType().tier(), swordAD, swordAS, swordProperties(weaponType.materialType().tier()));
     }
 
     @Unique

@@ -15,11 +15,11 @@ public class MoreVariantWoodType {
     private final int intId;
 
     public MoreVariantWoodType(String name, MapColor mapColor, int intId) {
-        this("minecraft", name, mapColor, SoundType.WOOD, ResourceLocation.withDefaultNamespace(name + "_planks"), intId);
+        this("minecraft", name, mapColor, SoundType.WOOD, new ResourceLocation("minecraft", name + "_planks"), intId);
     }
 
     public MoreVariantWoodType(String name, MapColor mapColor, SoundType soundType, int intId) {
-        this("minecraft", name, mapColor, soundType, ResourceLocation.withDefaultNamespace(name + "_planks"), intId);
+        this("minecraft", name, mapColor, soundType, new ResourceLocation("minecraft", name + "_planks"), intId);
     }
 
     public MoreVariantWoodType(String name, MapColor mapColor, ResourceLocation planksId, int intId) {

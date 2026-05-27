@@ -28,7 +28,7 @@ public abstract class NmlvBlocksMixin {
     private static void registerLadderBlockVariants(List<MoreVariantWoodType> woodTypes) {
         MoreVariantType ladderType = MoreVariantHolder.MoreVariantType.LADDER;
         for (MoreVariantWoodType woodType : woodTypes) {
-            Block ladderBlock = registerLadderBlock(woodType.getName() + "_" + ladderType.registrationType(), new LadderBlock(Block.Properties.ofFullCopy(Objects.requireNonNull(ladderType.getVanillaBlock()))));
+            Block ladderBlock = registerLadderBlock(woodType.getName() + "_" + ladderType.registrationType(), new LadderBlock(Block.Properties.copy(Objects.requireNonNull(ladderType.getVanillaBlock()))));
             MoreVariantHolder.setBlock(ladderType, woodType, ladderBlock);
         }
     }

@@ -51,15 +51,15 @@ public abstract class MtvBlockInitMixin {
                 Block vanillaTorchBlock = torchType.getVanillaBlock();
                 if (!torchType.isWallTorch()) {
                     Block inputTorchBlock = torchType.equals(REDSTONE_TORCH) ?
-                            new RedstoneTorchBlock(BlockBehaviour.Properties.ofFullCopy(vanillaTorchBlock)) :
-                            new TorchBlock(torchType.getParticleType(), BlockBehaviour.Properties.ofFullCopy(vanillaTorchBlock));
+                            new RedstoneTorchBlock(BlockBehaviour.Properties.copy(vanillaTorchBlock)) :
+                            new TorchBlock(BlockBehaviour.Properties.copy(vanillaTorchBlock), torchType.getParticleType());
                     Block torchBlock = registerTorchBlock(woodType.getName() + "_" + torchType.torchName(), inputTorchBlock);
                     MoreVariantHolder.setBlock(torchType, woodType, torchBlock);
                 } else {
                     Block baseTorchBlock = MoreVariantHolder.getBlock(torchType.getBaseTorchType(), woodType);
                     Block inputWallTorchBlock = torchType.getBaseTorchType().equals(REDSTONE_TORCH) ?
-                            new RedstoneWallTorchBlock(BlockBehaviour.Properties.ofFullCopy(vanillaTorchBlock).dropsLike(baseTorchBlock))
-                            : new WallTorchBlock(torchType.getParticleType(), BlockBehaviour.Properties.ofFullCopy(vanillaTorchBlock).dropsLike(baseTorchBlock));
+                            new RedstoneWallTorchBlock(BlockBehaviour.Properties.copy(vanillaTorchBlock).dropsLike(baseTorchBlock))
+                            : new WallTorchBlock(BlockBehaviour.Properties.copy(vanillaTorchBlock).dropsLike(baseTorchBlock), torchType.getParticleType());
                     Block wallTorchBlock = registerTorchBlock(woodType.getName() + "_" + torchType.wallTorchName(), inputWallTorchBlock);
                     MoreVariantHolder.setBlock(torchType, woodType, wallTorchBlock);
                 }

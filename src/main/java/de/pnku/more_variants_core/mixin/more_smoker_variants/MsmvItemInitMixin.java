@@ -33,7 +33,7 @@ public abstract class MsmvItemInitMixin {
             return;
         }
         SmokerType smokerType = SmokerType.COBBLESTONE;
-        waitForBlockRegistration(smokerType, woodTypes.getLast(), waitedFor ->
+        waitForBlockRegistration(smokerType, woodTypes.get(woodTypes.size() - 1), waitedFor ->
             waitForItemRegistration(smokerType, MoreVariantVanillaWoodTypes.getLast(), vanillaSmokerItem -> {
                 for (MoreVariantWoodType woodType : woodTypes) {
                     BlockItem smokerItem = new BlockItem(MoreVariantHolder.getBlock(smokerType, woodType), new Item.Properties());

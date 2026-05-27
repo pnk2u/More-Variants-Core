@@ -28,7 +28,7 @@ public final class MoreVariantHolder {
         CHEST(              Blocks.CHEST,               Items.CHEST,                MoreVariantMod.CHESTS),
         CHISELED_BOOKSHELF( Blocks.CHISELED_BOOKSHELF,  Items.CHISELED_BOOKSHELF,   MoreVariantMod.CHISELED_BOOKSHELVES),
         COMPOSTER(          Blocks.COMPOSTER,           Items.COMPOSTER,            MoreVariantMod.COMPOSTERS),
-        CRAFTER(            Blocks.CRAFTER,             Items.CRAFTER,              MoreVariantMod.CRAFTERS),
+        //CRAFTER(            Blocks.CRAFTER,             Items.CRAFTER,              MoreVariantMod.CRAFTERS),
         CRAFTING_TABLE(     Blocks.CRAFTING_TABLE,      Items.CRAFTING_TABLE,       MoreVariantMod.CRAFTING_TABLES),
         FLETCHING_TABLE(    Blocks.FLETCHING_TABLE,     Items.FLETCHING_TABLE,      MoreVariantMod.FLETCHING_TABLES),
         GRINDSTONE(         Blocks.GRINDSTONE,          Items.GRINDSTONE,           MoreVariantMod.GRINDSTONES),
