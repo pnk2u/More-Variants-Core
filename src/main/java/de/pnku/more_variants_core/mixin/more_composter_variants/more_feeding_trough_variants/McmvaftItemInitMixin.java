@@ -2,6 +2,7 @@ package de.pnku.more_variants_core.mixin.more_composter_variants.more_feeding_tr
 
 import de.pnku.mcmvaft.init.McmvaftItemInit;
 import de.pnku.more_variants_core.util.MoreVariantHolder;
+import de.pnku.more_variants_core.util.MoreVariantHolder.MoreVariantType;
 import de.pnku.more_variants_core.util.MoreVariantVanillaWoodTypes;
 import de.pnku.more_variants_core.util.MoreVariantWoodType;
 import de.pnku.more_variants_core.util.MoreVariantWoodTypeHolder;
@@ -25,7 +26,7 @@ public abstract class McmvaftItemInitMixin {
 
     @Unique
     private static void registerFeedingTroughItemVariants(List<MoreVariantWoodType> woodTypes) {
-        MoreVariantHolder.MoreVariantType feedingTroughType = MoreVariantHolder.MoreVariantType.ANIMAL_FEEDING_TROUGH;
+        MoreVariantType feedingTroughType = MoreVariantType.FEEDING_TROUGH;
         waitForItemRegistration(feedingTroughType, MoreVariantVanillaWoodTypes.OAK, oakFeedingTrough -> {
             for (MoreVariantWoodType woodType : woodTypes) {
                 BlockItem feedingTroughItem = new BlockItem(MoreVariantHolder.getBlock(feedingTroughType, woodType), new Item.Properties());
