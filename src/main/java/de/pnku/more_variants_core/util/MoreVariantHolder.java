@@ -18,7 +18,7 @@ import static de.pnku.more_variants_core.util.MoreVariantRegistryHelper.whenItem
 
 public final class MoreVariantHolder {
     public enum MoreVariantType implements IMoreVariantType {
-        ANIMAL_FEEDING_TROUGH(null,                     null,                       MoreVariantMod.ANIMAL_FEEDING_TROUGHS),
+        FEEDING_TROUGH(    null,                       null,                       MoreVariantMod.ANIMAL_FEEDING_TROUGHS),
         BARREL(             Blocks.BARREL,              Items.BARREL,               MoreVariantMod.BARRELS),
         BED(                Blocks.WHITE_BED,           Items.WHITE_BED,            MoreVariantMod.BEDS),
         BEEHIVE(            Blocks.BEEHIVE,             Items.BEEHIVE,              MoreVariantMod.BEEHIVES),

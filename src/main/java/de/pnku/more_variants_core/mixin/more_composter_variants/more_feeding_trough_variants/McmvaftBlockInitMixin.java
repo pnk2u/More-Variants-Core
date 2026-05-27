@@ -3,6 +3,7 @@ package de.pnku.more_variants_core.mixin.more_composter_variants.more_feeding_tr
 import de.pnku.mcmvaft.block.MoreFeedingTroughBlock;
 import de.pnku.mcmvaft.init.McmvaftBlockInit;
 import de.pnku.more_variants_core.util.MoreVariantHolder;
+import de.pnku.more_variants_core.util.MoreVariantHolder.MoreVariantType;
 import de.pnku.more_variants_core.util.MoreVariantWoodType;
 import de.pnku.more_variants_core.util.MoreVariantWoodTypeHolder;
 import net.minecraft.world.level.block.Block;
@@ -22,7 +23,7 @@ public abstract class McmvaftBlockInitMixin {
 
     @Unique
     private static void registerFeedingTroughBlockVariants(List<MoreVariantWoodType> woodTypes) {
-        MoreVariantHolder.MoreVariantType feedingTroughType = MoreVariantHolder.MoreVariantType.ANIMAL_FEEDING_TROUGH;
+        MoreVariantType feedingTroughType = MoreVariantType.FEEDING_TROUGH;
         for (MoreVariantWoodType woodType : woodTypes) {
             Block feedingTrough = new MoreFeedingTroughBlock(woodType.mapColor(), woodType.getName());
             registerBlock(feedingTrough);
