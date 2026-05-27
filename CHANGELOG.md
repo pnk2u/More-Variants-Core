@@ -1,2 +1,3 @@
 <!--publish=true-->
-### 0.9.10
+### 1.0.0:
+- Initial release
