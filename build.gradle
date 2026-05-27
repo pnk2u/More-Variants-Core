@@ -100,7 +100,7 @@ dependencies {
 					// Dependency: Architectury API
 					modApi "dev.architectury:architectury-fabric:${architectury_api_version}"
 		// More Crafter Variants
-		modCompileOnly modLocalRuntime("maven.modrinth:more-crafter-variants:${m_crafter_v_version_id}")
+		//modCompileOnly modLocalRuntime("maven.modrinth:more-crafter-variants:${m_crafter_v_version_id}")
 		// More Crafting Tables (LieOnLion)
 		modCompileOnly modLocalRuntime("maven.modrinth:more-crafting-tables-lieonlion:${m_crafting_t_lol_version_id}")
 		// More Fletching Tables
@@ -160,15 +160,15 @@ dependencies {
 
 	// Every Compat
 		// Moonlight
-		modCompileOnly modLocalRuntime("net.mehvahdjukaar:moonlight-fabric:${moonlight_version}") { transitive = false }
+		//modCompileOnly modLocalRuntime("net.mehvahdjukaar:moonlight-fabric:${moonlight_version}") { transitive = false }
 		// Every Compat
-		modCompileOnly modLocalRuntime("net.mehvahdjukaar:everycomp-fabric:${every_compat_version}:fabric") { transitive = false }
+		//modCompileOnly modLocalRuntime("net.mehvahdjukaar:everycomp-fabric:${every_compat_version}:fabric") { transitive = false }
 			// Above for docs, if needed - below in case above's maven is down
-			//modCompileOnly("maven.modrinth:moonlight:${moonlight_version}-fabric")
-			//modCompileOnly("maven.modrinth:every-compat:${every_compat_version}-fabric")
+			modCompileOnly modLocalRuntime("maven.modrinth:moonlight:${moonlight_version}-fabric")
+			modCompileOnly modLocalRuntime("maven.modrinth:every-compat:${every_compat_version}-fabric")
 		// Testing
-		modRuntimeOnly("maven.modrinth:wilder-wild:${wilder_wild_version}")
-		modRuntimeOnly("maven.modrinth:frozenlib:${frozenlib_version}")
+		//modRuntimeOnly("maven.modrinth:wilder-wild:${wilder_wild_version}")
+		//modRuntimeOnly("maven.modrinth:frozenlib:${frozenlib_version}")
 
 
 }
