@@ -1,3 +1,3 @@
-<!--publish=true-->
+<!--publish = true-->
 ### 1.0.0:
 - Initial release
