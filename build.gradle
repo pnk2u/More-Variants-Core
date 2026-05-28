@@ -33,7 +33,6 @@ repositories {
 		name = 'SomethingSketchy' // EveryCompat, Moonlight
 		url = "https://registry.somethingcatchy.net/repository/maven-releases/"
 	}
-	mavenLocal()
 }
 
 loom {
@@ -68,7 +67,7 @@ dependencies {
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_api_version}"
 
 				// More Variants: Pale Oak Backport
-					//modRuntimeOnly("de.pnku:MoreVariantsPaleOakBackport:${m_v_pale_oak_backport_version_id}+${minecraft_version_name}-Fabric")
+					//modRuntimeOnly("maven.modrinth:more-variants-pale-oak-backport:${m_v_pale_oak_backport_version_id}")
 		// Vanilla Backport
 		modLocalRuntime("maven.modrinth:vanillabackport:${vanillabackport_version_id}")
 		modLocalRuntime("maven.modrinth:platform:${platform_version_id}")
