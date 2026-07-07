@@ -22,7 +22,7 @@ import static de.pnku.more_variants_core.util.MoreVariantHolder.waitForItemRegis
 @Mixin(McmvaftItemInit.class)
 public abstract class McmvaftItemInitMixin {
     @Shadow
-    private static void registerItem(BlockItem feedingTroughItem, Item feedingTroughAfter) {}
+    private static void registerItem(Item feedingTroughitem) {}
 
     @Unique
     private static void registerFeedingTroughItemVariants(List<MoreVariantWoodType> woodTypes) {
@@ -30,7 +30,7 @@ public abstract class McmvaftItemInitMixin {
         waitForItemRegistration(feedingTroughType, MoreVariantVanillaWoodTypes.OAK, oakFeedingTrough -> {
             for (MoreVariantWoodType woodType : woodTypes) {
                 BlockItem feedingTroughItem = new BlockItem(MoreVariantHolder.getBlock(feedingTroughType, woodType), new Item.Properties());
-                registerItem(feedingTroughItem, oakFeedingTrough);
+                registerItem(feedingTroughItem);
                 MoreVariantHolder.setItem(feedingTroughType, woodType, feedingTroughItem);
             }
         });

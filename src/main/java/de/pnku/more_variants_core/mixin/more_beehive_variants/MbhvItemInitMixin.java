@@ -19,7 +19,7 @@ import java.util.List;
 @Mixin(MbhvItemInit.class)
 public abstract class MbhvItemInitMixin {
     @Shadow
-    private static void registerBeehiveItem(BlockItem beehiveItem, Item beehiveAfter) {}
+    private static void registerBeehiveItem(Item beehiveItem, Item beehiveAfter) {}
 
     @Unique
     private static void registerBeehiveItemVariants(List<MoreVariantWoodType> woodTypes) {

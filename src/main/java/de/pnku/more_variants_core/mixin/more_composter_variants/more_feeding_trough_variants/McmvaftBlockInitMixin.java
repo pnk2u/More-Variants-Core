@@ -6,6 +6,7 @@ import de.pnku.more_variants_core.util.MoreVariantHolder;
 import de.pnku.more_variants_core.util.MoreVariantHolder.MoreVariantType;
 import de.pnku.more_variants_core.util.MoreVariantWoodType;
 import de.pnku.more_variants_core.util.MoreVariantWoodTypeHolder;
+import net.minecraft.world.level.block.Block;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -18,7 +19,7 @@ import java.util.List;
 @Mixin(McmvaftBlockInit.class)
 public abstract class McmvaftBlockInitMixin {
     @Shadow
-    private static void registerBlock(MoreFeedingTroughBlock feedingTrough) {}
+    private static void registerBlock(Block feedingTrough) {}
 
     @Unique
     private static void registerFeedingTroughBlockVariants(List<MoreVariantWoodType> woodTypes) {
