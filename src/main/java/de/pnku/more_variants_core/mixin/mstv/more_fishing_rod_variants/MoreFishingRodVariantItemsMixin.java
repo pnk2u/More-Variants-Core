@@ -5,8 +5,11 @@ import de.pnku.more_variants_core.util.MoreVariantHolder.RodType;
 import de.pnku.more_variants_core.util.MoreVariantWoodType;
 import de.pnku.more_variants_core.util.MoreVariantWoodTypeHolder;
 import de.pnku.mstv_mfrv.item.MoreFishingRodVariantItems;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+import org.slf4j.LoggerFactory;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -48,14 +51,16 @@ public abstract class MoreFishingRodVariantItemsMixin {
 
     @Unique
     private static void registerRodItemVariantForType(RodType rodType, Item rodItem, Item vanillaRodItem, Item stickItem) {
-        if (RodType.WARPED_FUNGUS_ON_A_STICK.equals(rodType)) {
-            registerWarpedFungusOnAStickItem(rodItem, vanillaRodItem, stickItem);
-        } else if (RodType.CARROT_ON_A_STICK.equals(rodType)) {
-            registerCarrotOnAStickItem(rodItem, vanillaRodItem, stickItem);
-        } else if (RodType.FISHING_ROD.equals(rodType)) {
-            registerFishingRodItem(rodItem, vanillaRodItem, stickItem);
-        } else {
-            throw new IllegalStateException("Unexpected RodType: " + rodType);
+        if (BuiltInRegistries.ITEM.getKey(rodItem).toString().equals("minecraft:air")) {
+            if (RodType.WARPED_FUNGUS_ON_A_STICK.equals(rodType)) {
+                registerWarpedFungusOnAStickItem(rodItem, vanillaRodItem, stickItem);
+            } else if (RodType.CARROT_ON_A_STICK.equals(rodType)) {
+                registerCarrotOnAStickItem(rodItem, vanillaRodItem, stickItem);
+            } else if (RodType.FISHING_ROD.equals(rodType)) {
+                registerFishingRodItem(rodItem, vanillaRodItem, stickItem);
+            } else {
+                throw new IllegalStateException("Unexpected RodType: " + rodType);
+            }
         }
     }
 
