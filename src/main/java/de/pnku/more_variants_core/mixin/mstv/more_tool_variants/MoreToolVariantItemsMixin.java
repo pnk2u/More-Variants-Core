@@ -17,6 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.List;
 import java.util.Objects;
 
+import static de.pnku.more_variants_core.util.MoreVariantHolder.getRegistrationIds;
 import static de.pnku.more_variants_core.util.MoreVariantRegistryHelper.whenItemRegistered;
 
 @Mixin(MoreToolVariantItems.class)
@@ -92,7 +93,9 @@ public abstract class MoreToolVariantItemsMixin {
             ResourceLocation planksId = woodType.planksId();
             whenItemRegistered(stickId, stickItem
                     -> whenItemRegistered(planksId, planksItem
-                            -> registerToolItemVariantForType(toolTypes, woodType, stickItem, planksItem)));
+                                    -> registerToolItemVariantForType(toolTypes, woodType, stickItem, planksItem),
+                            getRegistrationIds(toolTypes, woodType)),
+                    getRegistrationIds(toolTypes, woodType));
         }
     }
 
