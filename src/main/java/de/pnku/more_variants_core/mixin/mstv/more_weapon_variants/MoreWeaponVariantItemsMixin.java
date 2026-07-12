@@ -18,6 +18,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.Arrays;
 import java.util.List;
 
+import static de.pnku.more_variants_core.util.MoreVariantHolder.getRegistrationId;
+import static de.pnku.more_variants_core.util.MoreVariantHolder.getRegistrationIds;
 import static de.pnku.more_variants_core.util.MoreVariantRegistryHelper.whenItemRegistered;
 
 @Mixin(MoreWeaponVariantItems.class)
@@ -94,13 +96,14 @@ public abstract class MoreWeaponVariantItemsMixin {
     private static void registerWeaponItemVariants(List<MoreVariantWoodType> woodTypes) {
         WeaponType[] swordTypes = Arrays.stream(WeaponType.values()).filter(WeaponType::isSword).toArray(WeaponType[]::new);
         for (MoreVariantWoodType woodType : woodTypes) {
-            ResourceLocation stickId = MoreVariantHolder.getRegistrationId(MoreVariantHolder.MoreVariantType.STICK, woodType);
+            ResourceLocation stickId = getRegistrationId(MoreVariantHolder.MoreVariantType.STICK, woodType);
             if (BuiltInRegistries.ITEM.containsKey(stickId)) {
                 Item stickItem = MoreVariantHolder.getItem(MoreVariantHolder.MoreVariantType.STICK, woodType);
                 registerWeaponVariantForType(swordTypes, woodType, stickItem);
             } else {
-                whenItemRegistered(stickId, (stickItem) ->
-                    registerWeaponVariantForType(swordTypes, woodType, stickItem));
+                whenItemRegistered(stickId,
+                        stickItem -> registerWeaponVariantForType(swordTypes, woodType, stickItem),
+                        getRegistrationIds(swordTypes, woodType));
             }
         }
     }

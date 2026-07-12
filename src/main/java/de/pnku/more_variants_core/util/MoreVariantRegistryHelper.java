@@ -6,18 +6,37 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 
+import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Consumer;
 
 public class MoreVariantRegistryHelper {
+
     public static void whenItemRegistered(ResourceLocation itemId, Consumer<Item> action) {
-        if (BuiltInRegistries.ITEM.containsKey(itemId)) {
-            action.accept(BuiltInRegistries.ITEM.get(itemId));
+        whenItemRegistered(itemId, action, List.of());
+    }
+
+    public static void whenItemRegistered(ResourceLocation itemId, Consumer<Item> action, ResourceLocation waitingItemId) {
+        whenItemRegistered(itemId, action, List.of(waitingItemId));
+    }
+
+    public static void whenItemRegistered(ResourceLocation waitedForItemId, Consumer<Item> action, List<ResourceLocation> waitingItemIds) {
+        if (BuiltInRegistries.ITEM.containsKey(waitedForItemId)) {
+            action.accept(BuiltInRegistries.ITEM.get(waitedForItemId));
         } else {
-            RegistryEntryAddedCallback.event(BuiltInRegistries.ITEM).register((itemIntId, id, item) -> {
-                if (id.equals(itemId)) {
-                    action.accept(item);
+            AtomicBoolean foundWaitingItem = new AtomicBoolean(false);
+            waitingItemIds.forEach(waitingItemId -> {
+                if (BuiltInRegistries.ITEM.containsKey(waitingItemId)) {
+                    foundWaitingItem.set(true);
                 }
             });
+            if (!foundWaitingItem.get()) {
+                RegistryEntryAddedCallback.event(BuiltInRegistries.ITEM).register((itemIntId, id, item) -> {
+                    if (id.equals(waitedForItemId)) {
+                        action.accept(item);
+                    }
+                });
+            }
         }
     }
 

@@ -12,6 +12,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 import static de.pnku.more_variants_core.util.MoreVariantRegistryHelper.whenBlockRegistered;
 import static de.pnku.more_variants_core.util.MoreVariantRegistryHelper.whenItemRegistered;
@@ -680,12 +681,16 @@ public final class MoreVariantHolder {
         return type.getRegistrationId(woodType);
     }
 
+    public static List<ResourceLocation> getRegistrationIds(IMoreVariantType[] types, MoreVariantWoodType woodType) {
+        return Arrays.stream(types).map(type -> type.getRegistrationId(woodType)).collect(Collectors.toList());
+    }
+
     public static void waitForBlockRegistration(IMoreVariantType type, MoreVariantWoodType woodType, Consumer<Block> action) {
         whenBlockRegistered(getRegistrationId(type, woodType), action);
     }
 
     public static void waitForItemRegistration(IMoreVariantType type, MoreVariantWoodType woodType, Consumer<Item> action) {
-        whenItemRegistered(getRegistrationId(type, woodType), action);
+        whenItemRegistered(getRegistrationId(type, woodType), action, List.of());
     }
 
     private static Map<Object, Block> blocksFor(MoreVariantType variantType, MoreVariantWoodType woodType) {

@@ -17,6 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.List;
 
+import static de.pnku.more_variants_core.util.MoreVariantHolder.getRegistrationId;
 import static de.pnku.more_variants_core.util.MoreVariantRegistryHelper.whenItemRegistered;
 
 
@@ -34,7 +35,7 @@ public abstract class MoreStickVariantItemsMixin {
                 Item stickItem = new MoreStickVariantItem(woodType.getName(), new Item.Properties());
                 MoreVariantHolder.setItem(stickType, woodType, stickItem);
                 registerStickItem(stickItem, MoreVariantHolder.MoreVariantType.STICK.getVanillaItem());
-            });
+            }, getRegistrationId(stickType, woodType));
         }
     }
 

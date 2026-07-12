@@ -19,6 +19,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.List;
 
+import static de.pnku.more_variants_core.util.MoreVariantHolder.getRegistrationIds;
 import static de.pnku.more_variants_core.util.MoreVariantRegistryHelper.whenItemRegistered;
 
 @Mixin(MoreFishingRodVariantItems.class)
@@ -42,8 +43,9 @@ public abstract class MoreFishingRodVariantItemsMixin {
                 Item rodItem = createRodItem(rodType.entityType(), woodType.getName());
                 Item vanillaRodItem = rodType.getVanillaItem();
                 ResourceLocation stickId = MoreVariantHolder.getRegistrationId(MoreVariantHolder.MoreVariantType.STICK, woodType);
-                whenItemRegistered(stickId, stickItem
-                        -> registerRodItemVariantForType(rodType, rodItem, vanillaRodItem, stickItem));
+                whenItemRegistered(stickId,
+                        stickItem -> registerRodItemVariantForType(rodType, rodItem, vanillaRodItem, stickItem),
+                        getRegistrationIds(RodType.values(), woodType));
                 MoreVariantHolder.setItem(rodType, woodType, rodItem);
             }
         }
