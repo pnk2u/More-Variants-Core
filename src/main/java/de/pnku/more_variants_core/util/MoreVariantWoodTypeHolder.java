@@ -17,6 +17,8 @@ public class MoreVariantWoodTypeHolder {
     private static final Map<Integer, MoreVariantWoodType> more_variant_wood_types_by_int_id = new HashMap<>();
     private static final Map<String, MoreVariantWoodType> more_variant_wood_types_by_id_string = new HashMap<>();
 
+    private static final Set<BiomeSpawnItemVariant> biome_spawn_item_variants = new LinkedHashSet<>();
+
     private static boolean initialized = false;
 
     public static void init() {
@@ -151,4 +153,18 @@ public class MoreVariantWoodTypeHolder {
             wood_types_by_name.putIfAbsent(normalize(woodType.getName()), woodType);
         }
     }
+
+    public static List<BiomeSpawnItemVariant> getBiomeSpawnItemVariants() {
+        return List.copyOf(biome_spawn_item_variants);
+    }
+
+    public static void addBiomeSpawnItemVariant(String[] biomeIds,  MoreVariantWoodType mainWoodType, float mainProb,
+                                                                    MoreVariantWoodType altWoodType, float altProb) {
+        BiomeSpawnItemVariant variant = new BiomeSpawnItemVariant(biomeIds, mainWoodType, mainProb, altWoodType, altProb);
+        biome_spawn_item_variants.add(variant);
+    }
+
+
+    public record BiomeSpawnItemVariant(String[] biomeIds,  MoreVariantWoodType mainWoodType, float mainProb,
+                                                            MoreVariantWoodType altWoodType, float altProb) {}
 }
